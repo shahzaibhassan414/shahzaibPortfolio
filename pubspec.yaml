@@ -19,6 +19,7 @@ dependencies:
   url_launcher: ^6.3.2 #URLauncher
   scroll_to_index: ^3.0.1 #scrollToIndex
   http: ^1.0.0 #httpclient
+  toastification: ^3.0.3
 
 dev_dependencies:
   flutter_test:

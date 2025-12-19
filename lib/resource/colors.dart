@@ -6,4 +6,5 @@ class AppColors {
   var neonColor = const Color(0xff76eeda);
   var textLight = const Color(0xff8892b0);
   var cardColor = const Color(0xff112240);
+  var redColor = const Color(0xffe84141);
 }

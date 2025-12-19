@@ -209,18 +209,31 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                                         onTap: () async {
                                           if (_formKey.currentState!.validate()) {
                                             ref.read(progressProvider.notifier).state = true;
-                                            AppClass().sendEmail(nameController.text, contactInfoController.text, msgController.text).then((value) {
+                                            AppClass().sendEmail(
+                                                nameController.text,
+                                                contactInfoController.text,
+                                                msgController.text
+                                            ).then((value) {
                                               if (value) {
                                                 Navigator.pop(context);
-                                                AppClass().showSnackBar('Message sent successfully', context: context);
+                                                AppClass().successSnackBar(
+                                                    '🎉 Your message zoomed into my inbox! Thanks!',
+                                                    context: context
+                                                );
                                               } else {
                                                 Navigator.pop(context);
-                                                AppClass().showSnackBar('Failed to send message, please try again later.', context: context);
+                                                AppClass().errorSnackBar(
+                                                    '😅 Oops! Something went wrong. Try sending it again?',
+                                                    context: context
+                                                );
                                               }
                                               ref.read(progressProvider.notifier).state = false;
                                             }).onError((error, stackTrace) {
                                               Navigator.pop(context);
-                                              AppClass().showSnackBar('Error Occurred', context: context);
+                                              AppClass().errorSnackBar(
+                                                  '⚡ Yikes! An error popped up. Give it another shot!',
+                                                  context: context
+                                              );
                                             });
                                           }
                                         },
