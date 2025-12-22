@@ -88,7 +88,7 @@ class _IntroMobileState extends State<IntroMobile> {
                 padding: const EdgeInsets.only(top: 60.0),
                 child: InkWell(
                   onTap: () {
-                    widget.aScrollController.scrollToIndex(1, preferPosition: AutoScrollPosition.begin);
+                    widget.aScrollController.scrollToIndex(3, preferPosition: AutoScrollPosition.begin);
                   },
                   child: Container(
                     height: AppClass().getMqHeight(context) * 0.07,

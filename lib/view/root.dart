@@ -39,7 +39,15 @@ class _RootScreenState extends ConsumerState<RootScreen> {
             return true;
           },
           child: Container(
-            decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: [Color(0xff112240), Color(0xff0a192f), Color(0xff020c1b)])),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                  Color(0xff112240),
+                  Color(0xff0a192f),
+                  Color(0xff020c1b)
+                ])),
             height: AppClass().getMqHeight(context),
             child: Column(
               children: [
@@ -60,16 +68,39 @@ class _RootScreenState extends ConsumerState<RootScreen> {
                         Expanded(
                             flex: 8,
                             child: Consumer(builder: (context, ref, child) {
-                              bool scrollHandler = ref.watch(scrollHandlerProvider);
+                              bool scrollHandler =
+                                  ref.watch(scrollHandlerProvider);
                               return ListView(
-                                physics: scrollHandler ? AlwaysScrollableScrollPhysics() : NeverScrollableScrollPhysics(),
+                                physics: scrollHandler
+                                    ? AlwaysScrollableScrollPhysics()
+                                    : NeverScrollableScrollPhysics(),
                                 controller: mScrollController,
                                 children: [
-                                  AutoScrollTag(key: ValueKey(0), controller: mScrollController, index: 0, child: IntroContent(mScrollController)),
-                                  AutoScrollTag(key: ValueKey(1), controller: mScrollController, index: 1, child: About()),
-                                  AutoScrollTag(key: ValueKey(2), controller: mScrollController, index: 2, child: Experience()),
-                                  AutoScrollTag(key: ValueKey(3), controller: mScrollController, index: 3, child: Work()),
-                                  AutoScrollTag(key: ValueKey(4), controller: mScrollController, index: 5, child: Contact())
+                                  AutoScrollTag(
+                                      key: ValueKey(0),
+                                      controller: mScrollController,
+                                      index: 0,
+                                      child: IntroContent(mScrollController)),
+                                  AutoScrollTag(
+                                      key: ValueKey(1),
+                                      controller: mScrollController,
+                                      index: 1,
+                                      child: About()),
+                                  AutoScrollTag(
+                                      key: ValueKey(2),
+                                      controller: mScrollController,
+                                      index: 2,
+                                      child: Experience()),
+                                  AutoScrollTag(
+                                      key: ValueKey(3),
+                                      controller: mScrollController,
+                                      index: 3,
+                                      child: Work()),
+                                  AutoScrollTag(
+                                      key: ValueKey(4),
+                                      controller: mScrollController,
+                                      index: 4,
+                                      child: Contact())
                                 ],
                               );
                             })),

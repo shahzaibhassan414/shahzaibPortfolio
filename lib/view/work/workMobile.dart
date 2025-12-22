@@ -162,36 +162,36 @@ class _WorkWebState extends ConsumerState<WorkMobile> {
                           ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            AppClass().projectList[index].tech1 ?? "",
-                            style: GoogleFonts.roboto(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              fontSize: AppClass().getMqWidth(context) * 0.035,
-                            ),
-                          ),
-                          Text(
-                            AppClass().projectList[index].tech2 ?? "",
-                            style: GoogleFonts.roboto(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              fontSize: AppClass().getMqWidth(context) * 0.035,
-                            ),
-                          ),
-                          Text(
-                            AppClass().projectList[index].tech3 ?? "",
-                            style: GoogleFonts.roboto(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: AppClass().getMqWidth(context) * 0.035,
-                            ),
-                          ),
-                        ],
-                      )
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //   children: [
+                      //     Text(
+                      //       AppClass().projectList[index].tech1 ?? "",
+                      //       style: GoogleFonts.roboto(
+                      //         color: AppColors().textLight,
+                      //         letterSpacing: 1,
+                      //         fontSize: AppClass().getMqWidth(context) * 0.035,
+                      //       ),
+                      //     ),
+                      //     Text(
+                      //       AppClass().projectList[index].tech2 ?? "",
+                      //       style: GoogleFonts.roboto(
+                      //         color: AppColors().textLight,
+                      //         letterSpacing: 1,
+                      //         fontSize: AppClass().getMqWidth(context) * 0.035,
+                      //       ),
+                      //     ),
+                      //     Text(
+                      //       AppClass().projectList[index].tech3 ?? "",
+                      //       style: GoogleFonts.roboto(
+                      //         color: AppColors().textLight,
+                      //         letterSpacing: 1,
+                      //         height: 1.5,
+                      //         fontSize: AppClass().getMqWidth(context) * 0.035,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),

@@ -16,442 +16,64 @@ class ExperienceWeb extends StatefulWidget {
 }
 
 class _ExperienceWebState extends State<ExperienceWeb> {
+
+  List<ExperienceModel> experienceList = [
+    ExperienceModel(
+        desig: Strings.expDesig2,
+        compName: Strings.expCompName2,
+        duration: Strings.expDur2,
+        points: Column(
+          children: [
+            ExperienceArrowList(
+              text: Strings.expAbout2,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout2_2,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout2_3,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout2_4,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout2_5,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout2_6,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout2_7,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout2_8,
+            ),
+          ],
+        )),
+    ExperienceModel(
+        desig: Strings.expDesig1,
+        compName: Strings.expCompName1,
+        duration: Strings.expDur1,
+        points: Column(
+          children: [
+            ExperienceArrowList(
+              text: Strings.expAbout1,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout1_2,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout1_3,
+            ),
+            ExperienceArrowList(
+              text: Strings.expAbout1_4,
+            ),
+          ],
+        )),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    List<ExperienceModel> experienceList = [
-      // ExperienceModel(
-      //     desig: Strings.expDesig3,
-      //     compName: Strings.expCompName3,
-      //     duration: Strings.expDur3,
-      //     points: Column(
-      //       children: [
-      //         Padding(
-      //           padding: const EdgeInsets.all(8.0),
-      //           child: Row(
-      //             children: [
-      //               Padding(
-      //                 padding: const EdgeInsets.only(right: 5.0),
-      //                 child: Icon(
-      //                   Icons.arrow_right,
-      //                   color: AppColors().neonColor,
-      //                   size: 20,
-      //                 ),
-      //               ),
-      //               Container(
-      //                 width: AppClass().getMqWidth(context) * 0.35,
-      //                 child: Text(
-      //                   Strings.expAbout3,
-      //                   style: TextStyle(
-      //                       color: AppColors().textLight,
-      //                       letterSpacing: 1,
-      //                       height: 1.5,
-      //                       fontSize: 14,
-      //                       fontFamily: 'sfmono'),
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //         ),
-      //         Padding(
-      //           padding: const EdgeInsets.all(8.0),
-      //           child: Row(
-      //             children: [
-      //               Padding(
-      //                 padding: const EdgeInsets.only(right: 5.0),
-      //                 child: Icon(
-      //                   Icons.arrow_right,
-      //                   color: AppColors().neonColor,
-      //                   size: 20,
-      //                 ),
-      //               ),
-      //               Container(
-      //                 width: AppClass().getMqWidth(context) * 0.35,
-      //                 child: Text(
-      //                   Strings.expAbout3_2,
-      //                   style: TextStyle(
-      //                       color: AppColors().textLight,
-      //                       letterSpacing: 1,
-      //                       height: 1.5,
-      //                       fontSize: 14,
-      //                       fontFamily: 'sfmono'),
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //         ),
-      //         Padding(
-      //           padding: const EdgeInsets.all(8.0),
-      //           child: Row(
-      //             children: [
-      //               Padding(
-      //                 padding: const EdgeInsets.only(right: 5.0),
-      //                 child: Icon(
-      //                   Icons.arrow_right,
-      //                   color: AppColors().neonColor,
-      //                   size: 20,
-      //                 ),
-      //               ),
-      //               Container(
-      //                 width: AppClass().getMqWidth(context) * 0.35,
-      //                 child: Text(
-      //                   Strings.expAbout3_3,
-      //                   style: TextStyle(
-      //                       color: AppColors().textLight,
-      //                       letterSpacing: 1,
-      //                       height: 1.5,
-      //                       fontSize: 14,
-      //                       fontFamily: 'sfmono'),
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //         ),
-      //       ],
-      //     )),
-      ExperienceModel(
-          desig: Strings.expDesig2,
-          compName: Strings.expCompName2,
-          duration: Strings.expDur2,
-          points: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout2,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout2_2,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout2_3,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout2_4,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout2_5,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout2_6,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout2_7,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout2_8,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )),
-      ExperienceModel(
-          desig: Strings.expDesig1,
-          compName: Strings.expCompName1,
-          duration: Strings.expDur1,
-          points: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout1,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout1_2,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout1_3,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().neonColor,
-                        size: 20,
-                      ),
-                    ),
-                    Container(
-                      width: AppClass().getMqWidth(context) * 0.35,
-                      child: Text(
-                        Strings.expAbout1_4,
-                        style: TextStyle(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 14,
-                            fontFamily: 'sfmono'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )),
-    ];
-
     return Container(
       height: AppClass().getMqHeight(context) - 70,
       child: Column(
@@ -502,9 +124,7 @@ class _ExperienceWebState extends State<ExperienceWeb> {
                       children: [
                         InkWell(
                           onTap: () {
-                            ref
-                                .read(selectedExpProvider.notifier)
-                                .state = 0;
+                            ref.read(selectedExpProvider.notifier).state = 0;
                           },
                           child: Container(
                             padding: EdgeInsets.all(10.0),
@@ -533,9 +153,7 @@ class _ExperienceWebState extends State<ExperienceWeb> {
                         ),
                         InkWell(
                           onTap: () {
-                            ref
-                                .read(selectedExpProvider.notifier)
-                                .state = 1;
+                            ref.read(selectedExpProvider.notifier).state = 1;
                           },
                           child: Container(
                             padding: EdgeInsets.all(10.0),
@@ -550,7 +168,7 @@ class _ExperienceWebState extends State<ExperienceWeb> {
                                             : Colors.white,
                                         width: 2))),
                             child: Text(
-                              'Rex Technologies',
+                              'Rax-Tech',
                               style: TextStyle(
                                   color: data == 1
                                       ? AppColors().neonColor
@@ -562,37 +180,6 @@ class _ExperienceWebState extends State<ExperienceWeb> {
                             ),
                           ),
                         ),
-                        // InkWell(
-                        //   onTap: () {
-                        //     ref
-                        //         .read(selectedExpProvider.notifier)
-                        //         .state = 2;
-                        //   },
-                        //   child: Container(
-                        //     padding: EdgeInsets.all(10.0),
-                        //     decoration: BoxDecoration(
-                        //         color: data == 2
-                        //             ? AppColors().cardColor
-                        //             : Colors.transparent,
-                        //         border: Border(
-                        //             left: BorderSide(
-                        //                 color: data == 2
-                        //                     ? AppColors().neonColor
-                        //                     : Colors.white,
-                        //                 width: 2))),
-                        //     child: Text(
-                        //       'Techno Kryon',
-                        //       style: TextStyle(
-                        //           color: data == 2
-                        //               ? AppColors().neonColor
-                        //               : AppColors().textLight,
-                        //           letterSpacing: 1,
-                        //           height: 1.5,
-                        //           fontSize: 14,
-                        //           fontFamily: 'sfmono'),
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -636,6 +223,46 @@ class _ExperienceWebState extends State<ExperienceWeb> {
               ),
             );
           })
+        ],
+      ),
+    );
+  }
+}
+
+class ExperienceArrowList extends StatelessWidget {
+  final String text;
+  const ExperienceArrowList({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 5.0),
+            child: Icon(
+              Icons.arrow_right,
+              color: AppColors().neonColor,
+              size: 20,
+            ),
+          ),
+          Container(
+            width: AppClass().getMqWidth(context) * 0.35,
+            child: Text(
+              text,
+              style: TextStyle(
+                  color: AppColors().textLight,
+                  letterSpacing: 1,
+                  height: 1.5,
+                  fontSize: 14,
+                  fontFamily: 'sfmono'),
+            ),
+          ),
         ],
       ),
     );

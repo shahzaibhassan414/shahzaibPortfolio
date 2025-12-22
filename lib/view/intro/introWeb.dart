@@ -90,7 +90,7 @@ class _IntroWebState extends State<IntroWeb> {
                 padding: EdgeInsets.only(top: 50, bottom: 70),
                 child: InkWell(
                   onTap: () {
-                    widget.aScrollController.scrollToIndex(1, preferPosition: AutoScrollPosition.begin);
+                    widget.aScrollController.scrollToIndex(3, preferPosition: AutoScrollPosition.begin);
                   },
                   child: Container(
                     height: AppClass().getMqHeight(context) * 0.09,

@@ -98,7 +98,7 @@ class _IntroTabState extends State<IntroTab> {
                   padding: const EdgeInsets.only(top: 30.0, bottom: 50),
                   child: InkWell(
                     onTap: () {
-                      widget.aScrollController.scrollToIndex(1, preferPosition: AutoScrollPosition.begin);
+                      widget.aScrollController.scrollToIndex(3, preferPosition: AutoScrollPosition.begin);
                     },
                     child: Container(
                       height: AppClass().getMqHeight(context) * 0.09,
