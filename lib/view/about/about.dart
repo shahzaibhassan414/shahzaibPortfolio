@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/resource/responsive.dart';
-import 'package:portfolio/view/about/abourWeb.dart';
+import 'package:portfolio/view/about/aboutWeb.dart';
 import 'package:portfolio/view/about/aboutMobile.dart';
 import 'package:portfolio/view/about/aboutTab.dart';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/resource/colors.dart';
+import 'package:portfolio/view/Splash/splash.dart';
 import 'package:portfolio/view/root.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class AppTheme extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: AppColors().primaryColor,
       ),
-      home: const RootScreen(),
+      home: const SplashScreen(),
     );
   }
 }

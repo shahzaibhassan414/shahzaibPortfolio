@@ -1,7 +1,10 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
+import '../../Widgets/custom_hover_button.dart';
+import '../../Widgets/type_writer_text.dart';
 import '../../resource/appClass.dart';
 import '../../resource/colors.dart';
 import '../../resource/strings.dart';
@@ -20,7 +23,9 @@ class _IntroWebState extends State<IntroWeb> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
-      margin: EdgeInsets.only(left: AppClass().getMqWidth(context) * 0.01, top: AppClass().getMqHeight(context) * 0.1),
+      margin: EdgeInsets.only(
+          left: AppClass().getMqWidth(context) * 0.01,
+          top: AppClass().getMqHeight(context) * 0.1),
       child: Row(
         children: [
           Column(
@@ -30,7 +35,10 @@ class _IntroWebState extends State<IntroWeb> {
                 padding: const EdgeInsets.only(left: 8.0, top: 50),
                 child: Text(
                   Strings.welcomeTxt,
-                  style: TextStyle(color: AppColors().neonColor, fontSize: 18, fontFamily: 'sfmono'),
+                  style: TextStyle(
+                      color: AppColors().neonColor,
+                      fontSize: 18,
+                      fontFamily: 'sfmono'),
                 ),
               ),
               Padding(
@@ -46,18 +54,10 @@ class _IntroWebState extends State<IntroWeb> {
                 ),
               ),
               Container(
-                width: AppClass().getMqWidth(context) - (AppClass().getMqWidth(context) * 0.23),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Text(
-                    Strings.whatIdo,
-                    style: GoogleFonts.robotoSlab(
-                      color: AppColors().textLight,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 3,
-                      fontSize: 55,
-                    ),
-                  ),
+                width: AppClass().getMqWidth(context) -
+                    (AppClass().getMqWidth(context) * 0.23),
+                child: TypeWriterText(
+                  text: Strings.whatIdo,
                 ),
               ),
               Padding(
@@ -87,21 +87,16 @@ class _IntroWebState extends State<IntroWeb> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 50, bottom: 70),
-                child: InkWell(
-                  onTap: () {
-                    widget.aScrollController.scrollToIndex(3, preferPosition: AutoScrollPosition.begin);
-                  },
-                  child: Container(
-                    height: AppClass().getMqHeight(context) * 0.09,
-                    width: AppClass().getMqWidth(context) * 0.2,
-                    decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().neonColor, width: 1.5)),
-                    child: Center(
-                      child: Text('Check Out My Work!', style: TextStyle(color: AppColors().neonColor, fontSize: 13, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
-                    ),
-                  ),
-                ),
-              )
+                  padding: EdgeInsets.only(top: 50, bottom: 70),
+                  child: CustomHoverButton(
+                    text: "Check Out My Work!",
+                    onTap: () {
+                      widget.aScrollController.scrollToIndex(
+                        3,
+                        preferPosition: AutoScrollPosition.begin,
+                      );
+                    },
+                  ))
             ],
           ),
         ],

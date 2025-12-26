@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:portfolio/model/experienceModel.dart';
 import 'package:portfolio/resource/colors.dart';
 import 'package:portfolio/resource/styles.dart';
@@ -111,7 +112,7 @@ class AppClass {
         style: TextStyle(
             fontFamily: 'sfmono',
             fontSize: 16,
-            color: AppColors().primaryColor,
+            color: AppColors().textColor,
             fontWeight: FontWeight.w500),
       ),
       backgroundColor: AppColors().neonColor,
@@ -188,7 +189,7 @@ class AppClass {
   //   }
   // }
 
-  Future<bool> sendEmail(String name, String contact, String msg) async {
+  Future<bool> sendEmail(String name, String email, String msg) async {
     var url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
 
     try {
@@ -197,15 +198,16 @@ class AppClass {
         url,
         headers: {
           'Content-Type': 'application/json',
-          'origin': 'http://localhost', // ADDED (required by EmailJS)
+          'origin': '*',
         },
         body: jsonEncode({
-          'service_id': 'service_b9mvbxh', // ADDED
+          'service_id': 'service_b9mvbxh',
           'template_id': 'template_dddn7kh',
-          'user_id': 'ejm0mxBIecSEp7_vo', // ADDED
-          'template_params': { // ADDED
+          'user_id': 'ejm0mxBIecSEp7_vo',
+          'template_params': {
             'from_name': name,
-            'reply_to': contact,
+            'email': email,
+            "time": DateFormat('dd-MM-yyyy hh:mm a').format(DateTime.now()),
             'message': msg,
           }
         }),

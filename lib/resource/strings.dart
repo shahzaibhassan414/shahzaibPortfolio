@@ -20,6 +20,15 @@ class Strings {
   static final tech3 = ''' GraphQL'''; // space for manual padding
   static final tech4 = ''' Google Maps'''; // space for manual padding
 
+  static final techs = [
+    "Flutter",
+    "TanStack",
+    "GraphQL",
+    "Google Maps",
+    "Firebase",
+    "Web3"
+  ];
+
   /* Exp screen contents */
   static final expCompName1 = '''Rex Technologies''';
   static final expDesig1 = '''Flutter Developer''';

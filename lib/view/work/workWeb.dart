@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/controller/generalController.dart';
 import 'package:portfolio/resource/appClass.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../Widgets/main_title_widget.dart';
 import '../../resource/colors.dart';
 
 class WorkWeb extends ConsumerStatefulWidget {
@@ -20,48 +21,34 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
   Widget build(BuildContext context) {
     int crossAxisCount = getCrossAxisCount(context);
 
-    return Column(
-      children: [
-        RichText(
-          text: TextSpan(
-            text: "03.",
-            style: TextStyle(
-                color: AppColors().neonColor, fontSize: 20, fontFamily: 'sfmono'),
-            children: <TextSpan>[
-              TextSpan(
-                text: ' My Projects',
-                style: GoogleFonts.roboto(
-                    color: AppColors().textColor,
-                    letterSpacing: 1,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25),
-              )
-            ],
+    return Container(
+      margin: EdgeInsets.only(
+          left: AppClass().getMqWidth(context) * 0.03,
+          right: AppClass().getMqWidth(context) * 0.03),
+      child: Column(
+        children: [
+
+          MainTitleWidget(
+            number: "03",
+            title: "Where I've Worked",
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: Text(
-            'View my projects',
-            style: TextStyle(
-                color: AppColors().neonColor, fontSize: 15, fontFamily: 'sfmono'),
+
+          Container(
+            padding: EdgeInsets.only(top: 30.0, bottom: 70.0),
+            child: StaggeredGrid.count(
+              crossAxisCount: crossAxisCount,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              children: List.generate(AppClass().projectList.length, (index) {
+                return StaggeredGridTile.fit(
+                  crossAxisCellCount: 1,
+                  child: getTile(index: index),
+                );
+              }),
+            ),
           ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 30.0, bottom: 70.0),
-          child: StaggeredGrid.count(
-            crossAxisCount: crossAxisCount,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            children: List.generate(AppClass().projectList.length, (index) {
-              return StaggeredGridTile.fit(
-                crossAxisCellCount: 1,
-                child: getTile(index: index),
-              );
-            }),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -82,8 +69,8 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
           case 1:
           case 2:
           case 4:
-            AppClass().alertDialog(
-                context, 'Not Found', 'Sorry the project you requested not found');
+            AppClass().alertDialog(context, 'Not Found',
+                'Sorry the project you requested not found');
             break;
           case 3:
             await launchUrl(Uri.parse(AppClass.pawPlayLoveUrl));
@@ -109,14 +96,13 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
           curve: Curves.easeOut,
           transform: isHovered
               ? (Matrix4.identity()
-            ..translate(0.0, -8.0)
-            ..scale(1.03))
+                ..translate(0.0, -6.0)
+                ..scale(1.01))
               : Matrix4.identity(),
           child: Card(
-            elevation: isHovered ? 18 : 10,
-            shadowColor: AppColors().neonColor.withOpacity(0.4),
+            elevation: isHovered ? 8 : 0,
+            shadowColor: isHovered ? AppColors().textLight : null,
             color: AppColors().cardColor,
-            // elevation: 10,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -130,9 +116,9 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
                         'assets/svg/folder.svg',
                         width: 45,
                         height: 45,
-                        color: isHovered ?
-                            AppColors().textColor :
-                        AppColors().neonColor,
+                        color: isHovered
+                            ? AppColors().textColor
+                            : AppColors().neonColor,
                       ),
                       SvgPicture.asset(
                         'assets/svg/externalLink.svg',
@@ -162,25 +148,24 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  if(AppClass()
-                      .projectList[index].techs!.isNotEmpty)
-                  Wrap(
-                    spacing: 12,
-                    runSpacing: 6,
-                    children: AppClass()
-                        .projectList[index]
-                        .techs!
-                        .map(
-                          (tech) => Text(
-                        tech ,
-                        style: GoogleFonts.roboto(
-                          color: AppColors().textLight,
-                          fontSize: 12,
-                        ),
-                      ),
+                  if (AppClass().projectList[index].techs!.isNotEmpty)
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 6,
+                      children: AppClass()
+                          .projectList[index]
+                          .techs!
+                          .map(
+                            (tech) => Text(
+                              tech,
+                              style: GoogleFonts.roboto(
+                                color: AppColors().textLight,
+                                fontSize: 12,
+                              ),
+                            ),
+                          )
+                          .toList(),
                     )
-                        .toList(),
-                  )
                 ],
               ),
             ),

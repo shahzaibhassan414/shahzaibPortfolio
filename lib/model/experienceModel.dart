@@ -9,6 +9,20 @@ class ExperienceModel {
   ExperienceModel({this.desig, this.compName, this.duration, this.points});
 }
 
+class ExperienceWebModel {
+  final String desig;
+  final String compName;
+  final String duration;
+  final List<String> points;
+
+  ExperienceWebModel({
+    required this.desig,
+    required this.compName,
+    required this.duration,
+    required this.points,
+  });
+}
+
 class WorkModel {
   String? projectTitle;
   String? projectContent;

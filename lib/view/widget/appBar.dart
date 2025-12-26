@@ -22,7 +22,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 70,
+        height: 120,
         padding: EdgeInsets.only(right: 15.0, top: 20.0),
         child: () {
           ScreenType scrType = AppClass().getScreenType(context);
@@ -122,8 +122,8 @@ class _ActionBarState extends ConsumerState<ActionBar> {
             children: [
               Expanded(
                   child: Container(
-                      width: AppClass().getMqWidth(context) * 0.07,
-                      height: AppClass().getMqHeight(context) * 0.07,
+                      width: 100,
+                      height: 100,
                       child: Image.asset(
                         'assets/svg/appLogo.png',
                       ))),
