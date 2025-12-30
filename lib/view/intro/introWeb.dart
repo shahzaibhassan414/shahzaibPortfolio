@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
@@ -38,7 +37,8 @@ class _IntroWebState extends State<IntroWeb> {
                   style: TextStyle(
                       color: AppColors().neonColor,
                       fontSize: 18,
-                      fontFamily: 'sfmono'),
+                      fontFamily: 'sfmono'
+                  ),
                 ),
               ),
               Padding(
@@ -92,7 +92,7 @@ class _IntroWebState extends State<IntroWeb> {
                     text: "Check Out My Work!",
                     onTap: () {
                       widget.aScrollController.scrollToIndex(
-                        3,
+                        4,
                         preferPosition: AutoScrollPosition.begin,
                       );
                     },

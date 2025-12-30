@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:portfolio/model/experienceModel.dart';
 import 'package:portfolio/resource/colors.dart';
+import 'package:portfolio/resource/custom_images.dart';
 import 'package:portfolio/resource/styles.dart';
 import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../view/work/workWeb.dart';
 
 enum ScreenType { mobile, tab, web }
 
@@ -88,6 +89,77 @@ class AppClass {
           "Firebase",
         ]),
   ];
+
+  final List<Map<String, dynamic>> skills = [
+    {"name": "Flutter", "value": 0.9},
+    {"name": "Dart", "value": 0.8},
+    {"name": "API Integration", "value": 1.0},
+    {"name": "Deployment", "value": 0.9},
+    {"name": "UI/UX", "value": 0.85},
+    {"name": "State Management", "value": 0.7},
+    {"name": "Github", "value": 0.8},
+    {"name": "Problem Solving", "value": 0.8},
+    {"name": "Team Work", "value": 0.7},
+    {"name": "Communication", "value": 0.69},
+    {"name": "Clean Code", "value": 0.8},
+  ];
+
+  final List<Map<String, dynamic>> skillsImages = [
+    {"image": CustomImages.skillsFlutter , "name": "Flutter"},
+    {"image": CustomImages.skillsAndroidStudio, "name": "Android Studio"},
+    {"image": CustomImages.skillsAppStore, "name": "App Store"},
+    {"image": CustomImages.skillsPlayStore, "name": "Play Store"},
+    {"image": CustomImages.skillsFirebase, "name": "Firebase"},
+    {"image": CustomImages.skillsRedux, "name": "Redux"},
+    {"image": CustomImages.skillsGoogleMap, "name": "Google Map"},
+    {"image": CustomImages.skillsKyc, "name": "KYC"},
+    {"image": CustomImages.skillsRevenueCat, "name": "In-App Purchases"},
+    {"image": CustomImages.skillsSharedPrefrence, "name": "Local Storage"},
+    {"image": CustomImages.skillsSocialLogin, "name": "Social Authentication"},
+    {"image": CustomImages.skillsStripe, "name": "Stripe"},
+    {"image": CustomImages.skillsWeb3, "name": "Web 3"},
+    {"image": CustomImages.skillsPushNotification, "name": "Push Notification"},
+    {"image": CustomImages.skillsWebSocket, "name": "Web Socket"},
+  ];
+
+  List<ProjectModel> projects = [
+    ProjectModel(
+      name: "Paw Play Love",
+      image: CustomImages.projectPPl,
+      description: "",
+      androidLink: "https://play.google.com/store/apps/details?id=com.pawplaylove&hl=en",
+      iosLink: "https://apps.apple.com/id/app/paw-play-love/id6648773545",
+    ),
+    ProjectModel(
+      name: "LawnOlu",
+      image: CustomImages.projectLawnolu,
+    ),
+    ProjectModel(
+      name: "Zera",
+      image: CustomImages.projectZera,
+    ),
+    ProjectModel(
+      name: "Simman",
+      image: CustomImages.projectSimman,
+    ),
+    ProjectModel(
+      name: "On Scene",
+      image: CustomImages.projectOnScene,
+    ),
+    ProjectModel(
+      name: "BePay Client",
+      image: CustomImages.projectBePayClient,
+    ),
+    ProjectModel(
+      name: "BePay Business",
+      image: CustomImages.projectBePayBusiness,
+    ),
+    ProjectModel(
+      name: "Jatt App",
+      image: CustomImages.projectJatt,
+    ),
+  ];
+
 
   factory AppClass() {
     return _mAppClass;
@@ -223,6 +295,20 @@ class AppClass {
     }
   }
 
+
+  Future<void> openEmail(String email, {String subject = '', String body = ''}) async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: email,
+      query: 'subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}',
+    );
+
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
+    } else {
+      throw 'Could not open email client';
+    }
+  }
 
 
 }

@@ -32,8 +32,8 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
       child: Column(
         children: [
           // Title
-          MainTitleWidget(number: "04", title: "What's Next?"),
-          SizedBox(height: 10),
+          MainTitleWidget(number: "05", title: "What's Next?"),
+          SizedBox(height: 20),
           Text(
             "Get In Touch",
             style: GoogleFonts.robotoSlab(
@@ -63,19 +63,6 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
             child: Container(
               width: mqWidth * 0.55,
               padding: EdgeInsets.all(30),
-              // decoration: BoxDecoration(
-              //   color: AppColors().cardColor.withOpacity(0.9),
-              //   borderRadius: BorderRadius.circular(20),
-              //   boxShadow: [
-              //     BoxShadow(
-              //       color: AppColors().neonColor.withOpacity(0.2),
-              //       blurRadius: 20,
-              //       spreadRadius: 2,
-              //       offset: Offset(0, 5),
-              //     ),
-              //   ],
-              //   border: Border.all(color: AppColors().neonColor.withOpacity(0.4)),
-              // ),
               child: Form(
                 key: _formKey,
                 child: Column(

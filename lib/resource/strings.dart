@@ -14,20 +14,6 @@ class Strings {
       '''I’ve worked on multiple production-level apps, including one that crossed 10,000+ downloads on Google Play. I also hold the Google Play Academy – Store Listing Certificate, giving me a strong understanding of ASO, app visibility, and growth strategies.''';
   static final aboutPara3 = '''I focus on delivering high-performance UI/UX, clean code, and reliable real-world solutions. Alongside mobile development, I’m actively transitioning toward full-stack development to build complete, end-to-end digital products.''';
 
-  static final techIntro = '''Here are a few technologies I’ve been working with recently:''';
-  static final tech1 = ''' Flutter'''; // space for manual padding
-  static final tech2 = ''' TanStack'''; // space for manual padding
-  static final tech3 = ''' GraphQL'''; // space for manual padding
-  static final tech4 = ''' Google Maps'''; // space for manual padding
-
-  static final techs = [
-    "Flutter",
-    "TanStack",
-    "GraphQL",
-    "Google Maps",
-    "Firebase",
-    "Web3"
-  ];
 
   /* Exp screen contents */
   static final expCompName1 = '''Rex Technologies''';

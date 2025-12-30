@@ -64,8 +64,9 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
 
           MainTitleWidget(
             number: "02",
-            title: "Where I've Worked",
+            title: "Experiences",
           ),
+          SizedBox(height: 20,),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -87,18 +88,30 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Text(
-                          experienceList[index].compName,
-                          style: TextStyle(
-                            color: isSelected
-                                ? AppColors().neonColor
-                                : AppColors().textLight,
-                            fontSize: 16,
-                            fontFamily: 'sfmono',
-                            fontWeight: isSelected
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
+                        child: Row(
+                          children: [
+                            Text(
+                              experienceList[index].compName,
+                              style: TextStyle(
+                                color: isSelected
+                                    ? AppColors().neonColor
+                                    : AppColors().textLight,
+                                fontSize: 16,
+                                fontFamily: 'sfmono',
+                                fontWeight: isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                              ),
+                            ),
+
+                            if(isSelected)
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Icon(Icons.arrow_forward_ios,
+                                size: 16,
+                                color: AppColors().neonColor,),
+                            )
+                          ],
                         ),
                       ),
                     );
@@ -107,7 +120,6 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
               ),
               SizedBox(width: 40),
 
-              // Right: Experience Details
               Expanded(
                 child: AnimatedSwitcher(
                   duration: Duration(milliseconds: 500),

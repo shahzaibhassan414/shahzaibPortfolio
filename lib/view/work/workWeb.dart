@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/controller/generalController.dart';
 import 'package:portfolio/resource/appClass.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:portfolio/view/work/Widgets/work_card.dart';
 import '../../Widgets/main_title_widget.dart';
 import '../../resource/colors.dart';
 
@@ -17,9 +13,15 @@ class WorkWeb extends ConsumerStatefulWidget {
 }
 
 class _WorkWebState extends ConsumerState<WorkWeb> {
+  int? hoveredIndex;
+  bool showAll = false;
+
+
   @override
   Widget build(BuildContext context) {
-    int crossAxisCount = getCrossAxisCount(context);
+    final allProjects = AppClass().projects;
+    final displayedProjects = showAll ? allProjects : allProjects.take(3).toList();
+
 
     return Container(
       margin: EdgeInsets.only(
@@ -27,151 +29,73 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
           right: AppClass().getMqWidth(context) * 0.03),
       child: Column(
         children: [
-
           MainTitleWidget(
-            number: "03",
-            title: "Where I've Worked",
+            number: "04",
+            title: "My Projects",
           ),
 
-          Container(
-            padding: EdgeInsets.only(top: 30.0, bottom: 70.0),
-            child: StaggeredGrid.count(
-              crossAxisCount: crossAxisCount,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              children: List.generate(AppClass().projectList.length, (index) {
-                return StaggeredGridTile.fit(
-                  crossAxisCellCount: 1,
-                  child: getTile(index: index),
+          SizedBox(height: 20),
+
+          AnimatedSize(
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.linear,
+            child: Wrap(
+              spacing: 20,
+              runSpacing: 20,
+              alignment: WrapAlignment.start,
+              children: List.generate(displayedProjects.length, (index) {
+                final project = displayedProjects[index];
+                final bool isHovered = hoveredIndex == index;
+
+                return WorkCard(
+                  isHovered: isHovered,
+                  project: project,
+                  onEnter: (event) => setState(() => hoveredIndex = index),
+                  onExit: (event) => setState(() => hoveredIndex = null),
                 );
               }),
             ),
           ),
+
+          SizedBox(height: 20),
+
+
+          if(!showAll)
+          Center(
+            child: InkWell(
+              onTap: () {
+                setState(() => showAll = !showAll);
+              },
+              child: AnimatedRotation(
+                turns: showAll ? 0.5 : 0.0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: Icon(
+                  Icons.keyboard_arrow_down,
+                  color: AppColors().neonColor,
+                  size: 36,
+                ),
+              ),
+            ),
+          ),
+
+
+
+
         ],
       ),
     );
   }
+}
 
-  int getCrossAxisCount(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    if (width < 600) return 1; // mobile
-    if (width < 900) return 2; // tablet
-    return 3;
-  }
+class ProjectModel {
+  String name;
+  String image;
+  String? description;
+  String? iosLink;
+  String? androidLink;
 
-  getTile({required int index}) {
-    return InkWell(
-      onTap: () async {
-        switch (index) {
-          case 0:
-            await launchUrl(Uri.parse(AppClass.simmanUrl));
-            break;
-          case 1:
-          case 2:
-          case 4:
-            AppClass().alertDialog(context, 'Not Found',
-                'Sorry the project you requested not found');
-            break;
-          case 3:
-            await launchUrl(Uri.parse(AppClass.pawPlayLoveUrl));
-            break;
-          case 5:
-            await launchUrl(Uri.parse(AppClass.onSceneUrl));
-            break;
-        }
-      },
-      onHover: (hovering) {
-        if (hovering) {
-          ref.read(hoverProvider.notifier).state = "$index";
-        } else {
-          ref.read(hoverProvider.notifier).state = "";
-        }
-      },
-      child: Consumer(builder: (context, ref, child) {
-        String data = ref.watch(hoverProvider);
-        bool isHovered = (data == "$index");
-
-        return AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeOut,
-          transform: isHovered
-              ? (Matrix4.identity()
-                ..translate(0.0, -6.0)
-                ..scale(1.01))
-              : Matrix4.identity(),
-          child: Card(
-            elevation: isHovered ? 8 : 0,
-            shadowColor: isHovered ? AppColors().textLight : null,
-            color: AppColors().cardColor,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/svg/folder.svg',
-                        width: 45,
-                        height: 45,
-                        color: isHovered
-                            ? AppColors().textColor
-                            : AppColors().neonColor,
-                      ),
-                      SvgPicture.asset(
-                        'assets/svg/externalLink.svg',
-                        width: 22,
-                        height: 22,
-                        color: isHovered ? AppColors().neonColor : Colors.white,
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      AppClass().projectList[index].projectTitle.toString(),
-                      style: GoogleFonts.robotoSlab(
-                        color: isHovered ? AppColors().neonColor : Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    AppClass().projectList[index].projectContent.toString(),
-                    style: GoogleFonts.roboto(
-                      color: AppColors().textLight,
-                      height: 1.5,
-                      fontSize: 14,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  if (AppClass().projectList[index].techs!.isNotEmpty)
-                    Wrap(
-                      spacing: 12,
-                      runSpacing: 6,
-                      children: AppClass()
-                          .projectList[index]
-                          .techs!
-                          .map(
-                            (tech) => Text(
-                              tech,
-                              style: GoogleFonts.roboto(
-                                color: AppColors().textLight,
-                                fontSize: 12,
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    )
-                ],
-              ),
-            ),
-          ),
-        );
-      }),
-    );
-  }
+  ProjectModel({required this.name, required this.image, this.description,
+    this.iosLink, this.androidLink
+  });
 }

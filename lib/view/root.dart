@@ -6,6 +6,7 @@ import 'package:portfolio/resource/appClass.dart';
 import 'package:portfolio/view/about/about.dart';
 import 'package:portfolio/view/experience/experience.dart';
 import 'package:portfolio/view/intro/intro.dart';
+import 'package:portfolio/view/skills/skills.dart';
 import 'package:portfolio/view/widget/appBar.dart';
 import 'package:portfolio/view/widget/leftPane.dart';
 import 'package:portfolio/view/widget/rightPane.dart';
@@ -21,8 +22,47 @@ class RootScreen extends ConsumerStatefulWidget {
   ConsumerState<RootScreen> createState() => _RootScreenState();
 }
 
-class _RootScreenState extends ConsumerState<RootScreen> {
+class _RootScreenState extends ConsumerState<RootScreen>
+    with SingleTickerProviderStateMixin {
   final mScrollController = AutoScrollController();
+
+  late AnimationController _controller;
+  late Animation<Offset> _slideAnimation;
+  late Animation<double> _fadeAnimation;
+
+  bool _visible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+
+    _slideAnimation = Tween<Offset>(
+            begin: const Offset(0, -0.2), end: Offset.zero)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+  }
+
+  void updateVisibility(bool visible) {
+    if (visible == _visible) return;
+    _visible = visible;
+    if (_visible) {
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +91,30 @@ class _RootScreenState extends ConsumerState<RootScreen> {
             height: AppClass().getMqHeight(context),
             child: Column(
               children: [
+                // Consumer(builder: (context, ref, child) {
+                //   var isScrollingUp = ref.watch(scrollControlProvider);
+                //   return AnimatedOpacity(
+                //     opacity: isScrollingUp ? 1.0 : 0.0,
+                //     duration: const Duration(milliseconds: 500),
+                //     child: ActionBar(mScrollController),
+                //   );
+                // }),
+
                 Consumer(builder: (context, ref, child) {
-                  var isScrollingUp = ref.watch(scrollControlProvider);
-                  return AnimatedOpacity(
-                    opacity: isScrollingUp ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 500),
-                    child: ActionBar(mScrollController),
+                  final isScrollingUp = ref.watch(scrollControlProvider);
+                  updateVisibility(isScrollingUp);
+
+                  return SizeTransition(
+                    sizeFactor: _fadeAnimation,
+                    axisAlignment: -1.0,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: ActionBar(mScrollController),
+                    ),
                   );
                 }),
+
+
                 Expanded(
                   child: () {
                     ScreenType scrType = AppClass().getScreenType(context);
@@ -95,11 +151,16 @@ class _RootScreenState extends ConsumerState<RootScreen> {
                                       key: ValueKey(3),
                                       controller: mScrollController,
                                       index: 3,
-                                      child: Work()),
+                                      child: Skills()),
                                   AutoScrollTag(
                                       key: ValueKey(4),
                                       controller: mScrollController,
                                       index: 4,
+                                      child: Work()),
+                                  AutoScrollTag(
+                                      key: ValueKey(5),
+                                      controller: mScrollController,
+                                      index: 5,
                                       child: Contact())
                                 ],
                               );

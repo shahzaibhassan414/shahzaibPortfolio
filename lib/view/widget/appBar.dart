@@ -118,193 +118,241 @@ class _ActionBarState extends ConsumerState<ActionBar> {
               ),
             );
           }
-          return Row(
-            children: [
-              Expanded(
-                  child: Container(
-                      width: 100,
-                      height: 100,
-                      child: Image.asset(
-                        'assets/svg/appLogo.png',
-                      ))),
-              Expanded(
-                flex: 9,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        widget.controller.scrollToIndex(1,
-                            preferPosition: AutoScrollPosition.begin);
-                      },
-                      onHover: (bol) {
-                        if (bol) {
-                          ref.read(hoverProvider.notifier).state = "aboutTitle";
-                        } else {
-                          ref.read(hoverProvider.notifier).state = "";
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: Row(
-                          children: [
-                            Text("01. ",
-                                style: TextStyle(
-                                    color: AppColors().neonColor,
-                                    fontSize: 13,
-                                    fontFamily: 'sfmono')),
-                            Consumer(builder: (context, ref, child) {
-                              String state = ref.watch(hoverProvider);
-                              bool isHovered = (state == "aboutTitle");
-                              return Text("About",
+          return Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 100),
+            child: Row(
+              children: [
+                Container(
+                    width: 50,
+                    height: 50,
+                    child: Image.asset(
+                      scale: 1,
+                      'assets/svg/appLogo.png',
+                    )),
+                // Expanded(
+                //     child: Container(
+                //         width: 100,
+                //         height: 100,
+                //         child: Image.asset(
+                //           'assets/svg/appLogo.png',
+                //         ))),
+                Expanded(
+                  flex: 9,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          widget.controller.scrollToIndex(1,
+                              preferPosition: AutoScrollPosition.begin);
+                        },
+                        onHover: (bol) {
+                          if (bol) {
+                            ref.read(hoverProvider.notifier).state = "aboutTitle";
+                          } else {
+                            ref.read(hoverProvider.notifier).state = "";
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 30.0),
+                          child: Row(
+                            children: [
+                              Text("01. ",
                                   style: TextStyle(
-                                      color: isHovered
-                                          ? AppColors().neonColor
-                                          : AppColors().textColor,
+                                      color: AppColors().neonColor,
                                       fontSize: 13,
-                                      fontFamily: 'sfmono'));
-                            }),
-                          ],
+                                      fontFamily: 'sfmono')),
+                              Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "aboutTitle");
+                                return Text("About",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().neonColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        widget.controller.scrollToIndex(2,
-                            preferPosition: AutoScrollPosition.begin);
-                      },
-                      onHover: (bol) {
-                        if (bol) {
-                          ref.read(hoverProvider.notifier).state = "expTitle";
-                        } else {
-                          ref.read(hoverProvider.notifier).state = "";
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: Row(
-                          children: [
-                            Text("02. ",
-                                style: TextStyle(
-                                    color: AppColors().neonColor,
-                                    fontSize: 13,
-                                    fontFamily: 'sfmono')),
-                            Consumer(builder: (context, ref, child) {
-                              String state = ref.watch(hoverProvider);
-                              bool isHovered = (state == "expTitle");
-                              return Text("Experience",
+                      InkWell(
+                        onTap: () {
+                          widget.controller.scrollToIndex(2,
+                              preferPosition: AutoScrollPosition.begin);
+                        },
+                        onHover: (bol) {
+                          if (bol) {
+                            ref.read(hoverProvider.notifier).state = "expTitle";
+                          } else {
+                            ref.read(hoverProvider.notifier).state = "";
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 30.0),
+                          child: Row(
+                            children: [
+                              Text("02. ",
                                   style: TextStyle(
-                                      color: isHovered
-                                          ? AppColors().neonColor
-                                          : AppColors().textColor,
+                                      color: AppColors().neonColor,
                                       fontSize: 13,
-                                      fontFamily: 'sfmono'));
-                            }),
-                          ],
+                                      fontFamily: 'sfmono')),
+                              Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "expTitle");
+                                return Text("Experience",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().neonColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        widget.controller.scrollToIndex(3,
-                            preferPosition: AutoScrollPosition.begin);
-                      },
-                      onHover: (bol) {
-                        if (bol) {
-                          ref.read(hoverProvider.notifier).state = "workTitle";
-                        } else {
-                          ref.read(hoverProvider.notifier).state = "";
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: Row(
-                          children: [
-                            Text("03. ",
-                                style: TextStyle(
-                                    color: AppColors().neonColor,
-                                    fontSize: 13,
-                                    fontFamily: 'sfmono')),
-                            Consumer(builder: (context, ref, child) {
-                              String state = ref.watch(hoverProvider);
-                              bool isHovered = (state == "workTitle");
+                      InkWell(
+                        onTap: () {
+                          widget.controller.scrollToIndex(3,
+                              preferPosition: AutoScrollPosition.begin);
+                        },
+                        onHover: (bol) {
+                          if (bol) {
+                            ref.read(hoverProvider.notifier).state =
+                                "skillsTitle";
+                          } else {
+                            ref.read(hoverProvider.notifier).state = "";
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 30.0),
+                          child: Row(
+                            children: [
+                              Text("03. ",
+                                  style: TextStyle(
+                                      color: AppColors().neonColor,
+                                      fontSize: 13,
+                                      fontFamily: 'sfmono')),
+                              Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "skillsTitle");
 
-                              return Text("Work",
-                                  style: TextStyle(
-                                      color: isHovered
-                                          ? AppColors().neonColor
-                                          : AppColors().textColor,
-                                      fontSize: 13,
-                                      fontFamily: 'sfmono'));
-                            }),
-                          ],
+                                return Text("Skills",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().neonColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        widget.controller.scrollToIndex(4,
-                            preferPosition: AutoScrollPosition.begin);
-                      },
-                      onHover: (bol) {
-                        if (bol) {
-                          ref.read(hoverProvider.notifier).state =
-                              "contactTitle";
-                        } else {
-                          ref.read(hoverProvider.notifier).state = "";
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: Row(
-                          children: [
-                            Text("04.",
+                      InkWell(
+                        onTap: () {
+                          widget.controller.scrollToIndex(4,
+                              preferPosition: AutoScrollPosition.begin);
+                        },
+                        onHover: (bol) {
+                          if (bol) {
+                            ref.read(hoverProvider.notifier).state = "workTitle";
+                          } else {
+                            ref.read(hoverProvider.notifier).state = "";
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 30.0),
+                          child: Row(
+                            children: [
+                              Text("04. ",
+                                  style: TextStyle(
+                                      color: AppColors().neonColor,
+                                      fontSize: 13,
+                                      fontFamily: 'sfmono')),
+                              Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "workTitle");
+
+                                return Text("Projects",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().neonColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          widget.controller.scrollToIndex(5,
+                              preferPosition: AutoScrollPosition.begin);
+                        },
+                        onHover: (bol) {
+                          if (bol) {
+                            ref.read(hoverProvider.notifier).state =
+                                "contactTitle";
+                          } else {
+                            ref.read(hoverProvider.notifier).state = "";
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 30.0),
+                          child: Row(
+                            children: [
+                              Text("05.",
+                                  style: TextStyle(
+                                      color: AppColors().neonColor,
+                                      fontSize: 13,
+                                      fontFamily: 'sfmono')),
+                              Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "contactTitle");
+                                return Text(" Contact",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().neonColor
+                                            : AppColors().textColor,
+                                        fontSize: 13));
+                              }),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          AppClass().downloadResume(context);
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(3.0)),
+                              border: Border.all(
+                                  color: AppColors().neonColor, width: 1.5)),
+                          child: Center(
+                            child: Text('Resume',
                                 style: TextStyle(
                                     color: AppColors().neonColor,
                                     fontSize: 13,
+                                    letterSpacing: 1,
+                                    fontWeight: FontWeight.bold,
                                     fontFamily: 'sfmono')),
-                            Consumer(builder: (context, ref, child) {
-                              String state = ref.watch(hoverProvider);
-                              bool isHovered = (state == "contactTitle");
-                              return Text("Contact",
-                                  style: TextStyle(
-                                      color: isHovered
-                                          ? AppColors().neonColor
-                                          : AppColors().textColor,
-                                      fontSize: 13));
-                            }),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        AppClass().downloadResume(context);
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 80,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(3.0)),
-                            border: Border.all(
-                                color: AppColors().neonColor, width: 1.5)),
-                        child: Center(
-                          child: Text('Resume',
-                              style: TextStyle(
-                                  color: AppColors().neonColor,
-                                  fontSize: 13,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'sfmono')),
-                        ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         }());
   }
