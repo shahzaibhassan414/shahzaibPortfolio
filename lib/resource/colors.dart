@@ -8,4 +8,7 @@ class AppColors {
   var cardColor = const Color(0xff422024);
   var redColor = const Color(0xffe84141);
 
+
+  var blackColor = const Color(0xff0B0C10);
+
 }

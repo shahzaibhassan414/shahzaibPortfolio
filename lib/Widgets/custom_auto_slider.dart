@@ -15,7 +15,7 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
   Timer? _timer;
   bool _isHovered = false;
   double _scrollPosition = 0.0;
-  final double _speed = 0.9;
+  final double _speed = 0.6;
   int? _hoveredIndex;
 
   @override
@@ -82,7 +82,6 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
               );
             }).toList(),
           ),
-
         ),
       ),
     );

@@ -36,7 +36,7 @@ class _LeftPaneState extends ConsumerState<LeftPane> {
                             height: AppClass().getMqHeight(context) * 0.07,
                             child: InkWell(
                               onTap: () async {
-                                await launchUrl(Uri.parse("https://github.com/ShahzaibH414"));
+                                await launchUrl(Uri.parse("https://github.com/shahzaibhassan414"));
                               },
                               onHover: (bol) {
                                 if (bol) {
