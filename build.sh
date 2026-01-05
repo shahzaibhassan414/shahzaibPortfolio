@@ -7,7 +7,11 @@ curl -L "https://storage.googleapis.com/flutter_infra_release/releases/stable/li
 
 export PATH="$PWD/flutter/bin:$PATH"
 
-# Prepare and build for the web
+# Allow flutter's internal git repo under the Vercel build path
+git config --global --add safe.directory "$PWD/flutter"
+
+# Prepare and build for the web (non-interactive)
+flutter config --no-analytics
 flutter config --enable-web
 flutter pub get
 flutter build web --release --web-renderer=canvaskit
