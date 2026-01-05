@@ -1,8 +1,9 @@
 #!/bin/bash
 set -euo pipefail
+set -x
 
-# Ensure we have a writable HOME for git/flutter configs
-export HOME="${HOME:-$PWD/.home}"
+# Force a writable HOME for git/flutter configs (Vercel runs as root)
+export HOME="$PWD/.home"
 mkdir -p "$HOME"
 
 # Install a known Flutter version into the build environment
@@ -20,5 +21,7 @@ git config --global --add safe.directory "$PWD"
 # Prepare and build for the web (non-interactive)
 flutter config --no-analytics
 flutter config --enable-web
+flutter --version
+flutter precache --web
 flutter pub get
 flutter build web --release --web-renderer=canvaskit
