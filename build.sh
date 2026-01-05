@@ -1,18 +1,13 @@
 #!/bin/bash
+set -euo pipefail
 
-# Set a Flutter version
-FLUTTER_VERSION="3.19.6"
-FLUTTER_SDK_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
+# Install a known Flutter version into the build environment
+FLUTTER_VERSION="3.22.3"
+curl -L "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz" | tar -xJf -
 
-# Download and extract Flutter SDK
-curl -o flutter_linux_${FLUTTER_VERSION}-stable.tar.xz $FLUTTER_SDK_URL
-tar xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
+export PATH="$PWD/flutter/bin:$PATH"
 
-# Add flutter to path
-export PATH="$PATH:`pwd`/flutter/bin"
-
-# Precache flutter artifacts
-flutter precache
-
-# Build the Flutter web application
-flutter build web --release
+# Prepare and build for the web
+flutter config --enable-web
+flutter pub get
+flutter build web --release --web-renderer=canvaskit
