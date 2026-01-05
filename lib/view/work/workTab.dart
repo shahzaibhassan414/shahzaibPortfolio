@@ -23,7 +23,7 @@ class _WorkWebState extends ConsumerState<WorkTab> {
       child: Column(
         children: [
           RichText(
-            text: TextSpan(text: "03.", style: TextStyle(color: AppColors().neonColor, fontSize: 20, fontFamily: 'sfmono'), children: <TextSpan>[
+            text: TextSpan(text: "03.", style: TextStyle(color: AppColors().primaryRedColor, fontSize: 20, fontFamily: 'sfmono'), children: <TextSpan>[
               TextSpan(
                 text: ' My Noteworthy Projects',
                 style: GoogleFonts.roboto(color: AppColors().textColor, letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: 18),
@@ -34,7 +34,7 @@ class _WorkWebState extends ConsumerState<WorkTab> {
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
               'view the archives',
-              style: TextStyle(color: AppColors().neonColor, fontSize: AppClass().getMqWidth(context) * 0.02, fontFamily: 'sfmono'),
+              style: TextStyle(color: AppColors().primaryRedColor, fontSize: AppClass().getMqWidth(context) * 0.02, fontFamily: 'sfmono'),
             ),
           ),
           Expanded(
@@ -106,13 +106,13 @@ class _WorkWebState extends ConsumerState<WorkTab> {
                           'assets/svg/folder.svg',
                           width: 35,
                           height: 35,
-                          color: AppColors().neonColor,
+                          color: AppColors().primaryRedColor,
                         ),
                         SvgPicture.asset(
                           'assets/svg/externalLink.svg',
                           width: 20,
                           height: 20,
-                          color: isHovered ? AppColors().neonColor : Colors.white,
+                          color: isHovered ? AppColors().primaryRedColor : Colors.white,
                         ),
                       ],
                     ),
@@ -124,7 +124,7 @@ class _WorkWebState extends ConsumerState<WorkTab> {
                             AppClass().projectList[index].projectTitle.toString(),
                             textAlign: TextAlign.left,
                             style: GoogleFonts.robotoSlab(
-                                color: isHovered ? AppColors().neonColor : Colors.white, letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: AppClass().getMqWidth(context) * 0.04),
+                                color: isHovered ? AppColors().primaryRedColor : Colors.white, letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: AppClass().getMqWidth(context) * 0.04),
                           ),
                         ],
                       ),

@@ -34,7 +34,7 @@ class _RightPaneState extends State<RightPane> {
                               quarterTurns: 1,
                               child: InkWell(
                                 onTap: () async {
-                                  AppClass().openEmail("shahzaibhassan414@gmail.com");
+                                  AppClass().openEmail(AppClass.email);
                                 },
                                 onHover: (bol) {
                                   if (bol) {
@@ -45,14 +45,13 @@ class _RightPaneState extends State<RightPane> {
                                   }
                                 },
                                 child: Container(
-                                  margin: EdgeInsets.only(bottom: val == "email" ? 5.0 : 0),
                                   child: Text(
-                                    'shahzaibhassan414@gmail.com',
+                                    AppClass.email,
                                     style: TextStyle(
                                         letterSpacing: 1,
-                                        color: val == "email" ?
-                                            AppColors().neonColor:
-                                        AppColors().textColor,
+                                        color: val == "email"
+                                            ? AppColors().primaryRedColor
+                                            : AppColors().textColor,
                                         fontSize: 14,
                                         fontFamily: 'sfmono'),
                                   ),

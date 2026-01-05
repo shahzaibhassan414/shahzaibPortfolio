@@ -15,7 +15,6 @@ class AboutWeb extends ConsumerStatefulWidget {
 }
 
 class _AboutWebState extends ConsumerState<AboutWeb> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +30,6 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
             number: "01",
             title: "About Me",
           ),
-
           Row(
             children: [
               Expanded(
@@ -39,43 +37,173 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Text(
-                        Strings.aboutPara1,
-                        style: GoogleFonts.roboto(
-                          color: AppColors().textLight,
-                          letterSpacing: 1,
-                          height: 1.5,
-                          fontSize: 18,
-                        ),
-                      ),
+                    RichText(
+                      text: TextSpan(
+                          text: Strings.about1,
+                          style: GoogleFonts.roboto(
+                            color: AppColors().textLight,
+                            letterSpacing: 1,
+                            height: 1.5,
+                            fontSize: 18,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: Strings.about2,
+                              style: GoogleFonts.roboto(
+                                color: AppColors().primaryRedColor,
+                                letterSpacing: 1,
+                                height: 1.5,
+                                fontSize: 18,
+                              )
+                            ),
+                            TextSpan(
+                                text: Strings.about3,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().textColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            )
+                          ]),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        Strings.aboutPara2,
-                        style: GoogleFonts.roboto(
-                          color: AppColors().textLight,
-                          letterSpacing: 1,
-                          height: 1.5,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        Strings.aboutPara3,
-                        style: GoogleFonts.roboto(
-                          color: AppColors().textLight,
-                          letterSpacing: 1,
-                          height: 1.5,
-                          fontSize: 18,
-                        ),
-                      ),
+                    SizedBox(height: 10,),
+
+                    RichText(
+                      text: TextSpan(
+                          text: Strings.about4,
+                          style: GoogleFonts.roboto(
+                            color: AppColors().textLight,
+                            letterSpacing: 1,
+                            height: 1.5,
+                            fontSize: 18,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: Strings.about5,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().primaryRedColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about6,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().textColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about7,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().primaryRedColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about8,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().textColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about9,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().primaryRedColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about10,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().textColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                          ]),
                     ),
 
+                    SizedBox(height: 10,),
+
+                    RichText(
+                      text: TextSpan(
+                          text: Strings.about11,
+                          style: GoogleFonts.roboto(
+                            color: AppColors().textLight,
+                            letterSpacing: 1,
+                            height: 1.5,
+                            fontSize: 18,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: Strings.about12,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().primaryRedColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about13,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().textColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about14,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().primaryRedColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about15,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().textColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about16,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().primaryRedColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            ),
+                            TextSpan(
+                                text: Strings.about17,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().textColor,
+                                  letterSpacing: 1,
+                                  height: 1.5,
+                                  fontSize: 18,
+                                )
+                            )
+                          ]),
+                    ),
                   ],
                 ),
               ),
@@ -85,7 +213,6 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                     height: AppClass().getMqWidth(context) * 0.25,
                     child: Column(
                       children: [
-
                         Consumer(builder: (context, ref, child) {
                           var data = ref.watch(hoverProvider);
                           bool isHovered = (data == "profilePic");
@@ -100,9 +227,9 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                                 decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)),
+                                        BorderRadius.all(Radius.circular(5.0)),
                                     border: Border.all(
-                                        color: AppColors().neonColor,
+                                        color: AppColors().primaryRedColor,
                                         width: 1.5)),
                               ),
                               InkWell(
@@ -110,7 +237,7 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                                 onHover: (bol) {
                                   if (bol) {
                                     ref.read(hoverProvider.notifier).state =
-                                    "profilePic";
+                                        "profilePic";
                                   } else {
                                     ref.read(hoverProvider.notifier).state = "";
                                   }
@@ -119,12 +246,12 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                                   width: AppClass().getMqWidth(context) * 0.22,
                                   height: AppClass().getMqWidth(context) * 0.24,
                                   decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(5.0)),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5.0)),
                                       image: DecorationImage(
                                           fit: BoxFit.cover,
                                           colorFilter: ColorFilter.mode(
-                                              AppColors().primaryColor,
+                                              AppColors().blackColor,
                                               isHovered
                                                   ? BlendMode.lighten
                                                   : BlendMode.color),
@@ -140,7 +267,8 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                     ),
                   ))
             ],
-          )
+          ),
+          SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
         ],
       ),
     );

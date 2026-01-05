@@ -180,11 +180,13 @@
 // }
 
 
+import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/controller/generalController.dart';
 import 'package:portfolio/resource/appClass.dart';
+import 'package:portfolio/resource/colors.dart';
 import 'package:portfolio/view/about/about.dart';
 import 'package:portfolio/view/experience/experience.dart';
 import 'package:portfolio/view/intro/intro.dart';
@@ -204,7 +206,7 @@ class RootScreen extends ConsumerStatefulWidget {
 }
 
 class _RootScreenState extends ConsumerState<RootScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   final mScrollController = AutoScrollController(); // UNCHANGED
 
   late AnimationController _controller;
@@ -263,18 +265,17 @@ class _RootScreenState extends ConsumerState<RootScreen>
             }
             return true;
           },
-          child: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Color(0xff112240),
-                  Color(0xff0a192f),
-                  Color(0xff020c1b),
-                ],
+          child: AnimatedBackground(
+              behaviour: RandomParticleBehaviour(
+                options: ParticleOptions(
+                  baseColor: AppColors().primaryRedColor,
+                  particleCount: 200
+                )
               ),
-            ),
+              vsync: this,
+            // decoration:  BoxDecoration(
+            //   color: AppColors().blackColor,
+            // ),
             child: Column(
               children: [
                 /// ───── Animated AppBar ─────

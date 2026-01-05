@@ -33,7 +33,6 @@ class _ExperienceWebState extends ConsumerState<SkillsWeb> {
             number: "03",
             title: "Skills",
           ),
-          const SizedBox(height: 20),
           Wrap(
             spacing: 40,
             alignment: WrapAlignment.spaceBetween,
@@ -66,9 +65,7 @@ class _ExperienceWebState extends ConsumerState<SkillsWeb> {
             height: 20,
           ),
           SkillsAutoSlider(),
-          SizedBox(
-            height: 30,
-          ),
+          SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
         ],
       ),
     );

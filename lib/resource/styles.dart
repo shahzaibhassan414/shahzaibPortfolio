@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/resource/colors.dart';
 
 class TxtStyle {
-  var neonText = GoogleFonts.orbitron(color: AppColors().neonColor, fontSize: 14);
+  var neonText = GoogleFonts.orbitron(color: AppColors().primaryRedColor, fontSize: 14);
 
   boldBlack(context) => const TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
 

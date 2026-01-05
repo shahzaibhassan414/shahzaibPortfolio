@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/resource/appClass.dart';
 
+import '../../Widgets/custom_contact_card.dart';
+import '../../Widgets/custom_hover_button.dart';
 import '../../Widgets/main_title_widget.dart';
 import '../../controller/generalController.dart';
 import '../../resource/colors.dart';
@@ -33,7 +35,6 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
         children: [
           // Title
           MainTitleWidget(number: "05", title: "What's Next?"),
-          SizedBox(height: 20),
           Text(
             "Get In Touch",
             style: GoogleFonts.robotoSlab(
@@ -43,6 +44,34 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
             ),
           ),
           SizedBox(height: 15),
+
+          Row(
+            spacing: 20,
+            children: [
+              CustomContactCard(
+                icon: Icons.call,
+                title: "Phone Number",
+                value: AppClass.phoneNumber,
+              ),
+              CustomContactCard(
+                icon: Icons.mail,
+                title: "Email Address",
+                value: AppClass.email,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+
+          Text(
+            "Feel Free To Contact Me",
+            style: GoogleFonts.robotoSlab(
+              color: AppColors().textColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 50,
+            ),
+          ),
           Container(
             width: mqWidth * 0.5,
             child: Text(
@@ -56,7 +85,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
               ),
             ),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 20),
 
           // Form Card
           Center(
@@ -105,69 +134,43 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
                       },
                       decoration: _inputDecoration('Message*'),
                     ),
-                    SizedBox(height: 10),
 
-                    // Note
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Note: Please don’t send empty messages 😅",
-                        style: TextStyle(
-                            fontSize: 13, color: Colors.grey.shade400),
-                      ),
-                    ),
                     SizedBox(height: 25),
 
-                    // Send Button
-                    InkWell(
-                      onTap: () async {
-                        if (_formKey.currentState!.validate()) {
-                          ref.read(progressProvider.notifier).state = true;
-                          AppClass()
-                              .sendEmail(
-                            nameController.text,
-                            emailController.text,
-                            msgController.text,
-                          )
-                              .then((success) {
-                            ref.read(progressProvider.notifier).state = false;
-                            if (success) {
-                              AppClass().successSnackBar(
-                                  '🎉 Message sent successfully!',
-                                  context: context);
-                              nameController.clear();
-                              emailController.clear();
-                              msgController.clear();
-                            } else {
-                              AppClass().errorSnackBar(
-                                  '😅 Something went wrong. Try again!',
-                                  context: context);
+                    Padding(
+                        padding: EdgeInsets.only(top: 50, bottom: 70),
+                        child: CustomHoverButton(
+                          height: 55,
+                          width: 150,
+                          text: "Send Message",
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              ref.read(progressProvider.notifier).state = true;
+                              AppClass()
+                                  .sendEmail(
+                                nameController.text,
+                                emailController.text,
+                                msgController.text,
+                              )
+                                  .then((success) {
+                                ref.read(progressProvider.notifier).state =
+                                    false;
+                                if (success) {
+                                  AppClass().successSnackBar(
+                                      '🎉 Message sent successfully!',
+                                      context: context);
+                                  nameController.clear();
+                                  emailController.clear();
+                                  msgController.clear();
+                                } else {
+                                  AppClass().errorSnackBar(
+                                      '😅 Something went wrong. Try again!',
+                                      context: context);
+                                }
+                              });
                             }
-                          });
-                        }
-                      },
-                      child: Container(
-                        height: 55,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                              color: AppColors().neonColor, width: 2),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Send",
-                            style: TextStyle(
-                              color: AppColors().neonColor,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'sfmono',
-                              letterSpacing: 1,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
+                          },
+                        )),
                   ],
                 ),
               ),
@@ -188,10 +191,11 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
                     fontFamily: 'sfmono'),
               ),
               Text(
-                "Shahzaib",
+                "Shahzaib 🫡",
                 style: TextStyle(
-                    color: AppColors().neonColor,
-                    fontSize: 13,
+                    color: AppColors().primaryRedColor,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'sfmono'),
               ),
             ],
@@ -206,7 +210,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
     return InputDecoration(
       hintText: hint,
       hintStyle: TextStyle(color: Colors.grey.shade500),
-      errorStyle: TextStyle(color: AppColors().redColor),
+      errorStyle: TextStyle(color: AppColors().primaryRedColor),
       filled: true,
       fillColor: AppColors().cardColor.withOpacity(0.09),
       contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),

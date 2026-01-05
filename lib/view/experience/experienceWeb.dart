@@ -66,84 +66,62 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
             number: "02",
             title: "Experiences",
           ),
-          SizedBox(height: 20,),
+
+
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(
-                  experienceList.length,
-                      (index) {
-                    bool isSelected = selectedIndex == index;
-                    return GestureDetector(
-                      onTap: () {
-                        ref.read(selectedExpProvider.notifier).state = index;
-                      },
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 300),
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              experienceList[index].compName,
-                              style: TextStyle(
-                                color: isSelected
-                                    ? AppColors().neonColor
-                                    : AppColors().textLight,
-                                fontSize: 16,
-                                fontFamily: 'sfmono',
-                                fontWeight: isSelected
-                                    ? FontWeight.bold
-                                    : FontWeight.normal,
-                              ),
-                            ),
-
-                            if(isSelected)
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Icon(Icons.arrow_forward_ios,
-                                size: 16,
-                                color: AppColors().neonColor,),
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(width: 40),
-
-              Expanded(
-                child: AnimatedSwitcher(
-                  duration: Duration(milliseconds: 500),
-                  transitionBuilder: (Widget child, Animation<double> animation) {
-                    final offsetAnimation = Tween<Offset>(
-                      begin: Offset(0.2, 0),
-                      end: Offset(0, 0),
-                    ).animate(animation);
-
-                    return SlideTransition(
-                      position: offsetAnimation,
-                      child: FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      ),
-                    );
-                  },
-                  child: ExperienceCard(
-                    key: ValueKey(selectedIndex),
-                    experience: experienceList[selectedIndex],
+              SizedBox(
+                width: AppClass().getMqWidth(context) * 0.08,
+                child: Text(
+                  experienceList[0].compName,
+                  style: TextStyle(
+                    color:
+                    AppColors().primaryRedColor,
+                    fontSize: 16,
+                    fontFamily: 'sfmono',
+                    fontWeight:
+                    FontWeight.bold
                   ),
                 ),
               ),
 
+              SizedBox(width: AppClass().getMqWidth(context) * 0.1,),
+              ExperienceCard(
+                key: ValueKey(0),
+                experience: experienceList[0],
+              )
+            ],
+          ),
+
+          Divider(
+            color: AppColors().textLight,
+            thickness: 1,
+          ),
+          SizedBox(height: 30,),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: AppClass().getMqWidth(context) * 0.08,
+                child: Text(
+                  experienceList[1].compName,
+                  style: TextStyle(
+                      color:
+                      AppColors().primaryRedColor,
+                      fontSize: 16,
+                      fontFamily: 'sfmono',
+                      fontWeight:
+                      FontWeight.bold
+                  ),
+                ),
+              ),
+
+              SizedBox(width: AppClass().getMqWidth(context) * 0.1,),
+              ExperienceCard(
+                key: ValueKey(1),
+                experience: experienceList[1],
+              )
             ],
           ),
         ],
@@ -177,7 +155,7 @@ class ExperienceCard extends StatelessWidget {
                 TextSpan(
                   text: " @${experience.compName}",
                   style: GoogleFonts.roboto(
-                    color: AppColors().neonColor,
+                    color: AppColors().primaryRedColor,
                     fontSize: 22,
                   ),
                 ),
@@ -207,7 +185,7 @@ class ExperienceCard extends StatelessWidget {
                       Icon(
                         Icons.arrow_right,
                         size: 20,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                       ),
                       SizedBox(width: 5),
                       Container(

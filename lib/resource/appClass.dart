@@ -23,6 +23,9 @@ class AppClass {
   static final resumeDownloadURL =
       '''https://drive.google.com/file/d/1WrzAn9djO7nzSm2xC4h4dfgIrQg_CD4c/view?usp=sharing''';
 
+  static final email = "shahzaibhassan414@gmail.com";
+  static final phoneNumber = "+92 316 0984600";
+
   static final simmanUrl =
       '''https://play.google.com/store/apps/details?id=com.hk.trudoctor&hl=en ''';
   static final examConnectUrl = ''' ''';
@@ -187,8 +190,8 @@ class AppClass {
             color: AppColors().textColor,
             fontWeight: FontWeight.w500),
       ),
-      backgroundColor: AppColors().neonColor,
-      borderSide: BorderSide(color: AppColors().neonColor),
+      backgroundColor: AppColors().primaryRedColor,
+      borderSide: BorderSide(color: AppColors().primaryRedColor),
       autoCloseDuration: const Duration(seconds: 5),
     );
   }
@@ -205,8 +208,8 @@ class AppClass {
             color: AppColors().textColor,
             fontWeight: FontWeight.w500),
       ),
-      backgroundColor: AppColors().redColor,
-      borderSide: BorderSide(color: AppColors().redColor),
+      backgroundColor: AppColors().primaryRedColor,
+      borderSide: BorderSide(color: AppColors().primaryRedColor),
       autoCloseDuration: const Duration(seconds: 5),
     );
   }

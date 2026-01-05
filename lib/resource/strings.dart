@@ -8,11 +8,33 @@ class Strings {
   static final currentOrgName = '''Code Encoders.'''; // add . at the end
 
   /* About screen contents */
-  static final aboutPara1 =
-      '''Hello! Myself Shahzaib and I’m a Flutter mobile application developer with 3+ years of hands-on experience building clean, performant, and user-centric Android and iOS applications.''';
-  static final aboutPara2 =
-      '''I’ve worked on multiple production-level apps, including one that crossed 10,000+ downloads on Google Play. I also hold the Google Play Academy – Store Listing Certificate, giving me a strong understanding of ASO, app visibility, and growth strategies.''';
-  static final aboutPara3 = '''I focus on delivering high-performance UI/UX, clean code, and reliable real-world solutions. Alongside mobile development, I’m actively transitioning toward full-stack development to build complete, end-to-end digital products.''';
+  static final about1 =
+      '''Hello! Myself Shahzaib and I’m a Flutter mobile application developer with ''';
+  static final about2 =
+      '''3+ Years ''';
+  static final about3 =
+      '''of hands-on experience building clean, performant, and user-centric Android and iOS applications.''';
+  static final about4 =
+      '''I’ve worked on multiple production-level apps, including one that crossed ''';
+  static final about5 =
+      '''10,000+ ''';
+  static final about6 =
+      '''downloads on ''';
+  static final about7 =
+      '''Google Play. ''';
+  static final about8 =
+      '''I also hold the ''';
+  static final about9 =
+      '''Google Play Academy – Store Listing Certificate, ''';
+  static final about10 =
+      '''giving me a strong understanding of ASO, app visibility, and growth strategies.''';
+  static final about11 = '''I focus on delivering high-performance ''';
+  static final about12 = '''UI/UX, clean code, and reliable real-world solutions. ''';
+  static final about13 = '''Alongside ''';
+  static final about14 = '''mobile development''';
+  static final about15 = ''', I’m actively transitioning toward ''';
+  static final about16 = '''full-stack development ''';
+  static final about17 = '''to build complete, end-to-end digital products.''';
 
 
   /* Exp screen contents */

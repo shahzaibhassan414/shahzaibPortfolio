@@ -27,7 +27,7 @@ class _AboutMobileState extends State<AboutMobile> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               RichText(
-                text: TextSpan(text: "01.", style: TextStyle(color: AppColors().neonColor, fontSize: 20, fontFamily: 'sfmono'), children: <TextSpan>[
+                text: TextSpan(text: "01.", style: TextStyle(color: AppColors().primaryRedColor, fontSize: 20, fontFamily: 'sfmono'), children: <TextSpan>[
                   TextSpan(
                     text: ' About Me',
                     style: GoogleFonts.robotoSlab(color: Colors.white, letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: 25),
@@ -49,42 +49,42 @@ class _AboutMobileState extends State<AboutMobile> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30.0),
-                      child: Text(
-                        Strings.aboutPara1,
-                        style: GoogleFonts.roboto(
-                          color: AppColors().textLight,
-                          letterSpacing: 1,
-                          height: 1.5,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        Strings.aboutPara2,
-                        style: GoogleFonts.roboto(
-                          color: AppColors().textLight,
-                          letterSpacing: 1,
-                          height: 1.5,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        Strings.aboutPara3,
-                        style: GoogleFonts.roboto(
-                          color: AppColors().textLight,
-                          letterSpacing: 1,
-                          height: 1.5,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 30.0),
+                    //   child: Text(
+                    //     Strings.aboutPara1,
+                    //     style: GoogleFonts.roboto(
+                    //       color: AppColors().textLight,
+                    //       letterSpacing: 1,
+                    //       height: 1.5,
+                    //       fontSize: 15,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 10.0),
+                    //   child: Text(
+                    //     Strings.aboutPara2,
+                    //     style: GoogleFonts.roboto(
+                    //       color: AppColors().textLight,
+                    //       letterSpacing: 1,
+                    //       height: 1.5,
+                    //       fontSize: 15,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 10.0),
+                    //   child: Text(
+                    //     Strings.aboutPara3,
+                    //     style: GoogleFonts.roboto(
+                    //       color: AppColors().textLight,
+                    //       letterSpacing: 1,
+                    //       height: 1.5,
+                    //       fontSize: 15,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

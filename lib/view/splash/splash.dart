@@ -83,7 +83,7 @@ class _SplashScreenState extends State<SplashScreen>
                         fontSize: 44.0,
                         fontFamily: 'sfmono',
                         fontWeight: FontWeight.bold,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                       ),
                       child: AnimatedTextKit(
                         repeatForever: true,

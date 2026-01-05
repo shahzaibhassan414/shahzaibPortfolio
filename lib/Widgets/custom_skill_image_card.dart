@@ -35,7 +35,7 @@ class CustomSkillImageCard extends StatelessWidget {
                 duration: const Duration(milliseconds: 200),
                 child: ColorFiltered( // ADDED
                   colorFilter: ColorFilter.mode( // ADDED
-                    AppColors().primaryColor, // ADDED
+                    AppColors().blackColor, // ADDED
                     isHovered ?
                       BlendMode.lighten
                       :

@@ -33,7 +33,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -62,7 +62,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -91,7 +91,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -120,7 +120,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -149,7 +149,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -178,7 +178,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -207,7 +207,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -236,7 +236,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -274,7 +274,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                 text: TextSpan(
                     text: "02.",
                     style: TextStyle(
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         fontSize: 20,
                         fontFamily: 'sfmono'),
                     children: <TextSpan>[
@@ -320,7 +320,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                                   border: Border(
                                       left: BorderSide(
                                           color: data == 0
-                                              ? AppColors().neonColor
+                                              ? AppColors().primaryRedColor
                                               : Colors.white,
                                           width: 2))),
                               child: Text(
@@ -329,7 +329,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: data == 0
-                                        ? AppColors().neonColor
+                                        ? AppColors().primaryRedColor
                                         : AppColors().textLight,
                                     height: 1.5,
                                     fontSize: 14,
@@ -352,7 +352,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                                   border: Border(
                                       left: BorderSide(
                                           color: data == 1
-                                              ? AppColors().neonColor
+                                              ? AppColors().primaryRedColor
                                               : Colors.white,
                                           width: 2))),
                               child: Text(
@@ -361,7 +361,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: data == 1
-                                        ? AppColors().neonColor
+                                        ? AppColors().primaryRedColor
                                         : AppColors().textLight,
                                     height: 1.5,
                                     fontSize: 14,
@@ -378,11 +378,11 @@ class _ExperienceMobState extends State<ExperienceMob> {
                         //     child: Container(
                         //       padding: EdgeInsets.all(10.0),
                         //       decoration: BoxDecoration(
-                        //           color: data == 2 ? AppColors().cardColor : Colors.transparent, border: Border(left: BorderSide(color: data == 2 ? AppColors().neonColor : Colors.white, width: 2))),
+                        //           color: data == 2 ? AppColors().cardColor : Colors.transparent, border: Border(left: BorderSide(color: data == 2 ? AppColors().primaryRedColor : Colors.white, width: 2))),
                         //       child: Text(
                         //         'Techno Kryon',
                         //         textAlign: TextAlign.center,
-                        //         style: TextStyle(fontWeight: FontWeight.bold, color: data == 2 ? AppColors().neonColor : AppColors().textLight, height: 1.5, fontSize: 14, fontFamily: 'sfmono'),
+                        //         style: TextStyle(fontWeight: FontWeight.bold, color: data == 2 ? AppColors().primaryRedColor : AppColors().textLight, height: 1.5, fontSize: 14, fontFamily: 'sfmono'),
                         //       ),
                         //     ),
                         //   ),
@@ -408,7 +408,7 @@ class _ExperienceMobState extends State<ExperienceMob> {
                         child: Text(
                           '@${experienceList[data].compName}',
                           style: GoogleFonts.roboto(
-                              color: AppColors().neonColor, fontSize: 20),
+                              color: AppColors().primaryRedColor, fontSize: 20),
                         ),
                       ),
                       Padding(

@@ -20,7 +20,7 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
   @override
   Widget build(BuildContext context) {
     final allProjects = AppClass().projects;
-    final displayedProjects = showAll ? allProjects : allProjects.take(3).toList();
+    final displayedProjects = showAll ? allProjects : allProjects.take(4).toList();
 
 
     return Container(
@@ -34,7 +34,6 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
             title: "My Projects",
           ),
 
-          SizedBox(height: 20),
 
           AnimatedSize(
             duration: const Duration(milliseconds: 400),
@@ -72,7 +71,7 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
                 curve: Curves.easeInOut,
                 child: Icon(
                   Icons.keyboard_arrow_down,
-                  color: AppColors().neonColor,
+                  color: AppColors().primaryRedColor,
                   size: 36,
                 ),
               ),
@@ -81,6 +80,7 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
 
 
 
+          SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
 
         ],
       ),

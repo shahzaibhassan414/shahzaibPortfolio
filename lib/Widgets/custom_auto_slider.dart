@@ -13,7 +13,7 @@ class SkillsAutoSlider extends StatefulWidget {
 class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
   final ScrollController _scrollController = ScrollController();
   Timer? _timer;
-  bool _isHovered = false;
+  // bool _isHovered = false;
   double _scrollPosition = 0.0;
   final double _speed = 0.6;
   int? _hoveredIndex;
@@ -26,7 +26,7 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
 
   void _startMarquee() {
     _timer = Timer.periodic(const Duration(milliseconds: 16), (timer) {
-      if (_isHovered) return;
+      // if (_isHovered) return;
 
       if (_scrollController.hasClients) {
         _scrollPosition += _speed;
@@ -53,8 +53,8 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
     final skills = AppClass().skillsImages;
 
     return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
+      // onEnter: (_) => setState(() => _isHovered = true),
+      // onExit: (_) => setState(() => _isHovered = false),
       child: SizedBox(
         height: 170,
         child: SingleChildScrollView(
