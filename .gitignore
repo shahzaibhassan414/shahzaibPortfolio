@@ -5,7 +5,6 @@
 *.swp
 .DS_Store
 .atom/
-#.build/
 .buildlog/
 .history
 .svn/
@@ -18,10 +17,8 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VS Code settings (optional)
+.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -30,16 +27,28 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
-/coverage/
 
-# Symbolication related
+# Build outputs (ignore all except web build if needed)
+build/
+!build/web/   # ⬅️ keep Flutter web output if you want to commit it (optional)
+
+# Coverage reports
+coverage/
+
+# Symbolication & mapping
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
+# Android Studio build outputs
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# iOS Pods & Xcode build
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/App.framework
+ios/Flutter/Flutter.podspec
