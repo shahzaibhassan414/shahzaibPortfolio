@@ -273,9 +273,6 @@ class _RootScreenState extends ConsumerState<RootScreen>
                 )
               ),
               vsync: this,
-            // decoration:  BoxDecoration(
-            //   color: AppColors().blackColor,
-            // ),
             child: Column(
               children: [
                 /// ───── Animated AppBar ─────
