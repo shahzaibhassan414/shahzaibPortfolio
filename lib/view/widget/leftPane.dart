@@ -48,7 +48,7 @@ class _LeftPaneState extends ConsumerState<LeftPane> {
                               child: Container(
                                 margin: EdgeInsets.only(bottom: val == "git" ? 5.0 : 0),
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: SvgPicture.asset('assets/svg/github.svg', color: val == "git" ? AppColors().neonColor : AppColors().textColor, width: 22),
+                                child: SvgPicture.asset('assets/svg/github.svg', color: val == "git" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
                               ),
                             ),
                           ),
@@ -68,7 +68,7 @@ class _LeftPaneState extends ConsumerState<LeftPane> {
                               child: Container(
                                 margin: EdgeInsets.only(bottom: val == "insta" ? 5.0 : 0),
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: SvgPicture.asset('assets/svg/instagram.svg', color: val == "insta" ? AppColors().neonColor : AppColors().textColor, width: 22),
+                                child: SvgPicture.asset('assets/svg/instagram.svg', color: val == "insta" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
                               ),
                             ),
                           ),
@@ -88,7 +88,7 @@ class _LeftPaneState extends ConsumerState<LeftPane> {
                               child: Container(
                                 margin: EdgeInsets.only(bottom: val == "linkedIn" ? 5.0 : 0),
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: SvgPicture.asset('assets/svg/linkedIn.svg', color: val == "linkedIn" ? AppColors().neonColor : AppColors().textColor, width: 22),
+                                child: SvgPicture.asset('assets/svg/linkedIn.svg', color: val == "linkedIn" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
                               ),
                             ),
                           ),
@@ -106,7 +106,7 @@ class _LeftPaneState extends ConsumerState<LeftPane> {
                           //     child: Container(
                           //       margin: EdgeInsets.only(bottom: val == "twitter" ? 5.0 : 0),
                           //       padding: const EdgeInsets.only(bottom: 8.0),
-                          //       child: SvgPicture.asset('assets/svg/twitter.svg', color: val == "twitter" ? AppColors().neonColor : AppColors().textColor, width: 22),
+                          //       child: SvgPicture.asset('assets/svg/twitter.svg', color: val == "twitter" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
                           //     ),
                           //   ),
                           // ),
@@ -126,7 +126,7 @@ class _LeftPaneState extends ConsumerState<LeftPane> {
                           //     child: Container(
                           //       margin: EdgeInsets.only(bottom: val == "stackoverflow" ? 5.0 : 0),
                           //       padding: const EdgeInsets.only(bottom: 8.0),
-                          //       child: SvgPicture.asset('assets/svg/stackoverflow.svg', color: val == "stackoverflow" ? AppColors().neonColor : AppColors().textColor, width: 22),
+                          //       child: SvgPicture.asset('assets/svg/stackoverflow.svg', color: val == "stackoverflow" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
                           //     ),
                           //   ),
                           // ),

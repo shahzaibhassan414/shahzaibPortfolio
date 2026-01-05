@@ -19,6 +19,7 @@ class ActionBar extends ConsumerStatefulWidget implements PreferredSizeWidget {
 }
 
 class _ActionBarState extends ConsumerState<ActionBar> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -119,7 +120,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
             );
           }
           return Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 100),
+            padding: EdgeInsets.symmetric(horizontal: 100),
             child: Row(
               children: [
                 Container(
@@ -129,13 +130,6 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                       scale: 1,
                       'assets/svg/appLogo.png',
                     )),
-                // Expanded(
-                //     child: Container(
-                //         width: 100,
-                //         height: 100,
-                //         child: Image.asset(
-                //           'assets/svg/appLogo.png',
-                //         ))),
                 Expanded(
                   flex: 9,
                   child: Row(
@@ -148,7 +142,8 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                         },
                         onHover: (bol) {
                           if (bol) {
-                            ref.read(hoverProvider.notifier).state = "aboutTitle";
+                            ref.read(hoverProvider.notifier).state =
+                                "aboutTitle";
                           } else {
                             ref.read(hoverProvider.notifier).state = "";
                           }
@@ -159,7 +154,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                             children: [
                               Text("01. ",
                                   style: TextStyle(
-                                      color: AppColors().neonColor,
+                                      color: AppColors().primaryRedColor,
                                       fontSize: 13,
                                       fontFamily: 'sfmono')),
                               Consumer(builder: (context, ref, child) {
@@ -168,7 +163,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                                 return Text("About",
                                     style: TextStyle(
                                         color: isHovered
-                                            ? AppColors().neonColor
+                                            ? AppColors().primaryRedColor
                                             : AppColors().textColor,
                                         fontSize: 13,
                                         fontFamily: 'sfmono'));
@@ -195,7 +190,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                             children: [
                               Text("02. ",
                                   style: TextStyle(
-                                      color: AppColors().neonColor,
+                                      color: AppColors().primaryRedColor,
                                       fontSize: 13,
                                       fontFamily: 'sfmono')),
                               Consumer(builder: (context, ref, child) {
@@ -204,7 +199,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                                 return Text("Experience",
                                     style: TextStyle(
                                         color: isHovered
-                                            ? AppColors().neonColor
+                                            ? AppColors().primaryRedColor
                                             : AppColors().textColor,
                                         fontSize: 13,
                                         fontFamily: 'sfmono'));
@@ -232,7 +227,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                             children: [
                               Text("03. ",
                                   style: TextStyle(
-                                      color: AppColors().neonColor,
+                                      color: AppColors().primaryRedColor,
                                       fontSize: 13,
                                       fontFamily: 'sfmono')),
                               Consumer(builder: (context, ref, child) {
@@ -242,7 +237,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                                 return Text("Skills",
                                     style: TextStyle(
                                         color: isHovered
-                                            ? AppColors().neonColor
+                                            ? AppColors().primaryRedColor
                                             : AppColors().textColor,
                                         fontSize: 13,
                                         fontFamily: 'sfmono'));
@@ -258,7 +253,8 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                         },
                         onHover: (bol) {
                           if (bol) {
-                            ref.read(hoverProvider.notifier).state = "workTitle";
+                            ref.read(hoverProvider.notifier).state =
+                                "workTitle";
                           } else {
                             ref.read(hoverProvider.notifier).state = "";
                           }
@@ -269,7 +265,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                             children: [
                               Text("04. ",
                                   style: TextStyle(
-                                      color: AppColors().neonColor,
+                                      color: AppColors().primaryRedColor,
                                       fontSize: 13,
                                       fontFamily: 'sfmono')),
                               Consumer(builder: (context, ref, child) {
@@ -279,7 +275,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                                 return Text("Projects",
                                     style: TextStyle(
                                         color: isHovered
-                                            ? AppColors().neonColor
+                                            ? AppColors().primaryRedColor
                                             : AppColors().textColor,
                                         fontSize: 13,
                                         fontFamily: 'sfmono'));
@@ -307,7 +303,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                             children: [
                               Text("05.",
                                   style: TextStyle(
-                                      color: AppColors().neonColor,
+                                      color: AppColors().primaryRedColor,
                                       fontSize: 13,
                                       fontFamily: 'sfmono')),
                               Consumer(builder: (context, ref, child) {
@@ -316,7 +312,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                                 return Text(" Contact",
                                     style: TextStyle(
                                         color: isHovered
-                                            ? AppColors().neonColor
+                                            ? AppColors().primaryRedColor
                                             : AppColors().textColor,
                                         fontSize: 13));
                               }),
@@ -324,30 +320,49 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          AppClass().downloadResume(context);
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 80,
-                          decoration: BoxDecoration(
-                              color: Colors.transparent,
+                      Consumer(builder: (context, ref, child) {
+                        String state = ref.watch(hoverProvider);
+                        bool isHovered = (state == "resume");
+                        return InkWell(
+                          onTap: () {
+                            AppClass().downloadResume(context);
+                          },
+                          onHover: (bol) {
+                            if (bol) {
+                              ref.read(hoverProvider.notifier).state = "resume";
+                            } else {
+                              ref.read(hoverProvider.notifier).state = "";
+                            }
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 250),
+                            height: 40,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              color: isHovered
+                                  ? AppColors().primaryRedColor
+                                  : Colors.transparent,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(3.0)),
+                                  const BorderRadius.all(Radius.circular(3.0)),
                               border: Border.all(
-                                  color: AppColors().neonColor, width: 1.5)),
-                          child: Center(
-                            child: Text('Resume',
-                                style: TextStyle(
-                                    color: AppColors().neonColor,
-                                    fontSize: 13,
-                                    letterSpacing: 1,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'sfmono')),
+                                color: AppColors().primaryRedColor,
+                                width: 1.5,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text('Resume',
+                                  style: TextStyle(
+                                      color: isHovered
+                                          ? Colors.white
+                                          : AppColors().primaryRedColor,
+                                      fontSize: 13,
+                                      letterSpacing: 1,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'sfmono')),
+                            ),
                           ),
-                        ),
-                      )
+                        );
+                      }),
                     ],
                   ),
                 ),

@@ -35,11 +35,11 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                       children: [
                         Text(
                           '''04.''',
-                          style: TextStyle(color: AppColors().neonColor, fontSize: AppClass().getMqWidth(context) * 0.04, fontFamily: 'sfmono'),
+                          style: TextStyle(color: AppColors().primaryRedColor, fontSize: AppClass().getMqWidth(context) * 0.04, fontFamily: 'sfmono'),
                         ),
                         Text(
                           ''' What's next?''',
-                          style: TextStyle(color: AppColors().neonColor, fontSize: AppClass().getMqWidth(context) * 0.04, fontFamily: 'sfmono'),
+                          style: TextStyle(color: AppColors().primaryRedColor, fontSize: AppClass().getMqWidth(context) * 0.04, fontFamily: 'sfmono'),
                         ),
                       ],
                     ),
@@ -70,10 +70,10 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                         child: Container(
                           height: AppClass().getMqHeight(context) * 0.07,
                           width: AppClass().getMqWidth(context) * 0.5,
-                          decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().neonColor, width: 1.5)),
+                          decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().primaryRedColor, width: 1.5)),
                           child: Center(
                             child: Text('Say Hello!',
-                                style: TextStyle(color: AppColors().neonColor, fontSize: AppClass().getMqWidth(context) * 0.03, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
+                                style: TextStyle(color: AppColors().primaryRedColor, fontSize: AppClass().getMqWidth(context) * 0.03, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
                           ),
                         ),
                       ),
@@ -93,7 +93,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   '''ref - Britney C''',
-                  style: TextStyle(color: AppColors().neonColor, fontSize: 12, fontFamily: 'sfmono'),
+                  style: TextStyle(color: AppColors().primaryRedColor, fontSize: 12, fontFamily: 'sfmono'),
                 ),
               ),
             ],
@@ -147,8 +147,8 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                                 },
                                 decoration: InputDecoration(
                                   hintText: 'Name*',
-                                  errorStyle: TextStyle(color: AppColors().neonColor),
-                                  errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors().neonColor)),
+                                  errorStyle: TextStyle(color: AppColors().primaryRedColor),
+                                  errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors().primaryRedColor)),
                                   enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                                   focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                                   border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
@@ -179,8 +179,8 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                                   },
                                   decoration: InputDecoration(
                                     hintText: 'Message*',
-                                    errorStyle: TextStyle(color: AppColors().neonColor),
-                                    errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors().neonColor)),
+                                    errorStyle: TextStyle(color: AppColors().primaryRedColor),
+                                    errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors().primaryRedColor)),
                                     enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                                     focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                                     border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
@@ -241,9 +241,9 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                                           height: AppClass().getMqHeight(context) * 0.06,
                                           width: AppClass().getMqWidth(context) * 0.35,
                                           decoration: BoxDecoration(
-                                              color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().neonColor, width: 1.5)),
+                                              color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().primaryRedColor, width: 1.5)),
                                           child: Center(
-                                            child: Text('Send', style: TextStyle(color: AppColors().neonColor, fontSize: 13, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
+                                            child: Text('Send', style: TextStyle(color: AppColors().primaryRedColor, fontSize: 13, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
                                           ),
                                         ),
                                       ),
@@ -262,7 +262,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                           width: AppClass().getMqWidth(context) * 0.5,
                           height: AppClass().getMqHeight(context) * 0.7,
                           color: Colors.transparent,
-                          child: Center(child: CircularProgressIndicator(color: AppColors().neonColor))),
+                          child: Center(child: CircularProgressIndicator(color: AppColors().primaryRedColor))),
                     ),
                   ],
                 );

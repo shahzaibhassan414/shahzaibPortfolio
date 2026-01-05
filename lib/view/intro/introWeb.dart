@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-
 import '../../Widgets/custom_hover_button.dart';
 import '../../Widgets/type_writer_text.dart';
 import '../../resource/appClass.dart';
@@ -35,10 +34,9 @@ class _IntroWebState extends State<IntroWeb> {
                 child: Text(
                   Strings.welcomeTxt,
                   style: TextStyle(
-                      color: AppColors().neonColor,
+                      color: AppColors().primaryRedColor,
                       fontSize: 18,
-                      fontFamily: 'sfmono'
-                  ),
+                      fontFamily: 'sfmono'),
                 ),
               ),
               Padding(
@@ -56,6 +54,7 @@ class _IntroWebState extends State<IntroWeb> {
               Container(
                 width: AppClass().getMqWidth(context) -
                     (AppClass().getMqWidth(context) * 0.23),
+                height: AppClass().getMqWidth(context) * 0.1,
                 child: TypeWriterText(
                   text: Strings.whatIdo,
                 ),
@@ -77,7 +76,7 @@ class _IntroWebState extends State<IntroWeb> {
                         TextSpan(
                           text: Strings.currentOrgName,
                           style: GoogleFonts.roboto(
-                            color: AppColors().neonColor,
+                            color: AppColors().primaryRedColor,
                             letterSpacing: 1,
                             height: 1.5,
                             fontSize: 18,
@@ -86,17 +85,41 @@ class _IntroWebState extends State<IntroWeb> {
                       ])),
                 ),
               ),
-              Padding(
-                  padding: EdgeInsets.only(top: 50, bottom: 70),
-                  child: CustomHoverButton(
-                    text: "Check Out My Work!",
-                    onTap: () {
-                      widget.aScrollController.scrollToIndex(
-                        4,
-                        preferPosition: AutoScrollPosition.begin,
-                      );
-                    },
-                  ))
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: AppClass().getMqWidth(context) * 0.03,
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(top: 50, bottom: 70),
+                      child: CustomHoverButton(
+                        text: "Check Out My Work!",
+                        onTap: () {
+                          widget.aScrollController.scrollToIndex(
+                            4,
+                            preferPosition: AutoScrollPosition.begin,
+                          );
+                        },
+                      )),
+                  SizedBox(
+                    width: AppClass().getMqWidth(context) * 0.03,
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(top: 50, bottom: 70),
+                      child: CustomHoverButton(
+                        text: "Contact Me!",
+                        onTap: () {
+                          widget.aScrollController.scrollToIndex(
+                            5,
+                            preferPosition: AutoScrollPosition.begin,
+                          );
+                        },
+                      )),
+                ],
+              ),
+
+              SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
             ],
           ),
         ],

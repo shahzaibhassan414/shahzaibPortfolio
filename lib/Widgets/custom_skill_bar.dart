@@ -51,7 +51,7 @@ class CustomSkillBar extends StatelessWidget {
                       Text(
                         "${(value * 100).toInt()}%",
                         style: TextStyle(
-                            color: AppColors().neonColor,
+                            color: AppColors().primaryRedColor,
                             fontSize: 20,
                             fontFamily: 'sfmono'),
                       )
@@ -70,7 +70,7 @@ class CustomSkillBar extends StatelessWidget {
                   linearGradient: LinearGradient(
                     colors: [
                       AppColors().cardColor,
-                      AppColors().neonColor,
+                      AppColors().primaryRedColor,
                     ],
                   ),
                 ),

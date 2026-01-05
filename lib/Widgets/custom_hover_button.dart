@@ -5,7 +5,7 @@ import '../resource/colors.dart';
 class CustomHoverButton extends StatefulWidget {
   final String text;
   final Function() onTap;
-  final double? width; // CHANGED (optional)
+  final double? width;
   final double? height;
   const CustomHoverButton({super.key, required this.onTap, required this.text, this.width, this.height});
 
@@ -21,9 +21,9 @@ class _CustomHoverButtonState extends State<CustomHoverButton> {
   @override
   Widget build(BuildContext context) {
     final double btnWidth =
-        widget.width ?? AppClass().getMqWidth(context) * 0.2; // ADDED
+        widget.width ?? AppClass().getMqWidth(context) * 0.2;
     final double btnHeight =
-        widget.height ?? AppClass().getMqHeight(context) * 0.09; // ADDED
+        widget.height ?? AppClass().getMqHeight(context) * 0.09;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => isHovered = true),
@@ -33,12 +33,12 @@ class _CustomHoverButtonState extends State<CustomHoverButton> {
         splashColor: Colors.transparent,
         hoverColor: Colors.transparent,
         child: Container(
-          height: btnHeight, // CHANGED
+          height: btnHeight,
           width: btnWidth,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: AppColors().neonColor,
+              color: AppColors().primaryRedColor,
               width: 1.5,
             ),
           ),
@@ -52,7 +52,10 @@ class _CustomHoverButtonState extends State<CustomHoverButton> {
                 bottom: 0,
                 width: btnWidth,
                 child: Container(
-                  color: AppColors().neonColor,
+                  decoration: BoxDecoration(
+                    color: AppColors().primaryRedColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
               Center(
@@ -62,7 +65,7 @@ class _CustomHoverButtonState extends State<CustomHoverButton> {
                   style: TextStyle(
                     color: isHovered
                         ? AppColors().textColor
-                        : AppColors().neonColor,
+                        : AppColors().primaryRedColor,
                     fontSize: 13,
                     letterSpacing: 1.2,
                     fontWeight: FontWeight.bold,

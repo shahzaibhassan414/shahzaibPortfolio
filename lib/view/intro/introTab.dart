@@ -35,7 +35,7 @@ class _IntroTabState extends State<IntroTab> {
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
                     Strings.welcomeTxt,
-                    style: TextStyle(color: AppColors().neonColor, fontSize: AppClass().getMqWidth(context) * 0.025, fontFamily: 'sfmono'),
+                    style: TextStyle(color: AppColors().primaryRedColor, fontSize: AppClass().getMqWidth(context) * 0.025, fontFamily: 'sfmono'),
                   ),
                 ),
                 Padding(
@@ -83,7 +83,7 @@ class _IntroTabState extends State<IntroTab> {
                               TextSpan(
                                 text: Strings.currentOrgName,
                                 style: GoogleFonts.roboto(
-                                  color: AppColors().neonColor,
+                                  color: AppColors().primaryRedColor,
                                   letterSpacing: 1,
                                   height: 1.5,
                                   fontSize: AppClass().getMqWidth(context) * 0.025,
@@ -103,9 +103,9 @@ class _IntroTabState extends State<IntroTab> {
                     child: Container(
                       height: AppClass().getMqHeight(context) * 0.09,
                       width: AppClass().getMqWidth(context) * 0.25,
-                      decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().neonColor, width: 1.5)),
+                      decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().primaryRedColor, width: 1.5)),
                       child: Center(
-                        child: Text('Check Out My Work!', style: TextStyle(color: AppColors().neonColor, fontSize: 13, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
+                        child: Text('Check Out My Work!', style: TextStyle(color: AppColors().primaryRedColor, fontSize: 13, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
                       ),
                     ),
                   ),

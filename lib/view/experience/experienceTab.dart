@@ -33,7 +33,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
       //                 padding: const EdgeInsets.only(right: 5.0),
       //                 child: Icon(
       //                   Icons.arrow_right,
-      //                   color: AppColors().neonColor,
+      //                   color: AppColors().primaryRedColor,
       //                   size: 20,
       //                 ),
       //               ),
@@ -55,7 +55,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
       //                 padding: const EdgeInsets.only(right: 5.0),
       //                 child: Icon(
       //                   Icons.arrow_right,
-      //                   color: AppColors().neonColor,
+      //                   color: AppColors().primaryRedColor,
       //                   size: 20,
       //                 ),
       //               ),
@@ -77,7 +77,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
       //                 padding: const EdgeInsets.only(right: 5.0),
       //                 child: Icon(
       //                   Icons.arrow_right,
-      //                   color: AppColors().neonColor,
+      //                   color: AppColors().primaryRedColor,
       //                   size: 20,
       //                 ),
       //               ),
@@ -107,7 +107,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -129,7 +129,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -151,7 +151,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -173,7 +173,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -195,7 +195,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -217,7 +217,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -239,7 +239,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -261,7 +261,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -291,7 +291,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -313,7 +313,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -335,7 +335,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -357,7 +357,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Icon(
                         Icons.arrow_right,
-                        color: AppColors().neonColor,
+                        color: AppColors().primaryRedColor,
                         size: 20,
                       ),
                     ),
@@ -385,7 +385,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               RichText(
-                text: TextSpan(text: "02.", style: TextStyle(color: AppColors().neonColor, fontSize: 20, fontFamily: 'sfmono'), children: <TextSpan>[
+                text: TextSpan(text: "02.", style: TextStyle(color: AppColors().primaryRedColor, fontSize: 20, fontFamily: 'sfmono'), children: <TextSpan>[
                   TextSpan(
                     text: ''' Where I've Worked''',
                     style: GoogleFonts.robotoSlab(color: Colors.white, letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: 25),
@@ -420,10 +420,10 @@ class _ExperienceTabState extends State<ExperienceTab> {
                           child: Container(
                             padding: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
-                                color: data == 0 ? AppColors().cardColor : Colors.transparent, border: Border(left: BorderSide(color: data == 0 ? AppColors().neonColor : Colors.white, width: 2))),
+                                color: data == 0 ? AppColors().cardColor : Colors.transparent, border: Border(left: BorderSide(color: data == 0 ? AppColors().primaryRedColor : Colors.white, width: 2))),
                             child: Text(
                               'Code Encoders',
-                              style: TextStyle(color: data == 0 ? AppColors().neonColor : AppColors().textLight, letterSpacing: 1, height: 1.5, fontSize: 12, fontFamily: 'sfmono'),
+                              style: TextStyle(color: data == 0 ? AppColors().primaryRedColor : AppColors().textLight, letterSpacing: 1, height: 1.5, fontSize: 12, fontFamily: 'sfmono'),
                             ),
                           ),
                         ),
@@ -434,10 +434,10 @@ class _ExperienceTabState extends State<ExperienceTab> {
                           child: Container(
                             padding: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
-                                color: data == 1 ? AppColors().cardColor : Colors.transparent, border: Border(left: BorderSide(color: data == 1 ? AppColors().neonColor : Colors.white, width: 2))),
+                                color: data == 1 ? AppColors().cardColor : Colors.transparent, border: Border(left: BorderSide(color: data == 1 ? AppColors().primaryRedColor : Colors.white, width: 2))),
                             child: Text(
                               'Rex Technologies',
-                              style: TextStyle(color: data == 1 ? AppColors().neonColor : AppColors().textLight, letterSpacing: 1, height: 1.5, fontSize: 13, fontFamily: 'sfmono'),
+                              style: TextStyle(color: data == 1 ? AppColors().primaryRedColor : AppColors().textLight, letterSpacing: 1, height: 1.5, fontSize: 13, fontFamily: 'sfmono'),
                             ),
                           ),
                         ),
@@ -471,7 +471,7 @@ class _ExperienceTabState extends State<ExperienceTab> {
                               children: <TextSpan>[
                                 TextSpan(
                                   text: ' @${experienceList[data].compName}',
-                                  style: GoogleFonts.roboto(color: AppColors().neonColor, fontSize: 18),
+                                  style: GoogleFonts.roboto(color: AppColors().primaryRedColor, fontSize: 18),
                                 )
                               ]),
                         ),
