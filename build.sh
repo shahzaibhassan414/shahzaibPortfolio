@@ -5,7 +5,7 @@ FLUTTER_VERSION="3.19.6"
 FLUTTER_SDK_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
 
 # Download and extract Flutter SDK
-wget $FLUTTER_SDK_URL
+curl -o flutter_linux_${FLUTTER_VERSION}-stable.tar.xz $FLUTTER_SDK_URL
 tar xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
 
 # Add flutter to path
