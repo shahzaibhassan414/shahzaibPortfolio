@@ -1,57 +1,36 @@
+# Ignore everything in build/ except the Flutter Web output
+build/
+!build/web/index.html
+!build/web/assets/
+!build/web/favicon.png
+
 # Miscellaneous
 *.class
 *.log
 *.pyc
 *.swp
 .DS_Store
-.atom/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
 
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
+# IDE configs
 .idea/
-
-# VS Code settings (optional)
 .vscode/
+*.iml
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
+# Flutter/Dart
 .dart_tool/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
 
-# Build outputs (ignore all except web build if needed)
-build/
-!build/web/index.html
-!build/web/assets/
-!build/web/favicon.png
-   # ⬅️ keep Flutter web output if you want to commit it (optional)
+# iOS build artifacts
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/Flutter/Flutter.framework
 
-# Coverage reports
-coverage/
-
-# Symbolication & mapping
-app.*.symbols
-app.*.map.json
-
-# Android Studio build outputs
+# Android build artifacts
 /android/app/debug
 /android/app/profile
 /android/app/release
 
-# iOS Pods & Xcode build
-ios/Pods/
-ios/Runner.xcworkspace/
-ios/Flutter/Flutter.framework
-ios/Flutter/Flutter.podspec
-ios/Flutter/Generated.xcconfig
-ios/Flutter/App.framework
-ios/Flutter/Flutter.podspec
+# Coverage
+coverage/
