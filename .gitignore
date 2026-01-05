@@ -29,8 +29,8 @@ migrate_working_dir/
 .pub/
 
 # Build outputs (ignore all except web build if needed)
-build/
-!build/web/   # ⬅️ keep Flutter web output if you want to commit it (optional)
+#build/
+#!build/web/   # ⬅️ keep Flutter web output if you want to commit it (optional)
 
 # Coverage reports
 coverage/
