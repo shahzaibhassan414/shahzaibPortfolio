@@ -2,13 +2,17 @@
 
 # Set a Flutter version
 FLUTTER_VERSION="3.19.6"
+FLUTTER_SDK_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
 
-# Clone the Flutter repository with the specified version
-git clone https://github.com/flutter/flutter.git --depth 1 --branch $FLUTTER_VERSION
+# Download and extract Flutter SDK
+wget $FLUTTER_SDK_URL
+tar xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
+
+# Add flutter to path
 export PATH="$PATH:`pwd`/flutter/bin"
 
-# Run flutter doctor to verify the installation
-flutter doctor
+# Precache flutter artifacts
+flutter precache
 
 # Build the Flutter web application
 flutter build web --release
