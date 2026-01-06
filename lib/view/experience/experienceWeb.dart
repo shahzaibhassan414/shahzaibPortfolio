@@ -87,7 +87,7 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
               ),
 
               SizedBox(width: AppClass().getMqWidth(context) * 0.1,),
-              ExperienceCard(
+              ExperienceCardWeb(
                 key: ValueKey(0),
                 experience: experienceList[0],
               )
@@ -118,7 +118,7 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
               ),
 
               SizedBox(width: AppClass().getMqWidth(context) * 0.1,),
-              ExperienceCard(
+              ExperienceCardWeb(
                 key: ValueKey(1),
                 experience: experienceList[1],
               )
@@ -130,9 +130,9 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
   }
 }
 
-class ExperienceCard extends StatelessWidget {
+class ExperienceCardWeb extends StatelessWidget {
   final ExperienceWebModel experience;
-  const ExperienceCard({super.key, required this.experience});
+  const ExperienceCardWeb({super.key, required this.experience});
 
   @override
   Widget build(BuildContext context) {

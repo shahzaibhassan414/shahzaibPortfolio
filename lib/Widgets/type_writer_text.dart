@@ -6,7 +6,8 @@ import '../resource/strings.dart';
 
 class TypeWriterText extends StatefulWidget {
   final String text;
-  const TypeWriterText({super.key, required this.text});
+  final double? fontSize;
+  const TypeWriterText({super.key, required this.text, this.fontSize});
 
   @override
   State<TypeWriterText> createState() => _TypeWriterTextState();
@@ -54,7 +55,7 @@ class _TypeWriterTextState extends State<TypeWriterText>
             color: AppColors().textLight,
             fontWeight: FontWeight.bold,
             letterSpacing: 3,
-            fontSize: 55,
+            fontSize: widget.fontSize ?? 55,
           ),
         );
       },

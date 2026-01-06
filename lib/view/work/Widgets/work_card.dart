@@ -39,8 +39,10 @@ class WorkCard extends StatelessWidget {
             children: [
               Image.asset(
                 project.image,
-                width: AppClass().getMqWidth(context) * 0.22,
-                height: AppClass().getMqWidth(context) * 0.18,
+                width: AppClass().getScreenType(context) == ScreenType.web ?
+                AppClass().getMqWidth(context) * 0.22 : AppClass().getMqWidth(context) * 0.8,
+                height: AppClass().getScreenType(context) == ScreenType.web ?
+                AppClass().getMqWidth(context) * 0.18 : AppClass().getMqWidth(context) * 0.58,
                 fit: BoxFit.cover,
               ),
               AnimatedPositioned(

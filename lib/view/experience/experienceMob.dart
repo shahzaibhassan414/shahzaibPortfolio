@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/resource/appClass.dart';
 
+import '../../Widgets/main_title_widget.dart';
 import '../../controller/generalController.dart';
 import '../../model/experienceModel.dart';
 import '../../resource/colors.dart';
 import '../../resource/strings.dart';
+import 'experienceWeb.dart';
 
 class ExperienceMob extends StatefulWidget {
   const ExperienceMob({Key? key}) : super(key: key);
@@ -18,421 +20,179 @@ class ExperienceMob extends StatefulWidget {
 class _ExperienceMobState extends State<ExperienceMob> {
   @override
   Widget build(BuildContext context) {
-    List<ExperienceModel> experienceList = [
-      ExperienceModel(
-          desig: Strings.expDesig2,
-          compName: Strings.expCompName2,
-          duration: Strings.expDur2,
-          points: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0, top: 10.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().primaryRedColor,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Text(
-                          Strings.expAbout2,
-                          style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0, top: 10.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().primaryRedColor,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Text(
-                          Strings.expAbout2_2,
-                          style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0, top: 10.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().primaryRedColor,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Text(
-                          Strings.expAbout2_3,
-                          style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0, top: 10.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().primaryRedColor,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Text(
-                          Strings.expAbout2_4,
-                          style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0, top: 10.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().primaryRedColor,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Text(
-                          Strings.expAbout2_5,
-                          style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0, top: 10.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().primaryRedColor,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Text(
-                          Strings.expAbout2_6,
-                          style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0, top: 10.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().primaryRedColor,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Text(
-                          Strings.expAbout2_7,
-                          style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0, top: 10.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.arrow_right,
-                        color: AppColors().primaryRedColor,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Text(
-                          Strings.expAbout2_8,
-                          style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )),
+    List<ExperienceWebModel> experienceList = [
+      ExperienceWebModel(
+        desig: Strings.expDesig2,
+        compName: Strings.expCompName2,
+        duration: Strings.expDur2,
+        points: [
+          Strings.expAbout2,
+          Strings.expAbout2_2,
+          Strings.expAbout2_3,
+          Strings.expAbout2_4,
+          Strings.expAbout2_5,
+          Strings.expAbout2_6,
+          Strings.expAbout2_7,
+          Strings.expAbout2_8,
+        ],
+      ),
+      ExperienceWebModel(
+        desig: Strings.expDesig1,
+        compName: Strings.expCompName1,
+        duration: Strings.expDur1,
+        points: [
+          Strings.expAbout1,
+          Strings.expAbout1_2,
+          Strings.expAbout1_3,
+          Strings.expAbout1_4,
+        ],
+      ),
     ];
 
     return Container(
-      height: AppClass().getMqHeight(context) - 70,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          MainTitleWidget(
+            number: "02",
+            title: "Experiences",
+            isWeb: false,
+          ),
+
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RichText(
-                text: TextSpan(
-                    text: "02.",
-                    style: TextStyle(
-                        color: AppColors().primaryRedColor,
-                        fontSize: 20,
-                        fontFamily: 'sfmono'),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: ''' Where I've Worked''',
-                        style: GoogleFonts.robotoSlab(
-                            color: Colors.white,
-                            letterSpacing: 1,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
-                      )
-                    ]),
-              ),
-              Container(
-                height: 0.5,
-                margin: EdgeInsets.only(left: 15),
-                width: AppClass().getMqWidth(context) * 0.1,
-                color: AppColors().textLight,
+
+              SizedBox(width: AppClass().getMqWidth(context) * 0.1,),
+              ExperienceCardMobile(
+                key: ValueKey(0),
+                experience: experienceList[0],
               )
             ],
           ),
-          Consumer(builder: (context, ref, child) {
-            var data = ref.watch(selectedExpProvider);
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 20.0, bottom: 10.0, left: 10, right: 10),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              ref.read(selectedExpProvider.notifier).state = 0;
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                  color: data == 0
-                                      ? AppColors().cardColor
-                                      : Colors.transparent,
-                                  border: Border(
-                                      left: BorderSide(
-                                          color: data == 0
-                                              ? AppColors().primaryRedColor
-                                              : Colors.white,
-                                          width: 2))),
-                              child: Text(
-                                'Code Encoders',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: data == 0
-                                        ? AppColors().primaryRedColor
-                                        : AppColors().textLight,
-                                    height: 1.5,
-                                    fontSize: 14,
-                                    fontFamily: 'sfmono'),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              ref.read(selectedExpProvider.notifier).state = 1;
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                  color: data == 1
-                                      ? AppColors().cardColor
-                                      : Colors.transparent,
-                                  border: Border(
-                                      left: BorderSide(
-                                          color: data == 1
-                                              ? AppColors().primaryRedColor
-                                              : Colors.white,
-                                          width: 2))),
-                              child: Text(
-                                'Rex Technologies',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: data == 1
-                                        ? AppColors().primaryRedColor
-                                        : AppColors().textLight,
-                                    height: 1.5,
-                                    fontSize: 14,
-                                    fontFamily: 'sfmono'),
-                              ),
-                            ),
-                          ),
-                        ),
-                        // Expanded(
-                        //   child: InkWell(
-                        //     onTap: () {
-                        //       ref.read(selectedExpProvider.notifier).state = 2;
-                        //     },
-                        //     child: Container(
-                        //       padding: EdgeInsets.all(10.0),
-                        //       decoration: BoxDecoration(
-                        //           color: data == 2 ? AppColors().cardColor : Colors.transparent, border: Border(left: BorderSide(color: data == 2 ? AppColors().primaryRedColor : Colors.white, width: 2))),
-                        //       child: Text(
-                        //         'Techno Kryon',
-                        //         textAlign: TextAlign.center,
-                        //         style: TextStyle(fontWeight: FontWeight.bold, color: data == 2 ? AppColors().primaryRedColor : AppColors().textLight, height: 1.5, fontSize: 14, fontFamily: 'sfmono'),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                      ]),
+
+          SizedBox(height: 30,),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Divider(
+              color: AppColors().textLight,
+              thickness: 1,
+            ),
+          ),
+          SizedBox(height: 30,),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              SizedBox(width: AppClass().getMqWidth(context) * 0.1,),
+              ExperienceCardMobile(
+                key: ValueKey(1),
+                experience: experienceList[1],
+              )
+            ],
+          ),
+
+          SizedBox(height: AppClass().getMqHeight(context) * 0.15,)
+        ],
+      ),
+    );
+  }
+}
+
+
+class ExperienceCardMobile extends StatelessWidget {
+  final ExperienceWebModel experience;
+  const ExperienceCardMobile({super.key, required this.experience});
+
+  @override
+  Widget build(BuildContext context) {
+    var mqWidth = AppClass().getMqWidth(context);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 22),
+            child: Text(
+              experience.compName,
+              style: TextStyle(
+                  color:
+                  AppColors().primaryRedColor,
+                  fontSize: 16,
+                  fontFamily: 'sfmono',
+                  fontWeight:
+                  FontWeight.bold
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 22),
+            child: RichText(
+              text: TextSpan(
+                text: experience.desig,
+                style: GoogleFonts.roboto(
+                  color: AppColors().textColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
                 ),
-                Container(
-                  width: AppClass().getMqWidth(context),
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  margin: EdgeInsets.only(top: 20.0),
-                  child: Column(
+                children: [
+
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 5),
+          Padding(
+            padding: const EdgeInsets.only(left: 22),
+            child: Text(
+              experience.duration,
+              style: TextStyle(
+                color: AppColors().textLight,
+                fontSize: 14,
+                fontFamily: 'sfmono',
+              ),
+            ),
+          ),
+          SizedBox(height: 15),
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: experience.points
+                  .map(
+                    (p) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(experienceList[data].desig.toString(),
-                          style: GoogleFonts.roboto(
-                              color: AppColors().textColor,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
-                              fontSize: 24)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          '@${experienceList[data].compName}',
-                          style: GoogleFonts.roboto(
-                              color: AppColors().primaryRedColor, fontSize: 20),
-                        ),
+                      Icon(
+                        Icons.arrow_right,
+                        size: 20,
+                        color: AppColors().primaryRedColor,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
+                      SizedBox(width: 5),
+                      Container(
+                        width: mqWidth * 0.85,
                         child: Text(
-                          experienceList[data].duration.toString(),
+                          p,
                           style: TextStyle(
-                              color: AppColors().textLight,
-                              letterSpacing: 1,
-                              height: 1.5,
-                              fontSize: 13,
-                              fontFamily: 'sfmono'),
+                            color: AppColors().textLight,
+                            fontSize: 14,
+                            height: 1.5,
+                            fontFamily: 'sfmono',
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 3.0),
-                        child: experienceList[data].points!,
                       )
                     ],
                   ),
                 ),
-              ],
-            );
-          })
+              )
+                  .toList(),
+            ),
+          )
         ],
       ),
     );

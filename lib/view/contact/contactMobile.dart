@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/resource/appClass.dart';
 
+import '../../Widgets/custom_contact_card.dart';
+import '../../Widgets/custom_hover_button.dart';
+import '../../Widgets/main_title_widget.dart';
 import '../../controller/generalController.dart';
 import '../../resource/colors.dart';
 import '../../resource/strings.dart';
@@ -16,257 +19,224 @@ class ContactMobile extends ConsumerStatefulWidget {
 }
 
 class _ContactMobileState extends ConsumerState<ContactMobile> {
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final msgController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    final mqWidth = AppClass().getMqWidth(context);
     return Container(
-      height: AppClass().getMqHeight(context) - 100,
       padding: EdgeInsets.only(top: 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
+          MainTitleWidget(number: "05", title: "What's Next?",isWeb: false,),
+          Text(
+            "Get In Touch",
+            style: GoogleFonts.robotoSlab(
+              color: AppColors().textColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
+          ),
+          SizedBox(height: 15),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 10,
               children: [
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '''04.''',
-                          style: TextStyle(color: AppColors().primaryRedColor, fontSize: AppClass().getMqWidth(context) * 0.04, fontFamily: 'sfmono'),
-                        ),
-                        Text(
-                          ''' What's next?''',
-                          style: TextStyle(color: AppColors().primaryRedColor, fontSize: AppClass().getMqWidth(context) * 0.04, fontFamily: 'sfmono'),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        'Get In Touch',
-                        style: GoogleFonts.robotoSlab(color: AppColors().textColor, fontWeight: FontWeight.bold, letterSpacing: 3, fontSize: AppClass().getMqWidth(context) * 0.06),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: Container(
-                        width: AppClass().getMqWidth(context) * 0.8,
-                        child: Text(
-                          Strings.endTxt,
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.roboto(color: AppColors().textLight, letterSpacing: 1, height: 1.5, fontSize: AppClass().getMqWidth(context) * 0.045),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 50, bottom: 70),
-                      child: InkWell(
-                        onTap: () {
-                          showMobileMessageDialog(context);
-                        },
-                        child: Container(
-                          height: AppClass().getMqHeight(context) * 0.07,
-                          width: AppClass().getMqWidth(context) * 0.5,
-                          decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().primaryRedColor, width: 1.5)),
-                          child: Center(
-                            child: Text('Say Hello!',
-                                style: TextStyle(color: AppColors().primaryRedColor, fontSize: AppClass().getMqWidth(context) * 0.03, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+                CustomContactCard(
+                  icon: Icons.call,
+                  title: "Phone Number",
+                  value: AppClass.phoneNumber,
+                ),
+                CustomContactCard(
+                  icon: Icons.mail,
+                  title: "Email Address",
+                  value: AppClass.email,
                 ),
               ],
             ),
           ),
-          Column(
-            children: [
-              Text(
-                '''Built & Developed by Jeevanandham''',
-                style: TextStyle(color: AppColors().textColor, fontSize: 12, fontFamily: 'sfmono'),
+
+
+          SizedBox(
+            height: 30,
+          ),
+
+          Text(
+            "Feel Free To Contact Me",
+            style: GoogleFonts.robotoSlab(
+              color: AppColors().textColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
+          ),
+
+          SizedBox(height: 10,),
+
+          Container(
+            width: mqWidth * 0.9,
+            child: Text(
+              Strings.endTxt,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.roboto(
+                color: AppColors().textLight,
+                letterSpacing: 1,
+                height: 1.5,
+                fontSize: 18,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '''ref - Britney C''',
-                  style: TextStyle(color: AppColors().primaryRedColor, fontSize: 12, fontFamily: 'sfmono'),
+            ),
+          ),
+          SizedBox(height: 20),
+
+          Center(
+            child: Container(
+              width: mqWidth * 1,
+              padding: EdgeInsets.all(30),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    // Name Field
+                    TextFormField(
+                      controller: nameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Enter your name (or leave anonymous)';
+                        }
+                        return null;
+                      },
+                      decoration: _inputDecoration('Name*'),
+                    ),
+                    SizedBox(height: 20),
+
+                    // Contact Info Field
+                    TextFormField(
+                      controller: emailController,
+                      decoration: _inputDecoration('Email*'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Email cannot be empty';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20),
+
+                    // Message Field
+                    TextFormField(
+                      controller: msgController,
+                      maxLines: 6,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Message cannot be empty';
+                        }
+                        return null;
+                      },
+                      decoration: _inputDecoration('Message*'),
+                    ),
+
+                    SizedBox(height: 25),
+
+                    Padding(
+                        padding: EdgeInsets.only(top: 50, bottom: 70),
+                        child: CustomHoverButton(
+                          height: 55,
+                          width: 150,
+                          text: "Send Message",
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              ref.read(progressProvider.notifier).state = true;
+                              AppClass()
+                                  .sendEmail(
+                                nameController.text,
+                                emailController.text,
+                                msgController.text,
+                              )
+                                  .then((success) {
+                                ref.read(progressProvider.notifier).state =
+                                false;
+                                if (success) {
+                                  AppClass().successSnackBar(
+                                      '🎉 Message sent successfully!',
+                                      context: context);
+                                  nameController.clear();
+                                  emailController.clear();
+                                  msgController.clear();
+                                } else {
+                                  AppClass().errorSnackBar(
+                                      '😅 Something went wrong. Try again!',
+                                      context: context);
+                                }
+                              });
+                            }
+                          },
+                        )),
+                  ],
                 ),
               ),
+            ),
+          ),
+
+          SizedBox(height: 50),
+
+          // Footer
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Built & Developed by ",
+                style: TextStyle(
+                    color: AppColors().textColor,
+                    fontSize: 13,
+                    fontFamily: 'sfmono'),
+              ),
+              Text(
+                "Shahzaib 🫡",
+                style: TextStyle(
+                    color: AppColors().primaryRedColor,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'sfmono'),
+              ),
             ],
-          )
+          ),
+
+          SizedBox(height: 50),
+
         ],
       ),
     );
   }
-
-  showMobileMessageDialog(context) {
-    final nameController = TextEditingController();
-    final contactInfoController = TextEditingController();
-    final msgController = TextEditingController();
-
-    final _formKey = GlobalKey<FormState>();
-
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) => AlertDialog(
-              backgroundColor: AppColors().primaryColor,
-              insetPadding: EdgeInsets.only(left: 15.0, right: 15.0),
-              contentPadding: EdgeInsets.zero,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              title: Row(
-                children: [Expanded(flex: 9, child: Text('Contact Me!')), IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.close, color: AppColors().textColor))],
-              ),
-              content: Consumer(builder: (context, ref, child) {
-                bool isLoading = ref.watch(progressProvider);
-                return Stack(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      color: AppColors().primaryColor,
-                      width: AppClass().getMqWidth(context),
-                      child: Form(
-                        key: _formKey,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextFormField(
-                                controller: nameController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Let me know your name (or just enter anonymous)';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: 'Name*',
-                                  errorStyle: TextStyle(color: AppColors().primaryRedColor),
-                                  errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors().primaryRedColor)),
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
-                                child: TextField(
-                                  controller: contactInfoController,
-                                  decoration: InputDecoration(
-                                    hintText: 'Contact Info (Optional)',
-                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
-                                child: TextFormField(
-                                  controller: msgController,
-                                  maxLines: 8,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Seriously? you want to send a blank message to me :(';
-                                    }
-                                    return null;
-                                  },
-                                  decoration: InputDecoration(
-                                    hintText: 'Message*',
-                                    errorStyle: TextStyle(color: AppColors().primaryRedColor),
-                                    errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors().primaryRedColor)),
-                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Note: Please don't send trash msgs, atleast say hi :(",
-                                      style: TextStyle(fontSize: AppClass().getMqWidth(context) * 0.03, color: Colors.grey),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 25.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: InkWell(
-                                        onTap: () async {
-                                          if (_formKey.currentState!.validate()) {
-                                            ref.read(progressProvider.notifier).state = true;
-                                            AppClass().sendEmail(
-                                                nameController.text,
-                                                contactInfoController.text,
-                                                msgController.text
-                                            ).then((value) {
-                                              if (value) {
-                                                Navigator.pop(context);
-                                                AppClass().successSnackBar(
-                                                    '🎉 Your message zoomed into my inbox! Thanks!',
-                                                    context: context
-                                                );
-                                              } else {
-                                                Navigator.pop(context);
-                                                AppClass().errorSnackBar(
-                                                    '😅 Oops! Something went wrong. Try sending it again?',
-                                                    context: context
-                                                );
-                                              }
-                                              ref.read(progressProvider.notifier).state = false;
-                                            }).onError((error, stackTrace) {
-                                              Navigator.pop(context);
-                                              AppClass().errorSnackBar(
-                                                  '⚡ Yikes! An error popped up. Give it another shot!',
-                                                  context: context
-                                              );
-                                            });
-                                          }
-                                        },
-                                        child: Container(
-                                          height: AppClass().getMqHeight(context) * 0.06,
-                                          width: AppClass().getMqWidth(context) * 0.35,
-                                          decoration: BoxDecoration(
-                                              color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(3.0)), border: Border.all(color: AppColors().primaryRedColor, width: 1.5)),
-                                          child: Center(
-                                            child: Text('Send', style: TextStyle(color: AppColors().primaryRedColor, fontSize: 13, letterSpacing: 1, fontWeight: FontWeight.bold, fontFamily: 'sfmono')),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Visibility(
-                      visible: isLoading,
-                      child: Container(
-                          width: AppClass().getMqWidth(context) * 0.5,
-                          height: AppClass().getMqHeight(context) * 0.7,
-                          color: Colors.transparent,
-                          child: Center(child: CircularProgressIndicator(color: AppColors().primaryRedColor))),
-                    ),
-                  ],
-                );
-              }),
-            ));
+  InputDecoration _inputDecoration(String hint) {
+    return InputDecoration(
+      hintText: hint,
+      hintStyle: TextStyle(color: Colors.grey.shade500),
+      errorStyle: TextStyle(color: AppColors().primaryRedColor),
+      filled: true,
+      fillColor: AppColors().cardColor.withOpacity(0.09),
+      contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.white24),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.white24),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors().cardColor, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors().cardColor, width: 2),
+      ),
+    );
   }
 }
