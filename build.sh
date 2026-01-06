@@ -7,7 +7,7 @@ export HOME="$PWD/.home"
 mkdir -p "$HOME"
 
 # Install a known Flutter version into the build environment
-FLUTTER_VERSION="3.22.3"
+FLUTTER_VERSION="3.38.5"
 curl -L "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz" | tar -xJf -
 
 export FLUTTER_ROOT="$PWD/flutter"
