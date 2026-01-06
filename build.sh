@@ -24,4 +24,4 @@ flutter config --enable-web
 flutter --version
 flutter precache --web
 flutter pub get
-flutter build web --release --web-renderer=canvaskit
+flutter build web --release
