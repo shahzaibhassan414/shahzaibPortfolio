@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/resource/colors.dart';
 import 'package:portfolio/view/splash/splash.dart';
-import 'package:portfolio/view/root.dart';
 
 void main() {
   runApp(ProviderScope(child: const AppTheme()));
@@ -14,13 +13,13 @@ class AppTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PORTFOLIO',
+      title: 'Shahzaib Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: AppColors().primaryColor,
       ),
-      home: const RootScreen(),
+      home: const SplashScreen(),
     );
   }
 }
