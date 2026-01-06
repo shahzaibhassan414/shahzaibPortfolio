@@ -58,7 +58,6 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Portfolio v2'),
 
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.35,
