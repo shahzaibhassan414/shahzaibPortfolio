@@ -15,6 +15,7 @@ build/
 .idea/
 .vscode/
 *.iml
+flutter/
 
 # Flutter/Dart
 .dart_tool/
@@ -34,3 +35,4 @@ ios/Flutter/Flutter.framework
 
 # Coverage
 coverage/
+flutter/
