@@ -24,4 +24,5 @@ flutter config --enable-web
 flutter --version
 flutter precache --web
 flutter pub get
-flutter build web --release
+flutter build web --release -v
+
