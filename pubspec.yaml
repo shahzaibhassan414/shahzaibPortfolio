@@ -1,9 +1,9 @@
 name: portfolio
-description: A simple portfolio about myself after working 5 months in flutter.
+description: A simple portfolio about myself after working 2 months in flutter.
 
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
