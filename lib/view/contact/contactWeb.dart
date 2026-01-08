@@ -34,7 +34,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
       child: Column(
         children: [
           // Title
-          MainTitleWidget(number: "05", title: "What's Next?"),
+          MainTitleWidget( title: "What's Next?"),
           Text(
             "Get In Touch",
             style: GoogleFonts.robotoSlab(

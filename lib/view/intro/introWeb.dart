@@ -62,7 +62,7 @@ class _IntroWebState extends State<IntroWeb> {
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Container(
-                  width: AppClass().getMqWidth(context) * 0.5,
+                  width: AppClass().getMqWidth(context) * 0.7,
                   child: RichText(
                       text: TextSpan(
                           text: Strings.introAbout,

@@ -24,8 +24,9 @@ class CustomSkillBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isWeb = AppClass().getScreenType(context) == ScreenType.web;
+    final bool isMobile = AppClass().getScreenType(context) == ScreenType.mobile;
     final double mqWidth = AppClass().getMqWidth(context);
-    final double barWidth = isWeb ? mqWidth * 0.35 : mqWidth * 0.85;
+    final double barWidth = isWeb ? mqWidth * 0.35 : isMobile ?  mqWidth * 0.85 : mqWidth * 0.7;
 
     Widget skillContent = SizedBox(
       width: barWidth,

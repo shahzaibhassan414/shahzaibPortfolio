@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/resource/appClass.dart';
-import 'package:portfolio/view/work/Widgets/work_card.dart';
 import '../../Widgets/main_title_widget.dart';
 import '../../resource/colors.dart';
+import 'Widgets/work_card.dart';
 
-class WorkWeb extends ConsumerStatefulWidget {
-  const WorkWeb({Key? key}) : super(key: key);
+class ProjectWeb extends ConsumerStatefulWidget {
+  const ProjectWeb({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<WorkWeb> createState() => _WorkWebState();
+  ConsumerState<ProjectWeb> createState() => _WorkWebState();
 }
 
-class _WorkWebState extends ConsumerState<WorkWeb> {
+class _WorkWebState extends ConsumerState<ProjectWeb> {
   int? hoveredIndex;
   bool showAll = false;
 
@@ -30,7 +30,6 @@ class _WorkWebState extends ConsumerState<WorkWeb> {
       child: Column(
         children: [
           MainTitleWidget(
-            number: "04",
             title: "My Projects",
           ),
 

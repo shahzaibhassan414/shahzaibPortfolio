@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/controller/generalController.dart';
 import 'package:portfolio/resource/appClass.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../Widgets/main_title_widget.dart';
 import '../../resource/colors.dart';
 import 'Widgets/work_card.dart';
 
-class WorkMobile extends ConsumerStatefulWidget {
-  const WorkMobile({Key? key}) : super(key: key);
+class ProjectTab extends ConsumerStatefulWidget {
+  const ProjectTab({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<WorkMobile> createState() => _WorkWebState();
+  ConsumerState<ProjectTab> createState() => _WorkWebState();
 }
 
-class _WorkWebState extends ConsumerState<WorkMobile> {
+class _WorkWebState extends ConsumerState<ProjectTab> {
+
   int? hoveredIndex;
   bool showAll = false;
 
@@ -25,7 +31,6 @@ class _WorkWebState extends ConsumerState<WorkMobile> {
         children: [
 
           MainTitleWidget(
-            number: "04",
             title: "My Projects",
             isWeb: false,
           ),

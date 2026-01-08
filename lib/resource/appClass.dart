@@ -10,7 +10,8 @@ import 'package:portfolio/resource/styles.dart';
 import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../view/work/workWeb.dart';
+import '../view/projects/projectWeb.dart';
+
 
 enum ScreenType { mobile, tab, web }
 

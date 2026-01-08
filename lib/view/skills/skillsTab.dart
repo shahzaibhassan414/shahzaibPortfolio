@@ -6,14 +6,14 @@ import '../../Widgets/custom_skill_bar.dart';
 import '../../Widgets/main_title_widget.dart';
 import '../../resource/appClass.dart';
 
-class SkillsMobile extends ConsumerStatefulWidget {
-  const SkillsMobile({Key? key}) : super(key: key);
+class SkillsTab extends ConsumerStatefulWidget {
+  const SkillsTab({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SkillsMobile> createState() => _ExperienceWebState();
+  ConsumerState<SkillsTab> createState() => _ExperienceWebState();
 }
 
-class _ExperienceWebState extends ConsumerState<SkillsMobile> {
+class _ExperienceWebState extends ConsumerState<SkillsTab> {
   int? hoveredIndex;
 
   @override

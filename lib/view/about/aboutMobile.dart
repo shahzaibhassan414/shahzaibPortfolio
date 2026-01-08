@@ -26,7 +26,6 @@ class _AboutMobileState extends State<AboutMobile> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MainTitleWidget(
-            number: "01",
             title: "About Me",
             isWeb: false,
           ),

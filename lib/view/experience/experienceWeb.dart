@@ -63,7 +63,6 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
         children: [
 
           MainTitleWidget(
-            number: "02",
             title: "Experiences",
           ),
 

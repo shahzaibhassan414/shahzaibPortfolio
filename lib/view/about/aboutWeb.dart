@@ -27,7 +27,6 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MainTitleWidget(
-            number: "01",
             title: "About Me",
           ),
           Row(

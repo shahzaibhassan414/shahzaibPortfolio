@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/resource/responsive.dart';
-import 'package:portfolio/view/experience/experienceMob.dart';
-import 'package:portfolio/view/experience/experienceTab.dart';
 import 'package:portfolio/view/skills/skillsMobile.dart';
+import 'package:portfolio/view/skills/skillsTab.dart';
 import 'package:portfolio/view/skills/skillsWeb.dart';
 
 class Skills extends StatefulWidget {
@@ -18,7 +17,7 @@ class _SkillsState extends State<Skills> {
     return Responsive(
       webView: SkillsWeb(),
       mobileView: SkillsMobile(),
-      tabView: ExperienceTab(),
+      tabView: SkillsTab(),
     );
   }
 }

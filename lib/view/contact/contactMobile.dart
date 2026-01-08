@@ -33,7 +33,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          MainTitleWidget(number: "05", title: "What's Next?",isWeb: false,),
+          MainTitleWidget(title: "What's Next?",isWeb: false,),
           Text(
             "Get In Touch",
             style: GoogleFonts.robotoSlab(

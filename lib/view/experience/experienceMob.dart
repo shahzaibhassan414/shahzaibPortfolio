@@ -55,7 +55,6 @@ class _ExperienceMobState extends State<ExperienceMob> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MainTitleWidget(
-            number: "02",
             title: "Experiences",
             isWeb: false,
           ),

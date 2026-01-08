@@ -30,7 +30,6 @@ class _ExperienceWebState extends ConsumerState<SkillsWeb> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MainTitleWidget(
-            number: "03",
             title: "Skills",
           ),
           Wrap(

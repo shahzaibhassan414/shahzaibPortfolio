@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/Widgets/custom_icon_button.dart';
 import 'package:portfolio/resource/custom_svg.dart';
-import 'package:portfolio/view/work/workWeb.dart';
 import '../../../resource/appClass.dart';
+import '../projectWeb.dart';
 
 class WorkCard extends StatelessWidget {
   final bool isHovered;
