@@ -191,12 +191,12 @@ class _RootScreenState extends ConsumerState<RootScreen>
                                 : width * 0.8, // ✅ ADDED
                             child: Column( // ✅ ADDED
                               children: [
-                                // AutoScrollTag(
-                                //   key: const ValueKey(0),
-                                //   controller: mScrollController,
-                                //   index: 0,
-                                //   child: IntroContent(mScrollController),
-                                // ),
+                                AutoScrollTag(
+                                  key: const ValueKey(0),
+                                  controller: mScrollController,
+                                  index: 0,
+                                  child: IntroContent(mScrollController),
+                                ),
                                 AutoScrollTag(
                                   key: const ValueKey(1),
                                   controller: mScrollController,
