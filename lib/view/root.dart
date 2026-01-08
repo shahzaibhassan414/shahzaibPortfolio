@@ -61,7 +61,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
     _visible ? _controller.forward() : _controller.reverse();
   }
 
-    Widget _buildMobileDrawer(BuildContext context) {
+  Widget _buildMobileDrawer(BuildContext context) {
     return Drawer(
       width: double.infinity,
       backgroundColor: AppColors().cardColor,
@@ -72,20 +72,20 @@ class _RootScreenState extends ConsumerState<RootScreen>
         padding: const EdgeInsets.symmetric(vertical: 50),
         child: Column(
           children: [
-
             Align(
-              alignment: Alignment.centerRight,
+                alignment: Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: GestureDetector(
-                    onTap: (){
-                      Navigator.pop(context);
-                    },
-                      child: Icon(Icons.arrow_forward_ios_rounded,color: AppColors().textColor,)),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: AppColors().textColor,
+                      )),
                 )),
-
             Image.asset('assets/svg/appLogo.png', height: 60),
-
             const SizedBox(height: 40),
             _drawerTile("About", 1),
             _drawerTile("Experience", 2),
@@ -144,22 +144,21 @@ class _RootScreenState extends ConsumerState<RootScreen>
     return SafeArea(
       child: Scaffold(
         endDrawer: isMobile ? _buildMobileDrawer(context) : null,
-        body: NotificationListener<UserScrollNotification>(
-          onNotification: (notification) {
-            final direction = notification.direction;
-            if (direction == ScrollDirection.reverse) {
-              ref.read(scrollControlProvider.notifier).state = false;
-            } else if (direction == ScrollDirection.forward) {
-              ref.read(scrollControlProvider.notifier).state = true;
-            }
-            return true;
-          },
-          child: AnimatedBackground(
-            behaviour: RandomParticleBehaviour(
-                options: ParticleOptions(
-                    baseColor: AppColors().primaryRedColor,
-                    particleCount: 200)),
-            vsync: this,
+        body: AnimatedBackground(
+          behaviour: RandomParticleBehaviour(
+              options: ParticleOptions(
+                  baseColor: AppColors().primaryRedColor, particleCount: 200)),
+          vsync: this,
+          child: NotificationListener<UserScrollNotification>(
+            onNotification: (notification) {
+              final direction = notification.direction;
+              if (direction == ScrollDirection.reverse) {
+                ref.read(scrollControlProvider.notifier).state = false;
+              } else if (direction == ScrollDirection.forward) {
+                ref.read(scrollControlProvider.notifier).state = true;
+              }
+              return true;
+            },
             child: Column(
               children: [
                 /// ───── Animated AppBar ─────
@@ -177,134 +176,81 @@ class _RootScreenState extends ConsumerState<RootScreen>
                   );
                 }),
 
-                /// ───── FULL PAGE SCROLL (FIXED) ─────
-                // Expanded(
-                //   child: Stack( // ✅ ADDED (critical)
-                //     children: [
-                //       /// MAIN SCROLLABLE CONTENT
-                //       SingleChildScrollView( // ✅ ADDED
-                //         controller: mScrollController,
-                //         child: Center( // ✅ ADDED (bounds width)
-                //           child: SizedBox(
-                //             width: scrType == ScreenType.mobile
-                //                 ? width
-                //                 : width * 0.8, // ✅ ADDED
-                //             child: Column( // ✅ ADDED
-                //               children: [
-                //                 AutoScrollTag(
-                //                   key: const ValueKey(0),
-                //                   controller: mScrollController,
-                //                   index: 0,
-                //                   child: IntroContent(mScrollController),
-                //                 ),
-                //                 AutoScrollTag(
-                //                   key: const ValueKey(1),
-                //                   controller: mScrollController,
-                //                   index: 1,
-                //                   child: About(),
-                //                 ),
-                //                 AutoScrollTag(
-                //                   key: const ValueKey(2),
-                //                   controller: mScrollController,
-                //                   index: 2,
-                //                   child: Experience(),
-                //                 ),
-                //                 AutoScrollTag(
-                //                   key: const ValueKey(3),
-                //                   controller: mScrollController,
-                //                   index: 3,
-                //                   child: Skills(),
-                //                 ),
-                //                 AutoScrollTag(
-                //                   key: const ValueKey(4),
-                //                   controller: mScrollController,
-                //                   index: 4,
-                //                   child: Projects(),
-                //                 ),
-                //                 AutoScrollTag(
-                //                   key: const ValueKey(5),
-                //                   controller: mScrollController,
-                //                   index: 5,
-                //                   child: Contact(),
-                //                 ),
-                //               ],
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //
-                //       /// LEFT PANE (visual scroll)
-                //       if (scrType != ScreenType.mobile)
-                //         Positioned(
-                //           left: width * 0.05,
-                //           top: 0,
-                //           bottom: 0,
-                //           child: LeftPane(), // ✅ SAFE
-                //         ),
-                //
-                //       /// RIGHT PANE (visual scroll)
-                //       if (scrType != ScreenType.mobile)
-                //         Positioned(
-                //           right: width * 0.05,
-                //           top: 0,
-                //           bottom: 0,
-                //           child: RightPane(), // ✅ SAFE
-                //         ),
-                //     ],
-                //   ),
-                // ),
-                
-                
-                Expanded(child:  SingleChildScrollView( // ✅ ADDED
-                  controller: mScrollController,
-                  child: Center( // ✅ ADDED (bounds width)
-                    child: SizedBox(
-                      width: scrType == ScreenType.mobile
-                          ? width
-                          : width * 0.8, // ✅ ADDED
-                      child: Column( // ✅ ADDED
-                        children: [
-                          AutoScrollTag(
-                            key: const ValueKey(0),
-                            controller: mScrollController,
-                            index: 0,
-                            child: IntroContent(mScrollController),
+                Expanded(
+                  // ✅ Ab yeh sahi Column ke andar hai
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                        child: SingleChildScrollView(
+                          controller: mScrollController,
+                          child: Center(
+                            child: SizedBox(
+                              width: scrType == ScreenType.mobile
+                                  ? width
+                                  : width * 0.8,
+                              child: Column(
+                                children: [
+                                  AutoScrollTag(
+                                    key: const ValueKey(0),
+                                    controller: mScrollController,
+                                    index: 0,
+                                    child: IntroContent(mScrollController),
+                                  ),
+                                  AutoScrollTag(
+                                    key: const ValueKey(1),
+                                    controller: mScrollController,
+                                    index: 1,
+                                    child: About(),
+                                  ),
+                                  AutoScrollTag(
+                                    key: const ValueKey(2),
+                                    controller: mScrollController,
+                                    index: 2,
+                                    child: Experience(),
+                                  ),
+                                  AutoScrollTag(
+                                    key: const ValueKey(3),
+                                    controller: mScrollController,
+                                    index: 3,
+                                    child: Skills(),
+                                  ),
+                                  AutoScrollTag(
+                                    key: const ValueKey(4),
+                                    controller: mScrollController,
+                                    index: 4,
+                                    child: Projects(),
+                                  ),
+                                  AutoScrollTag(
+                                    key: const ValueKey(5),
+                                    controller: mScrollController,
+                                    index: 5,
+                                    child: Contact(),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          AutoScrollTag(
-                            key: const ValueKey(1),
-                            controller: mScrollController,
-                            index: 1,
-                            child: About(),
-                          ),
-                          AutoScrollTag(
-                            key: const ValueKey(2),
-                            controller: mScrollController,
-                            index: 2,
-                            child: Experience(),
-                          ),
-                          AutoScrollTag(
-                            key: const ValueKey(3),
-                            controller: mScrollController,
-                            index: 3,
-                            child: Skills(),
-                          ),
-                          AutoScrollTag(
-                            key: const ValueKey(4),
-                            controller: mScrollController,
-                            index: 4,
-                            child: Projects(),
-                          ),
-                          AutoScrollTag(
-                            key: const ValueKey(5),
-                            controller: mScrollController,
-                            index: 5,
-                            child: Contact(),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      if (scrType != ScreenType.mobile)
+                        Positioned(
+                          left: width * 0.05,
+                          top: 0,
+                          bottom: 0,
+                          child: LeftPane(), // ✅ SAFE
+                        ),
+
+                      /// RIGHT PANE (visual scroll)
+                      if (scrType != ScreenType.mobile)
+                        Positioned(
+                          right: width * 0.05,
+                          top: 0,
+                          bottom: 0,
+                          child: RightPane(), // ✅ SAFE
+                        ),
+                    ],
                   ),
-                ),)
+                )
               ],
             ),
           ),
@@ -313,3 +259,79 @@ class _RootScreenState extends ConsumerState<RootScreen>
     );
   }
 }
+
+// Expanded(
+//   child: Stack( // ✅ ADDED (critical)
+//     children: [
+//       /// MAIN SCROLLABLE CONTENT
+//       SingleChildScrollView( // ✅ ADDED
+//         controller: mScrollController,
+//         child: Center( // ✅ ADDED (bounds width)
+//           child: SizedBox(
+//             width: scrType == ScreenType.mobile
+//                 ? width
+//                 : width * 0.8, // ✅ ADDED
+//             child: Column( // ✅ ADDED
+//               children: [
+//                 AutoScrollTag(
+//                   key: const ValueKey(0),
+//                   controller: mScrollController,
+//                   index: 0,
+//                   child: IntroContent(mScrollController),
+//                 ),
+//                 AutoScrollTag(
+//                   key: const ValueKey(1),
+//                   controller: mScrollController,
+//                   index: 1,
+//                   child: About(),
+//                 ),
+//                 AutoScrollTag(
+//                   key: const ValueKey(2),
+//                   controller: mScrollController,
+//                   index: 2,
+//                   child: Experience(),
+//                 ),
+//                 AutoScrollTag(
+//                   key: const ValueKey(3),
+//                   controller: mScrollController,
+//                   index: 3,
+//                   child: Skills(),
+//                 ),
+//                 AutoScrollTag(
+//                   key: const ValueKey(4),
+//                   controller: mScrollController,
+//                   index: 4,
+//                   child: Projects(),
+//                 ),
+//                 AutoScrollTag(
+//                   key: const ValueKey(5),
+//                   controller: mScrollController,
+//                   index: 5,
+//                   child: Contact(),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//
+//       /// LEFT PANE (visual scroll)
+//       if (scrType != ScreenType.mobile)
+//         Positioned(
+//           left: width * 0.05,
+//           top: 0,
+//           bottom: 0,
+//           child: LeftPane(), // ✅ SAFE
+//         ),
+//
+//       /// RIGHT PANE (visual scroll)
+//       if (scrType != ScreenType.mobile)
+//         Positioned(
+//           right: width * 0.05,
+//           top: 0,
+//           bottom: 0,
+//           child: RightPane(), // ✅ SAFE
+//         ),
+//     ],
+//   ),
+// ),

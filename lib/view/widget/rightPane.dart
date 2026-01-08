@@ -15,8 +15,8 @@ class RightPane extends StatefulWidget {
 class _RightPaneState extends State<RightPane> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        flex: 1,
+    return SizedBox( // ✅ CHANGED: Removed Expanded
+        width: 60,
         child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
