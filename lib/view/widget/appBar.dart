@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/controller/generalController.dart';
 import 'package:portfolio/resource/appClass.dart';
 import 'package:portfolio/resource/colors.dart';
@@ -18,11 +19,54 @@ class ActionBar extends ConsumerStatefulWidget implements PreferredSizeWidget {
 }
 
 class _ActionBarState extends ConsumerState<ActionBar> {
+  Widget logo(bool isMobile) {
+    return InkWell(
+      onTap: () {
+        widget.controller.scrollToIndex(0, preferPosition: AutoScrollPosition.begin);
+      },
+      onHover: (bol) {
+        if (bol) {
+          ref.read(hoverProvider.notifier).state = "logo";
+        } else {
+          ref.read(hoverProvider.notifier).state = "";
+        }
+      },
+      child: Consumer(builder: (context, ref, child) {
+        bool isHovered = ref.watch(hoverProvider) == "logo";
+        return AnimatedScale(
+          scale: isHovered ? 1.05 : 1.0,
+          duration: const Duration(milliseconds: 200),
+          child: RichText(
+            text: TextSpan(
+              text: "SH",
+              style: GoogleFonts.poppins(
+                color: isHovered ? AppColors().primaryRedColor : AppColors().textColor,
+                letterSpacing: 2,
+                fontWeight: FontWeight.w800,
+                fontSize: isMobile ? 24 : 32,
+              ),
+              children: [
+                TextSpan(
+                  text: ".",
+                  style: GoogleFonts.poppins(
+                    color: isHovered ? AppColors().textColor : AppColors().primaryRedColor,
+                    fontWeight: FontWeight.w900,
+                    fontSize: isMobile ? 32 : 45,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         height: 120,
-        padding: EdgeInsets.only(right: 15.0, top: 20.0),
+        padding: const EdgeInsets.only(right: 15.0, top: 20.0),
         child: () {
           ScreenType scrType = AppClass().getScreenType(context);
           if (scrType == ScreenType.mobile || scrType == ScreenType.tab) {
@@ -31,10 +75,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    'assets/svg/appLogo.png',
-                    height: 45,
-                  ),
+                  logo(true),
                   IconButton(
                     icon: Icon(Icons.menu_rounded,
                         color: AppColors().primaryRedColor, size: 32),
@@ -47,16 +88,10 @@ class _ActionBarState extends ConsumerState<ActionBar> {
             );
           }
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 100),
+            padding: const EdgeInsets.symmetric(horizontal: 100),
             child: Row(
               children: [
-                Container(
-                    width: 50,
-                    height: 50,
-                    child: Image.asset(
-                      scale: 1,
-                      'assets/svg/appLogo.png',
-                    )),
+                logo(false),
                 Expanded(
                   flex: 9,
                   child: Row(

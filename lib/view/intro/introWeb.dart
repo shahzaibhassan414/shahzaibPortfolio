@@ -34,7 +34,7 @@ class _IntroWebState extends State<IntroWeb> {
                 child: Text(
                   Strings.welcomeTxt,
                   style: TextStyle(
-                      color: AppColors().primaryRedColor,
+                      color: AppColors().textColor,
                       fontSize: 18,
                       fontFamily: 'sfmono'),
                 ),
@@ -44,17 +44,16 @@ class _IntroWebState extends State<IntroWeb> {
                 child: Text(
                   Strings.name,
                   style: GoogleFonts.robotoSlab(
-                    color: AppColors().textColor,
+                    color:  AppColors().primaryRedColor,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 3,
-                    fontSize: 55,
+                    fontSize: 60,
                   ),
                 ),
               ),
               Container(
                 width: AppClass().getMqWidth(context) -
                     (AppClass().getMqWidth(context) * 0.23),
-                height: AppClass().getMqWidth(context) * 0.1,
                 child: TypeWriterText(
                   text: Strings.whatIdo,
                 ),

@@ -12,35 +12,33 @@ class ProjectWeb extends ConsumerStatefulWidget {
   ConsumerState<ProjectWeb> createState() => _WorkWebState();
 }
 
-class _WorkWebState extends ConsumerState<ProjectWeb> {
+class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMixin {
   int? hoveredIndex;
   bool showAll = false;
-
 
   @override
   Widget build(BuildContext context) {
     final allProjects = AppClass().projects;
     final displayedProjects = showAll ? allProjects : allProjects.take(4).toList();
 
-
     return Container(
-      margin: EdgeInsets.only(
-          left: AppClass().getMqWidth(context) * 0.03,
-          right: AppClass().getMqWidth(context) * 0.03),
+      margin: EdgeInsets.symmetric(
+          horizontal: AppClass().getMqWidth(context) * 0.05),
       child: Column(
         children: [
           MainTitleWidget(
             title: "My Projects",
           ),
-
+          const SizedBox(height: 30),
 
           AnimatedSize(
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.linear,
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeInOutQuart,
+            alignment: Alignment.topCenter,
             child: Wrap(
-              spacing: 20,
-              runSpacing: 20,
-              alignment: WrapAlignment.start,
+              spacing: 30,
+              runSpacing: 30,
+              alignment: WrapAlignment.center,
               children: List.generate(displayedProjects.length, (index) {
                 final project = displayedProjects[index];
                 final bool isHovered = hoveredIndex == index;
@@ -55,32 +53,46 @@ class _WorkWebState extends ConsumerState<ProjectWeb> {
             ),
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 50),
 
-
-          if(!showAll)
+          if(!showAll && allProjects.length > 4)
           Center(
             child: InkWell(
               onTap: () {
-                setState(() => showAll = !showAll);
+                setState(() => showAll = true);
               },
-              child: AnimatedRotation(
-                turns: showAll ? 0.5 : 0.0,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-                child: Icon(
-                  Icons.keyboard_arrow_down,
-                  color: AppColors().primaryRedColor,
-                  size: 36,
+              borderRadius: BorderRadius.circular(50),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors().primaryRedColor.withOpacity(0.5)),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "SHOW MORE",
+                      style: TextStyle(
+                        color: AppColors().primaryRedColor,
+                        fontFamily: 'sfmono',
+                        fontSize: 14,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Icon(
+                      Icons.keyboard_arrow_down,
+                      color: AppColors().primaryRedColor,
+                      size: 20,
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
 
-
-
           SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
-
         ],
       ),
     );

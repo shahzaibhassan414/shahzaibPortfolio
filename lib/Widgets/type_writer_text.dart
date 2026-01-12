@@ -55,7 +55,7 @@ class _TypeWriterTextState extends State<TypeWriterText>
             color: AppColors().textLight,
             fontWeight: FontWeight.bold,
             letterSpacing: 3,
-            fontSize: widget.fontSize ?? 55,
+            fontSize: widget.fontSize ?? 45,
           ),
         );
       },

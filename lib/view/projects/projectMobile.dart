@@ -20,26 +20,27 @@ class _WorkWebState extends ConsumerState<ProjectMobile> {
   Widget build(BuildContext context) {
     final allProjects = AppClass().projects;
     final displayedProjects = showAll ? allProjects : allProjects.take(3).toList();
+    
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-
           MainTitleWidget(
             title: "My Projects",
             isWeb: false,
           ),
+          const SizedBox(height: 20),
 
           AnimatedSize(
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.linear,
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeInOutQuart,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: List.generate(displayedProjects.length, (index) {
                 final project = displayedProjects[index];
                 final bool isHovered = hoveredIndex == index;
 
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 25),
                   child: WorkCard(
                     isHovered: isHovered,
                     project: project,
@@ -51,26 +52,46 @@ class _WorkWebState extends ConsumerState<ProjectMobile> {
             ),
           ),
 
-
-          if(!showAll)
+          if(!showAll && allProjects.length > 3)
             Center(
-              child: InkWell(
-                onTap: () {
-                  setState(() => showAll = !showAll);
-                },
-                child: AnimatedRotation(
-                  turns: showAll ? 0.5 : 0.0,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  child: Icon(
-                    Icons.keyboard_arrow_down,
-                    color: AppColors().textColor,
-                    size: 36,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: InkWell(
+                  onTap: () {
+                    setState(() => showAll = true);
+                  },
+                  borderRadius: BorderRadius.circular(50),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors().primaryRedColor.withOpacity(0.5)),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "SHOW MORE",
+                          style: TextStyle(
+                            color: AppColors().primaryRedColor,
+                            fontFamily: 'sfmono',
+                            fontSize: 12,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Icon(
+                          Icons.keyboard_arrow_down,
+                          color: AppColors().primaryRedColor,
+                          size: 18,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          SizedBox(height: AppClass().getMqHeight(context) * 0.15,)
+          SizedBox(height: AppClass().getMqHeight(context) * 0.1)
         ],
       ),
     );

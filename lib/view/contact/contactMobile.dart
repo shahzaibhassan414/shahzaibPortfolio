@@ -9,7 +9,6 @@ import '../../Widgets/main_title_widget.dart';
 import '../../controller/generalController.dart';
 import '../../resource/colors.dart';
 import '../../resource/strings.dart';
-import 'contact.dart';
 
 class ContactMobile extends ConsumerStatefulWidget {
   const ContactMobile({Key? key}) : super(key: key);
@@ -187,22 +186,50 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
 
           // Footer
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Built & Developed by ",
-                style: TextStyle(
-                    color: AppColors().textColor,
-                    fontSize: 13,
-                    fontFamily: 'sfmono'),
+                "Designed & Built with ❤️ by",
+                style: GoogleFonts.inter(
+                  color: AppColors().textLight.withOpacity(0.7),
+                  fontSize: 12,
+                  letterSpacing: 1,
+                ),
               ),
+              const SizedBox(height: 5),
               Text(
-                "Shahzaib 🫡",
-                style: TextStyle(
-                    color: AppColors().primaryRedColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'sfmono'),
+                "Shahzaib Hassan",
+                style: GoogleFonts.poppins(
+                  color: AppColors().primaryRedColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 30,
+                    height: 1,
+                    color: AppColors().primaryRedColor.withOpacity(0.3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "© 2026 • All Rights Reserved",
+                      style: GoogleFonts.inter(
+                        color: AppColors().textLight.withOpacity(0.5),
+                        fontSize: 10,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 30,
+                    height: 1,
+                    color: AppColors().primaryRedColor.withOpacity(0.3),
+                  ),
+                ],
               ),
             ],
           ),

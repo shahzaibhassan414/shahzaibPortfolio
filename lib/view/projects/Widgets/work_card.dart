@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/Widgets/custom_icon_button.dart';
+import 'package:portfolio/resource/colors.dart';
 import 'package:portfolio/resource/custom_svg.dart';
 import '../../../resource/appClass.dart';
 import '../projectWeb.dart';
@@ -21,93 +22,129 @@ class WorkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWeb = AppClass().getScreenType(context) == ScreenType.web;
+    
     return MouseRegion(
       onEnter: onEnter,
       onExit: onExit,
+      cursor: SystemMouseCursors.click,
       child: AnimatedScale(
-        scale: isHovered ? 1.03 : 1,
-        curve: Curves.ease,
-        duration: const Duration(milliseconds: 200),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
+        scale: isHovered ? 1.05 : 1,
+        curve: Curves.easeOutBack,
+        duration: const Duration(milliseconds: 400),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.0),
+            boxShadow: [
+              if (isHovered)
+                BoxShadow(
+                  color: AppColors().primaryRedColor.withOpacity(0.3),
+                  blurRadius: 20,
+                  spreadRadius: 2,
+                ),
+            ],
           ),
-          clipBehavior: Clip.antiAlias,
-          elevation: isHovered ? 8 : 0,
-          shadowColor: isHovered ? Colors.grey : null,
-          child: Stack(
-            children: [
-              Image.asset(
-                project.image,
-                width: AppClass().getScreenType(context) == ScreenType.web ?
-                AppClass().getMqWidth(context) * 0.22 : AppClass().getMqWidth(context) * 0.8,
-                height: AppClass().getScreenType(context) == ScreenType.web ?
-                AppClass().getMqWidth(context) * 0.18 : AppClass().getMqWidth(context) * 0.58,
-                fit: BoxFit.cover,
-              ),
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 200),
-                bottom: isHovered ? 0 : -50,
-                left: 0,
-                right: 0,
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 200),
-                  opacity: isHovered ? 1 : 0,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            child: Stack(
+              children: [
+                // Project Image with Overlay
+                Image.asset(
+                  project.image,
+                  width: isWeb ? AppClass().getMqWidth(context) * 0.22 : AppClass().getMqWidth(context) * 0.85,
+                  height: isWeb ? AppClass().getMqWidth(context) * 0.16 : AppClass().getMqWidth(context) * 0.55,
+                  fit: BoxFit.cover,
+                ),
+
+                // Smooth Gradient Overlay
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 300),
+                  opacity: isHovered ? 1.0 : 0.0,
                   child: Container(
-                    padding: const EdgeInsets.all(8),
-                    color: Colors.black.withValues(alpha: 0.6),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          project.name,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        if (project.description != null &&
-                            project.description!.isNotEmpty)
-                          Text(
-                            project.description!,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        if (project.androidLink != null &&
-                            project.iosLink != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              spacing: 10,
-                              children: [
-                                if (project.androidLink != null)
-                                  CustomIconButton(
-                                    icon: CustomSvg.playStoreIcon,
-                                    link: project.androidLink!,
-                                  ),
-                                if (project.iosLink != null)
-                                  CustomIconButton(
-                                    icon: CustomSvg.appStoreIcon,
-                                    link: project.iosLink!,
-                                  ),
-                              ],
-                            ),
-                          )
-                      ],
+                    width: isWeb ? AppClass().getMqWidth(context) * 0.22 : AppClass().getMqWidth(context) * 0.85,
+                    height: isWeb ? AppClass().getMqWidth(context) * 0.16 : AppClass().getMqWidth(context) * 0.55,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.transparent,
+                          Colors.black.withOpacity(0.8),
+                          Colors.black.withOpacity(0.95),
+                        ],
+                        stops: const [0.4, 0.8, 1.0],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+
+                // Project Details
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                    padding: EdgeInsets.all(isHovered ? 16 : 8),
+                    transform: Matrix4.translationValues(0, isHovered ? 0 : 20, 0),
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 300),
+                      opacity: isHovered ? 1 : 0,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            project.name.toUpperCase(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.2,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 8),
+                          if (project.description != null)
+                            Text(
+                              project.description!,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.8),
+                                fontSize: 12,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          const SizedBox(height: 12),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (project.androidLink != null)
+                                _buildIconBtn(CustomSvg.playStoreIcon, project.androidLink!),
+                              if (project.androidLink != null && project.iosLink != null)
+                                const SizedBox(width: 15),
+                              if (project.iosLink != null)
+                                _buildIconBtn(CustomSvg.appStoreIcon, project.iosLink!),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildIconBtn(String icon, String link) {
+    return CustomIconButton(
+      icon: icon,
+      link: link,
     );
   }
 }

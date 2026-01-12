@@ -5,64 +5,78 @@ import '../resource/colors.dart';
 class CustomSkillImageCard extends StatelessWidget {
   final Map<String, dynamic> skill;
   final bool isHovered;
+  
   const CustomSkillImageCard({
     super.key,
-    required this.skill, required this.isHovered,
+    required this.skill,
+    required this.isHovered,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      width: 130,
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        // color: AppColors().textColor.withValues(alpha: 0.2),
-        borderRadius: BorderRadius.circular(10),
+        color: isHovered ? AppColors().primaryRedColor.withOpacity(0.08) : Colors.white.withOpacity(0.02),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isHovered ? AppColors().primaryRedColor.withOpacity(0.3) : Colors.white.withOpacity(0.05),
+          width: 1,
+        ),
+        boxShadow: [
+          if (isHovered)
+            BoxShadow(
+              color: AppColors().primaryRedColor.withOpacity(0.1),
+              blurRadius: 20,
+              spreadRadius: 2,
+            )
+        ],
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: isHovered ? Colors.white.withOpacity(0.05) : Colors.transparent,
+              shape: BoxShape.circle,
+            ),
             child: AnimatedScale(
-              scale: isHovered ? 1.1 : 1,
-              curve: Curves.easeOut,
-              duration: const Duration(milliseconds: 200),
-              child: AnimatedOpacity(
-                opacity:
-                // isHovered ?
-                1 ,
-                    // :
-                // 0.55,
-                duration: const Duration(milliseconds: 200),
-                child: ColorFiltered( // ADDED
-                  colorFilter: ColorFilter.mode( // ADDED
-                    AppColors().blackColor, // ADDED
-                    isHovered ?
-                      BlendMode.lighten
-                      :
-                      BlendMode.color, // ADDED
-                  ), // ADDED
-                  child: Image.asset(
-                    skill['image'],
-                    height: 100,
-                    width: 100,
-                    fit: BoxFit.scaleDown,
-                  ),
+              scale: isHovered ? 1.15 : 1,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOutBack,
+              child: ColorFiltered(
+                colorFilter: isHovered 
+                  ? const ColorFilter.mode(Colors.transparent, BlendMode.multiply) 
+                  : const ColorFilter.matrix(<double>[
+                      0.2126, 0.7152, 0.0722, 0, 0,
+                      0.2126, 0.7152, 0.0722, 0, 0,
+                      0.2126, 0.7152, 0.0722, 0, 0,
+                      0,      0,      0,      1, 0,
+                    ]),
+                child: Image.asset(
+                  skill['image'],
+                  height: 60,
+                  width: 60,
+                  fit: BoxFit.contain,
                 ),
-
               ),
             ),
           ),
-
-          SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 15),
           Text(
             skill['name'],
+            textAlign: TextAlign.center,
             style: GoogleFonts.robotoSlab(
-                color: Colors.white,
-                letterSpacing: 1,
-                fontWeight: FontWeight.w400,
-                fontSize: 14),
+              color: isHovered ? Colors.white : Colors.white.withOpacity(0.5),
+              letterSpacing: 1,
+              fontWeight: isHovered ? FontWeight.bold : FontWeight.w500,
+              fontSize: 12,
+            ),
           ),
         ],
       ),

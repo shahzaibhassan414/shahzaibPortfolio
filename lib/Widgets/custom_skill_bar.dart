@@ -26,70 +26,125 @@ class CustomSkillBar extends StatelessWidget {
     final bool isWeb = AppClass().getScreenType(context) == ScreenType.web;
     final bool isMobile = AppClass().getScreenType(context) == ScreenType.mobile;
     final double mqWidth = AppClass().getMqWidth(context);
-    final double barWidth = isWeb ? mqWidth * 0.35 : isMobile ?  mqWidth * 0.85 : mqWidth * 0.7;
+    final double barWidth = isWeb ? mqWidth * 0.35 : isMobile ? mqWidth * 0.85 : mqWidth * 0.75;
 
-    Widget skillContent = SizedBox(
-      width: barWidth,
-      child: AnimatedScale(
-        scale: isHovered ? 1.03 : 1,
-        curve: Curves.easeOutCubic,
-        duration: const Duration(milliseconds: 250),
+    return MouseRegion(
+      onEnter: onEnter,
+      onExit: onExit,
+      cursor: SystemMouseCursors.click,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        margin: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        width: barWidth,
+        decoration: BoxDecoration(
+          color: isHovered ? Colors.white.withOpacity(0.03) : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isHovered ? AppColors().primaryRedColor.withOpacity(0.3) : Colors.transparent,
+            width: 1,
+          ),
+          boxShadow: [
+            if (isHovered)
+              BoxShadow(
+                color: AppColors().primaryRedColor.withOpacity(0.05),
+                blurRadius: 15,
+                spreadRadius: 2,
+              )
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    skillName,
-                    style: GoogleFonts.robotoSlab(
-                      color: Colors.white,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w600,
-                      fontSize: isWeb ? 18 : 16,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      width: isHovered ? 12 : 0,
+                      height: 2,
+                      color: AppColors().primaryRedColor,
+                      margin: EdgeInsets.only(right: isHovered ? 8 : 0),
+                    ),
+                    Text(
+                      skillName,
+                      style: GoogleFonts.robotoSlab(
+                        color: isHovered ? AppColors().primaryRedColor : Colors.white,
+                        letterSpacing: 1,
+                        fontWeight: isHovered ? FontWeight.bold : FontWeight.w500,
+                        fontSize: isWeb ? 17 : 15,
+                      ),
+                    ),
+                  ],
+                ),
+                Text(
+                  "${(value * 100).toInt()}%",
+                  style: TextStyle(
+                    color: isHovered ? Colors.white : AppColors().primaryRedColor,
+                    fontSize: isWeb ? 14 : 12,
+                    fontFamily: 'sfmono',
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 12),
+            Stack(
+              alignment: Alignment.centerLeft,
+              children: [
+                // Background Bar
+                Container(
+                  height: 6,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                // Progress Bar
+                LinearPercentIndicator(
+                  padding: EdgeInsets.zero,
+                  // width: barWidth - 32, // Subtracting padding
+                  lineHeight: 6.0,
+                  percent: value,
+                  animation: true,
+                  animationDuration: 1500,
+                  curve: Curves.easeOutQuart,
+                  barRadius: const Radius.circular(10),
+                  backgroundColor: Colors.transparent,
+                  linearGradient: LinearGradient(
+                    colors: [
+                      AppColors().primaryRedColor.withOpacity(0.6),
+                      AppColors().primaryRedColor,
+                    ],
+                  ),
+                ),
+                // Glow effect on thumb/end of progress
+                if (isHovered)
+                  Positioned(
+                    left: (barWidth - 32) * value - 5,
+                    child: Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors().primaryRedColor,
+                            blurRadius: 10,
+                            spreadRadius: 2,
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                  Text(
-                    "${(value * 100).toInt()}%",
-                    style: TextStyle(
-                      color: AppColors().primaryRedColor,
-                      fontSize: isWeb ? 18 : 16,
-                      fontFamily: 'sfmono',
-                    ),
-                  )
-                ],
-              ),
-            ),
-            LinearPercentIndicator(
-              padding: EdgeInsets.zero,
-              width: barWidth,
-              lineHeight: 8.0,
-              percent: value,
-              animation: true, // Smooth loading animation
-              animationDuration: 1000,
-              barRadius: const Radius.circular(10),
-              backgroundColor: AppColors().textLight.withValues(alpha: 0.2),
-              linearGradient: LinearGradient(
-                colors: [
-                  AppColors().cardColor,
-                  AppColors().primaryRedColor,
-                ],
-              ),
+              ],
             ),
           ],
         ),
-      ),
-    );
-
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: MouseRegion(
-        onEnter: onEnter,
-        onExit: onExit,
-        cursor: SystemMouseCursors.click,
-        child: isWeb ? skillContent : Center(child: skillContent),
       ),
     );
   }

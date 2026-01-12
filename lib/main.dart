@@ -18,11 +18,11 @@ class AppTheme extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: AppColors().primaryColor,
+        hoverColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
       ),
       home: SplashContent(),
     );
   }
 }
-
-
-

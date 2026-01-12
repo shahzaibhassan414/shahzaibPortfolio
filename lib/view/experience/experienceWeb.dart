@@ -16,7 +16,11 @@ class ExperienceWeb extends ConsumerStatefulWidget {
   ConsumerState<ExperienceWeb> createState() => _ExperienceWebState();
 }
 
-class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
+class _ExperienceWebState extends ConsumerState<ExperienceWeb> with TickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _slideAnimation;
+
   List<ExperienceWebModel> experienceList = [
     ExperienceWebModel(
       desig: Strings.expDesig2,
@@ -47,166 +51,207 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+    _slideAnimation = Tween<Offset>(begin: const Offset(0.05, 0), end: Offset.zero).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final mqWidth = AppClass().getMqWidth(context);
 
-    final selectedIndex = ref.watch(selectedExpProvider);
-
     return Container(
       width: mqWidth,
-      margin: EdgeInsets.only(
-          left: AppClass().getMqWidth(context) * 0.03,
-          right: AppClass().getMqWidth(context) * 0.03),
-      padding: const EdgeInsets.symmetric(vertical: 50,),
+      margin: EdgeInsets.symmetric(horizontal: mqWidth * 0.05),
+      padding: const EdgeInsets.symmetric(vertical: 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          MainTitleWidget(
-            title: "Experiences",
+          MainTitleWidget(title: "Experiences"),
+          const SizedBox(height: 30),
+          
+          _buildExperienceRow(0),
+          
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            child: Divider(
+              color: AppColors().textLight.withOpacity(0.1),
+              thickness: 1,
+            ),
           ),
+          
+          _buildExperienceRow(1),
+          
+          SizedBox(height: mqWidth * 0.1),
+        ],
+      ),
+    );
+  }
 
-
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: AppClass().getMqWidth(context) * 0.08,
-                child: Text(
-                  experienceList[0].compName,
-                  style: TextStyle(
-                    color:
-                    AppColors().primaryRedColor,
-                    fontSize: 16,
-                    fontFamily: 'sfmono',
-                    fontWeight:
-                    FontWeight.bold
-                  ),
-                ),
-              ),
-
-              SizedBox(width: AppClass().getMqWidth(context) * 0.1,),
-              ExperienceCardWeb(
-                key: ValueKey(0),
-                experience: experienceList[0],
-              )
-            ],
-          ),
-
-          Divider(
-            color: AppColors().textLight,
-            thickness: 1,
-          ),
-          SizedBox(height: 30,),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: AppClass().getMqWidth(context) * 0.08,
-                child: Text(
-                  experienceList[1].compName,
-                  style: TextStyle(
-                      color:
-                      AppColors().primaryRedColor,
+  Widget _buildExperienceRow(int index) {
+    return FadeTransition(
+      opacity: _fadeAnimation,
+      child: SlideTransition(
+        position: _slideAnimation,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: AppClass().getMqWidth(context) * 0.12,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    experienceList[index].compName,
+                    style: TextStyle(
+                      color: AppColors().primaryRedColor,
                       fontSize: 16,
                       fontFamily: 'sfmono',
-                      fontWeight:
-                      FontWeight.bold
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 8),
+                  Container(
+                    height: 2,
+                    width: 30,
+                    color: AppColors().primaryRedColor.withOpacity(0.5),
+                  )
+                ],
               ),
-
-              SizedBox(width: AppClass().getMqWidth(context) * 0.1,),
-              ExperienceCardWeb(
-                key: ValueKey(1),
-                experience: experienceList[1],
-              )
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(width: 50),
+            Expanded(
+              child: ExperienceCardWeb(
+                experience: experienceList[index],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 }
 
-class ExperienceCardWeb extends StatelessWidget {
+class ExperienceCardWeb extends StatefulWidget {
   final ExperienceWebModel experience;
   const ExperienceCardWeb({super.key, required this.experience});
+
+  @override
+  State<ExperienceCardWeb> createState() => _ExperienceCardWebState();
+}
+
+class _ExperienceCardWebState extends State<ExperienceCardWeb> {
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     var mqWidth = AppClass().getMqWidth(context);
 
-    return SizedBox(
-      height: 500,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          RichText(
-            text: TextSpan(
-              text: experience.desig,
-              style: GoogleFonts.roboto(
-                color: AppColors().textColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: _isHovered ? Colors.white.withOpacity(0.02) : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: _isHovered ? AppColors().primaryRedColor.withOpacity(0.1) : Colors.transparent,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RichText(
+              text: TextSpan(
+                text: widget.experience.desig,
+                style: GoogleFonts.roboto(
+                  color: AppColors().textColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
+                children: [
+                  TextSpan(
+                    text: " @${widget.experience.compName}",
+                    style: GoogleFonts.roboto(
+                      color: AppColors().primaryRedColor,
+                      fontSize: 24,
+                    ),
+                  ),
+                ],
               ),
+            ),
+            const SizedBox(height: 8),
+            Row(
               children: [
-                TextSpan(
-                  text: " @${experience.compName}",
-                  style: GoogleFonts.roboto(
-                    color: AppColors().primaryRedColor,
-                    fontSize: 22,
+                Icon(Icons.calendar_today, size: 14, color: AppColors().textLight.withOpacity(0.5)),
+                const SizedBox(width: 8),
+                Text(
+                  widget.experience.duration,
+                  style: TextStyle(
+                    color: AppColors().textLight.withOpacity(0.7),
+                    fontSize: 14,
+                    fontFamily: 'sfmono',
                   ),
                 ),
               ],
             ),
-          ),
-          SizedBox(height: 5),
-          Text(
-            experience.duration,
-            style: TextStyle(
-              color: AppColors().textLight,
-              fontSize: 14,
-              fontFamily: 'sfmono',
-            ),
-          ),
-          SizedBox(height: 15),
-          SingleChildScrollView(
-            child: Column(
+            const SizedBox(height: 25),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: experience.points
-                  .map(
-                    (p) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+              children: widget.experience.points.asMap().entries.map((entry) {
+                int idx = entry.key;
+                String p = entry.value;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        Icons.arrow_right,
-                        size: 20,
-                        color: AppColors().primaryRedColor,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Icon(
+                          Icons.double_arrow_rounded,
+                          size: 16,
+                          color: AppColors().primaryRedColor,
+                        ),
                       ),
-                      SizedBox(width: 5),
-                      Container(
-                        width: mqWidth * 0.45,
+                      const SizedBox(width: 12),
+                      Expanded(
                         child: Text(
                           p,
                           style: TextStyle(
-                            color: AppColors().textLight,
-                            fontSize: 14,
-                            height: 1.5,
+                            color: AppColors().textLight.withOpacity(0.8),
+                            fontSize: 15,
+                            height: 1.6,
                             fontFamily: 'sfmono',
                           ),
                         ),
                       )
                     ],
                   ),
-                ),
-              )
-                  .toList(),
-            ),
-          )
-        ],
+                );
+              }).toList(),
+            )
+          ],
+        ),
       ),
     );
   }

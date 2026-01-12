@@ -180,23 +180,51 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
           SizedBox(height: 50),
 
           // Footer
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
             children: [
               Text(
-                "Built & Developed by ",
-                style: TextStyle(
-                    color: AppColors().textColor,
-                    fontSize: 13,
-                    fontFamily: 'sfmono'),
+                "Designed & Built with ❤️ by",
+                style: GoogleFonts.inter(
+                  color: AppColors().textLight.withOpacity(0.7),
+                  fontSize: 14,
+                  letterSpacing: 1,
+                ),
               ),
+              const SizedBox(height: 8),
               Text(
-                "Shahzaib 🫡",
-                style: TextStyle(
-                    color: AppColors().primaryRedColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'sfmono'),
+                "Shahzaib Hassan",
+                style: GoogleFonts.poppins(
+                  color: AppColors().primaryRedColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.5,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 1.5,
+                    color: AppColors().primaryRedColor.withOpacity(0.3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Text(
+                      "© 2026 • All Rights Reserved",
+                      style: GoogleFonts.inter(
+                        color: AppColors().textLight.withOpacity(0.5),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 1.5,
+                    color: AppColors().primaryRedColor.withOpacity(0.3),
+                  ),
+                ],
               ),
             ],
           )
