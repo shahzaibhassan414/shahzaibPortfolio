@@ -26,7 +26,7 @@ class RootScreen extends ConsumerStatefulWidget {
 
 class _RootScreenState extends ConsumerState<RootScreen>
     with TickerProviderStateMixin {
-  final mScrollController = AutoScrollController(); // UNCHANGED
+  final mScrollController = AutoScrollController();
 
   late AnimationController _controller;
   late Animation<Offset> _slideAnimation;
@@ -161,7 +161,6 @@ class _RootScreenState extends ConsumerState<RootScreen>
             },
             child: Column(
               children: [
-                /// ───── Animated AppBar ─────
                 Consumer(builder: (context, ref, child) {
                   final isScrollingUp = ref.watch(scrollControlProvider);
                   updateVisibility(isScrollingUp);
@@ -177,7 +176,6 @@ class _RootScreenState extends ConsumerState<RootScreen>
                 }),
 
                 Expanded(
-                  // ✅ Ab yeh sahi Column ke andar hai
                   child: Stack(
                     children: [
                       Positioned.fill(
@@ -237,16 +235,15 @@ class _RootScreenState extends ConsumerState<RootScreen>
                           left: width * 0.05,
                           top: 0,
                           bottom: 0,
-                          child: LeftPane(), // ✅ SAFE
+                          child: LeftPane(),
                         ),
 
-                      /// RIGHT PANE (visual scroll)
                       if (scrType != ScreenType.mobile)
                         Positioned(
                           right: width * 0.05,
                           top: 0,
                           bottom: 0,
-                          child: RightPane(), // ✅ SAFE
+                          child: RightPane(),
                         ),
                     ],
                   ),
@@ -259,79 +256,3 @@ class _RootScreenState extends ConsumerState<RootScreen>
     );
   }
 }
-
-// Expanded(
-//   child: Stack( // ✅ ADDED (critical)
-//     children: [
-//       /// MAIN SCROLLABLE CONTENT
-//       SingleChildScrollView( // ✅ ADDED
-//         controller: mScrollController,
-//         child: Center( // ✅ ADDED (bounds width)
-//           child: SizedBox(
-//             width: scrType == ScreenType.mobile
-//                 ? width
-//                 : width * 0.8, // ✅ ADDED
-//             child: Column( // ✅ ADDED
-//               children: [
-//                 AutoScrollTag(
-//                   key: const ValueKey(0),
-//                   controller: mScrollController,
-//                   index: 0,
-//                   child: IntroContent(mScrollController),
-//                 ),
-//                 AutoScrollTag(
-//                   key: const ValueKey(1),
-//                   controller: mScrollController,
-//                   index: 1,
-//                   child: About(),
-//                 ),
-//                 AutoScrollTag(
-//                   key: const ValueKey(2),
-//                   controller: mScrollController,
-//                   index: 2,
-//                   child: Experience(),
-//                 ),
-//                 AutoScrollTag(
-//                   key: const ValueKey(3),
-//                   controller: mScrollController,
-//                   index: 3,
-//                   child: Skills(),
-//                 ),
-//                 AutoScrollTag(
-//                   key: const ValueKey(4),
-//                   controller: mScrollController,
-//                   index: 4,
-//                   child: Projects(),
-//                 ),
-//                 AutoScrollTag(
-//                   key: const ValueKey(5),
-//                   controller: mScrollController,
-//                   index: 5,
-//                   child: Contact(),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//
-//       /// LEFT PANE (visual scroll)
-//       if (scrType != ScreenType.mobile)
-//         Positioned(
-//           left: width * 0.05,
-//           top: 0,
-//           bottom: 0,
-//           child: LeftPane(), // ✅ SAFE
-//         ),
-//
-//       /// RIGHT PANE (visual scroll)
-//       if (scrType != ScreenType.mobile)
-//         Positioned(
-//           right: width * 0.05,
-//           top: 0,
-//           bottom: 0,
-//           child: RightPane(), // ✅ SAFE
-//         ),
-//     ],
-//   ),
-// ),

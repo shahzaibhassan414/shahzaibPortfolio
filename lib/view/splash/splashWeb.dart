@@ -24,7 +24,7 @@ class _SplashWebState extends State<SplashWeb>
   }
 
   checkLogin() async {
-    _timer = Timer(const Duration(seconds: 6), () async {
+    _timer = Timer(const Duration(seconds: 4), () async {
       if (!mounted) return;
       Navigator.pushAndRemoveUntil(
         context,
@@ -87,7 +87,8 @@ class _SplashWebState extends State<SplashWeb>
                       ),
                       child: AnimatedTextKit(
                         repeatForever: true,
-                        pause: const Duration(milliseconds: 500),
+                        pause: const Duration(milliseconds: 0),
+                        displayFullTextOnTap: true,
                         animatedTexts: [
                           RotateAnimatedText('EXPERIENCES'),
                           RotateAnimatedText('PRODUCTS'),

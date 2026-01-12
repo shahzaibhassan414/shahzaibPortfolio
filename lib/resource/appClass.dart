@@ -22,7 +22,7 @@ class AppClass {
 
   /* URL */
   static final resumeDownloadURL =
-      '''https://drive.google.com/file/d/1WrzAn9djO7nzSm2xC4h4dfgIrQg_CD4c/view?usp=sharing''';
+      '''https://drive.google.com/file/d/15bTc3DN6H8zznatdhShAz3qBBYPMrfoB/view?usp=sharing''';
 
   static final email = "shahzaibhassan414@gmail.com";
   static final phoneNumber = "+92 316 0984600";

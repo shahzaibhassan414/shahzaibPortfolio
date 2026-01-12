@@ -17,7 +17,7 @@ class LeftPane extends ConsumerStatefulWidget {
 class _LeftPaneState extends ConsumerState<LeftPane> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox( // ✅ CHANGED: Removed Expanded
+    return SizedBox(
         width: 60,
         child: Column(
           children: [
