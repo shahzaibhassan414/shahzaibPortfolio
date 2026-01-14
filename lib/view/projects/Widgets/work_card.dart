@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/Widgets/custom_icon_button.dart';
 import 'package:portfolio/resource/colors.dart';
-import 'package:portfolio/resource/custom_svg.dart';
 import '../../../resource/appClass.dart';
 import '../projectWeb.dart';
+import 'project_detail_dialog.dart';
 
 class WorkCard extends StatelessWidget {
   final bool isHovered;
@@ -28,123 +27,111 @@ class WorkCard extends StatelessWidget {
       onEnter: onEnter,
       onExit: onExit,
       cursor: SystemMouseCursors.click,
-      child: AnimatedScale(
-        scale: isHovered ? 1.05 : 1,
-        curve: Curves.easeOutBack,
-        duration: const Duration(milliseconds: 400),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.0),
-            boxShadow: [
-              if (isHovered)
-                BoxShadow(
-                  color: AppColors().primaryRedColor.withOpacity(0.3),
-                  blurRadius: 20,
-                  spreadRadius: 2,
-                ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
-            child: Stack(
-              children: [
-                // Project Image with Overlay
-                Image.asset(
-                  project.image,
-                  width: isWeb ? AppClass().getMqWidth(context) * 0.22 : AppClass().getMqWidth(context) * 0.85,
-                  height: isWeb ? AppClass().getMqWidth(context) * 0.16 : AppClass().getMqWidth(context) * 0.55,
-                  fit: BoxFit.cover,
-                ),
-
-                // Smooth Gradient Overlay
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 300),
-                  opacity: isHovered ? 1.0 : 0.0,
-                  child: Container(
+      child: GestureDetector(
+        onTap: () {
+          showDialog(
+            context: context,
+            barrierColor: Colors.black.withOpacity(0.7),
+            builder: (context) => ProjectDetailDialog(project: project),
+          );
+        },
+        child: AnimatedScale(
+          scale: isHovered ? 1.05 : 1,
+          curve: Curves.easeOutBack,
+          duration: const Duration(milliseconds: 400),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0),
+              boxShadow: [
+                if (isHovered)
+                  BoxShadow(
+                    color: AppColors().primaryRedColor.withOpacity(0.3),
+                    blurRadius: 20,
+                    spreadRadius: 2,
+                  ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Stack(
+                children: [
+                  // Project Image with Overlay
+                  Image.asset(
+                    project.image,
                     width: isWeb ? AppClass().getMqWidth(context) * 0.22 : AppClass().getMqWidth(context) * 0.85,
                     height: isWeb ? AppClass().getMqWidth(context) * 0.16 : AppClass().getMqWidth(context) * 0.55,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Colors.black.withOpacity(0.8),
-                          Colors.black.withOpacity(0.95),
-                        ],
-                        stops: const [0.4, 0.8, 1.0],
+                    fit: BoxFit.cover,
+                  ),
+      
+                  // Smooth Gradient Overlay
+                  AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    opacity: isHovered ? 1.0 : 0.0,
+                    child: Container(
+                      width: isWeb ? AppClass().getMqWidth(context) * 0.22 : AppClass().getMqWidth(context) * 0.85,
+                      height: isWeb ? AppClass().getMqWidth(context) * 0.16 : AppClass().getMqWidth(context) * 0.55,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.8),
+                            Colors.black.withOpacity(0.95),
+                          ],
+                          stops: const [0.4, 0.8, 1.0],
+                        ),
                       ),
                     ),
                   ),
-                ),
-
-                // Project Details
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                    padding: EdgeInsets.all(isHovered ? 16 : 8),
-                    transform: Matrix4.translationValues(0, isHovered ? 0 : 20, 0),
-                    child: AnimatedOpacity(
+      
+                  // Project Details
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
-                      opacity: isHovered ? 1 : 0,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            project.name.toUpperCase(),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.2,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 8),
-                          if (project.description != null)
+                      curve: Curves.easeOut,
+                      padding: EdgeInsets.all(isHovered ? 16 : 8),
+                      transform: Matrix4.translationValues(0, isHovered ? 0 : 20, 0),
+                      child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 300),
+                        opacity: isHovered ? 1 : 0,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
                             Text(
-                              project.description!,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.8),
-                                fontSize: 12,
+                              project.name.toUpperCase(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
                               ),
                               textAlign: TextAlign.center,
                             ),
-                          const SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              if (project.androidLink != null)
-                                _buildIconBtn(CustomSvg.playStoreIcon, project.androidLink!),
-                              if (project.androidLink != null && project.iosLink != null)
-                                const SizedBox(width: 15),
-                              if (project.iosLink != null)
-                                _buildIconBtn(CustomSvg.appStoreIcon, project.iosLink!),
-                            ],
-                          )
-                        ],
+                            const SizedBox(height: 8),
+                            const Text(
+                              "Click to view details",
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 11,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildIconBtn(String icon, String link) {
-    return CustomIconButton(
-      icon: icon,
-      link: link,
     );
   }
 }

@@ -105,12 +105,12 @@ class CustomSkillBar extends StatelessWidget {
                 ),
                 // Progress Bar
                 LinearPercentIndicator(
+                  key: ValueKey(isHovered ? "$skillName-hovered" : "$skillName-normal"),
                   padding: EdgeInsets.zero,
-                  // width: barWidth - 32, // Subtracting padding
-                  lineHeight: 6.0,
+                  lineHeight: 8.0,
                   percent: value,
                   animation: true,
-                  animationDuration: 1500,
+                  animationDuration: 1000,
                   curve: Curves.easeOutQuart,
                   barRadius: const Radius.circular(10),
                   backgroundColor: Colors.transparent,

@@ -5,7 +5,7 @@ import '../resource/colors.dart';
 class CustomSkillImageCard extends StatelessWidget {
   final Map<String, dynamic> skill;
   final bool isHovered;
-  
+
   const CustomSkillImageCard({
     super.key,
     required this.skill,
@@ -20,10 +20,14 @@ class CustomSkillImageCard extends StatelessWidget {
       width: 130,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: isHovered ? AppColors().primaryRedColor.withOpacity(0.08) : Colors.white.withOpacity(0.02),
+        color: isHovered
+            ? AppColors().primaryRedColor.withOpacity(0.08)
+            : Colors.white.withOpacity(0.02),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isHovered ? AppColors().primaryRedColor.withOpacity(0.3) : Colors.white.withOpacity(0.05),
+          color: isHovered
+              ? AppColors().primaryRedColor.withOpacity(0.3)
+              : Colors.white.withOpacity(0.05),
           width: 1,
         ),
         boxShadow: [
@@ -42,7 +46,9 @@ class CustomSkillImageCard extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: isHovered ? Colors.white.withOpacity(0.05) : Colors.transparent,
+              color: isHovered
+                  ? Colors.white.withOpacity(0.05)
+                  : Colors.transparent,
               shape: BoxShape.circle,
             ),
             child: AnimatedScale(
@@ -50,18 +56,35 @@ class CustomSkillImageCard extends StatelessWidget {
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeOutBack,
               child: ColorFiltered(
-                colorFilter: isHovered 
-                  ? const ColorFilter.mode(Colors.transparent, BlendMode.multiply) 
-                  : const ColorFilter.matrix(<double>[
-                      0.2126, 0.7152, 0.0722, 0, 0,
-                      0.2126, 0.7152, 0.0722, 0, 0,
-                      0.2126, 0.7152, 0.0722, 0, 0,
-                      0,      0,      0,      1, 0,
-                    ]),
+                colorFilter: isHovered
+                    ? const ColorFilter.mode(
+                        Colors.transparent, BlendMode.multiply)
+                    : const ColorFilter.matrix(<double>[
+                        0.2126,
+                        0.7152,
+                        0.0722,
+                        0,
+                        0,
+                        0.2126,
+                        0.7152,
+                        0.0722,
+                        0,
+                        0,
+                        0.2126,
+                        0.7152,
+                        0.0722,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                      ]),
                 child: Image.asset(
                   skill['image'],
-                  height: 60,
-                  width: 60,
+                  height: 70,
+                  width: 70,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -72,7 +95,7 @@ class CustomSkillImageCard extends StatelessWidget {
             skill['name'],
             textAlign: TextAlign.center,
             style: GoogleFonts.robotoSlab(
-              color: isHovered ? Colors.white : Colors.white.withOpacity(0.5),
+              color: isHovered ? AppColors().textColor : AppColors().textLight,
               letterSpacing: 1,
               fontWeight: isHovered ? FontWeight.bold : FontWeight.w500,
               fontSize: 12,

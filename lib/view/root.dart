@@ -14,6 +14,7 @@ import 'package:portfolio/view/widget/appBar.dart';
 import 'package:portfolio/view/widget/leftPane.dart';
 import 'package:portfolio/view/widget/rightPane.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import '../Widgets/custom_app_logo.dart';
 import '../resource/colors.dart';
 import 'contact/contact.dart';
 
@@ -89,7 +90,27 @@ class _RootScreenState extends ConsumerState<RootScreen>
                         color: AppColors().textColor,
                       )),
                 )),
-            Image.asset('assets/svg/appLogo.png', height: 60),
+            Container(
+              width: 90,
+              height: 90,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: AppColors().primaryRedColor.withOpacity(0.2),
+                  width: 2,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors().primaryRedColor.withOpacity(0.1),
+                    blurRadius: 30,
+                    spreadRadius: 10,
+                  )
+                ],
+              ),
+              child: Center(
+                child: CustomAppLogo(),
+              ),
+            ),
             const SizedBox(height: 40),
             _drawerTile("About", 1),
             _drawerTile("Experience", 2),
@@ -103,7 +124,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
                 onPressed: () => AppClass().downloadResume(context),
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: AppColors().primaryRedColor),
-                  padding: EdgeInsets.symmetric(vertical: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: Center(
                   child: Text("Resume",
@@ -165,11 +186,9 @@ class _RootScreenState extends ConsumerState<RootScreen>
             behaviour: RandomParticleBehaviour(
                 options: ParticleOptions(
                     baseColor: AppColors().primaryRedColor, 
-                    particleCount: 50,
-                    // spawnMaxRadius: 1.5,
-                    // spawnMinRadius: 0.5,
-                    spawnMaxSpeed: 15,
-                    spawnMinSpeed: 5,
+                    particleCount: 25,
+                    spawnMaxSpeed: 10,
+                    spawnMinSpeed: 2,
                 )),
             vsync: this,
             child: NotificationListener<UserScrollNotification>(
@@ -182,97 +201,99 @@ class _RootScreenState extends ConsumerState<RootScreen>
                 }
                 return true;
               },
-              child: Column(
+              child: Stack(
                 children: [
+                  Positioned.fill(
+                    child: SingleChildScrollView(
+                      controller: mScrollController,
+                      physics: const BouncingScrollPhysics(),
+                      child: Center(
+                        child: SizedBox(
+                          width: scrType == ScreenType.mobile
+                              ? width
+                              : width * 0.8,
+                          child: Column(
+                            children: [
+                              AutoScrollTag(
+                                key: const ValueKey(0),
+                                controller: mScrollController,
+                                index: 0,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 80), // Space for AppBar
+                                  child: RepaintBoundary(child: IntroContent(mScrollController)),
+                                ),
+                              ),
+                              AutoScrollTag(
+                                key: const ValueKey(1),
+                                controller: mScrollController,
+                                index: 1,
+                                child: RepaintBoundary(child: About()),
+                              ),
+                              AutoScrollTag(
+                                key: const ValueKey(2),
+                                controller: mScrollController,
+                                index: 2,
+                                child: RepaintBoundary(child: Experience()),
+                              ),
+                              AutoScrollTag(
+                                key: const ValueKey(3),
+                                controller: mScrollController,
+                                index: 3,
+                                child: RepaintBoundary(child: Skills()),
+                              ),
+                              AutoScrollTag(
+                                key: const ValueKey(4),
+                                controller: mScrollController,
+                                index: 4,
+                                child: RepaintBoundary(child: Projects()),
+                              ),
+                              AutoScrollTag(
+                                key: const ValueKey(5),
+                                controller: mScrollController,
+                                index: 5,
+                                child: RepaintBoundary(child: Contact()),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Floating AppBar
                   Consumer(builder: (context, ref, child) {
                     final isScrollingUp = ref.watch(scrollControlProvider);
                     updateVisibility(isScrollingUp);
 
-                    return SlideTransition(
-                      position: _slideAnimation,
-                      child: FadeTransition(
-                        opacity: _fadeAnimation,
-                        child: RepaintBoundary(child: ActionBar(mScrollController)),
+                    return Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: SlideTransition(
+                        position: _slideAnimation,
+                        child: FadeTransition(
+                          opacity: _fadeAnimation,
+                          child: RepaintBoundary(child: ActionBar(mScrollController)),
+                        ),
                       ),
                     );
                   }),
 
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: SingleChildScrollView(
-                            controller: mScrollController,
-                            physics: const BouncingScrollPhysics(),
-                            child: Center(
-                              child: SizedBox(
-                                width: scrType == ScreenType.mobile
-                                    ? width
-                                    : width * 0.8,
-                                child: RepaintBoundary(
-                                  child: Column(
-                                    children: [
-                                      AutoScrollTag(
-                                        key: const ValueKey(0),
-                                        controller: mScrollController,
-                                        index: 0,
-                                        child: IntroContent(mScrollController),
-                                      ),
-                                      AutoScrollTag(
-                                        key: const ValueKey(1),
-                                        controller: mScrollController,
-                                        index: 1,
-                                        child: About(),
-                                      ),
-                                      AutoScrollTag(
-                                        key: const ValueKey(2),
-                                        controller: mScrollController,
-                                        index: 2,
-                                        child: Experience(),
-                                      ),
-                                      AutoScrollTag(
-                                        key: const ValueKey(3),
-                                        controller: mScrollController,
-                                        index: 3,
-                                        child: Skills(),
-                                      ),
-                                      AutoScrollTag(
-                                        key: const ValueKey(4),
-                                        controller: mScrollController,
-                                        index: 4,
-                                        child: Projects(),
-                                      ),
-                                      AutoScrollTag(
-                                        key: const ValueKey(5),
-                                        controller: mScrollController,
-                                        index: 5,
-                                        child: Contact(),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        if (scrType != ScreenType.mobile)
-                          Positioned(
-                            left: width * 0.05,
-                            top: 0,
-                            bottom: 0,
-                            child: RepaintBoundary(child: LeftPane()),
-                          ),
-
-                        if (scrType != ScreenType.mobile)
-                          Positioned(
-                            right: width * 0.05,
-                            top: 0,
-                            bottom: 0,
-                            child: RepaintBoundary(child: RightPane()),
-                          ),
-                      ],
+                  if (scrType != ScreenType.mobile)
+                    Positioned(
+                      left: width * 0.05,
+                      top: 0,
+                      bottom: 0,
+                      child: RepaintBoundary(child: LeftPane()),
                     ),
-                  )
+
+                  if (scrType != ScreenType.mobile)
+                    Positioned(
+                      right: width * 0.05,
+                      top: 0,
+                      bottom: 0,
+                      child: RepaintBoundary(child: RightPane()),
+                    ),
                 ],
               ),
             ),

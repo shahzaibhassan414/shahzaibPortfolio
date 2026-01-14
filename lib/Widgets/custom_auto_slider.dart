@@ -15,7 +15,7 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
   Timer? _timer;
   bool _isHovered = false;
   double _scrollPosition = 0.0;
-  final double _speed = 0.6;
+  final double _speed = 0.9;
   int? _hoveredIndex;
 
   @override
@@ -26,7 +26,7 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
 
   void _startMarquee() {
     _timer = Timer.periodic(const Duration(milliseconds: 16), (timer) {
-      if (_isHovered) return;
+      // if (_isHovered) return;
 
       if (_scrollController.hasClients) {
         _scrollPosition += _speed;

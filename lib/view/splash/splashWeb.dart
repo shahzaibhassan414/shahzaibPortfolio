@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/resource/colors.dart';
+import '../../Widgets/custom_app_logo.dart';
 import '../root.dart';
 
 class SplashWeb extends StatefulWidget {
@@ -106,11 +108,12 @@ class _SplashWebState extends State<SplashWeb>
                         ],
                       ),
                       child: Center(
-                        child: Image.asset(
-                          'assets/svg/appLogo.png',
-                          width: 70,
-                          height: 70,
-                        ),
+                        child: CustomAppLogo(),
+                        // Image.asset(
+                        //   'assets/svg/appLogo.png',
+                        //   width: 70,
+                        //   height: 70,
+                        // ),
                       ),
                     ),
                   ),

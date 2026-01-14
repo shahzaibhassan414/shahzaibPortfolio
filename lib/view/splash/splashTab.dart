@@ -1,8 +1,6 @@
 import 'dart:async';
-
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-
+import '../../Widgets/custom_app_logo.dart';
 import '../../resource/colors.dart';
 import '../root.dart';
 
@@ -109,11 +107,7 @@ class _SplashTabState extends State<SplashTab> with SingleTickerProviderStateMix
                         ],
                       ),
                       child: Center(
-                        child: Image.asset(
-                          'assets/svg/appLogo.png',
-                          width: 70,
-                          height: 70,
-                        ),
+                        child: CustomAppLogo(),
                       ),
                     ),
                   ),

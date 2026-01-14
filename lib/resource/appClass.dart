@@ -97,19 +97,28 @@ class AppClass {
   final List<Map<String, dynamic>> skills = [
     {"name": "Flutter", "value": 0.9},
     {"name": "Dart", "value": 0.8},
-    {"name": "API Integration", "value": 1.0},
-    {"name": "Deployment", "value": 0.9},
-    {"name": "UI/UX", "value": 0.85},
     {"name": "State Management", "value": 0.7},
+    {"name": "Firebase", "value": 0.8},
+    {"name": "API Integration", "value": 1.0},
+    {"name": "Secure Authentication", "value": 0.85},
+    {"name": "Push Notifications", "value": 0.8},
+    {"name": "Real-time Updates", "value": 0.8},
+    {"name": "Offline Support & Caching", "value": 0.75},
+    {"name": "App Performance Optimization", "value": 0.75},
+    {"name": "Payment Gateway", "value": 0.8},
+    {"name": "In-app Subscriptions", "value": 0.7},
+    {"name": "App Deployment", "value": 0.9},
+    {"name": "App Store Optimization (ASO)", "value": 0.7},
     {"name": "Github", "value": 0.8},
-    {"name": "Problem Solving", "value": 0.8},
-    {"name": "Team Work", "value": 0.7},
-    {"name": "Communication", "value": 0.69},
-    {"name": "Clean Code", "value": 0.8},
+    {"name": "UI/UX", "value": 0.85},
+    {"name": "Clean Architecture", "value": 0.8},
+    {"name": "Blockchain Integration", "value": 0.7}
   ];
 
   final List<Map<String, dynamic>> skillsImages = [
+    {"image": CustomImages.skillsDart , "name": "Dart"},
     {"image": CustomImages.skillsFlutter , "name": "Flutter"},
+    {"image": CustomImages.skillsGit , "name": "Git"},
     {"image": CustomImages.skillsAndroidStudio, "name": "Android Studio"},
     {"image": CustomImages.skillsAppStore, "name": "App Store"},
     {"image": CustomImages.skillsPlayStore, "name": "Play Store"},
@@ -121,41 +130,49 @@ class AppClass {
     {"image": CustomImages.skillsSharedPrefrence, "name": "Local Storage"},
     {"image": CustomImages.skillsSocialLogin, "name": "Social Authentication"},
     {"image": CustomImages.skillsStripe, "name": "Stripe"},
-    {"image": CustomImages.skillsWeb3, "name": "Web 3"},
+    {"image": CustomImages.skillsBlockChain, "name": "Blockchain Integration"},
     {"image": CustomImages.skillsPushNotification, "name": "Push Notification"},
-    {"image": CustomImages.skillsWebSocket, "name": "Web Socket"},
+    {"image": CustomImages.skillsWebSocket, "name": "Socket IO"},
+    {"image": CustomImages.skillsTanstack, "name": "Tanstack Query"},
+    {"image": CustomImages.skillsFigma, "name": "Figma"},
   ];
 
   List<ProjectModel> projects = [
     ProjectModel(
       name: "Paw Play Love",
       image: CustomImages.projectPPl,
-      description: "",
+      description: "I developed Paw Play Love, a community-driven platform designed to connect pet owners through meaningful social interactions. On the technical side, I integrated Firebase Auth and Notifications, managed real-time communication using Sockets, and implemented RevenueCat for seamless in-app purchases and subscriptions. The app features a high-performance UI inspired by Figma designs, utilizing Cached Network Images and robust State Management to ensure a fluid user experience. From handling complex Deep Linking to precise Permission Handling, this project showcases my ability to build scalable, feature-rich mobile applications.",
       androidLink: "https://play.google.com/store/apps/details?id=com.pawplaylove&hl=en",
       iosLink: "https://apps.apple.com/id/app/paw-play-love/id6648773545",
     ),
     ProjectModel(
       name: "LawnOlu",
+      description: "Developed Lawnolu, a high-performance service provider application leveraging REST APIs and Firebase (Notifications & Analytics). The app’s architecture supports multi-tenant logic, allowing users to switch between business roles seamlessly. Key technical achievements include implementing a real-time tracking system using Google Maps, managing state for complex service requests, and ensuring financial security through Stripe integration. By utilizing Sockets for real-time communication and optimizing the app for offline support, I delivered a reliable and responsive user experience even in low-connectivity environments",
       image: CustomImages.projectLawnolu,
     ),
     ProjectModel(
       name: "Zera",
+      description: "Zera represents a masterclass in cross-functional app development, utilizing REST APIs and TanStack Query for robust state management and caching. I implemented specialized features including Custom Heat Maps for data visualization, QR Scanning for seamless interactions, and In-app Web Views for extended functionality. Technical challenges like cached filters, deep linking, and Firebase-driven notifications were solved to ensure a smooth, cross-device user journey. The architecture supports a diverse range of modules from community forums to secure e-commerce transactions.",
       image: CustomImages.projectZera,
     ),
     ProjectModel(
       name: "Simman",
+      description: "With Simman, I tackled the complexities of Real-time Audio Streaming by building a robust architecture that balances speed with security. By integrating Firebase Realtime Database for live updates and implementing advanced State Management, I ensured the app remains responsive under heavy data loads. From Secure Authentication to fine-tuned Performance Optimization, every aspect of Simman was engineered to provide a top-tier user experience.",
       image: CustomImages.projectSimman,
     ),
     ProjectModel(
       name: "On Scene",
+      description: "On Scene is a cutting-edge, location-aware social platform designed to bridge the gap between digital discovery and real-world connections. I engineered a seamless Check-in mechanism using Google Maps API, allowing users to discover and interact with others at nearby venues in real-time. To ensure high engagement, I integrated Socket-based real-time chat and a smooth matching system supported by RevenueCat for premium features. Addressing the critical challenge of user safety, I implemented robust Privacy & Control tools, including block/unblock features and secure data handling. The result is a polished, high-performance app that empowers users to build meaningful connections within a safe and intuitive environment.",
       image: CustomImages.projectOnScene,
     ),
     ProjectModel(
       name: "BePay Client",
+      description: "Web3-Integrated Consumer Platform: I developed a high-end Flutter application for the end-user, focusing on a seamless transition between traditional and decentralized commerce. The app features a secure Web3 wallet creation and OAuth-based login to ensure a smooth onboarding experience. I implemented a robust Blockchain-based purchase system, allowing users to make secure transactions directly on the chain. To enhance usability, I integrated a smart cart with auto-save functionality, filter-based product listings, and a highly polished UI featuring custom animations and gradient schemes. The project involved rigorous KYC verification and real-time REST API integrations to provide a secure and modern shopping experience.",
       image: CustomImages.projectBePayClient,
     ),
     ProjectModel(
       name: "BePay Business",
+      description: "I engineered a dedicated Flutter application for business owners and service providers within the Web3 ecosystem. This app manages complex KYB (Know Your Business) verification flows and provides tools for managing product listings and orders. A key highlight was the implementation of a secure business wallet for handling blockchain-based revenue and payouts. I worked closely with the client to manage rapid UI/UX iterations, adapting the login flows and management dashboards in short timeframes to meet evolving business needs. This app showcases my ability to handle enterprise-level security, complex state management, and direct coordination with stakeholders.",
       image: CustomImages.projectBePayBusiness,
     ),
     ProjectModel(
