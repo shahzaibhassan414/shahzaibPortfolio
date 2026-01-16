@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/Widgets/custom_cursor.dart';
 import 'package:portfolio/resource/colors.dart';
 import 'package:portfolio/view/splash/splash.dart';
 
@@ -22,6 +23,9 @@ class AppTheme extends StatelessWidget {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
+      builder: (context, child) {
+        return CustomCursor(child: child!);
+      },
       home: SplashContent(),
     );
   }
