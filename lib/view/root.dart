@@ -170,7 +170,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(0xff020c1b), // Modern Deep Navy
+        backgroundColor: const Color(0xff020c1b),
         endDrawer: isMobile ? _buildMobileDrawer(context) : null,
         body: Container(
           decoration: BoxDecoration(
@@ -186,7 +186,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
           child: AnimatedBackground(
             behaviour: RandomParticleBehaviour(
                 options: ParticleOptions(
-                    baseColor: AppColors().primaryRedColor, 
+                    baseColor: AppColors().primaryRedColor,
                     particleCount: 25,
                     spawnMaxSpeed: 10,
                     spawnMinSpeed: 2,
@@ -211,7 +211,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
                       child: Center(
                         child: SizedBox(
                           width: scrType == ScreenType.mobile
-                              ? width
+                              ? MediaQuery.of(context).size.width
                               : width * 0.8,
                           child: Column(
                             children: [
