@@ -23,6 +23,7 @@ class ActionBar extends ConsumerStatefulWidget implements PreferredSizeWidget {
 class _ActionBarState extends ConsumerState<ActionBar> {
   Widget logo(bool isMobile) {
     return InkWell(
+      mouseCursor: SystemMouseCursors.none,
       onTap: () {
         widget.controller.scrollToIndex(0, preferPosition: AutoScrollPosition.begin);
       },
@@ -72,7 +73,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
         child: Container(
             height: 100,
             decoration: BoxDecoration(
-              color: const Color(0xff020c1b).withOpacity(0.7),
+              color: const Color(0xff020c1b).withValues(alpha: 0.7),
             ),
             padding: const EdgeInsets.only(right: 15.0, top: 20.0),
             child: () {
@@ -108,6 +109,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                           Padding(
                             padding: const EdgeInsets.only(right: 30.0),
                             child: InkWell(
+                              mouseCursor: SystemMouseCursors.none,
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               hoverColor: Colors.transparent,
@@ -139,6 +141,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                           Padding(
                             padding: const EdgeInsets.only(right: 30.0),
                             child: InkWell(
+                              mouseCursor: SystemMouseCursors.none,
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               hoverColor: Colors.transparent,
@@ -170,6 +173,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                           Padding(
                             padding: const EdgeInsets.only(right: 30.0),
                             child: InkWell(
+                              mouseCursor: SystemMouseCursors.none,
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               hoverColor: Colors.transparent,
@@ -202,6 +206,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                           Padding(
                             padding: const EdgeInsets.only(right: 30.0),
                             child: InkWell(
+                              mouseCursor: SystemMouseCursors.none,
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               hoverColor: Colors.transparent,
@@ -234,6 +239,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                           Padding(
                             padding: const EdgeInsets.only(right: 30.0),
                             child: InkWell(
+                              mouseCursor: SystemMouseCursors.none,
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               hoverColor: Colors.transparent,
@@ -266,6 +272,7 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                             String state = ref.watch(hoverProvider);
                             bool isHovered = (state == "resume");
                             return InkWell(
+                              mouseCursor: SystemMouseCursors.none,
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               hoverColor: Colors.transparent,

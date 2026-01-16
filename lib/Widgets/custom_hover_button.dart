@@ -25,11 +25,12 @@ class _CustomHoverButtonState extends State<CustomHoverButton> {
     final double btnHeight =
         widget.height ?? AppClass().getMqHeight(context) * 0.09;
     return MouseRegion(
-      cursor: SystemMouseCursors.click,
+      cursor: SystemMouseCursors.none,
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
       child: InkWell(
         onTap: widget.onTap,
+        mouseCursor: SystemMouseCursors.none,
         splashColor: Colors.transparent,
         hoverColor: Colors.transparent,
         child: Container(

@@ -91,7 +91,7 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> with TickerProvid
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 40),
             child: Divider(
-              color: AppColors().textLight.withOpacity(0.1),
+              color: AppColors().textLight.withValues(alpha: 0.1),
               thickness: 1,
             ),
           ),
@@ -131,7 +131,7 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> with TickerProvid
                   Container(
                     height: 2,
                     width: 30,
-                    color: AppColors().primaryRedColor.withOpacity(0.5),
+                    color: AppColors().primaryRedColor.withValues(alpha: 0.5),
                   )
                 ],
               ),
@@ -171,10 +171,10 @@ class _ExperienceCardWebState extends State<ExperienceCardWeb> {
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: _isHovered ? Colors.white.withOpacity(0.02) : Colors.transparent,
+          color: _isHovered ? Colors.white.withValues(alpha: 0.02) : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: _isHovered ? AppColors().primaryRedColor.withOpacity(0.1) : Colors.transparent,
+            color: _isHovered ? AppColors().primaryRedColor.withValues(alpha: 0.1) : Colors.transparent,
           ),
         ),
         child: Column(
@@ -202,12 +202,12 @@ class _ExperienceCardWebState extends State<ExperienceCardWeb> {
             const SizedBox(height: 8),
             Row(
               children: [
-                Icon(Icons.calendar_today, size: 14, color: AppColors().textLight.withOpacity(0.5)),
+                Icon(Icons.calendar_today, size: 14, color: AppColors().textLight.withValues(alpha: 0.5)),
                 const SizedBox(width: 8),
                 Text(
                   widget.experience.duration,
                   style: TextStyle(
-                    color: AppColors().textLight.withOpacity(0.7),
+                    color: AppColors().textLight.withValues(alpha: 0.7),
                     fontSize: 14,
                     fontFamily: 'sfmono',
                   ),
@@ -238,7 +238,7 @@ class _ExperienceCardWebState extends State<ExperienceCardWeb> {
                         child: Text(
                           p,
                           style: TextStyle(
-                            color: AppColors().textLight.withOpacity(0.8),
+                            color: AppColors().textLight.withValues(alpha: 0.8),
                             fontSize: 15,
                             height: 1.6,
                             fontFamily: 'sfmono',

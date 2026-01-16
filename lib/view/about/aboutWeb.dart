@@ -236,6 +236,7 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                                       width: 1.5)),
                             ),
                             InkWell(
+                              mouseCursor: SystemMouseCursors.none,
                               onTap: () {},
                               onHover: (bol) {
                                 if (bol) {

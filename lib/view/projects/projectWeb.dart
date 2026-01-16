@@ -58,6 +58,7 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
           if(!showAll && allProjects.length > 4)
           Center(
             child: InkWell(
+              mouseCursor: SystemMouseCursors.none,
               onTap: () {
                 setState(() => showAll = true);
               },
@@ -65,7 +66,7 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 decoration: BoxDecoration(
-                  border: Border.all(color: AppColors().primaryRedColor.withOpacity(0.5)),
+                  border: Border.all(color: AppColors().primaryRedColor.withValues(alpha: 0.5)),
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: Row(

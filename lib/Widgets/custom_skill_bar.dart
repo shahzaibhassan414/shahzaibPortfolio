@@ -31,23 +31,23 @@ class CustomSkillBar extends StatelessWidget {
     return MouseRegion(
       onEnter: onEnter,
       onExit: onExit,
-      cursor: SystemMouseCursors.click,
+      cursor: SystemMouseCursors.none,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         margin: const EdgeInsets.only(bottom: 20),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         width: barWidth,
         decoration: BoxDecoration(
-          color: isHovered ? Colors.white.withOpacity(0.03) : Colors.transparent,
+          color: isHovered ? Colors.white.withValues(alpha: 0.03) : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isHovered ? AppColors().primaryRedColor.withOpacity(0.3) : Colors.transparent,
+            color: isHovered ? AppColors().primaryRedColor.withValues(alpha: 0.3) : Colors.transparent,
             width: 1,
           ),
           boxShadow: [
             if (isHovered)
               BoxShadow(
-                color: AppColors().primaryRedColor.withOpacity(0.05),
+                color: AppColors().primaryRedColor.withValues(alpha: 0.05),
                 blurRadius: 15,
                 spreadRadius: 2,
               )
@@ -99,7 +99,7 @@ class CustomSkillBar extends StatelessWidget {
                   height: 6,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.05),
+                    color: Colors.white.withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -116,7 +116,7 @@ class CustomSkillBar extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   linearGradient: LinearGradient(
                     colors: [
-                      AppColors().primaryRedColor.withOpacity(0.6),
+                      AppColors().primaryRedColor.withValues(alpha: 0.6),
                       AppColors().primaryRedColor,
                     ],
                   ),

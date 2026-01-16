@@ -26,12 +26,12 @@ class WorkCard extends StatelessWidget {
     return MouseRegion(
       onEnter: onEnter,
       onExit: onExit,
-      cursor: SystemMouseCursors.click,
+      cursor: SystemMouseCursors.none,
       child: GestureDetector(
         onTap: () {
           showDialog(
             context: context,
-            barrierColor: Colors.black.withOpacity(0.7),
+            barrierColor: Colors.black.withValues(alpha: 0.7),
             builder: (context) => ProjectDetailDialog(project: project),
           );
         },
@@ -45,7 +45,7 @@ class WorkCard extends StatelessWidget {
               boxShadow: [
                 if (isHovered)
                   BoxShadow(
-                    color: AppColors().primaryRedColor.withOpacity(0.3),
+                    color: AppColors().primaryRedColor.withValues(alpha: 0.3),
                     blurRadius: 20,
                     spreadRadius: 2,
                   ),
@@ -76,8 +76,8 @@ class WorkCard extends StatelessWidget {
                           end: Alignment.bottomCenter,
                           colors: [
                             Colors.transparent,
-                            Colors.black.withOpacity(0.8),
-                            Colors.black.withOpacity(0.95),
+                            Colors.black.withValues(alpha: 0.8),
+                            Colors.black.withValues(alpha: 0.95),
                           ],
                           stops: const [0.4, 0.8, 1.0],
                         ),

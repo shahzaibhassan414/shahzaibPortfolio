@@ -138,7 +138,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
                     SizedBox(height: 25),
 
                     Padding(
-                        padding: EdgeInsets.only(top: 50, bottom: 70),
+                        padding: EdgeInsets.only(top: 50, bottom: 0),
                         child: CustomHoverButton(
                           height: 55,
                           width: 150,
@@ -190,7 +190,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
       hintStyle: TextStyle(color: Colors.grey.shade500),
       errorStyle: TextStyle(color: AppColors().primaryRedColor),
       filled: true,
-      fillColor: AppColors().cardColor.withOpacity(0.09),
+      fillColor: AppColors().cardColor.withValues(alpha: 0.09),
       contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),

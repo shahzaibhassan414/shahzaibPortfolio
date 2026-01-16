@@ -32,6 +32,7 @@ class _SocialIconsState extends State<SocialIcons> {
                   width: AppClass().getMqHeight(context) * 0.07,
                   height: AppClass().getMqHeight(context) * 0.03,
                   child: InkWell(
+                    mouseCursor: SystemMouseCursors.none,
                     onTap: () async {
                       await launchUrl(Uri.parse("https://github.com/shahzaibhassan414"));
                     },
@@ -52,6 +53,7 @@ class _SocialIconsState extends State<SocialIcons> {
                   width: AppClass().getMqHeight(context) * 0.07,
                   height: AppClass().getMqHeight(context) * 0.03,
                   child: InkWell(
+                    mouseCursor: SystemMouseCursors.none,
                     onTap: () async {
                       await launchUrl(Uri.parse("https://www.instagram.com/yaar_shiekh/?hl=en"));
                     },
@@ -72,6 +74,7 @@ class _SocialIconsState extends State<SocialIcons> {
                   width: AppClass().getMqHeight(context) * 0.07,
                   height: AppClass().getMqHeight(context) * 0.03,
                   child: InkWell(
+                    mouseCursor: SystemMouseCursors.none,
                     onTap: () async {
                       await launchUrl(Uri.parse("https://www.linkedin.com/in/shahzaibhassan414/"));
                     },

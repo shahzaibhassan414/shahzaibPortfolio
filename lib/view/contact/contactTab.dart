@@ -190,7 +190,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
               Text(
                 "Designed & Built with ❤️ by",
                 style: GoogleFonts.inter(
-                  color: AppColors().textLight.withOpacity(0.7),
+                  color: AppColors().textLight.withValues(alpha: 0.7),
                   fontSize: 12,
                   letterSpacing: 1,
                 ),
@@ -212,14 +212,14 @@ class _ContactTabState extends ConsumerState<ContactTab> {
                   Container(
                     width: 30,
                     height: 1,
-                    color: AppColors().primaryRedColor.withOpacity(0.3),
+                    color: AppColors().primaryRedColor.withValues(alpha: 0.3),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       "© 2026 • All Rights Reserved",
                       style: GoogleFonts.inter(
-                        color: AppColors().textLight.withOpacity(0.5),
+                        color: AppColors().textLight.withValues(alpha: 0.5),
                         fontSize: 10,
                       ),
                     ),
@@ -227,7 +227,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
                   Container(
                     width: 30,
                     height: 1,
-                    color: AppColors().primaryRedColor.withOpacity(0.3),
+                    color: AppColors().primaryRedColor.withValues(alpha: 0.3),
                   ),
                 ],
               ),
@@ -246,7 +246,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
       hintStyle: TextStyle(color: Colors.grey.shade500),
       errorStyle: TextStyle(color: AppColors().primaryRedColor),
       filled: true,
-      fillColor: AppColors().cardColor.withOpacity(0.09),
+      fillColor: AppColors().cardColor.withValues(alpha: 0.09),
       contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),

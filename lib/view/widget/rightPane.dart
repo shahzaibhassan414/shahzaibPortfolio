@@ -64,7 +64,7 @@ class _RightPaneState extends ConsumerState<RightPane> {
             Expanded(
                 child: Container(
               width: 1,
-              color: AppColors().textColor.withOpacity(0.5),
+              color: AppColors().textColor.withValues(alpha: 0.5),
             ))
           ],
         ));

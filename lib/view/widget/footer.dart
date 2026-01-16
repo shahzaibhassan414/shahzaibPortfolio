@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../Widgets/custom_social_icon.dart';
@@ -21,16 +20,6 @@ class Footer extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
         child: Column(
           children: [
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     _socialIcon('assets/svg/github.svg', 'https://github.com/shahzaibhassan414'),
-            //     const SizedBox(width: 20),
-            //     _socialIcon('assets/svg/instagram.svg', 'https://www.instagram.com/yaar_shiekh/?hl=en'),
-            //     const SizedBox(width: 20),
-            //     _socialIcon('assets/svg/linkedIn.svg', 'https://www.linkedin.com/in/shahzaibhassan414/'),
-            //   ],
-            // ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -54,7 +43,7 @@ class Footer extends ConsumerWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+      padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
       child: Column(
         children: [
 
@@ -64,14 +53,25 @@ class Footer extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Left: Copyright
               Expanded(
-                child: Text(
-                  "© 2026 Shahzaib Hassan. All rights reserved.",
-                  style: GoogleFonts.roboto(
-                    color: AppColors().textColor.withOpacity(0.5),
-                    fontSize: 14,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Made with ❤️ by Shahzaib Hassan",
+                      style: GoogleFonts.roboto(
+                        color: AppColors().textColor.withValues(alpha: 0.5),
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      "© 2026. All rights reserved.",
+                      style: GoogleFonts.roboto(
+                        color: AppColors().textColor.withOpacity(0.5),
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
                 ),
               ),
 

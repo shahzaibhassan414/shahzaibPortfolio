@@ -65,10 +65,10 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
               end: Alignment.centerRight,
               colors: [
                 Colors.transparent,
-                Colors.black.withOpacity(0.1),
+                Colors.black.withValues(alpha: 0.1),
                 Colors.black,
                 Colors.black,
-                Colors.black.withOpacity(0.1),
+                Colors.black.withValues(alpha: 0.1),
                 Colors.transparent,
               ],
               stops: const [0.0, 0.05, 0.2, 0.8, 0.95, 1.0],

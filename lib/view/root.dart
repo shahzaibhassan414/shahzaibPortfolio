@@ -97,12 +97,12 @@ class _RootScreenState extends ConsumerState<RootScreen>
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: AppColors().primaryRedColor.withOpacity(0.2),
+                  color: AppColors().primaryRedColor.withValues(alpha: 0.2),
                   width: 2,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors().primaryRedColor.withOpacity(0.1),
+                    color: AppColors().primaryRedColor.withValues(alpha: 0.1),
                     blurRadius: 30,
                     spreadRadius: 10,
                   )
@@ -178,7 +178,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
               center: const Alignment(0.7, -0.4),
               radius: 1.5,
               colors: [
-                AppColors().primaryRedColor.withOpacity(0.05),
+                AppColors().primaryRedColor.withValues(alpha: 0.05),
                 Colors.transparent,
               ],
             ),

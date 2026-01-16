@@ -64,7 +64,7 @@ class _WorkWebState extends ConsumerState<ProjectMobile> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     decoration: BoxDecoration(
-                      border: Border.all(color: AppColors().primaryRedColor.withOpacity(0.5)),
+                      border: Border.all(color: AppColors().primaryRedColor.withValues(alpha: 0.5)),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Row(
