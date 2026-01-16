@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import '../../Widgets/custom_hover_button.dart';
+import '../../Widgets/custom_social_icon.dart';
 import '../../Widgets/type_writer_text.dart';
 import '../../resource/appClass.dart';
 import '../../resource/colors.dart';
@@ -84,39 +85,18 @@ class _IntroWebState extends State<IntroWeb> {
                       ])),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: AppClass().getMqWidth(context) * 0.03,
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(top: 50, bottom: 70),
-                      child: CustomHoverButton(
-                        text: "Check Out My Work!",
-                        onTap: () {
-                          widget.aScrollController.scrollToIndex(
-                            4,
-                            preferPosition: AutoScrollPosition.begin,
-                          );
-                        },
-                      )),
-                  SizedBox(
-                    width: AppClass().getMqWidth(context) * 0.03,
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(top: 50, bottom: 70),
-                      child: CustomHoverButton(
-                        text: "Contact Me!",
-                        onTap: () {
-                          widget.aScrollController.scrollToIndex(
-                            5,
-                            preferPosition: AutoScrollPosition.begin,
-                          );
-                        },
-                      )),
-                ],
-              ),
+              Padding(
+                  padding: EdgeInsets.only(top: 50, bottom: 30),
+                  child: CustomHoverButton(
+                    width: AppClass().getMqWidth(context) * 0.15,
+                    height: AppClass().getMqWidth(context) * 0.04,
+                    text: "Resume",
+                    onTap: () {
+                      AppClass().downloadResume(context);
+                    },
+                  )),
+
+              SocialIcons(width: AppClass().getMqWidth(context) * 0.15),
 
               SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
             ],

@@ -11,6 +11,7 @@ import 'package:portfolio/view/intro/intro.dart';
 import 'package:portfolio/view/projects/project.dart';
 import 'package:portfolio/view/skills/skills.dart';
 import 'package:portfolio/view/widget/appBar.dart';
+import 'package:portfolio/view/widget/footer.dart';
 import 'package:portfolio/view/widget/leftPane.dart';
 import 'package:portfolio/view/widget/rightPane.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
@@ -253,6 +254,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
                                 index: 5,
                                 child: RepaintBoundary(child: Contact()),
                               ),
+                              const Footer(),
                             ],
                           ),
                         ),
@@ -279,21 +281,21 @@ class _RootScreenState extends ConsumerState<RootScreen>
                     );
                   }),
 
-                  if (scrType != ScreenType.mobile)
-                    Positioned(
-                      left: width * 0.05,
-                      top: 0,
-                      bottom: 0,
-                      child: RepaintBoundary(child: LeftPane()),
-                    ),
-
-                  if (scrType != ScreenType.mobile)
-                    Positioned(
-                      right: width * 0.05,
-                      top: 0,
-                      bottom: 0,
-                      child: RepaintBoundary(child: RightPane()),
-                    ),
+                  // if (scrType != ScreenType.mobile)
+                  //   Positioned(
+                  //     left: width * 0.05,
+                  //     top: 0,
+                  //     bottom: 0,
+                  //     child: RepaintBoundary(child: LeftPane()),
+                  //   ),
+                  //
+                  // if (scrType != ScreenType.mobile)
+                  //   Positioned(
+                  //     right: width * 0.05,
+                  //     top: 0,
+                  //     bottom: 0,
+                  //     child: RepaintBoundary(child: RightPane()),
+                  //   ),
                 ],
               ),
             ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -64,248 +66,257 @@ class _ActionBarState extends ConsumerState<ActionBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 120,
-        padding: const EdgeInsets.only(right: 15.0, top: 20.0),
-        child: () {
-          ScreenType scrType = AppClass().getScreenType(context);
-          if (scrType == ScreenType.mobile || scrType == ScreenType.tab) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  logo(true),
-                  IconButton(
-                    icon: Icon(Icons.menu_rounded,
-                        color: AppColors().primaryRedColor, size: 32),
-                    onPressed: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                  )
-                ],
-              ),
-            );
-          }
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 100),
-            child: Row(
-              children: [
-                logo(false),
-                Expanded(
-                  flex: 9,
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+        child: Container(
+            height: 100,
+            decoration: BoxDecoration(
+              color: const Color(0xff020c1b).withOpacity(0.7),
+            ),
+            padding: const EdgeInsets.only(right: 15.0, top: 20.0),
+            child: () {
+              ScreenType scrType = AppClass().getScreenType(context);
+              if (scrType == ScreenType.mobile || scrType == ScreenType.tab) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            widget.controller.scrollToIndex(1,
-                                preferPosition: AutoScrollPosition.begin);
-                          },
-                          onHover: (bol) {
-                            if (bol) {
-                              ref.read(hoverProvider.notifier).state =
-                                  "aboutTitle";
-                            } else {
-                              ref.read(hoverProvider.notifier).state = "";
-                            }
-                          },
-                          child: Consumer(builder: (context, ref, child) {
-                            String state = ref.watch(hoverProvider);
-                            bool isHovered = (state == "aboutTitle");
-                            return Text("About",
-                                style: TextStyle(
-                                    color: isHovered
-                                        ? AppColors().primaryRedColor
-                                        : AppColors().textColor,
-                                    fontSize: 13,
-                                    fontFamily: 'sfmono'));
-                          }),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            widget.controller.scrollToIndex(2,
-                                preferPosition: AutoScrollPosition.begin);
-                          },
-                          onHover: (bol) {
-                            if (bol) {
-                              ref.read(hoverProvider.notifier).state =
-                                  "expTitle";
-                            } else {
-                              ref.read(hoverProvider.notifier).state = "";
-                            }
-                          },
-                          child: Consumer(builder: (context, ref, child) {
-                            String state = ref.watch(hoverProvider);
-                            bool isHovered = (state == "expTitle");
-                            return Text("Experience",
-                                style: TextStyle(
-                                    color: isHovered
-                                        ? AppColors().primaryRedColor
-                                        : AppColors().textColor,
-                                    fontSize: 13,
-                                    fontFamily: 'sfmono'));
-                          }),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            widget.controller.scrollToIndex(3,
-                                preferPosition: AutoScrollPosition.begin);
-                          },
-                          onHover: (bol) {
-                            if (bol) {
-                              ref.read(hoverProvider.notifier).state =
-                                  "skillsTitle";
-                            } else {
-                              ref.read(hoverProvider.notifier).state = "";
-                            }
-                          },
-                          child: Consumer(builder: (context, ref, child) {
-                            String state = ref.watch(hoverProvider);
-                            bool isHovered = (state == "skillsTitle");
-
-                            return Text("Skills",
-                                style: TextStyle(
-                                    color: isHovered
-                                        ? AppColors().primaryRedColor
-                                        : AppColors().textColor,
-                                    fontSize: 13,
-                                    fontFamily: 'sfmono'));
-                          }),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            widget.controller.scrollToIndex(4,
-                                preferPosition: AutoScrollPosition.begin);
-                          },
-                          onHover: (bol) {
-                            if (bol) {
-                              ref.read(hoverProvider.notifier).state =
-                                  "workTitle";
-                            } else {
-                              ref.read(hoverProvider.notifier).state = "";
-                            }
-                          },
-                          child: Consumer(builder: (context, ref, child) {
-                            String state = ref.watch(hoverProvider);
-                            bool isHovered = (state == "workTitle");
-
-                            return Text("Projects",
-                                style: TextStyle(
-                                    color: isHovered
-                                        ? AppColors().primaryRedColor
-                                        : AppColors().textColor,
-                                    fontSize: 13,
-                                    fontFamily: 'sfmono'));
-                          }),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            widget.controller.scrollToIndex(5,
-                                preferPosition: AutoScrollPosition.begin);
-                          },
-                          onHover: (bol) {
-                            if (bol) {
-                              ref.read(hoverProvider.notifier).state =
-                                  "contactTitle";
-                            } else {
-                              ref.read(hoverProvider.notifier).state = "";
-                            }
-                          },
-                          child: Consumer(builder: (context, ref, child) {
-                            String state = ref.watch(hoverProvider);
-                            bool isHovered = (state == "contactTitle");
-                            return Text(" Contact",
-                                style: TextStyle(
-                                    color: isHovered
-                                        ? AppColors().primaryRedColor
-                                        : AppColors().textColor,
-                                    fontSize: 13));
-                          }),
-                        ),
-                      ),
-                      Consumer(builder: (context, ref, child) {
-                        String state = ref.watch(hoverProvider);
-                        bool isHovered = (state == "resume");
-                        return InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            AppClass().downloadResume(context);
-                          },
-                          onHover: (bol) {
-                            if (bol) {
-                              ref.read(hoverProvider.notifier).state = "resume";
-                            } else {
-                              ref.read(hoverProvider.notifier).state = "";
-                            }
-                          },
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 250),
-                            height: 40,
-                            width: 80,
-                            decoration: BoxDecoration(
-                              color: isHovered
-                                  ? AppColors().primaryRedColor
-                                  : Colors.transparent,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(3.0)),
-                              border: Border.all(
-                                color: AppColors().primaryRedColor,
-                                width: 1.5,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text('Resume',
-                                  style: TextStyle(
-                                      color: isHovered
-                                          ? Colors.white
-                                          : AppColors().primaryRedColor,
-                                      fontSize: 13,
-                                      letterSpacing: 1,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'sfmono')),
-                            ),
-                          ),
-                        );
-                      }),
+                      logo(true),
+                      IconButton(
+                        icon: Icon(Icons.menu_rounded,
+                            color: AppColors().primaryRedColor, size: 32),
+                        onPressed: () {
+                          Scaffold.of(context).openEndDrawer();
+                        },
+                      )
                     ],
                   ),
+                );
+              }
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: Row(
+                  children: [
+                    logo(false),
+                    Expanded(
+                      flex: 9,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              onTap: () {
+                                widget.controller.scrollToIndex(1,
+                                    preferPosition: AutoScrollPosition.begin);
+                              },
+                              onHover: (bol) {
+                                if (bol) {
+                                  ref.read(hoverProvider.notifier).state =
+                                      "aboutTitle";
+                                } else {
+                                  ref.read(hoverProvider.notifier).state = "";
+                                }
+                              },
+                              child: Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "aboutTitle");
+                                return Text("About",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().primaryRedColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              onTap: () {
+                                widget.controller.scrollToIndex(2,
+                                    preferPosition: AutoScrollPosition.begin);
+                              },
+                              onHover: (bol) {
+                                if (bol) {
+                                  ref.read(hoverProvider.notifier).state =
+                                      "expTitle";
+                                } else {
+                                  ref.read(hoverProvider.notifier).state = "";
+                                }
+                              },
+                              child: Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "expTitle");
+                                return Text("Experience",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().primaryRedColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              onTap: () {
+                                widget.controller.scrollToIndex(3,
+                                    preferPosition: AutoScrollPosition.begin);
+                              },
+                              onHover: (bol) {
+                                if (bol) {
+                                  ref.read(hoverProvider.notifier).state =
+                                      "skillsTitle";
+                                } else {
+                                  ref.read(hoverProvider.notifier).state = "";
+                                }
+                              },
+                              child: Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "skillsTitle");
+
+                                return Text("Skills",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().primaryRedColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              onTap: () {
+                                widget.controller.scrollToIndex(4,
+                                    preferPosition: AutoScrollPosition.begin);
+                              },
+                              onHover: (bol) {
+                                if (bol) {
+                                  ref.read(hoverProvider.notifier).state =
+                                      "workTitle";
+                                } else {
+                                  ref.read(hoverProvider.notifier).state = "";
+                                }
+                              },
+                              child: Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "workTitle");
+
+                                return Text("Projects",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().primaryRedColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              onTap: () {
+                                widget.controller.scrollToIndex(5,
+                                    preferPosition: AutoScrollPosition.begin);
+                              },
+                              onHover: (bol) {
+                                if (bol) {
+                                  ref.read(hoverProvider.notifier).state =
+                                      "contactTitle";
+                                } else {
+                                  ref.read(hoverProvider.notifier).state = "";
+                                }
+                              },
+                              child: Consumer(builder: (context, ref, child) {
+                                String state = ref.watch(hoverProvider);
+                                bool isHovered = (state == "contactTitle");
+                                return Text(" Contact",
+                                    style: TextStyle(
+                                        color: isHovered
+                                            ? AppColors().primaryRedColor
+                                            : AppColors().textColor,
+                                        fontSize: 13,
+                                        fontFamily: 'sfmono'));
+                              }),
+                            ),
+                          ),
+                          Consumer(builder: (context, ref, child) {
+                            String state = ref.watch(hoverProvider);
+                            bool isHovered = (state == "resume");
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              onTap: () {
+                                AppClass().downloadResume(context);
+                              },
+                              onHover: (bol) {
+                                if (bol) {
+                                  ref.read(hoverProvider.notifier).state = "resume";
+                                } else {
+                                  ref.read(hoverProvider.notifier).state = "";
+                                }
+                              },
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 250),
+                                height: 40,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  color: isHovered
+                                      ? AppColors().primaryRedColor
+                                      : Colors.transparent,
+                                  borderRadius:
+                                      const BorderRadius.all(Radius.circular(3.0)),
+                                  border: Border.all(
+                                    color: AppColors().primaryRedColor,
+                                    width: 1.5,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text('Resume',
+                                      style: TextStyle(
+                                          color: isHovered
+                                              ? Colors.white
+                                              : AppColors().primaryRedColor,
+                                          fontSize: 13,
+                                          letterSpacing: 1,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'sfmono')),
+                                ),
+                              ),
+                            );
+                          }),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        }());
+              );
+            }()),
+      ),
+    );
   }
 
   mOnTab(int i) {
