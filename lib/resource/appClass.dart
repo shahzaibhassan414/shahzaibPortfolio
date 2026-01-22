@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:portfolio/model/experienceModel.dart';
@@ -37,13 +38,6 @@ class AppClass {
   static final onSceneUrl =
       '''https://play.google.com/store/apps/details?id=com.singlesonscene&hl=en''';
 
-  // static final gitHermarts = '''https://github.com/jeeva-HBK/SafeC19''';
-  static final gitWtIot = '''https://github.com/jeeva-HBK/AutoChem''';
-  static final gitAutoStabilizer =
-      '''https://github.com/jeeva-HBK/AutoStabilizer''';
-  static final gitPAT = '''https://github.com/jeeva-HBK/PAT''';
-
-  // static final gitAVM = '''https://github.com/jeeva-HBK/SafeC19''';
 
   List<WorkModel> projectList = [
     WorkModel(
@@ -286,6 +280,11 @@ class AppClass {
     var url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
 
     try {
+
+      String service_id = dotenv.env['SERVICE_ID'] ?? '';
+      String template_id = dotenv.env['TEMPLATE_ID'] ?? '';
+      String user_id = dotenv.env['USER_ID'] ?? '';
+
       var response = await http
           .post(
         url,
@@ -294,9 +293,9 @@ class AppClass {
           'origin': '*',
         },
         body: jsonEncode({
-          'service_id': 'service_b9mvbxh',
-          'template_id': 'template_dddn7kh',
-          'user_id': 'ejm0mxBIecSEp7_vo',
+          'service_id': service_id,
+          'template_id': template_id,
+          'user_id': user_id,
           'template_params': {
             'from_name': name,
             'email': email,

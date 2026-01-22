@@ -35,3 +35,6 @@ ios/Flutter/Flutter.framework
 # Coverage
 coverage/
 flutter/
+
+#enviorment
+.env
