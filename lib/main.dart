@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/Widgets/custom_cursor.dart';
 import 'package:portfolio/resource/appClass.dart';
 import 'package:portfolio/resource/colors.dart';
 import 'package:portfolio/view/splash/splash.dart';
 
-Future<void> main() async{
-  await dotenv.load(fileName: ".env");
+void main() {
   runApp(ProviderScope(child: const AppTheme()));
 }
 
