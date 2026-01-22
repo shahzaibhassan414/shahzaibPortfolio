@@ -16,7 +16,7 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://shahzaib-flutter-dev-portfolio.vercel.app/">
 
-    <!-- Open Graph / Facebook / LinkedIn -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Shahzaib Hassan | Senior Flutter Developer Portfolio">
     <meta property="og:description" content="Expert Flutter Developer specializing in Android, iOS & Web applications.">
     <meta property="og:type" content="website">
@@ -30,17 +30,33 @@
     <meta name="twitter:description" content="Senior Flutter Developer | Android, iOS & Web Apps">
     <meta name="twitter:image" content="https://shahzaib-flutter-dev-portfolio.vercel.app/preview.png">
 
-    <!-- JSON-LD for Google Site Name -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Shahzaib Hassan",
-      "url": "https://shahzaib-flutter-dev-portfolio.vercel.app/"
-    }
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Shahzaib Hassan",
+            "url": "https://shahzaib-flutter-dev-portfolio.vercel.app/"
+        }
     </script>
 
+    <!-- ADDED: Static loader styles (improves FCP) -->
     <style>
+        body {
+          margin: 0;
+          background: #020c1b;
+          color: #ccd6f6;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; /* ADDED */
+        }
+
+        #loader {
+          display: flex; /* ADDED */
+          align-items: center; /* ADDED */
+          justify-content: center; /* ADDED */
+          height: 100vh; /* ADDED */
+          font-size: 20px; /* ADDED */
+        }
+
         ::-webkit-scrollbar {
           width: 8px;
         }
@@ -51,64 +67,58 @@
           background: #cf1f2b;
           border-radius: 10px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #a11922;
-        }
-
         ::selection {
           background: rgba(207, 31, 43, 0.3);
           color: #ccd6f6;
         }
     </style>
 
-    <!-- iOS meta tags & icons -->
+    <!-- iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Shahzaib's Portfolio">
     <link rel="apple-touch-icon" href="icons/apple-icon-180x180.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico">
 
     <link rel="manifest" href="manifest.json">
 
-    <meta name="google-site-verification" content="LaSFgQeF2MzvNNlU9Mc9XMcpCgHHHRpNDUO_CwSK2uw" />   /// https://shahzaib-dev-portfolio.vercel.app/
-    <meta name="google-site-verification" content="4MVRRekd6C8k41jFZqyeOU3cglKzMv-xlhWUbxLUH7s" />   /// https://www.shahzaib-dev.site/
+    <meta name="google-site-verification" content="LaSFgQeF2MzvNNlU9Mc9XMcpCgHHHRpNDUO_CwSK2uw">
+    <meta name="google-site-verification" content="4MVRRekd6C8k41jFZqyeOU3cglKzMv-xlhWUbxLUH7s">
 
     <script>
         var serviceWorkerVersion = null;
     </script>
+
+    <!-- CHANGED: defer Flutter loader -->
     <script src="flutter.js" defer></script>
 
-    <!-- Vercel Web Analytics -->
-    <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
+    <!-- CHANGED: delay analytics execution -->
     <script defer src="/_vercel/insights/script.js"></script>
-
-    <!-- Vercel Speed Insights -->
-    <script>
-        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-    </script>
 </head>
 
 <body>
+
+<!-- ADDED: Static loader (critical for FCP) -->
+<div id="loader">Loading…</div>
+
 <script>
-    window.addEventListener('load', function(ev) {
+    // CHANGED: start Flutter after browser paint
+    window.addEventListener('load', function () {
       _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        }
-      }).then(function(engineInitializer) {
+        serviceWorker: { serviceWorkerVersion: serviceWorkerVersion }
+      }).then(function (engineInitializer) {
         return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
+      }).then(function (appRunner) {
+        document.getElementById('loader').remove(); // ADDED
         return appRunner.runApp();
       });
     });
 </script>
+
+<!-- CHANGED: defer speed insights -->
 <script defer src="/_vercel/speed-insights/script.js"></script>
+
 </body>
 </html>
