@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:portfolio/model/experienceModel.dart';
@@ -280,11 +279,6 @@ class AppClass {
     var url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
 
     try {
-
-      String service_id = dotenv.env['SERVICE_ID'] ?? '';
-      String template_id = dotenv.env['TEMPLATE_ID'] ?? '';
-      String user_id = dotenv.env['USER_ID'] ?? '';
-
       var response = await http
           .post(
         url,
@@ -293,9 +287,9 @@ class AppClass {
           'origin': '*',
         },
         body: jsonEncode({
-          'service_id': service_id,
-          'template_id': template_id,
-          'user_id': user_id,
+          'service_id': 'service_b9mvbxh',
+          'template_id': 'template_dddn7kh',
+          'user_id': 'ejm0mxBIecSEp7_vo',
           'template_params': {
             'from_name': name,
             'email': email,
