@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shahzaib-dev-portfolio.vercel.app/sitemap.xml
+Sitemap: https://www.shahzaib-dev.site/sitemap.xml
