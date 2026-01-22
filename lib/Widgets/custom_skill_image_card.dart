@@ -5,11 +5,13 @@ import '../resource/colors.dart';
 class CustomSkillImageCard extends StatelessWidget {
   final Map<String, dynamic> skill;
   final bool isHovered;
+  final bool isWeb;
 
   const CustomSkillImageCard({
     super.key,
     required this.skill,
     required this.isHovered,
+    required this.isWeb,
   });
 
   @override
@@ -17,8 +19,8 @@ class CustomSkillImageCard extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
-      width: 130,
-      padding: const EdgeInsets.all(15),
+      width: isWeb ? 130 : 100,
+      padding:  EdgeInsets.all( isWeb ? 15 : 10),
       decoration: BoxDecoration(
         color: isHovered
             ? AppColors().primaryRedColor.withValues(alpha: 0.08)
@@ -83,14 +85,15 @@ class CustomSkillImageCard extends StatelessWidget {
                       ]),
                 child: Image.asset(
                   skill['image'],
-                  height: 70,
-                  width: 70,
+                  height: isWeb ? 70 : 30,
+                  width: isWeb ? 70 : 30,
                   fit: BoxFit.contain,
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 15),
+
+           SizedBox(height: isWeb ? 15 : 5),
           Text(
             skill['name'],
             textAlign: TextAlign.center,

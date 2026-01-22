@@ -317,17 +317,26 @@ class AppClass {
   }
 
 
-  Future<void> openEmail(String email, {String subject = '', String body = ''}) async {
+  Future<void> openEmail(String email,) async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: email,
-      query: 'subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}',
     );
 
     if (await canLaunchUrl(emailUri)) {
       await launchUrl(emailUri);
     } else {
       throw 'Could not open email client';
+    }
+  }
+
+  Future<void> openPhoneNumber(String phoneNumber) async {
+    final Uri whatsappUri = Uri.parse("https://wa.me/$phoneNumber");
+
+    if (await canLaunchUrl(whatsappUri)) {
+      await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not open WhatsApp for $phoneNumber';
     }
   }
 

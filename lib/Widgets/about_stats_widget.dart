@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-import '../resource/appClass.dart';
 import '../resource/colors.dart';
 
 class AboutStatsWidget extends StatefulWidget {
@@ -158,17 +157,17 @@ class _HoverStatCardState extends State<_HoverStatCard> {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: _isHovered 
-              ? AppColors().primaryRedColor.withOpacity(0.1) 
-              : AppColors().cardColor.withOpacity(0.2),
+              ? AppColors().primaryRedColor.withValues(alpha: 0.1)
+              : AppColors().cardColor.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: _isHovered 
-                ? AppColors().primaryRedColor.withOpacity(0.5) 
-                : AppColors().primaryRedColor.withOpacity(0.1),
+                ? AppColors().primaryRedColor.withValues(alpha: 0.5)
+                : AppColors().primaryRedColor.withValues(alpha: 0.1),
           ),
           boxShadow: _isHovered ? [
             BoxShadow(
-              color: AppColors().primaryRedColor.withOpacity(0.1),
+              color: AppColors().primaryRedColor.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 10),
             )
@@ -242,17 +241,17 @@ class _HoverRoleCardState extends State<_HoverRoleCard> {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         decoration: BoxDecoration(
           color: _isHovered 
-              ? AppColors().primaryRedColor.withOpacity(0.1) 
-              : AppColors().cardColor.withOpacity(0.2),
+              ? AppColors().primaryRedColor.withValues(alpha: 0.1)
+              : AppColors().cardColor.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: _isHovered 
-                ? AppColors().primaryRedColor.withOpacity(0.5) 
-                : AppColors().primaryRedColor.withOpacity(0.1),
+                ? AppColors().primaryRedColor.withValues(alpha: 0.5)
+                : AppColors().primaryRedColor.withValues(alpha: 0.1),
           ),
           boxShadow: _isHovered ? [
             BoxShadow(
-              color: AppColors().primaryRedColor.withOpacity(0.1),
+              color: AppColors().primaryRedColor.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 10),
             )
@@ -300,8 +299,8 @@ class _GradientIcon extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors().primaryRedColor.withOpacity(0.2),
-            AppColors().primaryRedColor.withOpacity(0.05),
+            AppColors().primaryRedColor.withValues(alpha: 0.2),
+            AppColors().primaryRedColor.withValues(alpha: 0.05),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

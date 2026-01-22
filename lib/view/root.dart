@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -70,73 +72,84 @@ class _RootScreenState extends ConsumerState<RootScreen>
   Widget _buildMobileDrawer(BuildContext context) {
     return Drawer(
       width: double.infinity,
-      backgroundColor: AppColors().cardColor,
+      // backgroundColor: AppColors().cardColor.withValues(alpha: 0.1),
+      backgroundColor: Colors.transparent,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.zero,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50),
-        child: Column(
-          children: [
-            Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: AppColors().textColor,
-                      )),
-                )),
-            Container(
-              width: 90,
-              height: 90,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppColors().primaryRedColor.withValues(alpha: 0.2),
-                  width: 2,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors().primaryRedColor.withValues(alpha: 0.1),
-                    blurRadius: 30,
-                    spreadRadius: 10,
-                  )
-                ],
-              ),
-              child: Center(
-                child: CustomAppLogo(),
-              ),
+      child: Stack(
+        children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // adjust blur
+            child: Container(
+              color: AppColors().cardColor.withValues(alpha: 0.1), // semi-transparent overlay
             ),
-            const SizedBox(height: 40),
-            _drawerTile("About", 1),
-            _drawerTile("Experience", 2),
-            _drawerTile("Skills", 3),
-            _drawerTile("Work", 4),
-            _drawerTile("Contact", 5),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: OutlinedButton(
-                onPressed: () => AppClass().downloadResume(context),
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: AppColors().primaryRedColor),
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 50),
+            child: Column(
+              children: [
+                Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: AppColors().textColor,
+                          )),
+                    )),
+                Container(
+                  width: 90,
+                  height: 90,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: AppColors().primaryRedColor.withValues(alpha: 0.2),
+                      width: 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors().primaryRedColor.withValues(alpha: 0.1),
+                        blurRadius: 30,
+                        spreadRadius: 10,
+                      )
+                    ],
+                  ),
+                  child: Center(
+                    child: CustomAppLogo(),
+                  ),
                 ),
-                child: Center(
-                  child: Text("Resume",
-                      style: TextStyle(
-                          color: AppColors().primaryRedColor,
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-            )
-          ],
-        ),
+                const SizedBox(height: 40),
+                _drawerTile("About", 1),
+                _drawerTile("Experience", 2),
+                _drawerTile("Skills", 3),
+                _drawerTile("Work", 4),
+                _drawerTile("Contact", 5),
+                const Spacer(),
+                SizedBox(
+                  width: 200,
+                  child: OutlinedButton(
+                    onPressed: () => AppClass().downloadResume(context),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: AppColors().primaryRedColor),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                    ),
+                    child: Center(
+                      child: Text("Resume",
+                          style: TextStyle(
+                              color: AppColors().primaryRedColor,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

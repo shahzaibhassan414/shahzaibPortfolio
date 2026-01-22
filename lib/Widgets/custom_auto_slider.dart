@@ -51,12 +51,13 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
   @override
   Widget build(BuildContext context) {
     final skills = AppClass().skillsImages;
+    bool isWeb = AppClass().getScreenType(context) == ScreenType.web;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: Container(
-        height: 180,
+        height: isWeb ?  180 : 115,
         margin: const EdgeInsets.symmetric(vertical: 20),
         child: ShaderMask(
           shaderCallback: (Rect bounds) {
@@ -71,7 +72,7 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
                 Colors.black.withValues(alpha: 0.1),
                 Colors.transparent,
               ],
-              stops: const [0.0, 0.05, 0.2, 0.8, 0.95, 1.0],
+              stops: const [0.0, 0.01, 0.2, 0.8, 0.99, 1.0],
             ).createShader(bounds);
           },
           blendMode: BlendMode.dstIn,
@@ -96,6 +97,7 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
                     child: CustomSkillImageCard(
                       skill: skill,
                       isHovered: _hoveredIndex == index,
+                      isWeb: isWeb,
                     ),
                   ),
                 );

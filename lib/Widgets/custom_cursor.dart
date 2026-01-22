@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../resource/appClass.dart';
+
 class CustomCursor extends StatefulWidget {
   final Widget child;
   const CustomCursor({Key? key, required this.child}) : super(key: key);
@@ -23,6 +25,7 @@ class _CustomCursorState extends State<CustomCursor> {
       child: Stack(
         children: [
           widget.child,
+          if(AppClass().getScreenType(context) == ScreenType.web)
           AnimatedPositioned(
             duration: const Duration(milliseconds: 100),
             left: pointerOffset.dx - 10,
@@ -39,6 +42,7 @@ class _CustomCursorState extends State<CustomCursor> {
               ),
             ),
           ),
+          if(AppClass().getScreenType(context) == ScreenType.web)
           AnimatedPositioned(
             duration: const Duration(milliseconds: 200),
             left: pointerOffset.dx - 4,

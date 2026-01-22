@@ -59,25 +59,30 @@ class CustomSkillBar extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      width: isHovered ? 12 : 0,
-                      height: 2,
-                      color: AppColors().primaryRedColor,
-                      margin: EdgeInsets.only(right: isHovered ? 8 : 0),
-                    ),
-                    Text(
-                      skillName,
-                      style: GoogleFonts.robotoSlab(
-                        color: isHovered ? AppColors().primaryRedColor : Colors.white,
-                        letterSpacing: 1,
-                        fontWeight: isHovered ? FontWeight.bold : FontWeight.w500,
-                        fontSize: isWeb ? 17 : 15,
+                Expanded(
+                  child: Row(
+                    children: [
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        width: isHovered ? 12 : 0,
+                        height: 2,
+                        color: AppColors().primaryRedColor,
+                        margin: EdgeInsets.only(right: isHovered ? 8 : 0),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: Text(
+                          skillName,
+                          style: GoogleFonts.robotoSlab(
+                            color: isHovered ? AppColors().primaryRedColor : Colors.white,
+                            letterSpacing: 1,
+                            fontWeight: isHovered ? FontWeight.bold : FontWeight.w500,
+                            fontSize: isWeb ? 17 : 15,
+                          ),
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Text(
                   "${(value * 100).toInt()}%",
