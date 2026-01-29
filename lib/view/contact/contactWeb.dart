@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/resource/appClass.dart';
-
 import '../../Widgets/custom_contact_card.dart';
 import '../../Widgets/custom_hover_button.dart';
 import '../../Widgets/main_title_widget.dart';
@@ -11,7 +10,7 @@ import '../../resource/colors.dart';
 import '../../resource/strings.dart';
 
 class ContactWeb extends ConsumerStatefulWidget {
-  const ContactWeb({Key? key}) : super(key: key);
+  const ContactWeb({super.key});
 
   @override
   ConsumerState<ContactWeb> createState() => _ContactWebState();
@@ -26,46 +25,45 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
   @override
   Widget build(BuildContext context) {
     final mqWidth = AppClass().getMqWidth(context);
-    final mqHeight = AppClass().getMqHeight(context);
 
     return Container(
       width: mqWidth,
-      padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
       child: Column(
         children: [
           // Title
-          MainTitleWidget( title: "What's Next?"),
+          const MainTitleWidget( title: "What's Next?"),
           Text(
-            "Get In Touch",
+            'Get In Touch',
             style: GoogleFonts.robotoSlab(
               color: AppColors().textColor,
               fontWeight: FontWeight.bold,
               fontSize: 50,
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
 
           Row(
             spacing: 20,
             children: [
               CustomContactCard(
                 icon: Icons.call,
-                title: "Phone Number",
+                title: 'Phone Number',
                 value: AppClass.phoneNumber,
               ),
               CustomContactCard(
                 icon: Icons.mail,
-                title: "Email Address",
+                title: 'Email Address',
                 value: AppClass.email,
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
 
           Text(
-            "Feel Free To Contact Me",
+            'Feel Free To Contact Me',
             style: GoogleFonts.robotoSlab(
               color: AppColors().textColor,
               fontWeight: FontWeight.bold,
@@ -85,13 +83,13 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // Form Card
           Center(
             child: Container(
               width: mqWidth * 0.55,
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -107,7 +105,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
                       },
                       decoration: _inputDecoration('Name*'),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
                     // Contact Info Field
                     TextFormField(
@@ -120,7 +118,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
                     // Message Field
                     TextFormField(
@@ -135,14 +133,14 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
                       decoration: _inputDecoration('Message*'),
                     ),
 
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
 
                     Padding(
-                        padding: EdgeInsets.only(top: 50, bottom: 0),
+                        padding: const EdgeInsets.only(top: 50, bottom: 0),
                         child: CustomHoverButton(
                           height: 55,
                           width: 150,
-                          text: "Send Message",
+                          text: 'Send Message',
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               ref.read(progressProvider.notifier).state = true;
@@ -191,14 +189,14 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
       errorStyle: TextStyle(color: AppColors().primaryRedColor),
       filled: true,
       fillColor: AppColors().cardColor.withValues(alpha: 0.09),
-      contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+      contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.white24),
+        borderSide: const BorderSide(color: Colors.white24),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.white24),
+        borderSide: const BorderSide(color: Colors.white24),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),

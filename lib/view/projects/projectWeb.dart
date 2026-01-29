@@ -6,7 +6,7 @@ import '../../resource/colors.dart';
 import 'Widgets/work_card.dart';
 
 class ProjectWeb extends ConsumerStatefulWidget {
-  const ProjectWeb({Key? key}) : super(key: key);
+  const ProjectWeb({super.key});
 
   @override
   ConsumerState<ProjectWeb> createState() => _WorkWebState();
@@ -92,6 +92,7 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
               ),
             ),
           ),
+          
 
           SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
         ],
