@@ -268,53 +268,53 @@ class _ActionBarState extends ConsumerState<ActionBar> {
                               }),
                             ),
                           ),
-                          Consumer(builder: (context, ref, child) {
-                            String state = ref.watch(hoverProvider);
-                            bool isHovered = (state == "resume");
-                            return InkWell(
-                              mouseCursor: SystemMouseCursors.none,
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              onTap: () {
-                                AppClass().downloadResume(context);
-                              },
-                              onHover: (bol) {
-                                if (bol) {
-                                  ref.read(hoverProvider.notifier).state = "resume";
-                                } else {
-                                  ref.read(hoverProvider.notifier).state = "";
-                                }
-                              },
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 250),
-                                height: 40,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                  color: isHovered
-                                      ? AppColors().primaryRedColor
-                                      : Colors.transparent,
-                                  borderRadius:
-                                      const BorderRadius.all(Radius.circular(3.0)),
-                                  border: Border.all(
-                                    color: AppColors().primaryRedColor,
-                                    width: 1.5,
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text('Resume',
-                                      style: TextStyle(
-                                          color: isHovered
-                                              ? Colors.white
-                                              : AppColors().primaryRedColor,
-                                          fontSize: 13,
-                                          letterSpacing: 1,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'sfmono')),
-                                ),
-                              ),
-                            );
-                          }),
+                          // Consumer(builder: (context, ref, child) {
+                          //   String state = ref.watch(hoverProvider);
+                          //   bool isHovered = (state == "resume");
+                          //   return InkWell(
+                          //     mouseCursor: SystemMouseCursors.none,
+                          //     splashColor: Colors.transparent,
+                          //     highlightColor: Colors.transparent,
+                          //     hoverColor: Colors.transparent,
+                          //     onTap: () {
+                          //       AppClass().downloadResume(context);
+                          //     },
+                          //     onHover: (bol) {
+                          //       if (bol) {
+                          //         ref.read(hoverProvider.notifier).state = "resume";
+                          //       } else {
+                          //         ref.read(hoverProvider.notifier).state = "";
+                          //       }
+                          //     },
+                          //     child: AnimatedContainer(
+                          //       duration: const Duration(milliseconds: 250),
+                          //       height: 40,
+                          //       width: 80,
+                          //       decoration: BoxDecoration(
+                          //         color: isHovered
+                          //             ? AppColors().primaryRedColor
+                          //             : Colors.transparent,
+                          //         borderRadius:
+                          //             const BorderRadius.all(Radius.circular(3.0)),
+                          //         border: Border.all(
+                          //           color: AppColors().primaryRedColor,
+                          //           width: 1.5,
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text('Resume',
+                          //             style: TextStyle(
+                          //                 color: isHovered
+                          //                     ? Colors.white
+                          //                     : AppColors().primaryRedColor,
+                          //                 fontSize: 13,
+                          //                 letterSpacing: 1,
+                          //                 fontWeight: FontWeight.bold,
+                          //                 fontFamily: 'sfmono')),
+                          //       ),
+                          //     ),
+                          //   );
+                          // }),
                         ],
                       ),
                     ),

@@ -1,16 +1,16 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../resource/appClass.dart';
-import 'custom_skill_image_card.dart';
+import 'custom_skill_bar.dart';
 
-class SkillsAutoSlider extends StatefulWidget {
-  const SkillsAutoSlider({super.key});
+class StacksTextAutoSlider extends StatefulWidget {
+  const StacksTextAutoSlider({super.key});
 
   @override
-  State<SkillsAutoSlider> createState() => _SkillsAutoSliderState();
+  State<StacksTextAutoSlider> createState() => _StacksTextAutoSliderState();
 }
 
-class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
+class _StacksTextAutoSliderState extends State<StacksTextAutoSlider> {
   final ScrollController _scrollController = ScrollController();
   Timer? _timer;
   double _scrollPosition = 0.0;
@@ -20,18 +20,23 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
   @override
   void initState() {
     super.initState();
-    _startMarquee();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollPosition = _scrollController.position.maxScrollExtent;
+        _scrollController.jumpTo(_scrollPosition);
+      }
+      _startMarquee();
+    });
   }
 
   void _startMarquee() {
     _timer = Timer.periodic(const Duration(milliseconds: 16), (timer) {
-
       if (_scrollController.hasClients) {
-        _scrollPosition += _speed;
+        _scrollPosition -= _speed; // Subtracting speed to scroll backwards
 
-        if (_scrollPosition >= _scrollController.position.maxScrollExtent) {
-          _scrollPosition = 0;
-          _scrollController.jumpTo(0);
+        if (_scrollPosition <= 0) {
+          _scrollPosition = _scrollController.position.maxScrollExtent;
+          _scrollController.jumpTo(_scrollPosition);
         } else {
           _scrollController.jumpTo(_scrollPosition);
         }
@@ -48,12 +53,11 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final skills = AppClass().skillsImages;
+    final skills = AppClass().skills;
     bool isWeb = AppClass().getScreenType(context) == ScreenType.web;
-
     return Container(
-      height: isWeb ?  180 : 115,
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      height: isWeb ? 60 : 40,
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: ShaderMask(
         shaderCallback: (Rect bounds) {
           return const LinearGradient(
@@ -65,7 +69,7 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
               Colors.black,
               Colors.transparent,
             ],
-            stops: [0.0, 0.02, 0.98, 1.0],
+            stops: [0.0, 0.02, 0.98, 1.0], // Reduced the fade area
           ).createShader(bounds);
         },
         blendMode: BlendMode.dstIn,
@@ -83,15 +87,14 @@ class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
               final skill = entry.value;
 
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: MouseRegion(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: CustomSkillBar(
+                  skillName: skill['name'],
+                  value: skill['value'],
+                  isWeb: isWeb,
+                  isHovered: _hoveredIndex == index,
                   onEnter: (_) => setState(() => _hoveredIndex = index),
                   onExit: (_) => setState(() => _hoveredIndex = null),
-                  child: CustomSkillImageCard(
-                    skill: skill,
-                    isHovered: _hoveredIndex == index,
-                    isWeb: isWeb,
-                  ),
                 ),
               );
             }).toList(),

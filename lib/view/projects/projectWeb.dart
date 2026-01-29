@@ -23,11 +23,11 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
 
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: AppClass().getMqWidth(context) * 0.05),
+          horizontal: AppClass().getMqWidth(context) * 0.03),
       child: Column(
         children: [
-          MainTitleWidget(
-            title: "My Projects",
+          const MainTitleWidget(
+            title: 'My Projects',
           ),
           const SizedBox(height: 30),
 
@@ -73,7 +73,7 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "SHOW MORE",
+                      'SHOW MORE',
                       style: TextStyle(
                         color: AppColors().primaryRedColor,
                         fontFamily: 'sfmono',
@@ -106,8 +106,9 @@ class ProjectModel {
   String? description;
   String? iosLink;
   String? androidLink;
+  List<String>? techs;
 
   ProjectModel({required this.name, required this.image, this.description,
-    this.iosLink, this.androidLink
+    this.iosLink, this.androidLink, this.techs
   });
 }

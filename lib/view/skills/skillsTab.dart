@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../Widgets/custom_auto_slider.dart';
-import '../../Widgets/custom_skill_bar.dart';
 import '../../Widgets/main_title_widget.dart';
+import '../../Widgets/stacks_text_auto_slider.dart';
 import '../../resource/appClass.dart';
 
 class SkillsTab extends ConsumerStatefulWidget {
@@ -33,27 +33,18 @@ class _ExperienceWebState extends ConsumerState<SkillsTab> {
             title: "Skills",
             isWeb: false,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: AppClass().skills.asMap().entries.map((entry) {
-              final index = entry.key;
-              final skill = entry.value;
-              final bool isHovered = hoveredIndex == index;
-
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: CustomSkillBar(
-                  skillName: skill["name"],
-                  value: skill["value"],
-                  isHovered: isHovered,
-                  onEnter: (event) => setState(() => hoveredIndex = index),
-                  onExit: (event) => setState(() => hoveredIndex = null),
-                ),
-              );
-            }).toList(),
+          const SizedBox(height: 30),
+          Text(
+            "Stacks",
+            style: GoogleFonts.robotoSlab(
+                color: Colors.white,
+                letterSpacing: 1,
+                fontWeight: FontWeight.bold,
+                fontSize: 20),
           ),
-
-          SizedBox(
+          const SizedBox(height: 20),
+          const StacksTextAutoSlider(),
+          const SizedBox(
             height: 50,
           ),
           Text(
@@ -64,10 +55,10 @@ class _ExperienceWebState extends ConsumerState<SkillsTab> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          SkillsAutoSlider(),
+          const SkillsAutoSlider(),
           SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
         ],
       ),

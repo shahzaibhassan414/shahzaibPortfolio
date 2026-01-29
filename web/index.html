@@ -46,15 +46,7 @@
           margin: 0;
           background: #020c1b;
           color: #ccd6f6;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; /* ADDED */
-        }
-
-        #loader {
-          display: flex; /* ADDED */
-          align-items: center; /* ADDED */
-          justify-content: center; /* ADDED */
-          height: 100vh; /* ADDED */
-          font-size: 20px; /* ADDED */
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         ::-webkit-scrollbar {
@@ -88,7 +80,7 @@
     <meta name="google-site-verification" content="4MVRRekd6C8k41jFZqyeOU3cglKzMv-xlhWUbxLUH7s">
 
     <script>
-        var serviceWorkerVersion = null;
+        var serviceWorkerVersion = "{{flutter_service_worker_version}}";
     </script>
 
     <!-- CHANGED: defer Flutter loader -->
@@ -100,18 +92,14 @@
 
 <body>
 
-<!-- ADDED: Static loader (critical for FCP) -->
-<div id="loader">Loading…</div>
-
 <script>
     // CHANGED: start Flutter after browser paint
     window.addEventListener('load', function () {
-      _flutter.loader.loadEntrypoint({
+      _flutter.loader.load({
         serviceWorker: { serviceWorkerVersion: serviceWorkerVersion }
       }).then(function (engineInitializer) {
         return engineInitializer.initializeEngine();
       }).then(function (appRunner) {
-        document.getElementById('loader').remove(); // ADDED
         return appRunner.runApp();
       });
     });

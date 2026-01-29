@@ -1,12 +1,15 @@
 import 'dart:ui';
 
 class AppColors {
-  var primaryRedColor = const Color(0xffD72638);
-  var primaryColor = const Color(0xff0a192e);
-  var textLight = const Color(0xffdbd7d7);
-  var cardColor = const Color(0xff422024);
-  var blackColor = const Color(0xff0B0C10);
-  var darkColor = const Color(0xff16213E);
-  var textColor = const Color(0xffEDEDED);
-
+  var primaryColor = const Color(0xff38BDF8); // Sky Blue (Primary Accent)
+  var backgroundColor = const Color(0xff020617); // Deep Dark Navy (Background)
+  var cardColor = const Color(0xff111827); // Dark Navy (Cards/Surface)
+  var textColor = const Color(0xffE5E7EB); // Soft White (Main Text)
+  var mutedTextColor = const Color(0xff94A3B8); // Muted Text (Slate)
+  
+  // Compatibility mappings
+  var primaryRedColor = const Color(0xff38BDF8); 
+  var textLight = const Color(0xff94A3B8);
+  var blackColor = const Color(0xff020617);
+  var darkColor = const Color(0xff020617);
 }

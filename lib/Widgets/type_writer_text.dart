@@ -52,7 +52,7 @@ class _TypeWriterTextState extends State<TypeWriterText>
         return Text(
           _text.substring(0, _charCount.value),
           style: GoogleFonts.robotoSlab(
-            color: AppColors().textLight,
+            color: AppColors().textColor,
             fontWeight: FontWeight.bold,
             letterSpacing: 3,
             fontSize: widget.fontSize ?? 45,

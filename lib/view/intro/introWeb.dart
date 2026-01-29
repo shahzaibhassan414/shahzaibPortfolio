@@ -23,8 +23,11 @@ class _IntroWebState extends State<IntroWeb> {
     return Container(
       color: Colors.transparent,
       margin: EdgeInsets.only(
-          left: AppClass().getMqWidth(context) * 0.01,
-          top: AppClass().getMqHeight(context) * 0.1),
+          left: AppClass().getMqWidth(context) * 0.03,
+          right: AppClass().getMqWidth(context) * 0.03,
+          top: AppClass().getMqHeight(context) * 0.12,
+          bottom: AppClass().getMqHeight(context) * 0.12,
+      ),
       child: Row(
         children: [
           Column(
@@ -52,12 +55,8 @@ class _IntroWebState extends State<IntroWeb> {
                   ),
                 ),
               ),
-              Container(
-                width: AppClass().getMqWidth(context) -
-                    (AppClass().getMqWidth(context) * 0.23),
-                child: TypeWriterText(
-                  text: Strings.whatIdo,
-                ),
+              TypeWriterText(
+                text: Strings.whatIdo,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
@@ -96,7 +95,7 @@ class _IntroWebState extends State<IntroWeb> {
                     },
                   )),
 
-              SocialIcons(width: AppClass().getMqWidth(context) * 0.15),
+              SocialIcons(width: AppClass().getMqWidth(context) * 0.17),
 
               SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
             ],

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -14,8 +13,6 @@ import 'package:portfolio/view/projects/project.dart';
 import 'package:portfolio/view/skills/skills.dart';
 import 'package:portfolio/view/widget/appBar.dart';
 import 'package:portfolio/view/widget/footer.dart';
-import 'package:portfolio/view/widget/leftPane.dart';
-import 'package:portfolio/view/widget/rightPane.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import '../Widgets/custom_app_logo.dart';
 import '../resource/colors.dart';
@@ -72,7 +69,6 @@ class _RootScreenState extends ConsumerState<RootScreen>
   Widget _buildMobileDrawer(BuildContext context) {
     return Drawer(
       width: double.infinity,
-      // backgroundColor: AppColors().cardColor.withValues(alpha: 0.1),
       backgroundColor: Colors.transparent,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.zero,
@@ -80,9 +76,9 @@ class _RootScreenState extends ConsumerState<RootScreen>
       child: Stack(
         children: [
           BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // adjust blur
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
-              color: AppColors().cardColor.withValues(alpha: 0.1), // semi-transparent overlay
+              color: AppColors().backgroundColor.withValues(alpha: 0.8),
             ),
           ),
           Padding(
@@ -108,40 +104,40 @@ class _RootScreenState extends ConsumerState<RootScreen>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: AppColors().primaryRedColor.withValues(alpha: 0.2),
+                      color: AppColors().primaryColor.withValues(alpha: 0.2),
                       width: 2,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors().primaryRedColor.withValues(alpha: 0.1),
+                        color: AppColors().primaryColor.withValues(alpha: 0.1),
                         blurRadius: 30,
                         spreadRadius: 10,
                       )
                     ],
                   ),
-                  child: Center(
+                  child: const Center(
                     child: CustomAppLogo(),
                   ),
                 ),
                 const SizedBox(height: 40),
-                _drawerTile("About", 1),
-                _drawerTile("Experience", 2),
-                _drawerTile("Skills", 3),
-                _drawerTile("Work", 4),
-                _drawerTile("Contact", 5),
+                _drawerTile('About', 1),
+                _drawerTile('Experience', 2),
+                _drawerTile('Skills', 3),
+                _drawerTile('Work', 4),
+                _drawerTile('Contact', 5),
                 const Spacer(),
                 SizedBox(
                   width: 200,
                   child: OutlinedButton(
                     onPressed: () => AppClass().downloadResume(context),
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: AppColors().primaryRedColor),
+                      side: BorderSide(color: AppColors().primaryColor),
                       padding: const EdgeInsets.symmetric(vertical: 15),
                     ),
                     child: Center(
-                      child: Text("Resume",
+                      child: Text('Resume',
                           style: TextStyle(
-                              color: AppColors().primaryRedColor,
+                              color: AppColors().primaryColor,
                               fontWeight: FontWeight.bold)),
                     ),
                   ),
@@ -183,7 +179,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(0xff020c1b),
+        backgroundColor: AppColors().backgroundColor,
         endDrawer: isMobile ? _buildMobileDrawer(context) : null,
         body: Container(
           decoration: BoxDecoration(
@@ -191,7 +187,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
               center: const Alignment(0.7, -0.4),
               radius: 1.5,
               colors: [
-                AppColors().primaryRedColor.withValues(alpha: 0.05),
+                AppColors().primaryColor.withValues(alpha: 0.05),
                 Colors.transparent,
               ],
             ),
@@ -199,7 +195,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
           child: AnimatedBackground(
             behaviour: RandomParticleBehaviour(
                 options: ParticleOptions(
-                    baseColor: AppColors().primaryRedColor,
+                    baseColor: AppColors().primaryColor,
                     particleCount: 25,
                     spawnMaxSpeed: 10,
                     spawnMinSpeed: 2,
@@ -233,7 +229,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
                                 controller: mScrollController,
                                 index: 0,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 80), // Space for AppBar
+                                  padding: const EdgeInsets.only(top: 80),
                                   child: RepaintBoundary(child: IntroContent(mScrollController)),
                                 ),
                               ),
@@ -241,31 +237,31 @@ class _RootScreenState extends ConsumerState<RootScreen>
                                 key: const ValueKey(1),
                                 controller: mScrollController,
                                 index: 1,
-                                child: RepaintBoundary(child: About()),
+                                child: const RepaintBoundary(child: About()),
                               ),
                               AutoScrollTag(
                                 key: const ValueKey(2),
                                 controller: mScrollController,
                                 index: 2,
-                                child: RepaintBoundary(child: Experience()),
+                                child: const RepaintBoundary(child: Experience()),
                               ),
                               AutoScrollTag(
                                 key: const ValueKey(3),
                                 controller: mScrollController,
                                 index: 3,
-                                child: RepaintBoundary(child: Skills()),
+                                child: const RepaintBoundary(child: Skills()),
                               ),
                               AutoScrollTag(
                                 key: const ValueKey(4),
                                 controller: mScrollController,
                                 index: 4,
-                                child: RepaintBoundary(child: Projects()),
+                                child: const RepaintBoundary(child: Projects()),
                               ),
                               AutoScrollTag(
                                 key: const ValueKey(5),
                                 controller: mScrollController,
                                 index: 5,
-                                child: RepaintBoundary(child: Contact()),
+                                child: const RepaintBoundary(child: Contact()),
                               ),
                               const Footer(),
                             ],
@@ -275,7 +271,6 @@ class _RootScreenState extends ConsumerState<RootScreen>
                     ),
                   ),
 
-                  // Floating AppBar
                   Consumer(builder: (context, ref, child) {
                     final isScrollingUp = ref.watch(scrollControlProvider);
                     updateVisibility(isScrollingUp);

@@ -98,7 +98,34 @@ class ProjectDetailDialog extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
+
+                      // Tech Stack Chips
+                      if (project.techs != null && project.techs!.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: project.techs!.map((tech) => Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: AppColors().primaryRedColor.withOpacity(0.3)),
+                                color: AppColors().primaryRedColor.withOpacity(0.1),
+                              ),
+                              child: Text(
+                                tech,
+                                style: GoogleFonts.roboto(
+                                  color: AppColors().primaryRedColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            )).toList(),
+                          ),
+                        ),
+
                       Text(
                         project.description ?? "No description available for this project.",
                         style: GoogleFonts.roboto(

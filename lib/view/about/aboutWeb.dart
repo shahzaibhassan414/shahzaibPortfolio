@@ -20,8 +20,8 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-          left: AppClass().getMqWidth(context) * 0.05,
-          right: AppClass().getMqWidth(context) * 0.05),
+          left: AppClass().getMqWidth(context) * 0.03,
+          right: AppClass().getMqWidth(context) * 0.03),
       padding: const EdgeInsets.only(bottom: 40),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -43,7 +43,7 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                       text: TextSpan(
                           text: Strings.about1,
                           style: GoogleFonts.roboto(
-                            color: AppColors().textLight,
+                            color: AppColors().textColor,
                             letterSpacing: 1,
                             height: 1.5,
                             fontSize: 18,
@@ -75,7 +75,7 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                       text: TextSpan(
                           text: Strings.about4,
                           style: GoogleFonts.roboto(
-                            color: AppColors().textLight,
+                            color: AppColors().textColor,
                             letterSpacing: 1,
                             height: 1.5,
                             fontSize: 18,
@@ -144,7 +144,7 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                       text: TextSpan(
                           text: Strings.about11,
                           style: GoogleFonts.roboto(
-                            color: AppColors().textLight,
+                            color: AppColors().textColor,
                             letterSpacing: 1,
                             height: 1.5,
                             fontSize: 18,
