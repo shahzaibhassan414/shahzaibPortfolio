@@ -6,7 +6,7 @@ import 'package:portfolio/view/about/aboutMobile.dart';
 import 'package:portfolio/view/about/aboutTab.dart';
 
 class About extends StatefulWidget {
-  const About({Key? key}) : super(key: key);
+  const About({super.key});
 
   @override
   State<About> createState() => _AboutState();
@@ -16,9 +16,9 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Responsive(
-      webView: AboutWeb(),
-      tabView: AboutTab(),
-      mobileView: AboutMobile(),
+      webView: const AboutWeb(),
+      tabView: const AboutTab(),
+      mobileView: const AboutMobile(),
     );
   }
 }

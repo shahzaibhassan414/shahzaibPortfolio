@@ -22,10 +22,15 @@ class _ExperienceWebState extends ConsumerState<SkillsWeb> {
 
     return Container(
       width: mqWidth,
-      margin: EdgeInsets.symmetric(
-        horizontal: mqWidth * 0.03,
+      margin: EdgeInsets.only(
+          left: mqWidth * 0.03,
+          right: mqWidth * 0.03,
+          top: mqWidth * 0.1,
       ),
-      padding: const EdgeInsets.symmetric(vertical: 50),
+      // EdgeInsets.symmetric(
+      //   horizontal: mqWidth * 0.03,
+      // ),
+      // padding: const EdgeInsets.symmetric(vertical: 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -58,7 +63,6 @@ class _ExperienceWebState extends ConsumerState<SkillsWeb> {
             height: 20,
           ),
           const SkillsAutoSlider(),
-          SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
         ],
       ),
     );

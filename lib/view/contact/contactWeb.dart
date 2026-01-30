@@ -28,7 +28,12 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
 
     return Container(
       width: mqWidth,
-      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+      padding: EdgeInsets.only(
+        left: mqWidth * 0.03,
+        right: mqWidth * 0.03,
+        top: mqWidth * 0.1,
+      ),
+      // const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
       child: Column(
         children: [
           // Title
@@ -43,7 +48,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
           ),
           const SizedBox(height: 15),
 
-          Row(
+          const Row(
             spacing: 20,
             children: [
               CustomContactCard(
@@ -70,7 +75,7 @@ class _ContactWebState extends ConsumerState<ContactWeb> {
               fontSize: 50,
             ),
           ),
-          Container(
+          SizedBox(
             width: mqWidth * 0.5,
             child: Text(
               Strings.endTxt,

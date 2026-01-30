@@ -96,8 +96,6 @@ class _IntroWebState extends State<IntroWeb> {
                   )),
 
               SocialIcons(width: AppClass().getMqWidth(context) * 0.17),
-
-              SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
             ],
           ),
         ],

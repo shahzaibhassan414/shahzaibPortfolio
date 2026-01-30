@@ -1,16 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:portfolio/model/experienceModel.dart';
 import 'package:portfolio/resource/colors.dart';
 import 'package:portfolio/resource/custom_images.dart';
 import 'package:portfolio/resource/styles.dart';
 import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import '../model/packageModel.dart';
 import '../view/projects/projectWeb.dart';
 
 
@@ -22,70 +20,27 @@ class AppClass {
   ScrollController controller = ScrollController();
 
   /* URL */
-  static final resumeDownloadURL =
+  static const resumeDownloadURL =
       '''https://drive.google.com/file/d/1ZhD0RvF2-rQYX8trAtMzGivGLetlB3hx/view?usp=sharing''';
 
-  static final email = "shahzaibhassan414@gmail.com";
-  static final phoneNumber = "+92 316 0984600";
+  static const email = 'shahzaibhassan414@gmail.com';
+  static const phoneNumber = '+92 316 0984600';
 
-  static final simmanUrl =
-      '''https://play.google.com/store/apps/details?id=com.hk.trudoctor&hl=en ''';
-  static final examConnectUrl = ''' ''';
-  static final MaterialWorldUrl = ''' ''';
-  static final pawPlayLoveUrl =
-      '''https://play.google.com/store/apps/details?id=com.pawplaylove&hl=en''';
-  static final seePakistanUrl = ''' ''';
-  static final onSceneUrl =
-      '''https://play.google.com/store/apps/details?id=com.singlesonscene&hl=en''';
-
-
-  List<WorkModel> projectList = [
-    WorkModel(
-        projectTitle: 'Simman',
-        projectContent:
-            'Simman is an innovative medical app that is designed to assist new doctors in checking vital signs such as blood pressure, heart rate, SPO2, and respiratory rate. This user-friendly app is ideal for medical professionals who are just starting out in their careers and may require additional support and guidance in patient monitoring',
-        techs: ['Flutter', 'Shared Preferences']),
-    WorkModel(
-        projectTitle: 'ExamConnect',
-        projectContent:
-            'ExamConnect revolutionizes medical education through its Flutter-based mobile app, seamlessly integrated with Firebase database technology, fostering collaborative learning among students. The app facilitates partner matching based on preferences, schedules, and subjects, while real-time messaging encourages insightful discussions. Study groups tailored to specific subjects enable effortless resource sharing, and flexible scheduling ensures efficient coordination. With a strong focus on security.',
-        techs: [
-          'Flutter',
-          'Firebase Messaging',
-          'MVVM',
-        ]),
-    WorkModel(
-        projectTitle: 'Material World',
-        projectContent:
-            '''Material World is a multi-vendor ecommerce application developed using Flutter, delivering a seamless and secure cross-platform shopping experience. Built as a collaborative marketplace, the app offers a wide range of products in a single ecosystem, integrates secure payment gateways with encrypted transactions, and provides a personalized shopping journey through user-based recommendations to enhance overall customer satisfaction.''',
-        techs: ['REST APIs', 'Shared Memory', 'MVC']),
-    WorkModel(
-        projectTitle: 'Paw Play Love',
-        projectContent:
-            '''Paw Play Love is a community-driven app designed to connect pet owners through their shared love for animals. Beyond traditional dating, it fosters meaningful friendships, playdates, and social interactions for both pets and their owners. The platform provides a safe and welcoming space to bond over pet companionship, arrange meetups, and build lasting connections. Join Paw Play Love to enhance your pet’s life and be part of a community that truly values the special bond between pets and their owners.''',
-        techs: [
-          'Agile Methodologies',
-              'REST APIs',
-          'Shared Memory',
-        ]),
-    WorkModel(
-        projectTitle: 'See Pakistan',
-        projectContent:
-            '''The platform enables seamless activity and event schedule management, provides detailed startup profiles, speaker information, and a complete event rundown, while also offering built-in tools for attendee feedback collection and efficient startup evaluations, making event management and participation smooth and well-organized.''',
-        techs: [
-          'MVVM',
-              'REST APIs',
-          'Figma',
-        ]),
-    WorkModel(
-        projectTitle: 'On Scene',
-        projectContent:
-            '''On Scene is a location-aware mobile application designed to help users discover nearby people, check into interesting venues, and build meaningful connections for friendship, fun, or more. It offers effortless discovery through real-time check-ins, smooth matching via swipe, browse, and direct messaging features, and robust privacy controls to empower users to manage connections safely. The app addresses challenges like real-time location tracking, engaging matching flows, and user safety by implementing intuitive check-in mechanisms, seamless chat and profile interactions, and secure data practices. The result is a polished, accessible social platform that encourages exploration, fosters genuine connections, and prioritizes user privacy.''',
-        techs: [
-          'Google Maps',
-              'IAP',
-          'Firebase',
-        ]),
+  List<PackageModel> packages = [
+    PackageModel(
+      name: 'fancy_button_animations',
+      description: 'A Flutter package to add beautiful and interactive animations to buttons with minimal effort.',
+      version: 'v0.0.2',
+      pubLink: 'https://pub.dev/packages/fancy_button_animations',
+      techs: ['Flutter', 'Dart', 'Animations']
+    ),
+    PackageModel(
+      name: 'inner_curved_circle',
+      description: 'A Flutter package that provides a widget to create a circle with an inner curved effect, perfect for custom UI designs.',
+      version: 'v0.0.2',
+      pubLink: 'https://pub.dev/packages/inner_curved_circle',
+      techs: ['Flutter', 'Dart', 'UI Components']
+    ),
   ];
 
   final List<Map<String, dynamic>> skills = [
@@ -135,44 +90,44 @@ class AppClass {
     ProjectModel(
       name: 'Paw Play Love',
       image: CustomImages.projectPPl,
-      description: 'I developed Paw Play Love, a community-driven platform designed to connect pet owners through meaningful social interactions. On the technical side, I integrated Firebase Auth and Notifications, managed real-time communication using Sockets, and implemented RevenueCat for seamless in-app purchases and subscriptions. The app features a high-performance UI inspired by Figma designs, utilizing Cached Network Images and robust State Management to ensure a fluid user experience. From handling complex Deep Linking to precise Permission Handling, this project showcases my ability to build scalable, feature-rich mobile applications.',
+      description: 'I developed Paw Play Love, a community-driven platform designed to connect pet owners through meaningful social interactions. On the technical side, I integrated Firebase Auth and Notifications, managed real-time communication using Sockets, and implemented RevenueCat for seamless in-app purchases and subscriptions. The app features a high-performance UI inspired by Figma designs, utilizing Cached Network Images and robust State Management to ensure a fluid user experience.',
       androidLink: 'https://play.google.com/store/apps/details?id=com.pawplaylove&hl=en',
       iosLink: 'https://apps.apple.com/id/app/paw-play-love/id6648773545',
       techs: ['Flutter', 'Firebase', 'Socket.io', 'RevenueCat', 'Provider']
     ),
     ProjectModel(
       name: 'LawnOlu',
-      description: 'Developed Lawnolu, a high-performance service provider application leveraging REST APIs and Firebase (Notifications & Analytics). The app’s architecture supports multi-tenant logic, allowing users to switch between business roles seamlessly. Key technical achievements include implementing a real-time tracking system using Google Maps, managing state for complex service requests, and ensuring financial security through Stripe integration. By utilizing Sockets for real-time communication and optimizing the app for offline support, I delivered a reliable and responsive user experience even in low-connectivity environments',
+      description: 'Developed Lawnolu, a high-performance service provider application leveraging REST APIs and Firebase (Notifications & Analytics). The app’s architecture supports multi-tenant logic, allowing users to switch between business roles seamlessly. Key technical achievements include implementing a real-time tracking system using Google Maps, managing state for complex service requests, and ensuring financial security through Stripe integration.',
       image: CustomImages.projectLawnolu,
       techs: ['Flutter', 'REST API', 'Google Maps', 'Stripe', 'Socket.io']
     ),
     ProjectModel(
       name: 'Zera',
-      description: 'Zera represents a masterclass in cross-functional app development, utilizing REST APIs and TanStack Query for robust state management and caching. I implemented specialized features including Custom Heat Maps for data visualization, QR Scanning for seamless interactions, and In-app Web Views for extended functionality. Technical challenges like cached filters, deep linking, and Firebase-driven notifications were solved to ensure a smooth, cross-device user journey. The architecture supports a diverse range of modules from community forums to secure e-commerce transactions.',
+      description: 'Zera represents a masterclass in cross-functional app development, utilizing REST APIs and TanStack Query for robust state management and caching. I implemented specialized features including Custom Heat Maps for data visualization, QR Scanning for seamless interactions, and In-app Web Views for extended functionality.',
       image: CustomImages.projectZera,
       techs: ['Flutter', 'REST API', 'TanStack Query', 'Google Maps', 'QR Scanner']
     ),
     ProjectModel(
       name: 'Simman',
-      description: 'With Simman, I tackled the complexities of Real-time Audio Streaming by building a robust architecture that balances speed with security. By integrating Firebase Realtime Database for live updates and implementing advanced State Management, I ensured the app remains responsive under heavy data loads. From Secure Authentication to fine-tuned Performance Optimization, every aspect of Simman was engineered to provide a top-tier user experience.',
+      description: 'With Simman, I tackled the complexities of Real-time Audio Streaming by building a robust architecture that balances speed with security. By integrating Firebase Realtime Database for live updates and implementing advanced State Management, I ensured the app remains responsive under heavy data loads.',
       image: CustomImages.projectSimman,
       techs: ['Flutter', 'Firebase Realtime DB', 'Audio Streaming', 'GetX']
     ),
     ProjectModel(
       name: 'On Scene',
-      description: 'On Scene is a cutting-edge, location-aware social platform designed to bridge the gap between digital discovery and real-world connections. I engineered a seamless Check-in mechanism using Google Maps API, allowing users to discover and interact with others at nearby venues in real-time. To ensure high engagement, I integrated Socket-based real-time chat and a smooth matching system supported by RevenueCat for premium features. Addressing the critical challenge of user safety, I implemented robust Privacy & Control tools, including block/unblock features and secure data handling. The result is a polished, high-performance app that empowers users to build meaningful connections within a safe and intuitive environment.',
+      description: 'On Scene is a cutting-edge, location-aware social platform designed to bridge the gap between digital discovery and real-world connections. I engineered a seamless Check-in mechanism using Google Maps API, allowing users to discover and interact with others at nearby venues in real-time.',
       image: CustomImages.projectOnScene,
       techs: ['Flutter', 'Google Maps', 'Socket.io', 'RevenueCat', 'Firebase']
     ),
     ProjectModel(
       name: 'BePay Client',
-      description: 'Web3-Integrated Consumer Platform: I developed a high-end Flutter application for the end-user, focusing on a seamless transition between traditional and decentralized commerce. The app features a secure Web3 wallet creation and OAuth-based login to ensure a smooth onboarding experience. I implemented a robust Blockchain-based purchase system, allowing users to make secure transactions directly on the chain. To enhance usability, I integrated a smart cart with auto-save functionality, filter-based product listings, and a highly polished UI featuring custom animations and gradient schemes. The project involved rigorous KYC verification and real-time REST API integrations to provide a secure and modern shopping experience.',
+      description: 'Web3-Integrated Consumer Platform: I developed a high-end Flutter application for the end-user, focusing on a seamless transition between traditional and decentralized commerce. The app features a secure Web3 wallet creation and OAuth-based login to ensure a smooth onboarding experience.',
       image: CustomImages.projectBePayClient,
       techs: ['Flutter', 'Web3Auth', 'Blockchain', 'REST API', 'KYC']
     ),
     ProjectModel(
       name: 'BePay Business',
-      description: 'I engineered a dedicated Flutter application for business owners and service providers within the Web3 ecosystem. This app manages complex KYB (Know Your Business) verification flows and provides tools for managing product listings and orders. A key highlight was the implementation of a secure business wallet for handling blockchain-based revenue and payouts. I worked closely with the client to manage rapid UI/UX iterations, adapting the login flows and management dashboards in short timeframes to meet evolving business needs. This app showcases my ability to handle enterprise-level security, complex state management, and direct coordination with stakeholders.',
+      description: 'I engineered a dedicated Flutter application for business owners and service providers within the Web3 ecosystem. This app manages complex KYB (Know Your Business) verification flows and provides tools for managing product listings and orders.',
       image: CustomImages.projectBePayBusiness,
       techs: ['Flutter', 'Blockchain', 'KYB', 'REST API', 'Provider']
     ),

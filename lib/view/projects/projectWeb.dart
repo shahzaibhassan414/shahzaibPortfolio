@@ -22,8 +22,13 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
     final displayedProjects = showAll ? allProjects : allProjects.take(4).toList();
 
     return Container(
-      margin: EdgeInsets.symmetric(
-          horizontal: AppClass().getMqWidth(context) * 0.03),
+      margin: EdgeInsets.only(
+        left: AppClass().getMqWidth(context) * 0.03,
+        right: AppClass().getMqWidth(context) * 0.03,
+        top: AppClass().getMqWidth(context) * 0.1,
+      ),
+      // EdgeInsets.symmetric(
+      //     horizontal: AppClass().getMqWidth(context) * 0.03),
       child: Column(
         children: [
           const MainTitleWidget(
@@ -94,7 +99,6 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
           ),
           
 
-          SizedBox(height: AppClass().getMqWidth(context) * 0.1,)
         ],
       ),
     );

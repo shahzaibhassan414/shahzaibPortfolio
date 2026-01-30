@@ -71,8 +71,12 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> with TickerProvid
 
     return Container(
       width: mqWidth,
-      margin: EdgeInsets.symmetric(horizontal: mqWidth * 0.03),
-      padding: const EdgeInsets.symmetric(vertical: 50),
+      margin: EdgeInsets.only(
+        left: mqWidth * 0.03,
+        right: mqWidth * 0.03,
+        top: mqWidth * 0.1,
+      ),
+      // EdgeInsets.symmetric(horizontal: mqWidth * 0.03),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -93,7 +97,6 @@ class _ExperienceWebState extends ConsumerState<ExperienceWeb> with TickerProvid
               },
             ),
           ),
-          SizedBox(height: mqWidth * 0.1),
         ],
       ),
     );

@@ -6,7 +6,7 @@ import 'package:portfolio/view/contact/contactTab.dart';
 import 'package:portfolio/view/contact/contactWeb.dart';
 
 class Contact extends ConsumerStatefulWidget {
-  const Contact({Key? key}) : super(key: key);
+  const Contact({super.key});
 
   @override
   ConsumerState<Contact> createState() => _ContactState();
@@ -16,9 +16,9 @@ class _ContactState extends ConsumerState<Contact> {
   @override
   Widget build(BuildContext context) {
     return Responsive(
-      webView: ContactWeb(),
-      tabView: ContactTab(),
-      mobileView: ContactMobile(),
+      webView: const ContactWeb(),
+      tabView: const ContactTab(),
+      mobileView: const ContactMobile(),
     );
   }
 }

@@ -21,7 +21,9 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
     return Container(
       margin: EdgeInsets.only(
           left: AppClass().getMqWidth(context) * 0.03,
-          right: AppClass().getMqWidth(context) * 0.03),
+          right: AppClass().getMqWidth(context) * 0.03,
+        top: AppClass().getMqWidth(context) * 0.1,
+      ),
       padding: const EdgeInsets.only(bottom: 40),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -271,7 +273,6 @@ class _AboutWebState extends ConsumerState<AboutWeb> {
                   ))
             ],
           ),
-          SizedBox(height: AppClass().getMqWidth(context) * 0.05,)
         ],
       ),
     );

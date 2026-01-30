@@ -6,7 +6,7 @@ import 'package:portfolio/view/projects/projectTab.dart';
 import 'package:portfolio/view/projects/projectWeb.dart';
 
 class Projects extends StatefulWidget {
-  const Projects({Key? key}) : super(key: key);
+  const Projects({super.key});
 
   @override
   State<Projects> createState() => _ProjectsState();
@@ -16,9 +16,9 @@ class _ProjectsState extends State<Projects> {
   @override
   Widget build(BuildContext context) {
     return Responsive(
-      tabView: ProjectTab(),
-      webView: ProjectWeb(),
-      mobileView: ProjectMobile(),
+      tabView: const ProjectTab(),
+      webView: const ProjectWeb(),
+      mobileView: const ProjectMobile(),
     );
   }
 }
