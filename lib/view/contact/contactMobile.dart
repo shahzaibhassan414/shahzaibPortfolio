@@ -28,11 +28,11 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
   Widget build(BuildContext context) {
     final mqWidth = AppClass().getMqWidth(context);
     return Container(
-      padding: EdgeInsets.only(top: 50),
+      padding: const EdgeInsets.only(top: 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          MainTitleWidget(title: "What's Next?",isWeb: false,),
+          const MainTitleWidget(title: "What's Next?",isWeb: false,),
           Text(
             "Get In Touch",
             style: GoogleFonts.robotoSlab(
@@ -41,10 +41,10 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
               fontSize: 30,
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               spacing: 10,
               children: [
@@ -63,7 +63,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
           ),
 
 
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
 
@@ -76,7 +76,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
             ),
           ),
 
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
 
           Container(
             width: mqWidth * 0.9,
@@ -91,12 +91,12 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           Center(
             child: Container(
               width: mqWidth * 1,
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -112,7 +112,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                       },
                       decoration: _inputDecoration('Name*'),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
                     // Contact Info Field
                     TextFormField(
@@ -125,7 +125,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
                     // Message Field
                     TextFormField(
@@ -140,10 +140,10 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                       decoration: _inputDecoration('Message*'),
                     ),
 
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
 
                     Padding(
-                        padding: EdgeInsets.only(top: 50, bottom: 70),
+                        padding: const EdgeInsets.only(top: 50, bottom: 70),
                         child: CustomHoverButton(
                           height: 55,
                           width: 150,
@@ -182,7 +182,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
             ),
           ),
 
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
 
           // Footer
           Column(
@@ -234,7 +234,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
             ],
           ),
 
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
 
         ],
       ),
@@ -244,17 +244,17 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
     return InputDecoration(
       hintText: hint,
       hintStyle: TextStyle(color: Colors.grey.shade500),
-      errorStyle: TextStyle(color: AppColors().primaryRedColor),
+      errorStyle: const TextStyle(color: Colors.red),
       filled: true,
       fillColor: AppColors().cardColor.withValues(alpha: 0.09),
-      contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+      contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.white24),
+        borderSide: const BorderSide(color: Colors.white24),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.white24),
+        borderSide: const BorderSide(color: Colors.white24),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),

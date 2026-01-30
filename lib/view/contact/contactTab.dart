@@ -244,7 +244,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
     return InputDecoration(
       hintText: hint,
       hintStyle: TextStyle(color: Colors.grey.shade500),
-      errorStyle: TextStyle(color: AppColors().primaryRedColor),
+      errorStyle: const TextStyle(color: Colors.red),
       filled: true,
       fillColor: AppColors().cardColor.withValues(alpha: 0.09),
       contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),

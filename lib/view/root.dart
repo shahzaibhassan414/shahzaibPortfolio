@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/controller/generalController.dart';
 import 'package:portfolio/resource/appClass.dart';
 import 'package:portfolio/view/about/about.dart';
+import 'package:portfolio/view/blogs/blogs.dart';
 import 'package:portfolio/view/experience/experience.dart';
 import 'package:portfolio/view/intro/intro.dart';
 import 'package:portfolio/view/packages/packages.dart';
@@ -124,9 +125,10 @@ class _RootScreenState extends ConsumerState<RootScreen>
                 _drawerTile('About', 1),
                 _drawerTile('Experience', 2),
                 _drawerTile('Skills', 3),
-                _drawerTile('Packages', 4),
-                _drawerTile('Projects', 5),
-                _drawerTile('Contact', 6),
+                _drawerTile('OSS', 4),
+                _drawerTile('Work', 5),
+                _drawerTile('Blogs', 6),
+                _drawerTile('Contact', 7),
                 const Spacer(),
                 SizedBox(
                   width: 200,
@@ -259,6 +261,7 @@ class _RootScreenState extends ConsumerState<RootScreen>
                                 index: 4,
                                 child: const RepaintBoundary(child: Packages()),
                               ),
+
                               AutoScrollTag(
                                 key: const ValueKey(5),
                                 controller: mScrollController,
@@ -269,6 +272,12 @@ class _RootScreenState extends ConsumerState<RootScreen>
                                 key: const ValueKey(6),
                                 controller: mScrollController,
                                 index: 6,
+                                child: const RepaintBoundary(child: Blogs()),
+                              ),
+                              AutoScrollTag(
+                                key: const ValueKey(7),
+                                controller: mScrollController,
+                                index: 7,
                                 child: const RepaintBoundary(child: Contact()),
                               ),
                               const Footer(),

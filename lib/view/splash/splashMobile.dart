@@ -96,12 +96,12 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: AppColors().primaryRedColor.withOpacity(0.2),
+                          color: AppColors().primaryRedColor.withValues(alpha:0.2),
                           width: 2,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors().primaryRedColor.withOpacity(0.1),
+                            color: AppColors().primaryRedColor.withValues(alpha:0.1),
                             blurRadius: 30,
                             spreadRadius: 10,
                           )
@@ -121,7 +121,7 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
               width: 250,
               height: 2,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.05),
+                color: Colors.white.withValues(alpha:0.05),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Stack(
@@ -134,7 +134,7 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors().primaryRedColor.withOpacity(0.5),
+                          color: AppColors().primaryRedColor.withValues(alpha:0.5),
                           blurRadius: 5,
                           spreadRadius: 1,
                         )
@@ -148,7 +148,7 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
             Text(
               "INITIALIZING EXPERIENCE...",
               style: TextStyle(
-                color: AppColors().textColor.withOpacity(0.4),
+                color: AppColors().textColor.withValues(alpha:0.4),
                 fontFamily: 'sfmono',
                 fontSize: 10,
                 letterSpacing: 3,

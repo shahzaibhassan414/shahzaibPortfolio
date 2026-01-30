@@ -33,7 +33,7 @@ class Footer extends ConsumerWidget {
             Text(
               "© 2024 Shahzaib Hassan. All rights reserved.",
               style: GoogleFonts.roboto(
-                color: AppColors().textColor.withOpacity(0.5),
+                color: AppColors().textColor.withValues(alpha:0.5),
                 fontSize: 12,
               ),
             ),
@@ -47,7 +47,7 @@ class Footer extends ConsumerWidget {
       child: Column(
         children: [
 
-          Divider(color: AppColors().primaryRedColor.withOpacity(0.3),),
+          Divider(color: AppColors().primaryRedColor.withValues(alpha:0.3),),
 
           SizedBox(height: 30,),
           Row(
@@ -67,7 +67,7 @@ class Footer extends ConsumerWidget {
                     Text(
                       "© 2026. All rights reserved.",
                       style: GoogleFonts.roboto(
-                        color: AppColors().textColor.withOpacity(0.5),
+                        color: AppColors().textColor.withValues(alpha:0.5),
                         fontSize: 14,
                       ),
                     ),

@@ -17,27 +17,27 @@ class CustomSkillImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeOutCubic,
       width: isWeb ? 130 : 100,
-      padding:  EdgeInsets.all( isWeb ? 15 : 10),
+      padding: EdgeInsets.all(isWeb ? 15 : 10),
       decoration: BoxDecoration(
         color: isHovered
-            ? AppColors().primaryRedColor.withValues(alpha: 0.08)
-            : Colors.white.withValues(alpha: 0.02),
-        borderRadius: BorderRadius.circular(16),
+            ? AppColors().primaryRedColor.withOpacity(0.12)
+            : Colors.white.withOpacity(0.02),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: isHovered
-              ? AppColors().primaryRedColor.withValues(alpha: 0.3)
-              : Colors.white.withValues(alpha: 0.05),
-          width: 1,
+              ? AppColors().primaryRedColor.withOpacity(0.4)
+              : Colors.white.withOpacity(0.05),
+          width: 1.5,
         ),
         boxShadow: [
           if (isHovered)
             BoxShadow(
-              color: AppColors().primaryRedColor.withValues(alpha: 0.1),
-              blurRadius: 20,
-              spreadRadius: 2,
+              color: AppColors().primaryRedColor.withOpacity(0.15),
+              blurRadius: 25,
+              spreadRadius: 5,
             )
         ],
       ),
@@ -45,63 +45,53 @@ class CustomSkillImageCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            padding: const EdgeInsets.all(10),
+            duration: const Duration(milliseconds: 400),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: isHovered
-                  ? Colors.white.withValues(alpha: 0.05)
+                  ? Colors.white.withOpacity(0.08)
                   : Colors.transparent,
               shape: BoxShape.circle,
             ),
             child: AnimatedScale(
-              scale: isHovered ? 1.15 : 1,
-              duration: const Duration(milliseconds: 300),
+              scale: isHovered ? 1.2 : 1,
+              duration: const Duration(milliseconds: 400),
               curve: Curves.easeOutBack,
-              child: ColorFiltered(
-                colorFilter: isHovered
-                    ? const ColorFilter.mode(
-                        Colors.transparent, BlendMode.multiply)
-                    : const ColorFilter.matrix(<double>[
-                        0.2126,
-                        0.7152,
-                        0.0722,
-                        0,
-                        0,
-                        0.2126,
-                        0.7152,
-                        0.0722,
-                        0,
-                        0,
-                        0.2126,
-                        0.7152,
-                        0.0722,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        0,
-                      ]),
-                child: Image.asset(
-                  skill['image'],
-                  height: isWeb ? 70 : 30,
-                  width: isWeb ? 70 : 30,
-                  fit: BoxFit.contain,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 400),
+                opacity: isHovered ? 1.0 : 0.6,
+                child: ColorFiltered(
+                  colorFilter: isHovered
+                      ? const ColorFilter.mode(
+                          Colors.transparent, BlendMode.multiply)
+                      : const ColorFilter.matrix(<double>[
+                          0.2126, 0.7152, 0.0722, 0, 0,
+                          0.2126, 0.7152, 0.0722, 0, 0,
+                          0.2126, 0.7152, 0.0722, 0, 0,
+                          0, 0, 0, 1, 0,
+                        ]),
+                  child: Image.asset(
+                    skill['image'],
+                    height: isWeb ? 70 : 30,
+                    width: isWeb ? 70 : 30,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
           ),
-
-           SizedBox(height: isWeb ? 15 : 5),
-          Text(
-            skill['name'],
-            textAlign: TextAlign.center,
+          SizedBox(height: isWeb ? 15 : 5),
+          AnimatedDefaultTextStyle(
+            duration: const Duration(milliseconds: 400),
             style: GoogleFonts.robotoSlab(
-              color: isHovered ? AppColors().textColor : AppColors().textLight,
-              letterSpacing: 1,
+              color: isHovered ? Colors.white : AppColors().textLight,
+              letterSpacing: 1.5,
               fontWeight: isHovered ? FontWeight.bold : FontWeight.w500,
               fontSize: 12,
+            ),
+            child: Text(
+              skill['name'],
+              textAlign: TextAlign.center,
             ),
           ),
         ],

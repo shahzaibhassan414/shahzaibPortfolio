@@ -3,99 +3,96 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../controller/generalController.dart';
-import '../resource/appClass.dart';
 import '../resource/colors.dart';
 
-class SocialIcons extends StatefulWidget {
+class SocialIcons extends StatelessWidget {
   final double? width;
   const SocialIcons({super.key, this.width});
 
   @override
-  State<SocialIcons> createState() => _SocialIconsState();
-}
-
-class _SocialIconsState extends State<SocialIcons> {
-  @override
   Widget build(BuildContext context) {
     return Container(
-      child: Consumer(builder: (context, ref, child) {
-        String val = ref.watch(hoverProvider);
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 15.0),
-          child: SizedBox(
-            width: widget.width ?? null,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: AppClass().getMqHeight(context) * 0.07,
-                  height: AppClass().getMqHeight(context) * 0.03,
-                  child: InkWell(
-                    mouseCursor: SystemMouseCursors.none,
-                    onTap: () async {
-                      await launchUrl(Uri.parse("https://github.com/shahzaibhassan414"));
-                    },
-                    onHover: (bol) {
-                      if (bol) {
-                        ref.read(hoverProvider.notifier).state = "git";
-                      } else {
-                        ref.read(hoverProvider.notifier).state = "";
-                      }
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: SvgPicture.asset('assets/svg/github.svg', color: val == "git" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: AppClass().getMqHeight(context) * 0.07,
-                  height: AppClass().getMqHeight(context) * 0.03,
-                  child: InkWell(
-                    mouseCursor: SystemMouseCursors.none,
-                    onTap: () async {
-                      await launchUrl(Uri.parse("https://www.instagram.com/yaar_shiekh/?hl=en"));
-                    },
-                    onHover: (bol) {
-                      if (bol) {
-                        ref.read(hoverProvider.notifier).state = "insta";
-                      } else {
-                        ref.read(hoverProvider.notifier).state = "";
-                      }
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: SvgPicture.asset('assets/svg/instagram.svg', color: val == "insta" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: AppClass().getMqHeight(context) * 0.07,
-                  height: AppClass().getMqHeight(context) * 0.03,
-                  child: InkWell(
-                    mouseCursor: SystemMouseCursors.none,
-                    onTap: () async {
-                      await launchUrl(Uri.parse("https://www.linkedin.com/in/shahzaibhassan414/"));
-                    },
-                    onHover: (bol) {
-                      if (bol) {
-                        ref.read(hoverProvider.notifier).state = "linkedIn";
-                      } else {
-                        ref.read(hoverProvider.notifier).state = "";
-                      }
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: SvgPicture.asset('assets/svg/linkedIn.svg', color: val == "linkedIn" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
-                    ),
-                  ),
-                ),
-              ],
+      margin: const EdgeInsets.only(top: 20),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _SocialIconItem(
+            iconPath: 'assets/svg/github.svg',
+            url: 'https://github.com/shahzaibhassan414',
+            hoverKey: 'git',
+          ),
+          const SizedBox(width: 15),
+          _SocialIconItem(
+            iconPath: 'assets/svg/instagram.svg',
+            url: 'https://www.instagram.com/yaar_shiekh/?hl=en',
+            hoverKey: 'insta',
+          ),
+          const SizedBox(width: 15),
+          _SocialIconItem(
+            iconPath: 'assets/svg/linkedIn.svg',
+            url: 'https://www.linkedin.com/in/shahzaibhassan414/',
+            hoverKey: 'linkedIn',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SocialIconItem extends ConsumerWidget {
+  final String iconPath;
+  final String url;
+  final String hoverKey;
+
+  const _SocialIconItem({
+    required this.iconPath,
+    required this.url,
+    required this.hoverKey,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hoverState = ref.watch(hoverProvider);
+    final bool isHovered = hoverState == hoverKey;
+
+    return MouseRegion(
+      onEnter: (_) => ref.read(hoverProvider.notifier).state = hoverKey,
+      onExit: (_) => ref.read(hoverProvider.notifier).state = '',
+      child: GestureDetector(
+        onTap: () async => await launchUrl(Uri.parse(url)),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          width: 45,
+          height: 45,
+          decoration: BoxDecoration(
+            color: isHovered 
+                ? AppColors().primaryRedColor.withValues(alpha:0.1)
+                : Colors.white.withValues(alpha:0.03),
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: isHovered 
+                  ? AppColors().primaryRedColor 
+                  : Colors.white.withValues(alpha:0.1),
+              width: 1.5,
+            ),
+            boxShadow: [
+              if (isHovered)
+                BoxShadow(
+                  color: AppColors().primaryRedColor.withValues(alpha:0.2),
+                  blurRadius: 15,
+                  spreadRadius: 2,
+                )
+            ],
+          ),
+          child: Center(
+            child: SvgPicture.asset(
+              iconPath,
+              color: isHovered ? AppColors().primaryRedColor : AppColors().textColor,
+              width: 20,
             ),
           ),
-        );
-      }),
+        ),
+      ),
     );
   }
 }

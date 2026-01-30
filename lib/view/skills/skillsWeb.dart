@@ -27,10 +27,6 @@ class _ExperienceWebState extends ConsumerState<SkillsWeb> {
           right: mqWidth * 0.03,
           top: mqWidth * 0.1,
       ),
-      // EdgeInsets.symmetric(
-      //   horizontal: mqWidth * 0.03,
-      // ),
-      // padding: const EdgeInsets.symmetric(vertical: 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

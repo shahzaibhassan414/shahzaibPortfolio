@@ -24,10 +24,10 @@ class ProjectDetailDialog extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors().darkColor,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: AppColors().primaryRedColor.withOpacity(0.2)),
+          border: Border.all(color: AppColors().primaryRedColor.withValues(alpha:0.2)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.5),
+              color: Colors.black.withValues(alpha:0.5),
               blurRadius: 30,
               offset: const Offset(0, 10),
             )
@@ -76,7 +76,7 @@ class ProjectDetailDialog extends StatelessWidget {
                             end: Alignment.topCenter,
                             colors: [
                               AppColors().darkColor,
-                              AppColors().darkColor.withOpacity(0),
+                              AppColors().darkColor.withValues(alpha:0),
                             ],
                           ),
                         ),
@@ -111,8 +111,8 @@ class ProjectDetailDialog extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: AppColors().primaryRedColor.withOpacity(0.3)),
-                                color: AppColors().primaryRedColor.withOpacity(0.1),
+                                border: Border.all(color: AppColors().primaryRedColor.withValues(alpha:0.3)),
+                                color: AppColors().primaryRedColor.withValues(alpha:0.1),
                               ),
                               child: Text(
                                 tech,
@@ -174,8 +174,8 @@ class ProjectDetailDialog extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors().primaryRedColor.withOpacity(0.5)),
-          color: AppColors().primaryRedColor.withOpacity(0.05),
+          border: Border.all(color: AppColors().primaryRedColor.withValues(alpha:0.5)),
+          color: AppColors().primaryRedColor.withValues(alpha:0.05),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

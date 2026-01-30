@@ -9,6 +9,7 @@ import 'package:portfolio/resource/styles.dart';
 import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../model/packageModel.dart';
+import '../model/blogModel.dart';
 import '../view/projects/projectWeb.dart';
 
 
@@ -40,6 +41,23 @@ class AppClass {
       version: 'v0.0.2',
       pubLink: 'https://pub.dev/packages/inner_curved_circle',
       techs: ['Flutter', 'Dart', 'UI Components']
+    ),
+  ];
+
+  List<BlogModel> blogs = [
+    BlogModel(
+      title: 'How to Add a Heatmap in Flutter',
+      description: 'Display a heatmap overlay on a Google Map using Flutter — showing data density such as user activity, locations, or hotspots.',
+      imageUrl: 'https://images.unsplash.com/photo-1584291527935-456e8e2dd734?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      link: 'https://midnight-grape-a6b.notion.site/Playbook-How-to-Add-a-Heatmap-in-Flutter-Google-Maps-2854fb3615b880538317ede1721ce16a',
+      date: 'Oct 07, 2025'
+    ),
+    BlogModel(
+      title: 'From SVG to Flutter Widget',
+      description: 'The goal of this guide is to help Flutter developers turn any SVG design into a fully functional, customizable Flutter widget ',
+      imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2344&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      link: 'https://midnight-grape-a6b.notion.site/Playbook-From-SVG-to-Flutter-Widget-2e94fb3615b880dd89a4fc2cc4d76f68',
+      date: 'Jan 15, 2026'
     ),
   ];
 
