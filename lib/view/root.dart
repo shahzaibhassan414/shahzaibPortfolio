@@ -1,13 +1,8 @@
-import 'dart:ui';
-import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/controller/generalController.dart';
 import 'package:portfolio/resource/appClass.dart';
 import 'package:portfolio/view/about/about.dart';
 import 'package:portfolio/view/blogs/blogs.dart';
+import 'package:portfolio/view/contact/contact.dart';
 import 'package:portfolio/view/experience/experience.dart';
 import 'package:portfolio/view/intro/intro.dart';
 import 'package:portfolio/view/packages/packages.dart';
@@ -16,301 +11,287 @@ import 'package:portfolio/view/skills/skills.dart';
 import 'package:portfolio/view/widget/appBar.dart';
 import 'package:portfolio/view/widget/footer.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import '../Widgets/custom_app_logo.dart';
-import '../resource/colors.dart';
-import 'contact/contact.dart';
 
-class RootScreen extends ConsumerStatefulWidget {
-  const RootScreen({Key? key}) : super(key: key);
+import '../resource/colors.dart';
+
+class RootScreen extends StatefulWidget {
+  const RootScreen({super.key});
 
   @override
-  ConsumerState<RootScreen> createState() => _RootScreenState();
+  State<RootScreen> createState() => _RootScreenState();
 }
 
-class _RootScreenState extends ConsumerState<RootScreen>
-    with TickerProviderStateMixin {
+class _RootScreenState extends State<RootScreen> {
   final mScrollController = AutoScrollController();
 
-  late AnimationController _controller;
-  late Animation<Offset> _slideAnimation;
-  late Animation<double> _fadeAnimation;
-
-  bool _visible = false;
+  static const _sections = <({String label, int index})>[
+    (label: 'About', index: 1),
+    (label: 'Experience', index: 2),
+    (label: 'Skills', index: 3),
+    (label: 'Open source', index: 4),
+    (label: 'Projects', index: 5),
+    (label: 'Writing', index: 6),
+    (label: 'Contact', index: 7),
+  ];
 
   @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
-
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, -0.1),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    ));
-
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
-    );
+  void dispose() {
+    mScrollController.dispose();
+    super.dispose();
   }
 
-  void updateVisibility(bool visible) {
-    if (visible == _visible) return;
-    _visible = visible;
-    if (_visible) {
-      _controller.forward();
-    } else {
-      _controller.reverse();
-    }
+  void _scrollTo(int index) {
+    mScrollController.scrollToIndex(
+      index,
+      preferPosition: AutoScrollPosition.begin,
+      duration: const Duration(milliseconds: 500),
+    );
   }
 
   Widget _buildMobileDrawer(BuildContext context) {
     return Drawer(
-      width: double.infinity,
-      backgroundColor: Colors.transparent,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.zero,
-      ),
-      child: Stack(
-        children: [
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              color: AppColors().backgroundColor.withValues(alpha: 0.8),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 50),
-            child: Column(
-              children: [
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: AppColors().textColor,
-                          )),
-                    )),
-                Container(
-                  width: 90,
-                  height: 90,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors().primaryColor.withValues(alpha: 0.2),
-                      width: 2,
+      width: MediaQuery.sizeOf(context).width,
+      backgroundColor: AppColors().backgroundColor,
+      shape: const RoundedRectangleBorder(),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'SH.',
+                    style: TextStyle(
+                      color: AppColors().textColor,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -1,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors().primaryColor.withValues(alpha: 0.1),
-                        blurRadius: 30,
-                        spreadRadius: 10,
-                      )
-                    ],
                   ),
-                  child: const Center(
-                    child: CustomAppLogo(),
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close_rounded),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 52),
+              Text(
+                'NAVIGATION',
+                style: TextStyle(
+                  color: AppColors().mutedTextColor,
+                  fontFamily: 'sfmono',
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.5,
+                ),
+              ),
+              const SizedBox(height: 18),
+              ..._sections.map(
+                (section) => InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                    _scrollTo(section.index);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: AppColors().dividerColor),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          section.index.toString().padLeft(2, '0'),
+                          style: TextStyle(
+                            color: AppColors().primaryColor,
+                            fontFamily: 'sfmono',
+                            fontSize: 11,
+                          ),
+                        ),
+                        const SizedBox(width: 18),
+                        Text(
+                          section.label,
+                          style: TextStyle(
+                            color: AppColors().textColor,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                const SizedBox(height: 40),
-                _drawerTile('About', 1),
-                _drawerTile('Experience', 2),
-                _drawerTile('Skills', 3),
-                _drawerTile('OSS', 4),
-                _drawerTile('Work', 5),
-                _drawerTile('Blogs', 6),
-                _drawerTile('Contact', 7),
-                const Spacer(),
-                SizedBox(
-                  width: 200,
-                  child: OutlinedButton(
-                    onPressed: () => AppClass().downloadResume(context),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: AppColors().primaryColor),
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                    ),
-                    child: Center(
-                      child: Text('Resume',
-                          style: TextStyle(
-                              color: AppColors().primaryColor,
-                              fontWeight: FontWeight.bold)),
+              ),
+              const Spacer(),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton.icon(
+                  onPressed: () => AppClass().downloadResume(context),
+                  icon: const Icon(Icons.description_outlined, size: 18),
+                  label: const Text('OPEN RESUME'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: AppColors().primaryColor,
+                    foregroundColor: AppColors().backgroundColor,
+                    padding: const EdgeInsets.symmetric(vertical: 17),
+                    textStyle: const TextStyle(
+                      fontFamily: 'sfmono',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1,
                     ),
                   ),
-                )
-              ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final screenType = AppClass().getScreenType(context);
+    final isCompact = screenType != ScreenType.web;
+    final horizontalPadding = screenType == ScreenType.mobile ? 0.0 : 24.0;
+
+    return Scaffold(
+      backgroundColor: AppColors().backgroundColor,
+      endDrawer: isCompact ? _buildMobileDrawer(context) : null,
+      body: Stack(
+        children: [
+          const Positioned.fill(child: _PageBackground()),
+          Positioned.fill(
+            child: SingleChildScrollView(
+              controller: mScrollController,
+              physics: const ClampingScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  horizontalPadding,
+                  92,
+                  horizontalPadding,
+                  0,
+                ),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 1240),
+                    child: Column(
+                      children: [
+                        _tag(0, IntroContent(mScrollController)),
+                        _tag(
+                          1,
+                          About(onViewProjects: () => _scrollTo(5)),
+                        ),
+                        _tag(2, const Experience()),
+                        _tag(3, const Skills()),
+                        _tag(4, const Packages()),
+                        _tag(5, const Projects()),
+                        _tag(6, const Blogs()),
+                        _tag(7, const Contact()),
+                        const Footer(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: ActionBar(mScrollController),
           ),
         ],
       ),
     );
   }
 
-  Widget _drawerTile(String title, int index) {
-    return ListTile(
-      title: Text(title,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.roboto(
-              color: Colors.white, fontSize: 18, letterSpacing: 1.2)),
-      onTap: () {
-        Navigator.pop(context);
-        mScrollController.scrollToIndex(index,
-            preferPosition: AutoScrollPosition.begin);
-      },
+  Widget _tag(int index, Widget child) {
+    return AutoScrollTag(
+      key: ValueKey(index),
+      controller: mScrollController,
+      index: index,
+      child: RepaintBoundary(child: child),
     );
   }
+}
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    mScrollController.dispose();
-    super.dispose();
-  }
+class _PageBackground extends StatelessWidget {
+  const _PageBackground();
 
   @override
   Widget build(BuildContext context) {
-    final scrType = AppClass().getScreenType(context);
-    final width = MediaQuery.of(context).size.width;
-    bool isMobile = scrType == ScreenType.mobile || scrType == ScreenType.tab;
-
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors().backgroundColor,
-        endDrawer: isMobile ? _buildMobileDrawer(context) : null,
-        body: Container(
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        DecoratedBox(
+          decoration: BoxDecoration(
+            color: AppColors().backgroundColor,
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xff091117),
+                Color(0xff0B171C),
+                Color(0xff091117),
+              ],
+            ),
+          ),
+        ),
+        DecoratedBox(
           decoration: BoxDecoration(
             gradient: RadialGradient(
-              center: const Alignment(0.7, -0.4),
-              radius: 1.5,
+              center: const Alignment(0.85, -0.8),
+              radius: 1.05,
               colors: [
-                AppColors().primaryColor.withValues(alpha: 0.05),
+                const Color(0xff2C7465).withValues(alpha: 0.28),
                 Colors.transparent,
               ],
             ),
           ),
-          child: AnimatedBackground(
-            behaviour: RandomParticleBehaviour(
-                options: ParticleOptions(
-                    baseColor: AppColors().primaryColor,
-                    particleCount: 25,
-                    spawnMaxSpeed: 10,
-                    spawnMinSpeed: 2,
-                )),
-            vsync: this,
-            child: NotificationListener<UserScrollNotification>(
-              onNotification: (notification) {
-                final direction = notification.direction;
-                if (direction == ScrollDirection.reverse) {
-                  ref.read(scrollControlProvider.notifier).state = false;
-                } else if (direction == ScrollDirection.forward) {
-                  ref.read(scrollControlProvider.notifier).state = true;
-                }
-                return true;
-              },
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: SingleChildScrollView(
-                      controller: mScrollController,
-                      physics: const BouncingScrollPhysics(),
-                      child: Center(
-                        child: SizedBox(
-                          width: scrType == ScreenType.mobile
-                              ? MediaQuery.of(context).size.width
-                              : width * 0.8,
-                          child: Column(
-                            children: [
-                              AutoScrollTag(
-                                key: const ValueKey(0),
-                                controller: mScrollController,
-                                index: 0,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 80),
-                                  child: RepaintBoundary(child: IntroContent(mScrollController)),
-                                ),
-                              ),
-                              AutoScrollTag(
-                                key: const ValueKey(1),
-                                controller: mScrollController,
-                                index: 1,
-                                child: const RepaintBoundary(child: About()),
-                              ),
-                              AutoScrollTag(
-                                key: const ValueKey(2),
-                                controller: mScrollController,
-                                index: 2,
-                                child: const RepaintBoundary(child: Experience()),
-                              ),
-                              AutoScrollTag(
-                                key: const ValueKey(3),
-                                controller: mScrollController,
-                                index: 3,
-                                child: const RepaintBoundary(child: Skills()),
-                              ),
-                              AutoScrollTag(
-                                key: const ValueKey(4),
-                                controller: mScrollController,
-                                index: 4,
-                                child: const RepaintBoundary(child: Packages()),
-                              ),
-
-                              AutoScrollTag(
-                                key: const ValueKey(5),
-                                controller: mScrollController,
-                                index: 5,
-                                child: const RepaintBoundary(child: Projects()),
-                              ),
-                              AutoScrollTag(
-                                key: const ValueKey(6),
-                                controller: mScrollController,
-                                index: 6,
-                                child: const RepaintBoundary(child: Blogs()),
-                              ),
-                              AutoScrollTag(
-                                key: const ValueKey(7),
-                                controller: mScrollController,
-                                index: 7,
-                                child: const RepaintBoundary(child: Contact()),
-                              ),
-                              const Footer(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Consumer(builder: (context, ref, child) {
-                    final isScrollingUp = ref.watch(scrollControlProvider);
-                    updateVisibility(isScrollingUp);
-
-                    return Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      child: SlideTransition(
-                        position: _slideAnimation,
-                        child: FadeTransition(
-                          opacity: _fadeAnimation,
-                          child: RepaintBoundary(child: ActionBar(mScrollController)),
-                        ),
-                      ),
-                    );
-                  }),
-                ],
-              ),
+        ),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: const Alignment(-0.95, 0.85),
+              radius: 1.15,
+              colors: [
+                const Color(0xff173E5B).withValues(alpha: 0.16),
+                Colors.transparent,
+              ],
             ),
           ),
         ),
-      ),
+        const CustomPaint(painter: _GridPainter()),
+      ],
     );
   }
+}
+
+class _GridPainter extends CustomPainter {
+  const _GridPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = const Color(0x0DC7D8DA)
+      ..strokeWidth = 1;
+
+    const gap = 64.0;
+    for (double x = 0; x < size.width; x += gap) {
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
+    }
+    for (double y = 0; y < size.height; y += gap) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

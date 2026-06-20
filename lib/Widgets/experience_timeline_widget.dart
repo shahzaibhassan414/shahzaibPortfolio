@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import '../model/experienceModel.dart';
 import '../resource/appClass.dart';
 import '../resource/colors.dart';
 
-class ExperienceTimelineWidget extends StatelessWidget {
+class ExperienceTimelineWidget extends StatefulWidget {
   final ExperienceWebModel experience;
   final bool isLast;
   final bool isFirst;
@@ -17,108 +17,143 @@ class ExperienceTimelineWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    bool isMobile = AppClass().getScreenType(context) == ScreenType.mobile;
+  State<ExperienceTimelineWidget> createState() =>
+      _ExperienceTimelineWidgetState();
+}
 
-    return IntrinsicHeight(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Timeline indicator
-          Column(
-            children: [
-              Container(
-                width: 12,
-                height: 12,
-                decoration: BoxDecoration(
-                  color: AppColors().primaryRedColor,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors().primaryRedColor.withValues(alpha: 0.5),
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    )
-                  ],
-                ),
-              ),
-              if (!isLast)
-                Expanded(
-                  child: Container(
-                    width: 2,
-                    color: AppColors().primaryRedColor.withValues(alpha: 0.2),
-                  ),
-                ),
-            ],
+class _ExperienceTimelineWidgetState extends State<ExperienceTimelineWidget> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final isWeb = AppClass().getScreenType(context) == ScreenType.web;
+    final visiblePoints =
+        widget.experience.points.take(widget.isFirst ? 5 : 3).toList();
+
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        padding: EdgeInsets.all(isWeb ? 28 : 20),
+        decoration: BoxDecoration(
+          color: _hovered ? AppColors().elevatedColor : AppColors().cardColor,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: _hovered
+                ? AppColors().primaryColor.withValues(alpha: 0.4)
+                : AppColors().dividerColor,
           ),
-          const SizedBox(width: 20),
-          // Content
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 40),
-              child: Column(
+        ),
+        child: isWeb
+            ? Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    experience.duration,
-                    style: TextStyle(
-                      color: AppColors().primaryRedColor,
-                      fontSize: 14,
-                      fontFamily: 'sfmono',
-                      fontWeight: FontWeight.w500,
+                  SizedBox(
+                      width: 230, child: _Role(experience: widget.experience)),
+                  const SizedBox(width: 38),
+                  Expanded(child: _Points(points: visiblePoints)),
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _Role(experience: widget.experience),
+                  const SizedBox(height: 24),
+                  _Points(points: visiblePoints),
+                ],
+              ),
+      ),
+    );
+  }
+}
+
+class _Role extends StatelessWidget {
+  final ExperienceWebModel experience;
+
+  const _Role({required this.experience});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          experience.duration.toUpperCase(),
+          style: TextStyle(
+            color: AppColors().primaryColor,
+            fontFamily: 'sfmono',
+            fontSize: 10,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          experience.desig,
+          style: TextStyle(
+            color: AppColors().textColor,
+            fontSize: 22,
+            height: 1.2,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(height: 7),
+        Text(
+          experience.compName,
+          style: TextStyle(
+            color: AppColors().mutedTextColor,
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _Points extends StatelessWidget {
+  final List<String> points;
+
+  const _Points({required this.points});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: points
+          .map(
+            (point) => Padding(
+              padding: const EdgeInsets.only(bottom: 13),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 7),
+                    child: Container(
+                      width: 5,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: AppColors().primaryColor,
+                        shape: BoxShape.circle,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    experience.desig,
-                    style: GoogleFonts.roboto(
-                      color: Colors.white,
-                      fontSize: isMobile ? 20 : 24,
-                      fontWeight: FontWeight.bold,
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      point,
+                      style: TextStyle(
+                        color: AppColors().mutedTextColor,
+                        fontSize: 14,
+                        height: 1.55,
+                      ),
                     ),
                   ),
-                  Text(
-                    experience.compName,
-                    style: GoogleFonts.roboto(
-                      color: AppColors().textLight,
-                      fontSize: isMobile ? 16 : 18,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  ...experience.points.map((point) => Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4),
-                          child: Icon(
-                            Icons.arrow_right_rounded,
-                            size: 20,
-                            color: AppColors().primaryRedColor,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            point,
-                            style: TextStyle(
-                              color: AppColors().textLight.withValues(alpha: 0.8),
-                              fontSize: 14,
-                              height: 1.5,
-                              fontFamily: 'sfmono',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )),
                 ],
               ),
             ),
-          ),
-        ],
-      ),
+          )
+          .toList(),
     );
   }
 }

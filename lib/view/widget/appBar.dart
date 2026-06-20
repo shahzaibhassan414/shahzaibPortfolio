@@ -1,160 +1,152 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/controller/generalController.dart';
-import 'package:portfolio/resource/appClass.dart';
-import 'package:portfolio/resource/colors.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
-class ActionBar extends ConsumerStatefulWidget implements PreferredSizeWidget {
+import '../../resource/appClass.dart';
+import '../../resource/colors.dart';
+
+class ActionBar extends StatelessWidget implements PreferredSizeWidget {
   final AutoScrollController controller;
 
   const ActionBar(this.controller, {super.key});
 
-  @override
-  ConsumerState<ActionBar> createState() => _ActionBarState();
+  static const _items = <({String label, int index})>[
+    (label: 'About', index: 1),
+    (label: 'Experience', index: 2),
+    (label: 'Skills', index: 3),
+    (label: 'OSS', index: 4),
+    (label: 'Projects', index: 5),
+    (label: 'Writing', index: 6),
+    (label: 'Contact', index: 7),
+  ];
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-}
+  Size get preferredSize => const Size.fromHeight(76);
 
-class _ActionBarState extends ConsumerState<ActionBar> {
-  final double appBarHeight = 100.0;
-
-  Widget logo(bool isMobile) {
-    return InkWell(
-      mouseCursor: SystemMouseCursors.none,
-      onTap: () {
-        widget.controller.scrollToIndex(0, preferPosition: AutoScrollPosition.begin);
-      },
-      onHover: (bol) {
-        if (bol) {
-          ref.read(hoverProvider.notifier).state = "logo";
-        } else {
-          ref.read(hoverProvider.notifier).state = "";
-        }
-      },
-      child: Consumer(builder: (context, ref, child) {
-        bool isHovered = ref.watch(hoverProvider) == "logo";
-        return AnimatedScale(
-          scale: isHovered ? 1.05 : 1.0,
-          duration: const Duration(milliseconds: 200),
-          child: RichText(
-            text: TextSpan(
-              text: "SH",
-              style: GoogleFonts.poppins(
-                color: isHovered ? AppColors().primaryRedColor : AppColors().textColor,
-                letterSpacing: 2,
-                fontWeight: FontWeight.w800,
-                fontSize: isMobile ? 24 : 32,
-              ),
-              children: [
-                TextSpan(
-                  text: ".",
-                  style: GoogleFonts.poppins(
-                    color: isHovered ? AppColors().textColor : AppColors().primaryRedColor,
-                    fontWeight: FontWeight.w900,
-                    fontSize: isMobile ? 32 : 45,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      }),
+  void _scrollTo(int index) {
+    controller.scrollToIndex(
+      index,
+      preferPosition: AutoScrollPosition.begin,
+      duration: const Duration(milliseconds: 500),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ClipRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-        child: Container(
-            height: appBarHeight,
-            decoration: BoxDecoration(
-              color: const Color(0xff020c1b).withValues(alpha: 0.7),
-            ),
-            padding: const EdgeInsets.only(right: 15.0, top: 20.0),
-            child: () {
-              ScreenType scrType = AppClass().getScreenType(context);
-              if (scrType == ScreenType.mobile || scrType == ScreenType.tab) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      logo(true),
-                      IconButton(
-                        icon: Icon(Icons.menu_rounded,
-                            color: AppColors().primaryRedColor, size: 32),
-                        onPressed: () {
-                          Scaffold.of(context).openEndDrawer();
-                        },
-                      )
-                    ],
+    final compact = AppClass().getScreenType(context) != ScreenType.web;
+
+    return Material(
+      color: AppColors().backgroundColor.withValues(alpha: 0.96),
+      child: Container(
+        height: 76,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: AppColors().dividerColor),
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1240),
+            child: Row(
+              children: [
+                InkWell(
+                  onTap: () => _scrollTo(0),
+                  child: Text(
+                    'SH.',
+                    style: TextStyle(
+                      color: AppColors().textColor,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: -1.5,
+                    ),
                   ),
-                );
-              }
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100),
-                child: Row(
-                  children: [
-                    logo(false),
-                    Expanded(
-                      flex: 9,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          _navItem("About", 1, "aboutTitle"),
-                          _navItem("Experience", 2, "expTitle"),
-                          _navItem("Skills", 3, "skillsTitle"),
-                          _navItem("Packages", 4, "packages"),
-                          _navItem("Projects", 5, "projects"),
-                          _navItem("Blogs", 6, "blogs"),
-                          _navItem("Contact", 7, "contactTitle"),
-                        ],
+                ),
+                const Spacer(),
+                if (compact)
+                  Builder(
+                    builder: (context) => IconButton(
+                      tooltip: 'Open navigation',
+                      onPressed: () => Scaffold.of(context).openEndDrawer(),
+                      icon: Icon(
+                        Icons.menu_rounded,
+                        color: AppColors().textColor,
+                        size: 27,
                       ),
                     ),
-                  ],
-                ),
-              );
-            }()),
+                  )
+                else ...[
+                  ..._items.map(
+                    (item) => _NavItem(
+                      label: item.label,
+                      onTap: () => _scrollTo(item.index),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  OutlinedButton(
+                    onPressed: () => AppClass().downloadResume(context),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppColors().primaryColor,
+                      side: BorderSide(
+                        color: AppColors().primaryColor.withValues(alpha: 0.45),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 17,
+                        vertical: 14,
+                      ),
+                      textStyle: const TextStyle(
+                        fontFamily: 'sfmono',
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    child: const Text('RESUME'),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
+}
 
-  Widget _navItem(String title, int index, String hoverKey) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 30.0),
+class _NavItem extends StatefulWidget {
+  final String label;
+  final VoidCallback onTap;
+
+  const _NavItem({required this.label, required this.onTap});
+
+  @override
+  State<_NavItem> createState() => _NavItemState();
+}
+
+class _NavItemState extends State<_NavItem> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
       child: InkWell(
-        mouseCursor: SystemMouseCursors.none,
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        hoverColor: Colors.transparent,
-        onTap: () {
-          widget.controller.scrollToIndex(index,
-              preferPosition: AutoScrollPosition.begin);
-        },
-        onHover: (bol) {
-          if (bol) {
-            ref.read(hoverProvider.notifier).state = hoverKey;
-          } else {
-            ref.read(hoverProvider.notifier).state = "";
-          }
-        },
-        child: Consumer(builder: (context, ref, child) {
-          String state = ref.watch(hoverProvider);
-          bool isHovered = (state == hoverKey);
-          return Text(title,
-              style: TextStyle(
-                  color: isHovered
-                      ? AppColors().primaryRedColor
-                      : AppColors().textColor,
-                  fontSize: 13,
-                  fontFamily: 'sfmono'));
-        }),
+        onTap: widget.onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 18),
+          child: Text(
+            widget.label,
+            style: TextStyle(
+              color: _hovered
+                  ? AppColors().primaryColor
+                  : AppColors().mutedTextColor,
+              fontFamily: 'sfmono',
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       ),
     );
   }

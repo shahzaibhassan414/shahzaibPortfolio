@@ -1,11 +1,13 @@
 {
-  "name": "Shahzaib Hassan Flutter Dev",
+  "name": "Shahzaib Hassan — Senior Flutter Developer",
   "short_name": "Shahzaib Hassan",
-  "start_url": ".",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#020c1b",
-  "theme_color": "#cf1f2b",
-  "description": "Senior Flutter Developer Portfolio - Expert in Android, iOS, and Web applications.",
+  "background_color": "#091117",
+  "theme_color": "#72e6be",
+  "description": "Senior Flutter Developer portfolio featuring production iOS and Android apps, experience, skills, open-source packages, and technical writing.",
   "orientation": "portrait-primary",
   "prefer_related_applications": false,
   "icons": [

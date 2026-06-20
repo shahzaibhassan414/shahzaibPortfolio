@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../model/blogModel.dart';
 import '../resource/colors.dart';
 
 class BlogCard extends StatefulWidget {
   final BlogModel blog;
+
   const BlogCard({super.key, required this.blog});
 
   @override
@@ -13,138 +14,122 @@ class BlogCard extends StatefulWidget {
 }
 
 class _BlogCardState extends State<BlogCard> {
-  bool _isHovered = false;
+  bool _hovered = false;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: InkWell(
         onTap: () => launchUrl(Uri.parse(widget.blog.link)),
+        borderRadius: BorderRadius.circular(18),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeOutCubic,
-          width: 380,
+          duration: const Duration(milliseconds: 180),
+          clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: AppColors().cardColor,
-            borderRadius: BorderRadius.circular(20),
+            color: _hovered ? AppColors().elevatedColor : AppColors().cardColor,
+            borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: _isHovered 
-                  ? AppColors().primaryColor.withOpacity(0.5) 
-                  : Colors.white.withOpacity(0.05),
-              width: 1,
+              color: _hovered
+                  ? AppColors().primaryColor.withValues(alpha: 0.4)
+                  : AppColors().dividerColor,
             ),
-            boxShadow: [
-              if (_isHovered)
-                BoxShadow(
-                  color: AppColors().primaryColor.withOpacity(0.1),
-                  blurRadius: 30,
-                  spreadRadius: 5,
-                )
-            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-                child: Stack(
-                  children: [
-                    AnimatedScale(
-                      scale: _isHovered ? 1.05 : 1.0,
-                      duration: const Duration(milliseconds: 600),
-                      child: Image.network(
-                        widget.blog.imageUrl,
-                        height: 220,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withOpacity(_isHovered ? 0.7 : 0.4),
-                            ],
+              AspectRatio(
+                aspectRatio: 1.9,
+                child: Image.network(
+                  widget.blog.imageUrl,
+                  fit: BoxFit.cover,
+                  filterQuality: FilterQuality.low,
+                  frameBuilder: (context, child, frame, _) {
+                    if (frame != null) return child;
+                    return ColoredBox(
+                      color: AppColors().elevatedColor,
+                      child: Center(
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: AppColors().primaryColor,
                           ),
                         ),
                       ),
+                    );
+                  },
+                  errorBuilder: (_, __, ___) => ColoredBox(
+                    color: AppColors().elevatedColor,
+                    child: Icon(
+                      Icons.article_outlined,
+                      color: AppColors().mutedTextColor,
+                      size: 40,
                     ),
-                    Positioned(
-                      bottom: 15,
-                      left: 15,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: AppColors().primaryColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Text(
-                          widget.blog.date.toUpperCase(),
-                          style: TextStyle(
-                            color: AppColors().backgroundColor,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'sfmono',
-                            letterSpacing: 1,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(22),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.blog.title,
-                      style: GoogleFonts.robotoSlab(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        height: 1.3,
+                      widget.blog.date.toUpperCase(),
+                      style: TextStyle(
+                        color: AppColors().primaryColor,
+                        fontFamily: 'sfmono',
+                        fontSize: 9,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 13),
+                    Text(
+                      widget.blog.title,
+                      style: TextStyle(
+                        color: AppColors().textColor,
+                        fontSize: 21,
+                        height: 1.25,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     Text(
                       widget.blog.description,
-                      style: GoogleFonts.roboto(
-                        color: AppColors().textLight.withOpacity(0.8),
-                        fontSize: 15,
-                        height: 1.6,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: AppColors().mutedTextColor,
+                        fontSize: 14,
+                        height: 1.55,
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 20),
                     Row(
                       children: [
                         Text(
-                          "EXPLORE ARTICLE",
+                          'READ ARTICLE',
                           style: TextStyle(
-                            color: _isHovered ? AppColors().primaryColor : AppColors().textColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
+                            color: _hovered
+                                ? AppColors().primaryColor
+                                : AppColors().textColor,
                             fontFamily: 'sfmono',
-                            letterSpacing: 1.5,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 1,
                           ),
                         ),
                         const SizedBox(width: 8),
-                        AnimatedPadding(
-                          duration: const Duration(milliseconds: 300),
-                          padding: EdgeInsets.only(left: _isHovered ? 8 : 0),
-                          child: Icon(
-                            Icons.arrow_right_alt_rounded,
-                            color: _isHovered ? AppColors().primaryColor : AppColors().textColor,
-                            size: 20,
-                          ),
+                        Icon(
+                          Icons.arrow_outward_rounded,
+                          color: _hovered
+                              ? AppColors().primaryColor
+                              : AppColors().mutedTextColor,
+                          size: 16,
                         ),
                       ],
                     ),
