@@ -76,6 +76,8 @@ class _WorkCardState extends State<WorkCard> {
                         widget.project.image,
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.medium,
+                        semanticLabel:
+                            '${widget.project.name} mobile app project preview',
                       ),
                     ),
                     const DecoratedBox(

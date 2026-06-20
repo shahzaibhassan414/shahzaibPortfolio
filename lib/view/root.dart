@@ -193,7 +193,7 @@ class _RootScreenState extends State<RootScreen> {
                         _tag(5, const Projects()),
                         _tag(6, const Blogs()),
                         _tag(7, const Contact()),
-                        const Footer(),
+                        Footer(onBackToTop: () => _scrollTo(0)),
                       ],
                     ),
                   ),

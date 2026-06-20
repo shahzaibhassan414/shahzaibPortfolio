@@ -46,6 +46,7 @@ class _BlogCardState extends State<BlogCard> {
                   widget.blog.imageUrl,
                   fit: BoxFit.cover,
                   filterQuality: FilterQuality.low,
+                  semanticLabel: '${widget.blog.title} article cover',
                   frameBuilder: (context, child, frame, _) {
                     if (frame != null) return child;
                     return ColoredBox(

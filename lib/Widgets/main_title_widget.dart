@@ -30,36 +30,49 @@ class MainTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: isWeb ? 48 : 32),
-      child: Row(
-        children: [
-          Text(
-            _index,
-            style: TextStyle(
-              color: AppColors().primaryColor,
-              fontFamily: 'sfmono',
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1,
-            ),
-          ),
-          const SizedBox(width: 14),
-          Text(
-            title,
-            style: TextStyle(
-              color: AppColors().textColor,
-              fontSize: isWeb ? 34 : 26,
-              fontWeight: FontWeight.w700,
-              letterSpacing: -0.8,
-            ),
-          ),
-          const SizedBox(width: 20),
-          Expanded(
-            child: Container(
-              height: 1,
-              color: AppColors().dividerColor,
-            ),
-          ),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final titleMaxWidth = (constraints.maxWidth - 80).clamp(180.0, 560.0);
+
+          return Row(
+            children: [
+              Text(
+                _index,
+                style: TextStyle(
+                  color: AppColors().primaryColor,
+                  fontFamily: 'sfmono',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1,
+                ),
+              ),
+              const SizedBox(width: 14),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: titleMaxWidth),
+                child: Semantics(
+                  header: true,
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      color: AppColors().textColor,
+                      fontSize: isWeb ? 34 : 26,
+                      height: 1.12,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: -0.8,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 20),
+              Expanded(
+                child: Container(
+                  height: 1,
+                  color: AppColors().dividerColor,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

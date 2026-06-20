@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/resource/colors.dart';
-import 'package:portfolio/view/root.dart';
+import 'package:portfolio/view/splash/splash.dart';
 
 void main() {
-  runApp(ProviderScope(child: const AppTheme()));
+  runApp(const ProviderScope(child: AppTheme()));
 }
 
 class AppTheme extends StatelessWidget {
-  const AppTheme({Key? key}) : super(key: key);
+  const AppTheme({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class AppTheme extends StatelessWidget {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
-      home: const RootScreen(),
+      home: const SplashContent(),
     );
   }
 }

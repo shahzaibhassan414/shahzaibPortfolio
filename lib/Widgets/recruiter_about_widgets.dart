@@ -43,15 +43,18 @@ class RecruiterAboutCopy extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        Text(
-          Strings.aboutHeadline,
-          textAlign: textAlign,
-          style: TextStyle(
-            color: AppColors().textColor,
-            fontSize: headlineSize,
-            height: 1.15,
-            fontWeight: FontWeight.w700,
-            letterSpacing: -1,
+        Semantics(
+          header: true,
+          child: Text(
+            Strings.aboutHeadline,
+            textAlign: textAlign,
+            style: TextStyle(
+              color: AppColors().textColor,
+              fontSize: headlineSize,
+              height: 1.15,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -1,
+            ),
           ),
         ),
         const SizedBox(height: 20),
@@ -184,6 +187,8 @@ class _RecruiterProfileCardState extends State<RecruiterProfileCard> {
                   'assets/svg/profilePic.png',
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
+                  semanticLabel:
+                      'Portrait of Shahzaib Hassan, Senior Flutter Developer',
                 ),
                 const DecoratedBox(
                   decoration: BoxDecoration(
@@ -247,7 +252,7 @@ class _RecruiterProfileCardState extends State<RecruiterProfileCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Shahzaib Hassan',
                         style: TextStyle(
                           color: Colors.white,

@@ -66,14 +66,17 @@ class _IntroCopy extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        Text(
-          Strings.introHeadline,
-          style: TextStyle(
-            color: AppColors().textColor,
-            fontSize: headlineSize,
-            height: 1.06,
-            fontWeight: FontWeight.w700,
-            letterSpacing: -2,
+        Semantics(
+          header: true,
+          child: Text(
+            Strings.introHeadline,
+            style: TextStyle(
+              color: AppColors().textColor,
+              fontSize: headlineSize,
+              height: 1.06,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -2,
+            ),
           ),
         ),
         const SizedBox(height: 24),
@@ -197,7 +200,7 @@ class _HeroProofRow extends StatelessWidget {
       runSpacing: 12,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        _ProofItem(value: '3+', label: 'YEARS'),
+        _ProofItem(value: '4+', label: 'YEARS'),
         _ProofDivider(),
         _ProofItem(value: '15+', label: 'PROJECTS'),
         _ProofDivider(),
