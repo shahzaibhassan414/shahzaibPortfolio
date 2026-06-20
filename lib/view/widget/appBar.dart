@@ -13,7 +13,7 @@ class ActionBar extends StatelessWidget implements PreferredSizeWidget {
     (label: 'About', index: 1),
     (label: 'Experience', index: 2),
     (label: 'Skills', index: 3),
-    (label: 'OSS', index: 4),
+    (label: 'OSC', index: 4),
     (label: 'Projects', index: 5),
     (label: 'Writing', index: 6),
     (label: 'Contact', index: 7),

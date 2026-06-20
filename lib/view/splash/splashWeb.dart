@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/resource/colors.dart';
 import '../../Widgets/custom_app_logo.dart';
 import '../root.dart';
@@ -58,7 +57,8 @@ class _SplashWebState extends State<SplashWeb>
     Navigator.pushAndRemoveUntil(
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => const RootScreen(),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const RootScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(opacity: animation, child: child);
         },
@@ -96,12 +96,16 @@ class _SplashWebState extends State<SplashWeb>
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: AppColors().primaryRedColor.withValues(alpha: 0.2),
+                          color: AppColors()
+                              .primaryRedColor
+                              .withValues(alpha: 0.2),
                           width: 2,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors().primaryRedColor.withValues(alpha: 0.1),
+                            color: AppColors()
+                                .primaryRedColor
+                                .withValues(alpha: 0.1),
                             blurRadius: 30,
                             spreadRadius: 10,
                           )
@@ -139,7 +143,9 @@ class _SplashWebState extends State<SplashWeb>
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors().primaryRedColor.withValues(alpha: 0.5),
+                          color: AppColors()
+                              .primaryRedColor
+                              .withValues(alpha: 0.5),
                           blurRadius: 5,
                           spreadRadius: 1,
                         )

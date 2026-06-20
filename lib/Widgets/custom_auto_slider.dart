@@ -70,6 +70,7 @@ class _SkillTileState extends State<_SkillTile> {
               height: widget.isWeb ? 46 : 36,
               fit: BoxFit.contain,
               filterQuality: FilterQuality.medium,
+              semanticLabel: '${widget.skill['name']} development skill',
             ),
             const SizedBox(height: 12),
             Text(

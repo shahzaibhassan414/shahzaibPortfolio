@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import '../../Widgets/custom_app_logo.dart';
 import '../../resource/colors.dart';
@@ -12,8 +11,8 @@ class SplashMobile extends StatefulWidget {
   State<SplashMobile> createState() => _SplashMobileState();
 }
 
-class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderStateMixin{
-
+class _SplashMobileState extends State<SplashMobile>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
@@ -58,13 +57,14 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
     Navigator.pushAndRemoveUntil(
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => const RootScreen(),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const RootScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(opacity: animation, child: child);
         },
         transitionDuration: const Duration(milliseconds: 1200),
       ),
-          (route) => false,
+      (route) => false,
     );
   }
 
@@ -96,12 +96,16 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: AppColors().primaryRedColor.withValues(alpha:0.2),
+                          color: AppColors()
+                              .primaryRedColor
+                              .withValues(alpha: 0.2),
                           width: 2,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors().primaryRedColor.withValues(alpha:0.1),
+                            color: AppColors()
+                                .primaryRedColor
+                                .withValues(alpha: 0.1),
                             blurRadius: 30,
                             spreadRadius: 10,
                           )
@@ -121,7 +125,7 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
               width: 250,
               height: 2,
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha:0.05),
+                color: Colors.white.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Stack(
@@ -134,7 +138,9 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors().primaryRedColor.withValues(alpha:0.5),
+                          color: AppColors()
+                              .primaryRedColor
+                              .withValues(alpha: 0.5),
                           blurRadius: 5,
                           spreadRadius: 1,
                         )
@@ -148,7 +154,7 @@ class _SplashMobileState extends State<SplashMobile> with SingleTickerProviderSt
             Text(
               "INITIALIZING EXPERIENCE...",
               style: TextStyle(
-                color: AppColors().textColor.withValues(alpha:0.4),
+                color: AppColors().textColor.withValues(alpha: 0.4),
                 fontFamily: 'sfmono',
                 fontSize: 10,
                 letterSpacing: 3,
