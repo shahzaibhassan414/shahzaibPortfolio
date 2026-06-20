@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # INSTALL Flutter
-git clone https://github.com/flutter/flutter.git -b stable --depth 1  # ADDED
-export PATH="$PATH:`pwd`/flutter/bin"                                   # ADDED
+git clone https://github.com/flutter/flutter.git -b stable --depth 1  
+export PATH="$PATH:`pwd`/flutter/bin"                                 
 
 # CHECK Flutter
-flutter doctor                                                          # ADDED
+flutter doctor                                                          
 
 # GET DEPENDENCIES
-flutter pub get                                                         # ADDED
+flutter pub get                                                        
 
 # BUILD WEB
-flutter build web                                                       # ADDED
+flutter build web                                                      

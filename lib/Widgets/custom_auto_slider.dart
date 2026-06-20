@@ -1,101 +1,91 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import '../resource/appClass.dart';
-import 'custom_skill_image_card.dart';
 
-class SkillsAutoSlider extends StatefulWidget {
+import '../resource/appClass.dart';
+import '../resource/colors.dart';
+
+class SkillsAutoSlider extends StatelessWidget {
   const SkillsAutoSlider({super.key});
 
   @override
-  State<SkillsAutoSlider> createState() => _SkillsAutoSliderState();
+  Widget build(BuildContext context) {
+    final isWeb = AppClass().getScreenType(context) == ScreenType.web;
+    final itemWidth = isWeb ? 150.0 : 118.0;
+
+    return Wrap(
+      spacing: 12,
+      runSpacing: 12,
+      children: AppClass()
+          .skillsImages
+          .map(
+            (skill) => SizedBox(
+              width: itemWidth,
+              child: _SkillTile(skill: skill, isWeb: isWeb),
+            ),
+          )
+          .toList(),
+    );
+  }
 }
 
-class _SkillsAutoSliderState extends State<SkillsAutoSlider> {
-  final ScrollController _scrollController = ScrollController();
-  Timer? _timer;
-  double _scrollPosition = 0.0;
-  final double _speed = 0.9;
-  int? _hoveredIndex;
+class _SkillTile extends StatefulWidget {
+  final Map<String, dynamic> skill;
+  final bool isWeb;
+
+  const _SkillTile({required this.skill, required this.isWeb});
 
   @override
-  void initState() {
-    super.initState();
-    _startMarquee();
-  }
+  State<_SkillTile> createState() => _SkillTileState();
+}
 
-  void _startMarquee() {
-    _timer = Timer.periodic(const Duration(milliseconds: 16), (timer) {
-
-      if (_scrollController.hasClients) {
-        _scrollPosition += _speed;
-
-        if (_scrollPosition >= _scrollController.position.maxScrollExtent) {
-          _scrollPosition = 0;
-          _scrollController.jumpTo(0);
-        } else {
-          _scrollController.jumpTo(_scrollPosition);
-        }
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _scrollController.dispose();
-    super.dispose();
-  }
+class _SkillTileState extends State<_SkillTile> {
+  bool _hovered = false;
 
   @override
   Widget build(BuildContext context) {
-    final skills = AppClass().skillsImages;
-    bool isWeb = AppClass().getScreenType(context) == ScreenType.web;
-
-    return Container(
-      height: isWeb ?  180 : 115,
-      margin: const EdgeInsets.symmetric(vertical: 20),
-      child: ShaderMask(
-        shaderCallback: (Rect bounds) {
-          return const LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              Colors.transparent,
-              Colors.black,
-              Colors.black,
-              Colors.transparent,
-            ],
-            stops: [0.0, 0.02, 0.98, 1.0],
-          ).createShader(bounds);
-        },
-        blendMode: BlendMode.dstIn,
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          scrollDirection: Axis.horizontal,
-          physics: const NeverScrollableScrollPhysics(),
-          child: Row(
-            children: [
-              ...skills,
-              ...skills,
-              ...skills,
-            ].asMap().entries.map((entry) {
-              final index = entry.key;
-              final skill = entry.value;
-
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: MouseRegion(
-                  onEnter: (_) => setState(() => _hoveredIndex = index),
-                  onExit: (_) => setState(() => _hoveredIndex = null),
-                  child: CustomSkillImageCard(
-                    skill: skill,
-                    isHovered: _hoveredIndex == index,
-                    isWeb: isWeb,
-                  ),
-                ),
-              );
-            }).toList(),
+    return MouseRegion(
+      cursor: SystemMouseCursors.basic,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        height: widget.isWeb ? 132 : 108,
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: _hovered
+              ? AppColors().elevatedColor
+              : AppColors().cardColor.withValues(alpha: 0.8),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: _hovered
+                ? AppColors().primaryColor.withValues(alpha: 0.45)
+                : AppColors().dividerColor,
           ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              widget.skill['image'],
+              width: widget.isWeb ? 46 : 36,
+              height: widget.isWeb ? 46 : 36,
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.medium,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              widget.skill['name'],
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: _hovered
+                    ? AppColors().textColor
+                    : AppColors().mutedTextColor,
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
         ),
       ),
     );

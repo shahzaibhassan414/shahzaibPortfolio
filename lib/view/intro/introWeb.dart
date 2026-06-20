@@ -1,105 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import '../../Widgets/custom_hover_button.dart';
-import '../../Widgets/custom_social_icon.dart';
-import '../../Widgets/type_writer_text.dart';
+
+import '../../Widgets/recruiter_intro_widgets.dart';
 import '../../resource/appClass.dart';
-import '../../resource/colors.dart';
-import '../../resource/strings.dart';
 
-class IntroWeb extends StatefulWidget {
-  AutoScrollController aScrollController;
+class IntroWeb extends StatelessWidget {
+  final AutoScrollController scrollController;
 
-  IntroWeb(this.aScrollController, {Key? key}) : super(key: key);
+  const IntroWeb(this.scrollController, {super.key});
 
-  @override
-  State<IntroWeb> createState() => _IntroWebState();
-}
-
-class _IntroWebState extends State<IntroWeb> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent,
-      margin: EdgeInsets.only(
-          left: AppClass().getMqWidth(context) * 0.03,
-          right: AppClass().getMqWidth(context) * 0.03,
-          top: AppClass().getMqHeight(context) * 0.12,
-          bottom: AppClass().getMqHeight(context) * 0.12,
+      constraints: BoxConstraints(
+        minHeight: AppClass().getMqHeight(context) - 80,
       ),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 50),
-                child: Text(
-                  Strings.welcomeTxt,
-                  style: TextStyle(
-                      color: AppColors().textColor,
-                      fontSize: 18,
-                      fontFamily: 'sfmono'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  Strings.name,
-                  style: GoogleFonts.robotoSlab(
-                    color:  AppColors().primaryRedColor,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 3,
-                    fontSize: 60,
-                  ),
-                ),
-              ),
-              TypeWriterText(
-                text: Strings.whatIdo,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Container(
-                  width: AppClass().getMqWidth(context) * 0.7,
-                  child: RichText(
-                      text: TextSpan(
-                          text: Strings.introAbout,
-                          style: GoogleFonts.roboto(
-                            color: AppColors().textLight,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 18,
-                          ),
-                          children: <TextSpan>[
-                        TextSpan(
-                          text: Strings.currentOrgName,
-                          style: GoogleFonts.roboto(
-                            color: AppColors().primaryRedColor,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            fontSize: 18,
-                          ),
-                        )
-                      ])),
-                ),
-              ),
-              Padding(
-                  padding: EdgeInsets.only(top: 50, bottom: 30),
-                  child: CustomHoverButton(
-                    width: AppClass().getMqWidth(context) * 0.15,
-                    height: AppClass().getMqWidth(context) * 0.04,
-                    text: "Resume",
-                    onTap: () {
-                      AppClass().downloadResume(context);
-                    },
-                  )),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(
+        vertical: AppClass().getMqHeight(context) * 0.09,
+      ),
+      alignment: Alignment.center,
+      child: RecruiterIntroHero(
+        onViewWork: () => _scrollTo(5),
+        onContact: () => _scrollTo(7),
+      ),
+    );
+  }
 
-              SocialIcons(width: AppClass().getMqWidth(context) * 0.17),
-            ],
-          ),
-        ],
-      ),
+  void _scrollTo(int index) {
+    scrollController.scrollToIndex(
+      index,
+      preferPosition: AutoScrollPosition.begin,
     );
   }
 }

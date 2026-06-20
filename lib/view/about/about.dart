@@ -1,24 +1,23 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/resource/responsive.dart';
 import 'package:portfolio/view/about/aboutWeb.dart';
 import 'package:portfolio/view/about/aboutMobile.dart';
 import 'package:portfolio/view/about/aboutTab.dart';
 
-class About extends StatefulWidget {
-  const About({super.key});
+class About extends StatelessWidget {
+  final VoidCallback onViewProjects;
 
-  @override
-  State<About> createState() => _AboutState();
-}
+  const About({
+    super.key,
+    required this.onViewProjects,
+  });
 
-class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Responsive(
-      webView: const AboutWeb(),
-      tabView: const AboutTab(),
-      mobileView: const AboutMobile(),
+      webView: AboutWeb(onViewProjects: onViewProjects),
+      tabView: AboutTab(onViewProjects: onViewProjects),
+      mobileView: AboutMobile(onViewProjects: onViewProjects),
     );
   }
 }

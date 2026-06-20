@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:portfolio/Widgets/custom_cursor.dart';
 import 'package:portfolio/resource/colors.dart';
-import 'package:portfolio/view/splash/splash.dart';
+import 'package:portfolio/view/root.dart';
 
 void main() {
   runApp(ProviderScope(child: const AppTheme()));
@@ -18,16 +17,20 @@ class AppTheme extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
+        useMaterial3: true,
         scaffoldBackgroundColor: AppColors().backgroundColor,
         primaryColor: AppColors().primaryColor,
+        colorScheme: ColorScheme.dark(
+          primary: AppColors().primaryColor,
+          surface: AppColors().cardColor,
+          onSurface: AppColors().textColor,
+        ),
+        fontFamily: 'Arial',
         hoverColor: Colors.transparent,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
-      builder: (context, child) {
-        return CustomCursor(child: child!);
-      },
-      home: SplashContent(),
+      home: const RootScreen(),
     );
   }
 }

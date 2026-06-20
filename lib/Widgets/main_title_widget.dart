@@ -1,52 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:visibility_detector/visibility_detector.dart';
-import '../resource/appClass.dart';
+
 import '../resource/colors.dart';
 
-class MainTitleWidget extends StatefulWidget {
+class MainTitleWidget extends StatelessWidget {
   final String title;
   final bool isWeb;
-  const MainTitleWidget(
-      {super.key,
-      required this.title,
-      this.isWeb = true});
 
-  @override
-  State<MainTitleWidget> createState() => _MainTitleWidgetState();
-}
+  const MainTitleWidget({
+    super.key,
+    required this.title,
+    this.isWeb = true,
+  });
 
-class _MainTitleWidgetState extends State<MainTitleWidget> {
+  String get _index {
+    const order = {
+      'About Me': '01',
+      'Experiences': '02',
+      'Skills': '03',
+      'Open Source Contributions': '04',
+      'Open Source': '04',
+      'My Projects': '05',
+      'Latest Blogs': '06',
+      "What's Next?": '07',
+    };
+    return order[title] ?? '•';
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        bottom: AppClass().getMqHeight(context) * 0.07,
-      ),
-      child: Center(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              widget.title,
-              style: GoogleFonts.poppins(
-                  color: AppColors().textColor,
-                  letterSpacing: 1.5,
-                  fontWeight: FontWeight.bold,
-                  fontSize: widget.isWeb ? 40 : 28),
+      padding: EdgeInsets.only(bottom: isWeb ? 48 : 32),
+      child: Row(
+        children: [
+          Text(
+            _index,
+            style: TextStyle(
+              color: AppColors().primaryColor,
+              fontFamily: 'sfmono',
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 1,
             ),
-            const SizedBox(width: 8),
-            Container(
-              width: widget.isWeb ? 12 : 8,
-              height: widget.isWeb ? 12 : 8,
-              decoration: BoxDecoration(
-                color: AppColors().primaryRedColor,
-                shape: BoxShape.circle,
-              ),
-            )
-          ],
-        ),
+          ),
+          const SizedBox(width: 14),
+          Text(
+            title,
+            style: TextStyle(
+              color: AppColors().textColor,
+              fontSize: isWeb ? 34 : 26,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -0.8,
+            ),
+          ),
+          const SizedBox(width: 20),
+          Expanded(
+            child: Container(
+              height: 1,
+              color: AppColors().dividerColor,
+            ),
+          ),
+        ],
       ),
     );
   }
