@@ -3,7 +3,7 @@
 A modern, responsive, and interactive **Flutter Web Portfolio** showcasing my skills, experience, and projects as a Flutter Developer.  
 Built with clean UI, smooth animations, and performance in mind.
 
-🌐 **Live Demo:** *https://shahzaib-flutter-dev-portfolio.vercel.app/*  
+🌐 **Live Demo:** *https://www.shahzaib-dev.site/*  
 👨‍💻 **Developer:** Shahzaib Hassan (Flutter Developer)
 
 ---
