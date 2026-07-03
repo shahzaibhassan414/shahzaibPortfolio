@@ -7,7 +7,7 @@ import '../../Widgets/stacks_text_auto_slider.dart';
 import '../../resource/appClass.dart';
 
 class SkillsWeb extends ConsumerStatefulWidget {
-  const SkillsWeb({Key? key}) : super(key: key);
+  const SkillsWeb({super.key});
 
   @override
   ConsumerState<SkillsWeb> createState() => _ExperienceWebState();
