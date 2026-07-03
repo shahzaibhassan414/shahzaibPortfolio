@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../model/packageModel.dart';
 import '../resource/colors.dart';
 
 class PackageCard extends StatefulWidget {
   final PackageModel package;
+
   const PackageCard({super.key, required this.package});
 
   @override
@@ -13,112 +14,103 @@ class PackageCard extends StatefulWidget {
 }
 
 class _PackageCardState extends State<PackageCard> {
-  bool _isHovered = false;
+  bool _hovered = false;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        width: 350,
-        padding: const EdgeInsets.all(24),
-        decoration: BoxDecoration(
-          color: _isHovered ? AppColors().cardColor.withValues(alpha: 0.8) : AppColors().cardColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: _isHovered ? AppColors().primaryColor : AppColors().primaryColor.withValues(alpha: 0.1),
-            width: 1,
-          ),
-          boxShadow: [
-            if (_isHovered)
-              BoxShadow(
-                color: AppColors().primaryColor.withValues(alpha: 0.1),
-                blurRadius: 20,
-                spreadRadius: 5,
-              )
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(
-                  Icons.inventory_2_outlined,
-                  color: AppColors().primaryColor,
-                  size: 32,
-                ),
-                GestureDetector(
-                  onTap: () => launchUrl(Uri.parse(widget.package.pubLink)),
-                  child: Icon(
-                    Icons.open_in_new_rounded,
-                    color: AppColors().textColor.withValues(alpha: 0.5),
-                    size: 20,
-                  ),
-                ),
-              ],
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: InkWell(
+        onTap: () => launchUrl(Uri.parse(widget.package.pubLink)),
+        borderRadius: BorderRadius.circular(18),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: _hovered ? AppColors().elevatedColor : AppColors().cardColor,
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(
+              color: _hovered
+                  ? AppColors().primaryColor.withValues(alpha: 0.4)
+                  : AppColors().dividerColor,
             ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    widget.package.name,
-                    style: GoogleFonts.roboto(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 42,
+                    height: 42,
+                    decoration: BoxDecoration(
+                      color: AppColors().primaryColor.withValues(alpha: 0.08),
+                      borderRadius: BorderRadius.circular(11),
+                    ),
+                    child: Icon(
+                      Icons.data_object_rounded,
+                      color: AppColors().primaryColor,
+                      size: 21,
                     ),
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: AppColors().primaryColor.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Text(
+                  const Spacer(),
+                  Text(
                     widget.package.version,
                     style: TextStyle(
-                      color: AppColors().primaryColor,
-                      fontSize: 10,
+                      color: AppColors().mutedTextColor,
                       fontFamily: 'sfmono',
+                      fontSize: 10,
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Text(
-              widget.package.description,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: AppColors().textLight,
-                fontSize: 14,
-                height: 1.5,
-              ),
-            ),
-            const Spacer(),
-            const SizedBox(height: 20),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: widget.package.techs.map((tech) {
-                return Text(
-                  tech,
-                  style: TextStyle(
-                    color: AppColors().primaryColor.withValues(alpha: 0.7),
-                    fontSize: 12,
-                    fontFamily: 'sfmono',
+                  const SizedBox(width: 10),
+                  Icon(
+                    Icons.arrow_outward_rounded,
+                    color: AppColors().mutedTextColor,
+                    size: 18,
                   ),
-                );
-              }).toList(),
-            ),
-          ],
+                ],
+              ),
+              const SizedBox(height: 22),
+              Text(
+                widget.package.name,
+                style: TextStyle(
+                  color: AppColors().textColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                widget.package.description,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: AppColors().mutedTextColor,
+                  fontSize: 14,
+                  height: 1.5,
+                ),
+              ),
+              const Spacer(),
+              Wrap(
+                spacing: 12,
+                runSpacing: 8,
+                children: widget.package.techs
+                    .map(
+                      (tech) => Text(
+                        tech,
+                        style: TextStyle(
+                          color: AppColors().primaryColor,
+                          fontFamily: 'sfmono',
+                          fontSize: 10,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
