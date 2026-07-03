@@ -58,6 +58,7 @@ class _ContactState extends ConsumerState<Contact> {
   Widget build(BuildContext context) {
     final screenType = AppClass().getScreenType(context);
     final isWeb = screenType == ScreenType.web;
+    final isMobile = screenType == ScreenType.mobile;
     final horizontal = screenType == ScreenType.mobile ? 20.0 : 38.0;
     final isSending = ref.watch(progressProvider);
 
@@ -68,29 +69,29 @@ class _ContactState extends ConsumerState<Contact> {
           'Have a product that needs to ship?',
           style: TextStyle(
             color: AppColors().textColor,
-            fontSize: isWeb ? 42 : 31,
+            fontSize: isWeb ? 42 : 27,
             height: 1.12,
             fontWeight: FontWeight.w700,
-            letterSpacing: -1.2,
+            letterSpacing: isMobile ? 0 : -1.2,
           ),
         ),
-        const SizedBox(height: 18),
+        SizedBox(height: isMobile ? 12 : 18),
         Text(
           Strings.endTxt,
           style: TextStyle(
             color: AppColors().mutedTextColor,
-            fontSize: isWeb ? 16 : 15,
-            height: 1.65,
+            fontSize: isWeb ? 16 : 14,
+            height: isMobile ? 1.5 : 1.65,
           ),
         ),
-        const SizedBox(height: 28),
+        SizedBox(height: isMobile ? 20 : 28),
         _ContactLink(
           icon: Icons.mail_outline_rounded,
           label: 'EMAIL',
           value: AppClass.email,
           onTap: () => AppClass().openEmail(AppClass.email),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: isMobile ? 10 : 12),
         _ContactLink(
           icon: Icons.call_outlined,
           label: 'PHONE',
@@ -101,10 +102,10 @@ class _ContactState extends ConsumerState<Contact> {
     );
 
     final form = Container(
-      padding: EdgeInsets.all(isWeb ? 28 : 20),
+      padding: EdgeInsets.all(isWeb ? 28 : 18),
       decoration: BoxDecoration(
         color: AppColors().cardColor,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(isMobile ? 14 : 18),
         border: Border.all(color: AppColors().dividerColor),
       ),
       child: Form(
@@ -120,7 +121,7 @@ class _ContactState extends ConsumerState<Contact> {
                   ? 'Please enter a name'
                   : null,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: isMobile ? 12 : 16),
             _Field(
               controller: _emailController,
               label: 'Email',
@@ -134,17 +135,17 @@ class _ContactState extends ConsumerState<Contact> {
                 return null;
               },
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: isMobile ? 12 : 16),
             _Field(
               controller: _messageController,
               label: 'Message',
               hint: 'Tell me a little about the product or role',
-              maxLines: 5,
+              maxLines: isMobile ? 4 : 5,
               validator: (value) => (value?.trim().isEmpty ?? true)
                   ? 'Please enter a message'
                   : null,
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: isMobile ? 16 : 20),
             SizedBox(
               width: double.infinity,
               child: FilledButton.icon(
@@ -180,9 +181,9 @@ class _ContactState extends ConsumerState<Contact> {
     return Padding(
       padding: EdgeInsets.fromLTRB(
         horizontal,
-        isWeb ? 130 : 90,
+        isWeb ? 130 : 56,
         horizontal,
-        isWeb ? 100 : 70,
+        isWeb ? 100 : 38,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,7 +200,7 @@ class _ContactState extends ConsumerState<Contact> {
             )
           else ...[
             copy,
-            const SizedBox(height: 34),
+            const SizedBox(height: 24),
             form,
           ],
         ],
@@ -230,6 +231,8 @@ class _ContactLinkState extends State<_ContactLink> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = AppClass().getScreenType(context) == ScreenType.mobile;
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),
@@ -239,7 +242,7 @@ class _ContactLinkState extends State<_ContactLink> {
         borderRadius: BorderRadius.circular(12),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 160),
-          padding: const EdgeInsets.all(15),
+          padding: EdgeInsets.all(isMobile ? 13 : 15),
           decoration: BoxDecoration(
             color: _hovered
                 ? AppColors().elevatedColor
@@ -270,7 +273,7 @@ class _ContactLinkState extends State<_ContactLink> {
                       widget.value,
                       style: TextStyle(
                         color: AppColors().textColor,
-                        fontSize: 13,
+                        fontSize: isMobile ? 12 : 13,
                       ),
                     ),
                   ],
@@ -308,6 +311,8 @@ class _Field extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = AppClass().getScreenType(context) == ScreenType.mobile;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -333,8 +338,10 @@ class _Field extends StatelessWidget {
             hintStyle: TextStyle(color: AppColors().mutedTextColor),
             filled: true,
             fillColor: AppColors().backgroundColor.withValues(alpha: 0.65),
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: isMobile ? 13 : 15,
+            ),
             border: _border(),
             enabledBorder: _border(),
             focusedBorder: _border(AppColors().primaryColor),

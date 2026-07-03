@@ -12,12 +12,13 @@ class Packages extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenType = AppClass().getScreenType(context);
     final isWeb = screenType == ScreenType.web;
+    final isMobile = screenType == ScreenType.mobile;
     final horizontal = screenType == ScreenType.mobile ? 20.0 : 38.0;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(
         horizontal,
-        isWeb ? 130 : 90,
+        isWeb ? 130 : 56,
         horizontal,
         20,
       ),
@@ -34,12 +35,12 @@ class Packages extends StatelessWidget {
               'Small, reusable Flutter tools extracted from real UI problems and published for other developers.',
               style: TextStyle(
                 color: AppColors().mutedTextColor,
-                fontSize: isWeb ? 17 : 15,
-                height: 1.6,
+                fontSize: isWeb ? 17 : 14,
+                height: isMobile ? 1.48 : 1.6,
               ),
             ),
           ),
-          const SizedBox(height: 36),
+          SizedBox(height: isMobile ? 24 : 36),
           LayoutBuilder(
             builder: (context, constraints) {
               final width = constraints.maxWidth >= 760
@@ -53,7 +54,7 @@ class Packages extends StatelessWidget {
                     .map(
                       (package) => SizedBox(
                         width: width,
-                        height: 250,
+                        height: isMobile ? 214 : 250,
                         child: PackageCard(package: package),
                       ),
                     )

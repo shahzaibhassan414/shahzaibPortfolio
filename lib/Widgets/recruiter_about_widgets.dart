@@ -6,11 +6,13 @@ import '../resource/strings.dart';
 class RecruiterAboutCopy extends StatelessWidget {
   final bool centered;
   final double headlineSize;
+  final bool compact;
 
   const RecruiterAboutCopy({
     super.key,
     this.centered = false,
     this.headlineSize = 44,
+    this.compact = false,
   });
 
   @override
@@ -42,7 +44,7 @@ class RecruiterAboutCopy extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: compact ? 14 : 20),
         Semantics(
           header: true,
           child: Text(
@@ -57,17 +59,17 @@ class RecruiterAboutCopy extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: compact ? 14 : 20),
         Text(
           Strings.aboutSummary,
           textAlign: textAlign,
           style: TextStyle(
             color: AppColors().textLight,
-            fontSize: 17,
-            height: 1.7,
+            fontSize: compact ? 15 : 17,
+            height: compact ? 1.55 : 1.7,
           ),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: compact ? 18 : 24),
         Wrap(
           alignment: centered ? WrapAlignment.center : WrapAlignment.start,
           spacing: 10,
@@ -76,7 +78,7 @@ class RecruiterAboutCopy extends StatelessWidget {
               .map((capability) => _CapabilityChip(label: capability))
               .toList(),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: compact ? 16 : 20),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [

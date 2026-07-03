@@ -14,8 +14,8 @@ class IntroMobile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       margin: EdgeInsets.only(
-        top: AppClass().getMqHeight(context) * 0.09,
-        bottom: AppClass().getMqHeight(context) * 0.1,
+        top: AppClass().getMqHeight(context) * 0.045,
+        bottom: 34,
       ),
       child: RecruiterIntroHero(
         compact: true,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../Widgets/about_stats_widget.dart';
 import '../../Widgets/main_title_widget.dart';
 import '../../Widgets/recruiter_about_widgets.dart';
-import '../../resource/appClass.dart';
 
 class AboutMobile extends StatelessWidget {
   final VoidCallback onViewProjects;
@@ -22,18 +21,19 @@ class AboutMobile extends StatelessWidget {
           const MainTitleWidget(title: 'About Me', isWeb: false),
           const RecruiterAboutCopy(
             centered: true,
-            headlineSize: 30,
+            headlineSize: 27,
+            compact: true,
           ),
-          const SizedBox(height: 28),
+          const SizedBox(height: 22),
           AboutActionButtons(
             onViewProjects: onViewProjects,
             centered: true,
           ),
-          const SizedBox(height: 38),
-          const RecruiterProfileCard(maxWidth: 360),
-          const SizedBox(height: 38),
+          const SizedBox(height: 28),
+          const RecruiterProfileCard(maxWidth: 330),
+          const SizedBox(height: 28),
           const AboutStatsWidget(),
-          SizedBox(height: AppClass().getMqHeight(context) * 0.1),
+          const SizedBox(height: 24),
         ],
       ),
     );

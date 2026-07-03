@@ -48,13 +48,13 @@ class _WorkCardState extends State<WorkCard> {
             builder: (context) => ProjectDetailDialog(project: widget.project),
           );
         },
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(8),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: _hovered ? AppColors().elevatedColor : AppColors().cardColor,
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(8),
             border: Border.all(
               color: _hovered
                   ? AppColors().primaryColor.withValues(alpha: 0.4)
@@ -116,6 +116,26 @@ class _WorkCardState extends State<WorkCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    if (widget.project.role != null ||
+                        widget.project.timeline != null) ...[
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          if (widget.project.role != null)
+                            _MetaPill(
+                              icon: Icons.person_outline_rounded,
+                              label: widget.project.role!,
+                            ),
+                          if (widget.project.timeline != null)
+                            _MetaPill(
+                              icon: Icons.grid_view_rounded,
+                              label: widget.project.timeline!,
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
+                    ],
                     Text(
                       widget.project.name,
                       style: TextStyle(
@@ -135,6 +155,40 @@ class _WorkCardState extends State<WorkCard> {
                           fontSize: 13,
                           height: 1.5,
                         ),
+                      ),
+                    ],
+                    if (widget.project.impact != null) ...[
+                      const SizedBox(height: 14),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.bolt_rounded,
+                            color: AppColors().primaryColor,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              widget.project.impact!,
+                              style: TextStyle(
+                                color: AppColors().textColor,
+                                fontFamily: 'sfmono',
+                                fontSize: 10,
+                                height: 1.45,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                    if (widget.project.highlights?.isNotEmpty ?? false) ...[
+                      const SizedBox(height: 14),
+                      Column(
+                        children: widget.project.highlights!
+                            .take(2)
+                            .map((highlight) => _HighlightLine(highlight))
+                            .toList(),
                       ),
                     ],
                     if (widget.project.techs?.isNotEmpty ?? false) ...[
@@ -175,6 +229,83 @@ class _WorkCardState extends State<WorkCard> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _MetaPill extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _MetaPill({
+    required this.icon,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
+      decoration: BoxDecoration(
+        color: AppColors().backgroundColor.withValues(alpha: 0.62),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors().dividerColor),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: AppColors().primaryColor, size: 13),
+          const SizedBox(width: 6),
+          Text(
+            label,
+            style: TextStyle(
+              color: AppColors().mutedTextColor,
+              fontFamily: 'sfmono',
+              fontSize: 9,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HighlightLine extends StatelessWidget {
+  final String text;
+
+  const _HighlightLine(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 7),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 5,
+            height: 5,
+            margin: const EdgeInsets.only(top: 7),
+            decoration: BoxDecoration(
+              color: AppColors().primaryColor,
+              borderRadius: BorderRadius.circular(2.5),
+            ),
+          ),
+          const SizedBox(width: 9),
+          Expanded(
+            child: Text(
+              text,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: AppColors().mutedTextColor,
+                fontSize: 12,
+                height: 1.45,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

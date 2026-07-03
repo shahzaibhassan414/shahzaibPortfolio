@@ -109,11 +109,24 @@ class ProjectModel {
   String name;
   String image;
   String? description;
+  String? role;
+  String? timeline;
+  String? impact;
   String? iosLink;
   String? androidLink;
   List<String>? techs;
+  List<String>? highlights;
 
-  ProjectModel({required this.name, required this.image, this.description,
-    this.iosLink, this.androidLink, this.techs
+  ProjectModel({
+    required this.name,
+    required this.image,
+    this.description,
+    this.role,
+    this.timeline,
+    this.impact,
+    this.iosLink,
+    this.androidLink,
+    this.techs,
+    this.highlights,
   });
 }

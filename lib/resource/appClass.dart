@@ -12,7 +12,6 @@ import '../model/packageModel.dart';
 import '../model/blogModel.dart';
 import '../view/projects/projectWeb.dart';
 
-
 enum ScreenType { mobile, tab, web }
 
 class AppClass {
@@ -29,36 +28,40 @@ class AppClass {
 
   List<PackageModel> packages = [
     PackageModel(
-      name: 'fancy_button_animations',
-      description: 'A Flutter package to add beautiful and interactive animations to buttons with minimal effort.',
-      version: 'v0.0.2',
-      pubLink: 'https://pub.dev/packages/fancy_button_animations',
-      techs: ['Flutter', 'Dart', 'Animations']
-    ),
+        name: 'fancy_button_animations',
+        description:
+            'A Flutter package to add beautiful and interactive animations to buttons with minimal effort.',
+        version: 'v0.0.2',
+        pubLink: 'https://pub.dev/packages/fancy_button_animations',
+        techs: ['Flutter', 'Dart', 'Animations']),
     PackageModel(
-      name: 'inner_curved_circle',
-      description: 'A Flutter package that provides a widget to create a circle with an inner curved effect, perfect for custom UI designs.',
-      version: 'v0.0.2',
-      pubLink: 'https://pub.dev/packages/inner_curved_circle',
-      techs: ['Flutter', 'Dart', 'UI Components']
-    ),
+        name: 'inner_curved_circle',
+        description:
+            'A Flutter package that provides a widget to create a circle with an inner curved effect, perfect for custom UI designs.',
+        version: 'v0.0.2',
+        pubLink: 'https://pub.dev/packages/inner_curved_circle',
+        techs: ['Flutter', 'Dart', 'UI Components']),
   ];
 
   List<BlogModel> blogs = [
     BlogModel(
-      title: 'How to Add a Heatmap in Flutter',
-      description: 'Display a heatmap overlay on a Google Map using Flutter — showing data density such as user activity, locations, or hotspots.',
-      imageUrl: 'https://images.unsplash.com/photo-1584291527935-456e8e2dd734?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      link: 'https://midnight-grape-a6b.notion.site/Playbook-How-to-Add-a-Heatmap-in-Flutter-Google-Maps-2854fb3615b880538317ede1721ce16a',
-      date: 'Oct 07, 2025'
-    ),
+        title: 'How to Add a Heatmap in Flutter',
+        description:
+            'Display a heatmap overlay on a Google Map using Flutter — showing data density such as user activity, locations, or hotspots.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1584291527935-456e8e2dd734?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        link:
+            'https://midnight-grape-a6b.notion.site/Playbook-How-to-Add-a-Heatmap-in-Flutter-Google-Maps-2854fb3615b880538317ede1721ce16a',
+        date: 'Oct 07, 2025'),
     BlogModel(
-      title: 'From SVG to Flutter Widget',
-      description: 'The goal of this guide is to help Flutter developers turn any SVG design into a fully functional, customizable Flutter widget ',
-      imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2344&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      link: 'https://midnight-grape-a6b.notion.site/Playbook-From-SVG-to-Flutter-Widget-2e94fb3615b880dd89a4fc2cc4d76f68',
-      date: 'Jan 15, 2026'
-    ),
+        title: 'From SVG to Flutter Widget',
+        description:
+            'The goal of this guide is to help Flutter developers turn any SVG design into a fully functional, customizable Flutter widget ',
+        imageUrl:
+            'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2344&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        link:
+            'https://midnight-grape-a6b.notion.site/Playbook-From-SVG-to-Flutter-Widget-2e94fb3615b880dd89a4fc2cc4d76f68',
+        date: 'Jan 15, 2026'),
   ];
 
   final List<Map<String, dynamic>> skills = [
@@ -83,9 +86,9 @@ class AppClass {
   ];
 
   final List<Map<String, dynamic>> skillsImages = [
-    {'image': CustomImages.skillsDart , 'name': 'Dart'},
-    {'image': CustomImages.skillsFlutter , 'name': 'Flutter'},
-    {'image': CustomImages.skillsGit , 'name': 'Git'},
+    {'image': CustomImages.skillsDart, 'name': 'Dart'},
+    {'image': CustomImages.skillsFlutter, 'name': 'Flutter'},
+    {'image': CustomImages.skillsGit, 'name': 'Git'},
     {'image': CustomImages.skillsAndroidStudio, 'name': 'Android Studio'},
     {'image': CustomImages.skillsAppStore, 'name': 'App Store'},
     {'image': CustomImages.skillsPlayStore, 'name': 'Play Store'},
@@ -106,56 +109,135 @@ class AppClass {
 
   List<ProjectModel> projects = [
     ProjectModel(
-      name: 'Paw Play Love',
-      image: CustomImages.projectPPl,
-      description: 'I developed Paw Play Love, a community-driven platform designed to connect pet owners through meaningful social interactions. On the technical side, I integrated Firebase Auth and Notifications, managed real-time communication using Sockets, and implemented RevenueCat for seamless in-app purchases and subscriptions. The app features a high-performance UI inspired by Figma designs, utilizing Cached Network Images and robust State Management to ensure a fluid user experience.',
-      androidLink: 'https://play.google.com/store/apps/details?id=com.pawplaylove&hl=en',
-      iosLink: 'https://apps.apple.com/id/app/paw-play-love/id6648773545',
-      techs: ['Flutter', 'Firebase', 'Socket.io', 'RevenueCat', 'Provider']
+      name: 'On Scene',
+      description:
+          'On Scene is a cutting-edge, location-aware social platform designed to bridge the gap between digital discovery and real-world connections. I engineered a seamless Check-in mechanism using Google Maps API, allowing users to discover and interact with others at nearby venues in real-time.',
+      image: CustomImages.projectOnScene,
+      role: 'Location feature lead',
+      timeline: 'Venue social app',
+      impact: 'Maps + live discovery',
+      techs: ['Flutter', 'Google Maps', 'Socket.io', 'RevenueCat', 'Firebase'],
+      highlights: [
+        'Designed check-in flows around nearby venues and user presence.',
+        'Connected Google Maps, sockets, and Firebase into one discovery path.',
+        'Supported paid experiences with RevenueCat subscriptions.',
+      ],
     ),
     ProjectModel(
       name: 'LawnOlu',
-      description: 'Developed Lawnolu, a high-performance service provider application leveraging REST APIs and Firebase (Notifications & Analytics). The app’s architecture supports multi-tenant logic, allowing users to switch between business roles seamlessly. Key technical achievements include implementing a real-time tracking system using Google Maps, managing state for complex service requests, and ensuring financial security through Stripe integration.',
+      description:
+          'Developed Lawnolu, a high-performance service provider application leveraging REST APIs and Firebase (Notifications & Analytics). The app’s architecture supports multi-tenant logic, allowing users to switch between business roles seamlessly. Key technical achievements include implementing a real-time tracking system using Google Maps, managing state for complex service requests, and ensuring financial security through Stripe integration.',
       image: CustomImages.projectLawnolu,
-      techs: ['Flutter', 'REST API', 'Google Maps', 'Stripe', 'Socket.io']
+      role: 'Mobile app engineer',
+      timeline: 'Service marketplace',
+      impact: 'Live tracking + payments',
+      techs: ['Flutter', 'REST API', 'Google Maps', 'Stripe', 'Socket.io'],
+      highlights: [
+        'Created multi-role service flows for customers and providers.',
+        'Added Google Maps tracking for active lawn-care jobs.',
+        'Integrated Stripe and Firebase analytics/notifications.',
+      ],
     ),
     ProjectModel(
       name: 'Zera',
-      description: 'Zera represents a masterclass in cross-functional app development, utilizing REST APIs and TanStack Query for robust state management and caching. I implemented specialized features including Custom Heat Maps for data visualization, QR Scanning for seamless interactions, and In-app Web Views for extended functionality.',
+      description:
+          'Zera represents a masterclass in cross-functional app development, utilizing REST APIs and TanStack Query for robust state management and caching. I implemented specialized features including Custom Heat Maps for data visualization, QR Scanning for seamless interactions, and In-app Web Views for extended functionality.',
       image: CustomImages.projectZera,
-      techs: ['Flutter', 'REST API', 'TanStack Query', 'Google Maps', 'QR Scanner']
+      role: 'Feature developer',
+      timeline: 'Data-heavy app',
+      impact: 'Heatmaps + QR workflows',
+      techs: [
+        'Flutter',
+        'REST API',
+        'TanStack Query',
+        'Google Maps',
+        'QR Scanner'
+      ],
+      highlights: [
+        'Implemented custom heatmap views for location-based insights.',
+        'Used TanStack Query patterns for caching and predictable API state.',
+        'Added QR scanning and in-app web views for fast task completion.',
+      ],
+    ),
+    ProjectModel(
+      name: 'Paw Play Love',
+      image: CustomImages.projectPPl,
+      description:
+          'I developed Paw Play Love, a community-driven platform designed to connect pet owners through meaningful social interactions. On the technical side, I integrated Firebase Auth and Notifications, managed real-time communication using Sockets, and implemented RevenueCat for seamless in-app purchases and subscriptions. The app features a high-performance UI inspired by Figma designs, utilizing Cached Network Images and robust State Management to ensure a fluid user experience.',
+      role: 'Flutter developer',
+      timeline: 'Social product',
+      impact: 'Subscriptions + real-time community',
+      androidLink:
+          'https://play.google.com/store/apps/details?id=com.pawplaylove&hl=en',
+      iosLink: 'https://apps.apple.com/id/app/paw-play-love/id6648773545',
+      techs: ['Flutter', 'Firebase', 'Socket.io', 'RevenueCat', 'Provider'],
+      highlights: [
+        'Built live social interactions with socket-driven updates.',
+        'Integrated RevenueCat for in-app purchases and subscriptions.',
+        'Implemented Firebase auth, notifications, and cached media flows.',
+      ],
     ),
     ProjectModel(
       name: 'Simman',
-      description: 'With Simman, I tackled the complexities of Real-time Audio Streaming by building a robust architecture that balances speed with security. By integrating Firebase Realtime Database for live updates and implementing advanced State Management, I ensured the app remains responsive under heavy data loads.',
+      description:
+          'With Simman, I tackled the complexities of Real-time Audio Streaming by building a robust architecture that balances speed with security. By integrating Firebase Realtime Database for live updates and implementing advanced State Management, I ensured the app remains responsive under heavy data loads.',
       image: CustomImages.projectSimman,
-      techs: ['Flutter', 'Firebase Realtime DB', 'Audio Streaming', 'GetX']
-    ),
-    ProjectModel(
-      name: 'On Scene',
-      description: 'On Scene is a cutting-edge, location-aware social platform designed to bridge the gap between digital discovery and real-world connections. I engineered a seamless Check-in mechanism using Google Maps API, allowing users to discover and interact with others at nearby venues in real-time.',
-      image: CustomImages.projectOnScene,
-      techs: ['Flutter', 'Google Maps', 'Socket.io', 'RevenueCat', 'Firebase']
+      role: 'Realtime systems developer',
+      timeline: 'Audio platform',
+      impact: 'Low-latency streaming UX',
+      techs: ['Flutter', 'Firebase Realtime DB', 'Audio Streaming', 'GetX'],
+      highlights: [
+        'Built responsive audio-streaming screens with live state updates.',
+        'Used Firebase Realtime Database for fast synchronization.',
+        'Structured GetX state flows around heavy realtime data.',
+      ],
     ),
     ProjectModel(
       name: 'BePay Client',
-      description: 'Web3-Integrated Consumer Platform: I developed a high-end Flutter application for the end-user, focusing on a seamless transition between traditional and decentralized commerce. The app features a secure Web3 wallet creation and OAuth-based login to ensure a smooth onboarding experience.',
+      description:
+          'Web3-Integrated Consumer Platform: I developed a high-end Flutter application for the end-user, focusing on a seamless transition between traditional and decentralized commerce. The app features a secure Web3 wallet creation and OAuth-based login to ensure a smooth onboarding experience.',
       image: CustomImages.projectBePayClient,
-      techs: ['Flutter', 'Web3Auth', 'Blockchain', 'REST API', 'KYC']
+      role: 'Consumer app developer',
+      timeline: 'Web3 commerce',
+      impact: 'Wallet onboarding + KYC',
+      techs: ['Flutter', 'Web3Auth', 'Blockchain', 'REST API', 'KYC'],
+      highlights: [
+        'Built wallet creation and OAuth onboarding with Web3Auth.',
+        'Connected traditional REST flows with blockchain-backed commerce.',
+        'Supported identity checks through KYC-oriented screens.',
+      ],
     ),
     ProjectModel(
       name: 'BePay Business',
-      description: 'I engineered a dedicated Flutter application for business owners and service providers within the Web3 ecosystem. This app manages complex KYB (Know Your Business) verification flows and provides tools for managing product listings and orders.',
+      description:
+          'I engineered a dedicated Flutter application for business owners and service providers within the Web3 ecosystem. This app manages complex KYB (Know Your Business) verification flows and provides tools for managing product listings and orders.',
       image: CustomImages.projectBePayBusiness,
-      techs: ['Flutter', 'Blockchain', 'KYB', 'REST API', 'Provider']
+      role: 'Business app developer',
+      timeline: 'Merchant platform',
+      impact: 'KYB + order operations',
+      techs: ['Flutter', 'Blockchain', 'KYB', 'REST API', 'Provider'],
+      highlights: [
+        'Created merchant-facing product, listing, and order tools.',
+        'Implemented KYB verification flows for business onboarding.',
+        'Used Provider to manage operational state across complex screens.',
+      ],
     ),
     ProjectModel(
       name: 'Jatt App',
       image: CustomImages.projectJatt,
-      techs: ['Flutter', 'REST API', 'Firebase', 'Social Login']
+      description:
+          'A Flutter social app focused on polished onboarding, authenticated API flows, and Firebase-backed user engagement.',
+      role: 'Flutter developer',
+      timeline: 'Social app',
+      impact: 'Auth + engagement foundation',
+      techs: ['Flutter', 'REST API', 'Firebase', 'Social Login'],
+      highlights: [
+        'Built social login and authenticated REST API flows.',
+        'Connected Firebase services for app engagement features.',
+        'Focused on a clean mobile UI foundation for future expansion.',
+      ],
     ),
   ];
-
 
   factory AppClass() {
     return _mAppClass;
@@ -189,9 +271,7 @@ class AppClass {
       description: Text(
         msg,
         style: TextStyle(
-            fontFamily: 'sfmono',
-            color: AppColors().textColor,
-            fontSize: 13),
+            fontFamily: 'sfmono', color: AppColors().textColor, fontSize: 13),
       ),
       alignment: Alignment.topRight,
       backgroundColor: AppColors().cardColor,
@@ -222,9 +302,7 @@ class AppClass {
       description: Text(
         msg,
         style: TextStyle(
-            fontFamily: 'sfmono',
-            color: AppColors().textColor,
-            fontSize: 13),
+            fontFamily: 'sfmono', color: AppColors().textColor, fontSize: 13),
       ),
       alignment: Alignment.topRight,
       backgroundColor: AppColors().cardColor,
@@ -272,23 +350,23 @@ class AppClass {
     try {
       var response = await http
           .post(
-        url,
-        headers: {
-          'Content-Type': 'application/json',
-          'origin': '*',
-        },
-        body: jsonEncode({
-          'service_id': 'service_b9mvbxh',
-          'template_id': 'template_dddn7kh',
-          'user_id': 'ejm0mxBIecSEp7_vo',
-          'template_params': {
-            'from_name': name,
-            'email': email,
-            'time': DateFormat('dd-MM-yyyy hh:mm a').format(DateTime.now()),
-            'message': msg,
-          }
-        }),
-      )
+            url,
+            headers: {
+              'Content-Type': 'application/json',
+              'origin': '*',
+            },
+            body: jsonEncode({
+              'service_id': 'service_b9mvbxh',
+              'template_id': 'template_dddn7kh',
+              'user_id': 'ejm0mxBIecSEp7_vo',
+              'template_params': {
+                'from_name': name,
+                'email': email,
+                'time': DateFormat('dd-MM-yyyy hh:mm a').format(DateTime.now()),
+                'message': msg,
+              }
+            }),
+          )
           .timeout(const Duration(seconds: 10));
 
       log('response.body');
@@ -300,8 +378,9 @@ class AppClass {
     }
   }
 
-
-  Future<void> openEmail(String email,) async {
+  Future<void> openEmail(
+    String email,
+  ) async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: email,
@@ -323,6 +402,4 @@ class AppClass {
       throw 'Could not open WhatsApp for $phoneNumber';
     }
   }
-
-
 }

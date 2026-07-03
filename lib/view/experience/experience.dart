@@ -43,12 +43,13 @@ class Experience extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenType = AppClass().getScreenType(context);
     final isWeb = screenType == ScreenType.web;
+    final isMobile = screenType == ScreenType.mobile;
     final horizontal = screenType == ScreenType.mobile ? 20.0 : 38.0;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(
         horizontal,
-        isWeb ? 130 : 90,
+        isWeb ? 130 : 56,
         horizontal,
         20,
       ),
@@ -62,12 +63,12 @@ class Experience extends StatelessWidget {
               'A progression from hands-on app delivery to leading production Flutter work across complex integrations.',
               style: TextStyle(
                 color: AppColors().mutedTextColor,
-                fontSize: isWeb ? 17 : 15,
-                height: 1.6,
+                fontSize: isWeb ? 17 : 14,
+                height: isMobile ? 1.48 : 1.6,
               ),
             ),
           ),
-          const SizedBox(height: 36),
+          SizedBox(height: isMobile ? 24 : 36),
           ...List.generate(
             _items.length,
             (index) => Padding(

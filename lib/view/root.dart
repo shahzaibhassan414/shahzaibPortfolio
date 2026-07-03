@@ -159,6 +159,7 @@ class _RootScreenState extends State<RootScreen> {
     final screenType = AppClass().getScreenType(context);
     final isCompact = screenType != ScreenType.web;
     final horizontalPadding = screenType == ScreenType.mobile ? 0.0 : 24.0;
+    final topPadding = screenType == ScreenType.mobile ? 78.0 : 92.0;
 
     return Scaffold(
       backgroundColor: AppColors().backgroundColor,
@@ -173,7 +174,7 @@ class _RootScreenState extends State<RootScreen> {
               child: Padding(
                 padding: EdgeInsets.fromLTRB(
                   horizontalPadding,
-                  92,
+                  topPadding,
                   horizontalPadding,
                   0,
                 ),

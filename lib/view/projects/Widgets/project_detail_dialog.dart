@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/resource/appClass.dart';
 import 'package:portfolio/resource/colors.dart';
-import 'package:portfolio/resource/custom_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../projectWeb.dart';
 
 class ProjectDetailDialog extends StatelessWidget {
   final ProjectModel project;
 
-  const ProjectDetailDialog({Key? key, required this.project}) : super(key: key);
+  const ProjectDetailDialog({super.key, required this.project});
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +22,19 @@ class ProjectDetailDialog extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: AppColors().darkColor,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: AppColors().primaryRedColor.withValues(alpha:0.2)),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+              color: AppColors().primaryRedColor.withValues(alpha: 0.2)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha:0.5),
+              color: Colors.black.withValues(alpha: 0.5),
               blurRadius: 30,
               offset: const Offset(0, 10),
             )
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(12),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +60,8 @@ class ProjectDetailDialog extends StatelessWidget {
                             color: Colors.black54,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.close, color: Colors.white, size: 20),
+                          child: const Icon(Icons.close,
+                              color: Colors.white, size: 20),
                         ),
                       ),
                     ),
@@ -76,7 +77,7 @@ class ProjectDetailDialog extends StatelessWidget {
                             end: Alignment.topCenter,
                             colors: [
                               AppColors().darkColor,
-                              AppColors().darkColor.withValues(alpha:0),
+                              AppColors().darkColor.withValues(alpha: 0),
                             ],
                           ),
                         ),
@@ -99,6 +100,31 @@ class ProjectDetailDialog extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: [
+                          if (project.role != null)
+                            _buildFactCard(
+                              Icons.person_outline_rounded,
+                              'ROLE',
+                              project.role!,
+                            ),
+                          if (project.timeline != null)
+                            _buildFactCard(
+                              Icons.apps_rounded,
+                              'TYPE',
+                              project.timeline!,
+                            ),
+                          if (project.impact != null)
+                            _buildFactCard(
+                              Icons.bolt_rounded,
+                              'OUTCOME',
+                              project.impact!,
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 22),
 
                       // Tech Stack Chips
                       if (project.techs != null && project.techs!.isNotEmpty)
@@ -107,53 +133,88 @@ class ProjectDetailDialog extends StatelessWidget {
                           child: Wrap(
                             spacing: 8,
                             runSpacing: 8,
-                            children: project.techs!.map((tech) => Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: AppColors().primaryRedColor.withValues(alpha:0.3)),
-                                color: AppColors().primaryRedColor.withValues(alpha:0.1),
-                              ),
-                              child: Text(
-                                tech,
-                                style: GoogleFonts.roboto(
-                                  color: AppColors().primaryRedColor,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            )).toList(),
+                            children: project.techs!
+                                .map((tech) => Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 6),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                            color: AppColors()
+                                                .primaryRedColor
+                                                .withValues(alpha: 0.3)),
+                                        color: AppColors()
+                                            .primaryRedColor
+                                            .withValues(alpha: 0.1),
+                                      ),
+                                      child: Text(
+                                        tech,
+                                        style: GoogleFonts.roboto(
+                                          color: AppColors().primaryRedColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
                           ),
                         ),
 
                       Text(
-                        project.description ?? "No description available for this project.",
+                        'Project overview',
+                        style: GoogleFonts.roboto(
+                          color: AppColors().textColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        project.description ??
+                            'No description available for this project.',
                         style: GoogleFonts.roboto(
                           color: AppColors().textLight,
                           fontSize: 16,
                           height: 1.6,
                         ),
                       ),
-                      const SizedBox(height: 30),
-                      Row(
-                        children: [
-                          if (project.androidLink != null)
-                            _buildLinkButton(
-                              context,
-                              "Play Store",
-                              Icons.play_arrow_rounded,
-                              project.androidLink!,
-                            ),
-                          const SizedBox(width: 15),
-                          if (project.iosLink != null)
-                            _buildLinkButton(
-                              context,
-                              "App Store",
-                              Icons.apple,
-                              project.iosLink!,
-                            ),
-                        ],
-                      ),
+                      if (project.highlights?.isNotEmpty ?? false) ...[
+                        const SizedBox(height: 24),
+                        Text(
+                          'What I handled',
+                          style: GoogleFonts.roboto(
+                            color: AppColors().textColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        ...project.highlights!.map(_buildHighlightRow),
+                      ],
+                      if (project.androidLink != null ||
+                          project.iosLink != null) ...[
+                        const SizedBox(height: 30),
+                        Wrap(
+                          spacing: 15,
+                          runSpacing: 12,
+                          children: [
+                            if (project.androidLink != null)
+                              _buildLinkButton(
+                                context,
+                                'Play Store',
+                                Icons.play_arrow_rounded,
+                                project.androidLink!,
+                              ),
+                            if (project.iosLink != null)
+                              _buildLinkButton(
+                                context,
+                                'App Store',
+                                Icons.apple,
+                                project.iosLink!,
+                              ),
+                          ],
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -165,7 +226,73 @@ class ProjectDetailDialog extends StatelessWidget {
     );
   }
 
-  Widget _buildLinkButton(BuildContext context, String title, IconData icon, String link) {
+  Widget _buildFactCard(IconData icon, String label, String value) {
+    return Container(
+      width: 168,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: AppColors().cardColor,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: AppColors().dividerColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: AppColors().primaryRedColor, size: 18),
+          const SizedBox(height: 10),
+          Text(
+            label,
+            style: GoogleFonts.robotoMono(
+              color: AppColors().mutedTextColor,
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 1.2,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            value,
+            style: GoogleFonts.roboto(
+              color: AppColors().textColor,
+              fontSize: 13,
+              height: 1.35,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHighlightRow(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.check_circle_rounded,
+            color: AppColors().primaryRedColor,
+            size: 18,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: GoogleFonts.roboto(
+                color: AppColors().textLight,
+                fontSize: 15,
+                height: 1.5,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLinkButton(
+      BuildContext context, String title, IconData icon, String link) {
     return InkWell(
       onTap: () async {
         await launchUrl(Uri.parse(link));
@@ -173,9 +300,10 @@ class ProjectDetailDialog extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors().primaryRedColor.withValues(alpha:0.5)),
-          color: AppColors().primaryRedColor.withValues(alpha:0.05),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+              color: AppColors().primaryRedColor.withValues(alpha: 0.5)),
+          color: AppColors().primaryRedColor.withValues(alpha: 0.05),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

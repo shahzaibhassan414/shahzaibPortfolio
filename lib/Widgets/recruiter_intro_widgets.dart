@@ -21,13 +21,38 @@ class RecruiterIntroHero extends StatelessWidget {
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxWidth: compact ? double.infinity : 1080,
+          maxWidth: compact ? double.infinity : 1180,
         ),
-        child: _IntroCopy(
-          onViewWork: onViewWork,
-          onContact: onContact,
-          compact: compact,
-        ),
+        child: compact
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _IntroCopy(
+                    onViewWork: onViewWork,
+                    onContact: onContact,
+                    compact: compact,
+                  ),
+                  const SizedBox(height: 34),
+                  const Center(child: _HeroDeviceScene(compact: true)),
+                ],
+              )
+            : Row(
+                children: [
+                  Expanded(
+                    flex: 11,
+                    child: _IntroCopy(
+                      onViewWork: onViewWork,
+                      onContact: onContact,
+                      compact: compact,
+                    ),
+                  ),
+                  const SizedBox(width: 46),
+                  const Expanded(
+                    flex: 7,
+                    child: _HeroDeviceScene(),
+                  ),
+                ],
+              ),
       ),
     );
   }
@@ -47,14 +72,14 @@ class _IntroCopy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final headlineSize = compact
-        ? (MediaQuery.of(context).size.width < 500 ? 40.0 : 52.0)
+        ? (MediaQuery.of(context).size.width < 390 ? 34.0 : 38.0)
         : 70.0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _StatusPill(compact: compact),
-        const SizedBox(height: 26),
+        SizedBox(height: compact ? 18 : 26),
         Text(
           Strings.name,
           style: TextStyle(
@@ -65,7 +90,7 @@ class _IntroCopy extends StatelessWidget {
             letterSpacing: 1.4,
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: compact ? 9 : 12),
         Semantics(
           header: true,
           child: Text(
@@ -79,21 +104,21 @@ class _IntroCopy extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: compact ? 16 : 24),
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 850),
           child: Text(
             Strings.introSummary,
             style: TextStyle(
               color: AppColors().textLight,
-              fontSize: compact ? 16 : 18,
-              height: 1.65,
+              fontSize: compact ? 15 : 18,
+              height: compact ? 1.52 : 1.65,
             ),
           ),
         ),
-        const SizedBox(height: 28),
+        SizedBox(height: compact ? 20 : 28),
         const _HeroProofRow(),
-        const SizedBox(height: 32),
+        SizedBox(height: compact ? 22 : 32),
         Wrap(
           spacing: 12,
           runSpacing: 12,
@@ -111,7 +136,7 @@ class _IntroCopy extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 28),
+        SizedBox(height: compact ? 22 : 28),
         const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -334,4 +359,436 @@ class _HeroButtonState extends State<_HeroButton> {
       ),
     );
   }
+}
+
+class _HeroDeviceScene extends StatefulWidget {
+  final bool compact;
+
+  const _HeroDeviceScene({this.compact = false});
+
+  @override
+  State<_HeroDeviceScene> createState() => _HeroDeviceSceneState();
+}
+
+class _HeroDeviceSceneState extends State<_HeroDeviceScene>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 5200),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final disableMotion = MediaQuery.of(context).disableAnimations;
+    final width = widget.compact ? 300.0 : 360.0;
+    final height = widget.compact ? 310.0 : 410.0;
+
+    return Semantics(
+      label: 'Animated 3D mobile app preview',
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            final t = disableMotion ? 0.42 : _controller.value;
+            final lift = disableMotion ? 0.0 : (t - 0.5) * 18;
+            final tiltY = -0.22 + (t * 0.11);
+            final tiltX = 0.10 - (t * 0.05);
+
+            return Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  bottom: widget.compact ? 18 : 28,
+                  child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.001)
+                      ..rotateX(1.18),
+                    child: Container(
+                      width: widget.compact ? 220 : 265,
+                      height: widget.compact ? 86 : 105,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        gradient: RadialGradient(
+                          colors: [
+                            AppColors().primaryColor.withValues(alpha: 0.24),
+                            AppColors().primaryColor.withValues(alpha: 0.03),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: widget.compact ? 16 : 8,
+                  top: widget.compact ? 32 : 52,
+                  child: _FloatingPanel(
+                    width: widget.compact ? 106 : 126,
+                    title: 'LIVE',
+                    value: '98%',
+                    icon: Icons.speed_rounded,
+                    offset: -lift * 0.45,
+                  ),
+                ),
+                Positioned(
+                  left: widget.compact ? 12 : 0,
+                  bottom: widget.compact ? 40 : 76,
+                  child: _FloatingPanel(
+                    width: widget.compact ? 118 : 138,
+                    title: 'STACK',
+                    value: 'Flutter',
+                    icon: Icons.layers_rounded,
+                    offset: lift * 0.35,
+                  ),
+                ),
+                Transform.translate(
+                  offset: Offset(0, lift),
+                  child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.0012)
+                      ..rotateX(tiltX)
+                      ..rotateY(tiltY)
+                      ..rotateZ(-0.035),
+                    child: const _DeviceBody(),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _DeviceBody extends StatelessWidget {
+  const _DeviceBody();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 205,
+      height: 318,
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: const Color(0xff071015),
+        borderRadius: BorderRadius.circular(34),
+        border: Border.all(
+          color: AppColors().primaryColor.withValues(alpha: 0.24),
+          width: 1.2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.42),
+            blurRadius: 34,
+            offset: const Offset(22, 24),
+          ),
+          BoxShadow(
+            color: AppColors().primaryColor.withValues(alpha: 0.16),
+            blurRadius: 42,
+            offset: const Offset(-12, -10),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(26),
+        child: Container(
+          color: AppColors().cardColor,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: CustomPaint(painter: _DeviceGridPainter()),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        _SignalDot(color: AppColors().primaryColor),
+                        const SizedBox(width: 6),
+                        _SignalDot(
+                          color:
+                              AppColors().primaryColor.withValues(alpha: 0.5),
+                        ),
+                        const Spacer(),
+                        Container(
+                          width: 46,
+                          height: 7,
+                          decoration: BoxDecoration(
+                            color: AppColors()
+                                .backgroundColor
+                                .withValues(alpha: 0.92),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 26),
+                    Text(
+                      'APP BUILD',
+                      style: TextStyle(
+                        color: AppColors().primaryColor,
+                        fontFamily: 'sfmono',
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Smooth mobile experiences',
+                      style: TextStyle(
+                        color: AppColors().textColor,
+                        fontSize: 21,
+                        height: 1.12,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    const _ProgressLine(value: 0.86, label: 'UI'),
+                    const SizedBox(height: 10),
+                    const _ProgressLine(value: 0.72, label: 'API'),
+                    const SizedBox(height: 10),
+                    const _ProgressLine(value: 0.64, label: 'STORE'),
+                    const Spacer(),
+                    const Row(
+                      children: [
+                        _MiniMetric(value: '15+', label: 'apps'),
+                        SizedBox(width: 10),
+                        _MiniMetric(value: '4+', label: 'yrs'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _FloatingPanel extends StatelessWidget {
+  final double width;
+  final String title;
+  final String value;
+  final IconData icon;
+  final double offset;
+
+  const _FloatingPanel({
+    required this.width,
+    required this.title,
+    required this.value,
+    required this.icon,
+    required this.offset,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.translate(
+      offset: Offset(0, offset),
+      child: Container(
+        width: width,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: AppColors().elevatedColor.withValues(alpha: 0.9),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors().dividerColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.22),
+              blurRadius: 22,
+              offset: const Offset(0, 12),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: AppColors().primaryColor, size: 17),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: AppColors().mutedTextColor,
+                      fontFamily: 'sfmono',
+                      fontSize: 8,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    value,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: AppColors().textColor,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SignalDot extends StatelessWidget {
+  final Color color;
+
+  const _SignalDot({required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 7,
+      height: 7,
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    );
+  }
+}
+
+class _ProgressLine extends StatelessWidget {
+  final double value;
+  final String label;
+
+  const _ProgressLine({required this.value, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 42,
+          child: Text(
+            label,
+            style: TextStyle(
+              color: AppColors().mutedTextColor,
+              fontFamily: 'sfmono',
+              fontSize: 9,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        Expanded(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: LinearProgressIndicator(
+              value: value,
+              minHeight: 7,
+              color: AppColors().primaryColor,
+              backgroundColor: AppColors().backgroundColor,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _MiniMetric extends StatelessWidget {
+  final String value;
+  final String label;
+
+  const _MiniMetric({required this.value, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
+        decoration: BoxDecoration(
+          color: AppColors().backgroundColor.withValues(alpha: 0.72),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors().dividerColor),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              value,
+              style: TextStyle(
+                color: AppColors().textColor,
+                fontSize: 15,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(height: 3),
+            Text(
+              label,
+              style: TextStyle(
+                color: AppColors().mutedTextColor,
+                fontFamily: 'sfmono',
+                fontSize: 8,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DeviceGridPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final linePaint = Paint()
+      ..color = AppColors().primaryColor.withValues(alpha: 0.05)
+      ..strokeWidth = 1;
+
+    for (var x = -size.height; x < size.width; x += 24) {
+      canvas.drawLine(
+        Offset(x, 0),
+        Offset(x + size.height, size.height),
+        linePaint,
+      );
+    }
+
+    final glowPaint = Paint()
+      ..shader = RadialGradient(
+        colors: [
+          AppColors().primaryColor.withValues(alpha: 0.2),
+          Colors.transparent,
+        ],
+      ).createShader(
+        Rect.fromCircle(
+          center: Offset(size.width * 0.78, size.height * 0.18),
+          radius: size.width * 0.75,
+        ),
+      );
+
+    canvas.drawRect(Offset.zero & size, glowPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
