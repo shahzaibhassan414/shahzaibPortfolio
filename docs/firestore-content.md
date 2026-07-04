@@ -48,6 +48,19 @@ PORTFOLIO_CONTENT_URL=https://example.com/portfolio-content.json
 Add these top-level fields as arrays of maps. Any missing or empty field will
 fall back to the hardcoded data in `AppClass`.
 
+The full current content template lives here:
+
+```text
+docs/portfolio-content-template.json
+```
+
+To upload this template automatically instead of entering nested arrays by hand,
+use:
+
+```bash
+FIREBASE_PROJECT_ID=shahzaib-portfolio-a3bad node scripts/upload_firestore_content.js
+```
+
 ```json
 {
   "projects": [

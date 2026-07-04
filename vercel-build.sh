@@ -11,4 +11,4 @@ flutter doctor
 flutter pub get                                                        
 
 # BUILD WEB
-flutter build web --release --dart-define=FIREBASE_PROJECT_ID="$FIREBASE_PROJECT_ID"
+flutter build web --release --pwa-strategy=none --dart-define=FIREBASE_PROJECT_ID="$FIREBASE_PROJECT_ID"

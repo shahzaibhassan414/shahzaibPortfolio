@@ -574,6 +574,22 @@
   </noscript>
 
   <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (const registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+
+    if ('caches' in window) {
+      caches.keys().then(function (keys) {
+        for (const key of keys) {
+          caches.delete(key);
+        }
+      });
+    }
+
     window.addEventListener('flutter-first-frame', function () {
       document.getElementById('seo-shell')?.remove();
       document.getElementById('web-loader')?.remove();
