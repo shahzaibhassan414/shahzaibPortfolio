@@ -225,7 +225,7 @@ class _HeroProofRow extends StatelessWidget {
       runSpacing: 12,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        _ProofItem(value: '4+', label: 'YEARS'),
+        _ProofItem(value: '4', label: 'YEARS'),
         _ProofDivider(),
         _ProofItem(value: '15+', label: 'PROJECTS'),
         _ProofDivider(),
@@ -574,7 +574,7 @@ class _DeviceBody extends StatelessWidget {
                       children: [
                         _MiniMetric(value: '15+', label: 'apps'),
                         SizedBox(width: 10),
-                        _MiniMetric(value: '4+', label: 'yrs'),
+                        _MiniMetric(value: '4', label: 'yrs'),
                       ],
                     ),
                   ],

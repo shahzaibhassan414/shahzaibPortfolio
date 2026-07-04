@@ -62,7 +62,8 @@ class _ProjectsState extends State<Projects> {
     final allProjects = AppClass().projects;
     final filteredProjects =
         allProjects.where(_filters[_selectedFilter].matcher).toList();
-    final featuredProjects = allProjects.take(3).toList();
+    final featuredProjects =
+        allProjects.where((project) => project.isFeatured).toList();
     final visibleProjects = _showAll
         ? filteredProjects
         : filteredProjects.take(isWeb ? 6 : 3).toList();

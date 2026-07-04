@@ -13,7 +13,7 @@ class Strings {
   static const aboutHeadline =
       '''Senior Flutter developer building apps that are ready for real users.''';
   static const aboutSummary =
-      '''I’m Shahzaib, a Senior Flutter Developer with 4+ years of experience shipping production apps for iOS and Android. I turn Figma designs into responsive, maintainable products and handle the integrations that make them real—from payments and maps to authentication, KYC, and store releases.''';
+      '''I’m Shahzaib, a Senior Flutter Developer with 4 years of experience shipping production apps for iOS and Android. I turn Figma designs into responsive, maintainable products and handle the integrations that make them real—from payments and maps to authentication, KYC, and store releases.''';
   static const aboutExploring =
       '''Currently exploring full-stack product development''';
   static const aboutCapabilities = <String>[

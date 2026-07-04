@@ -12,14 +12,16 @@ class ProjectWeb extends ConsumerStatefulWidget {
   ConsumerState<ProjectWeb> createState() => _WorkWebState();
 }
 
-class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMixin {
+class _WorkWebState extends ConsumerState<ProjectWeb>
+    with TickerProviderStateMixin {
   int? hoveredIndex;
   bool showAll = false;
 
   @override
   Widget build(BuildContext context) {
     final allProjects = AppClass().projects;
-    final displayedProjects = showAll ? allProjects : allProjects.take(4).toList();
+    final displayedProjects =
+        showAll ? allProjects : allProjects.take(4).toList();
 
     return Container(
       margin: EdgeInsets.only(
@@ -35,7 +37,6 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
             title: 'My Projects',
           ),
           const SizedBox(height: 30),
-
           AnimatedSize(
             duration: const Duration(milliseconds: 600),
             curve: Curves.easeInOutQuart,
@@ -57,48 +58,47 @@ class _WorkWebState extends ConsumerState<ProjectWeb> with TickerProviderStateMi
               }),
             ),
           ),
-
           const SizedBox(height: 50),
-
-          if(!showAll && allProjects.length > 4)
-          Center(
-            child: InkWell(
-              mouseCursor: SystemMouseCursors.none,
-              onTap: () {
-                setState(() => showAll = true);
-              },
-              borderRadius: BorderRadius.circular(50),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors().primaryRedColor.withValues(alpha: 0.5)),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'SHOW MORE',
-                      style: TextStyle(
-                        color: AppColors().primaryRedColor,
-                        fontFamily: 'sfmono',
-                        fontSize: 14,
-                        letterSpacing: 2,
+          if (!showAll && allProjects.length > 4)
+            Center(
+              child: InkWell(
+                mouseCursor: SystemMouseCursors.none,
+                onTap: () {
+                  setState(() => showAll = true);
+                },
+                borderRadius: BorderRadius.circular(50),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color:
+                            AppColors().primaryRedColor.withValues(alpha: 0.5)),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'SHOW MORE',
+                        style: TextStyle(
+                          color: AppColors().primaryRedColor,
+                          fontFamily: 'sfmono',
+                          fontSize: 14,
+                          letterSpacing: 2,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Icon(
-                      Icons.keyboard_arrow_down,
-                      color: AppColors().primaryRedColor,
-                      size: 20,
-                    ),
-                  ],
+                      const SizedBox(width: 10),
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        color: AppColors().primaryRedColor,
+                        size: 20,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          
-
         ],
       ),
     );
@@ -116,6 +116,7 @@ class ProjectModel {
   String? androidLink;
   List<String>? techs;
   List<String>? highlights;
+  bool isFeatured;
 
   ProjectModel({
     required this.name,
@@ -128,5 +129,32 @@ class ProjectModel {
     this.androidLink,
     this.techs,
     this.highlights,
+    this.isFeatured = false,
   });
+
+  factory ProjectModel.fromJson(
+    Map<String, dynamic> json, {
+    Map<String, String> fallbackImages = const {},
+  }) {
+    final name = json['name']?.toString() ?? '';
+
+    return ProjectModel(
+      name: name,
+      image: json['image']?.toString() ?? fallbackImages[name] ?? '',
+      description: json['description']?.toString(),
+      role: json['role']?.toString(),
+      timeline: json['timeline']?.toString(),
+      impact: json['impact']?.toString(),
+      iosLink: json['iosLink']?.toString(),
+      androidLink: json['androidLink']?.toString(),
+      techs: _stringList(json['techs']),
+      highlights: _stringList(json['highlights']),
+      isFeatured: json['isFeatured'] == true,
+    );
+  }
+
+  static List<String>? _stringList(dynamic value) {
+    if (value is! List) return null;
+    return value.map((item) => item.toString()).toList();
+  }
 }

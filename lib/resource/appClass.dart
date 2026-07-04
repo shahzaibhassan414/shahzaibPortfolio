@@ -19,9 +19,18 @@ class AppClass {
   static BuildContext? lastContext;
   ScrollController controller = ScrollController();
 
+  static const String _contentUrl =
+      String.fromEnvironment('PORTFOLIO_CONTENT_URL');
+  static const String _firebaseProjectId =
+      String.fromEnvironment('FIREBASE_PROJECT_ID');
+  static const String _firestoreContentDocPath = String.fromEnvironment(
+    'FIRESTORE_CONTENT_DOC_PATH',
+    defaultValue: 'site/portfolio',
+  );
+
   /* URL */
   static const resumeDownloadURL =
-      '''https://drive.google.com/file/d/1ZhD0RvF2-rQYX8trAtMzGivGLetlB3hx/view?usp=sharing''';
+      '''https://drive.google.com/file/d/1NoEbEf10bPoYPQt8yiaMGpaGDvDXYP5P/view?usp=sharing''';
 
   static const email = 'shahzaibhassan414@gmail.com';
   static const phoneNumber = '+92 316 0984600';
@@ -64,7 +73,7 @@ class AppClass {
         date: 'Jan 15, 2026'),
   ];
 
-  final List<Map<String, dynamic>> skills = [
+  List<Map<String, dynamic>> skills = [
     {'name': 'Flutter', 'value': 0.9},
     {'name': 'Dart', 'value': 0.8},
     {'name': 'State Management', 'value': 0.7},
@@ -85,7 +94,7 @@ class AppClass {
     {'name': 'Blockchain Integration', 'value': 0.7}
   ];
 
-  final List<Map<String, dynamic>> skillsImages = [
+  List<Map<String, dynamic>> skillsImages = [
     {'image': CustomImages.skillsDart, 'name': 'Dart'},
     {'image': CustomImages.skillsFlutter, 'name': 'Flutter'},
     {'image': CustomImages.skillsGit, 'name': 'Git'},
@@ -108,57 +117,6 @@ class AppClass {
   ];
 
   List<ProjectModel> projects = [
-    ProjectModel(
-      name: 'On Scene',
-      description:
-          'On Scene is a cutting-edge, location-aware social platform designed to bridge the gap between digital discovery and real-world connections. I engineered a seamless Check-in mechanism using Google Maps API, allowing users to discover and interact with others at nearby venues in real-time.',
-      image: CustomImages.projectOnScene,
-      role: 'Location feature lead',
-      timeline: 'Venue social app',
-      impact: 'Maps + live discovery',
-      techs: ['Flutter', 'Google Maps', 'Socket.io', 'RevenueCat', 'Firebase'],
-      highlights: [
-        'Designed check-in flows around nearby venues and user presence.',
-        'Connected Google Maps, sockets, and Firebase into one discovery path.',
-        'Supported paid experiences with RevenueCat subscriptions.',
-      ],
-    ),
-    ProjectModel(
-      name: 'LawnOlu',
-      description:
-          'Developed Lawnolu, a high-performance service provider application leveraging REST APIs and Firebase (Notifications & Analytics). The app’s architecture supports multi-tenant logic, allowing users to switch between business roles seamlessly. Key technical achievements include implementing a real-time tracking system using Google Maps, managing state for complex service requests, and ensuring financial security through Stripe integration.',
-      image: CustomImages.projectLawnolu,
-      role: 'Mobile app engineer',
-      timeline: 'Service marketplace',
-      impact: 'Live tracking + payments',
-      techs: ['Flutter', 'REST API', 'Google Maps', 'Stripe', 'Socket.io'],
-      highlights: [
-        'Created multi-role service flows for customers and providers.',
-        'Added Google Maps tracking for active lawn-care jobs.',
-        'Integrated Stripe and Firebase analytics/notifications.',
-      ],
-    ),
-    ProjectModel(
-      name: 'Zera',
-      description:
-          'Zera represents a masterclass in cross-functional app development, utilizing REST APIs and TanStack Query for robust state management and caching. I implemented specialized features including Custom Heat Maps for data visualization, QR Scanning for seamless interactions, and In-app Web Views for extended functionality.',
-      image: CustomImages.projectZera,
-      role: 'Feature developer',
-      timeline: 'Data-heavy app',
-      impact: 'Heatmaps + QR workflows',
-      techs: [
-        'Flutter',
-        'REST API',
-        'TanStack Query',
-        'Google Maps',
-        'QR Scanner'
-      ],
-      highlights: [
-        'Implemented custom heatmap views for location-based insights.',
-        'Used TanStack Query patterns for caching and predictable API state.',
-        'Added QR scanning and in-app web views for fast task completion.',
-      ],
-    ),
     ProjectModel(
       name: 'Paw Play Love',
       image: CustomImages.projectPPl,
@@ -223,6 +181,60 @@ class AppClass {
       ],
     ),
     ProjectModel(
+      name: 'On Scene',
+      description:
+          'On Scene is a cutting-edge, location-aware social platform designed to bridge the gap between digital discovery and real-world connections. I engineered a seamless Check-in mechanism using Google Maps API, allowing users to discover and interact with others at nearby venues in real-time.',
+      image: CustomImages.projectOnScene,
+      role: 'Location feature lead',
+      timeline: 'Venue social app',
+      impact: 'Maps + live discovery',
+      isFeatured: true,
+      techs: ['Flutter', 'Google Maps', 'Socket.io', 'RevenueCat', 'Firebase'],
+      highlights: [
+        'Designed check-in flows around nearby venues and user presence.',
+        'Connected Google Maps, sockets, and Firebase into one discovery path.',
+        'Supported paid experiences with RevenueCat subscriptions.',
+      ],
+    ),
+    ProjectModel(
+      name: 'LawnOlu',
+      description:
+          'Developed Lawnolu, a high-performance service provider application leveraging REST APIs and Firebase (Notifications & Analytics). The app’s architecture supports multi-tenant logic, allowing users to switch between business roles seamlessly. Key technical achievements include implementing a real-time tracking system using Google Maps, managing state for complex service requests, and ensuring financial security through Stripe integration.',
+      image: CustomImages.projectLawnolu,
+      role: 'Mobile app engineer',
+      timeline: 'Service marketplace',
+      impact: 'Live tracking + payments',
+      isFeatured: true,
+      techs: ['Flutter', 'REST API', 'Google Maps', 'Stripe', 'Socket.io'],
+      highlights: [
+        'Created multi-role service flows for customers and providers.',
+        'Added Google Maps tracking for active lawn-care jobs.',
+        'Integrated Stripe and Firebase analytics/notifications.',
+      ],
+    ),
+    ProjectModel(
+      name: 'Zera',
+      description:
+          'Zera represents a masterclass in cross-functional app development, utilizing REST APIs and TanStack Query for robust state management and caching. I implemented specialized features including Custom Heat Maps for data visualization, QR Scanning for seamless interactions, and In-app Web Views for extended functionality.',
+      image: CustomImages.projectZera,
+      role: 'Feature developer',
+      timeline: 'Data-heavy app',
+      impact: 'Heatmaps + QR workflows',
+      isFeatured: true,
+      techs: [
+        'Flutter',
+        'REST API',
+        'TanStack Query',
+        'Google Maps',
+        'QR Scanner'
+      ],
+      highlights: [
+        'Implemented custom heatmap views for location-based insights.',
+        'Used TanStack Query patterns for caching and predictable API state.',
+        'Added QR scanning and in-app web views for fast task completion.',
+      ],
+    ),
+    ProjectModel(
       name: 'Jatt App',
       image: CustomImages.projectJatt,
       description:
@@ -244,6 +256,148 @@ class AppClass {
   }
 
   AppClass._internal();
+
+  Future<void> loadRemoteContent() async {
+    final uri = _remoteContentUri();
+    if (uri == null) return;
+
+    try {
+      final response = await http.get(uri).timeout(const Duration(seconds: 6));
+      if (response.statusCode < 200 || response.statusCode >= 300) return;
+
+      final content = _decodeRemoteContent(response.body);
+      if (content == null) return;
+
+      _applyRemoteContent(content);
+    } catch (error, stackTrace) {
+      log('Remote portfolio content unavailable',
+          error: error, stackTrace: stackTrace);
+    }
+  }
+
+  Uri? _remoteContentUri() {
+    if (_contentUrl.trim().isNotEmpty) {
+      return Uri.tryParse(_contentUrl.trim());
+    }
+
+    if (_firebaseProjectId.trim().isEmpty) return null;
+
+    final encodedPath = _firestoreContentDocPath
+        .split('/')
+        .where((segment) => segment.trim().isNotEmpty)
+        .map(Uri.encodeComponent)
+        .join('/');
+
+    return Uri.parse(
+      'https://firestore.googleapis.com/v1/projects/'
+      '${Uri.encodeComponent(_firebaseProjectId.trim())}'
+      '/databases/(default)/documents/$encodedPath',
+    );
+  }
+
+  Map<String, dynamic>? _decodeRemoteContent(String responseBody) {
+    final decoded = jsonDecode(responseBody);
+    if (decoded is! Map<String, dynamic>) return null;
+
+    final fields = decoded['fields'];
+    if (fields is Map<String, dynamic>) {
+      return _decodeFirestoreMap(fields);
+    }
+
+    return decoded;
+  }
+
+  Map<String, dynamic> _decodeFirestoreMap(Map<String, dynamic> fields) {
+    return fields
+        .map((key, value) => MapEntry(key, _decodeFirestoreValue(value)));
+  }
+
+  dynamic _decodeFirestoreValue(dynamic value) {
+    if (value is! Map<String, dynamic>) return value;
+
+    if (value.containsKey('stringValue')) return value['stringValue'];
+    if (value.containsKey('booleanValue')) return value['booleanValue'];
+    if (value.containsKey('integerValue')) {
+      return int.tryParse(value['integerValue'].toString()) ??
+          value['integerValue'];
+    }
+    if (value.containsKey('doubleValue')) return value['doubleValue'];
+    if (value.containsKey('timestampValue')) return value['timestampValue'];
+    if (value.containsKey('nullValue')) return null;
+
+    final arrayValue = value['arrayValue'];
+    if (arrayValue is Map<String, dynamic>) {
+      final values = arrayValue['values'];
+      if (values is List) {
+        return values.map(_decodeFirestoreValue).toList();
+      }
+      return const [];
+    }
+
+    final mapValue = value['mapValue'];
+    if (mapValue is Map<String, dynamic>) {
+      final fields = mapValue['fields'];
+      if (fields is Map<String, dynamic>) {
+        return _decodeFirestoreMap(fields);
+      }
+      return const <String, dynamic>{};
+    }
+
+    return value;
+  }
+
+  void _applyRemoteContent(Map<String, dynamic> content) {
+    final fallbackProjectImages = {
+      for (final project in projects) project.name: project.image,
+    };
+    final nextPackages = _parseList(
+      content['packages'],
+      (json) => PackageModel.fromJson(json),
+    );
+    final nextBlogs = _parseList(
+      content['blogs'],
+      (json) => BlogModel.fromJson(json),
+    );
+    final nextSkills = _parseMapList(content['skills']);
+    final nextSkillImages = _parseMapList(content['skillsImages']);
+    final nextProjects = _parseList(
+      content['projects'],
+      (json) => ProjectModel.fromJson(
+        json,
+        fallbackImages: fallbackProjectImages,
+      ),
+    );
+
+    if (nextPackages.isNotEmpty) packages = nextPackages;
+    if (nextBlogs.isNotEmpty) blogs = nextBlogs;
+    if (nextSkills.isNotEmpty) skills = nextSkills;
+    if (nextSkillImages.isNotEmpty) skillsImages = nextSkillImages;
+    if (nextProjects.isNotEmpty) projects = nextProjects;
+  }
+
+  List<T> _parseList<T>(
+    dynamic value,
+    T Function(Map<String, dynamic> json) mapper,
+  ) {
+    if (value is! List) return const [];
+
+    return value
+        .whereType<Map>()
+        .map(
+            (item) => item.map((key, value) => MapEntry(key.toString(), value)))
+        .map(mapper)
+        .toList();
+  }
+
+  List<Map<String, dynamic>> _parseMapList(dynamic value) {
+    if (value is! List) return const [];
+
+    return value
+        .whereType<Map>()
+        .map(
+            (item) => item.map((key, value) => MapEntry(key.toString(), value)))
+        .toList();
+  }
 
   getMqWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;

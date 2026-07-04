@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/resource/colors.dart';
+import 'package:portfolio/resource/appClass.dart';
 import 'package:portfolio/view/splash/splash.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppClass().loadRemoteContent();
   runApp(const ProviderScope(child: AppTheme()));
 }
 

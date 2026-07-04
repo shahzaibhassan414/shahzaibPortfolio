@@ -12,4 +12,14 @@ class BlogModel {
     required this.link,
     required this.date,
   });
+
+  factory BlogModel.fromJson(Map<String, dynamic> json) {
+    return BlogModel(
+      title: json['title']?.toString() ?? '',
+      description: json['description']?.toString() ?? '',
+      imageUrl: json['imageUrl']?.toString() ?? '',
+      link: json['link']?.toString() ?? '',
+      date: json['date']?.toString() ?? '',
+    );
+  }
 }

@@ -7,7 +7,7 @@ class AboutStatsWidget extends StatelessWidget {
 
   static const _stats = [
     _StatData(
-      value: '4+',
+      value: '4',
       label: 'Years shipping Flutter',
       icon: Icons.timeline_rounded,
     ),
