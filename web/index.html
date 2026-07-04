@@ -155,6 +155,126 @@
       padding: 24px clamp(20px, 6vw, 96px) 64px;
     }
 
+    .js #seo-shell {
+      display: none;
+    }
+
+    #web-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 34%, rgba(114, 230, 190, 0.09), transparent 22rem),
+        linear-gradient(135deg, #061216, #081d22 52%, #061216);
+    }
+
+    #web-loader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.34;
+      background-image:
+        linear-gradient(rgba(114, 230, 190, 0.038) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(114, 230, 190, 0.038) 1px, transparent 1px);
+      background-size: 104px 104px;
+    }
+
+    .web-splash {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 22px;
+      transform: translateY(-5vh);
+      animation: splash-enter 520ms ease-out both;
+    }
+
+    .web-splash-logo {
+      position: relative;
+      width: clamp(132px, 16vw, 178px);
+      height: clamp(132px, 16vw, 178px);
+      display: grid;
+      place-items: center;
+    }
+
+    .web-splash-logo::before {
+      content: "";
+      position: absolute;
+      inset: 14%;
+      border: 1.5px solid rgba(114, 230, 190, 0.25);
+      border-radius: 999px;
+    }
+
+    .web-splash-orbit {
+      position: absolute;
+      inset: 0;
+      border: 1.5px solid rgba(114, 230, 190, 0.14);
+      border-radius: 999px;
+      animation: splash-orbit 6200ms linear infinite;
+    }
+
+    .web-splash-orbit::after {
+      content: "";
+      position: absolute;
+      top: 16%;
+      left: 50%;
+      width: clamp(7px, 0.8vw, 9px);
+      height: clamp(7px, 0.8vw, 9px);
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(114, 230, 190, 0.62);
+      transform: translateX(-50%);
+    }
+
+    .web-splash-core {
+      position: relative;
+      z-index: 1;
+      color: var(--text);
+      font: 800 clamp(30px, 3.8vw, 40px) system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: -0.075em;
+    }
+
+    .web-splash-core span {
+      color: var(--accent);
+    }
+
+    .web-splash-title {
+      margin-top: clamp(30px, 4.2vh, 38px);
+      color: rgba(241, 246, 246, 0.8);
+      font: 800 clamp(8px, 1vw, 12px) ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: clamp(0.2em, 0.5vw, 0.32em);
+      text-align: center;
+    }
+
+    .web-splash-progress {
+      width: min(42vw, 320px);
+      height: 3px;
+      margin-top: clamp(18px, 3vh, 24px);
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(151, 168, 179, 0.15);
+    }
+
+    .web-splash-progress-fill {
+      display: block;
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(114, 230, 190, 0.34), rgba(114, 230, 190, 0.95));
+      box-shadow: 0 0 12px rgba(114, 230, 190, 0.42);
+      transition: width 140ms linear;
+    }
+
+    .web-splash-percent {
+      margin-top: clamp(16px, 2.6vh, 20px);
+      color: rgba(151, 168, 179, 0.78);
+      font: 700 clamp(10px, 1vw, 12px) ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.06em;
+    }
+
     .seo-nav,
     .seo-main {
       width: min(1180px, 100%);
@@ -344,20 +464,53 @@
       animation: pulse 800ms ease-in-out infinite alternate;
     }
 
-    #web-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 85% 5%, rgba(44, 116, 101, 0.2), transparent 38rem),
-        linear-gradient(135deg, #071016, #0b1b20 50%, #071016);
-    }
-
     @keyframes pulse {
       from { opacity: 0.35; }
       to { opacity: 1; }
     }
+
+    @keyframes splash-enter {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes splash-orbit {
+      from {
+        transform: rotate(38deg);
+      }
+      to {
+        transform: rotate(398deg);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .web-splash {
+        justify-content: center;
+        transform: translateY(-3vh);
+      }
+
+      .web-splash-logo {
+        width: min(42vw, 140px);
+        height: min(42vw, 140px);
+      }
+
+      .web-splash-title {
+        width: min(86vw, 360px);
+        line-height: 1.8;
+        margin-top: 28px;
+      }
+
+      .web-splash-progress {
+        width: min(68vw, 250px);
+      }
+    }
+
 
     ::-webkit-scrollbar {
       width: 8px;
@@ -405,10 +558,26 @@
 
   <meta name="google-site-verification" content="LaSFgQeF2MzvNNlU9Mc9XMcpCgHHHRpNDUO_CwSK2uw">
   <meta name="google-site-verification" content="4MVRRekd6C8k41jFZqyeOU3cglKzMv-xlhWUbxLUH7s">
+
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
-  <div id="web-loader" aria-label="Loading portfolio" role="status"></div>
+  <div id="web-loader" aria-label="Loading portfolio" role="status">
+    <div class="web-splash">
+      <div class="web-splash-logo">
+        <div class="web-splash-orbit"></div>
+        <div class="web-splash-core">SH<span>.</span></div>
+      </div>
+      <div class="web-splash-title">CRAFTING DIGITAL EXPERIENCES</div>
+      <div class="web-splash-progress">
+        <span id="web-splash-progress-fill" class="web-splash-progress-fill"></span>
+      </div>
+      <div id="web-splash-percent" class="web-splash-percent">18%</div>
+    </div>
+  </div>
 
   <div id="seo-shell">
     <nav class="seo-nav" aria-label="Portfolio navigation">
@@ -574,6 +743,40 @@
   </noscript>
 
   <script>
+    const splashStart = performance.now();
+    const splashPercent = document.getElementById('web-splash-percent');
+    const splashProgressFill = document.getElementById('web-splash-progress-fill');
+    let splashProgressFrame = 0;
+
+    window.addEventListener('wheel', function (event) {
+      if (event.ctrlKey || event.metaKey) {
+        event.stopImmediatePropagation();
+      }
+    }, { capture: true, passive: true });
+
+    window.addEventListener('gesturestart', function (event) {
+      event.stopImmediatePropagation();
+    }, { capture: true, passive: true });
+
+    window.addEventListener('gesturechange', function (event) {
+      event.stopImmediatePropagation();
+    }, { capture: true, passive: true });
+
+    function updateSplashProgress(now) {
+      const elapsed = now - splashStart;
+      const eased = 1 - Math.exp(-elapsed / 2400);
+      const percent = Math.min(92, Math.max(18, Math.round(18 + eased * 78)));
+
+      if (splashPercent) splashPercent.textContent = percent + '%';
+      if (splashProgressFill) splashProgressFill.style.width = percent + '%';
+
+      if (document.getElementById('web-loader')) {
+        splashProgressFrame = requestAnimationFrame(updateSplashProgress);
+      }
+    }
+
+    splashProgressFrame = requestAnimationFrame(updateSplashProgress);
+
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then(function (registrations) {
         for (const registration of registrations) {
@@ -591,8 +794,13 @@
     }
 
     window.addEventListener('flutter-first-frame', function () {
+      cancelAnimationFrame(splashProgressFrame);
+      if (splashPercent) splashPercent.textContent = '100%';
+      if (splashProgressFill) splashProgressFill.style.width = '100%';
       document.getElementById('seo-shell')?.remove();
-      document.getElementById('web-loader')?.remove();
+      setTimeout(function () {
+        document.getElementById('web-loader')?.remove();
+      }, 120);
     });
   </script>
   <script src="flutter_bootstrap.js" async></script>

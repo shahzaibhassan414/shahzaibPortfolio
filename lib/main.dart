@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/resource/colors.dart';
-import 'package:portfolio/resource/appClass.dart';
-import 'package:portfolio/view/splash/splash.dart';
+import 'package:portfolio/view/root.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await AppClass().loadRemoteContent();
+void main() {
   runApp(const ProviderScope(child: AppTheme()));
 }
 
@@ -33,7 +30,7 @@ class AppTheme extends StatelessWidget {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
-      home: const SplashContent(),
+      home: const RootScreen(),
     );
   }
 }

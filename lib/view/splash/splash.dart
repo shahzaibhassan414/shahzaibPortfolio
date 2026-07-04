@@ -22,7 +22,7 @@ class _SplashContentState extends State<SplashContent>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2600),
+      duration: const Duration(milliseconds: 1450),
     )..addStatusListener(_handleAnimationStatus);
 
     _entrance = CurvedAnimation(
@@ -52,7 +52,7 @@ class _SplashContentState extends State<SplashContent>
             child: child,
           );
         },
-        transitionDuration: const Duration(milliseconds: 750),
+        transitionDuration: const Duration(milliseconds: 360),
       ),
     );
   }

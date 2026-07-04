@@ -517,7 +517,7 @@ class _DeviceBody extends StatelessWidget {
                 child: CustomPaint(painter: _DeviceGridPainter()),
               ),
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -542,32 +542,32 @@ class _DeviceBody extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 26),
+                    const SizedBox(height: 16),
                     Text(
                       'APP BUILD',
                       style: TextStyle(
                         color: AppColors().primaryColor,
                         fontFamily: 'sfmono',
-                        fontSize: 10,
+                        fontSize: 9,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 1.2,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 6),
                     Text(
                       'Smooth mobile experiences',
                       style: TextStyle(
                         color: AppColors().textColor,
-                        fontSize: 21,
+                        fontSize: 18,
                         height: 1.12,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    const SizedBox(height: 18),
+                    const SizedBox(height: 12),
                     const _ProgressLine(value: 0.86, label: 'UI'),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 7),
                     const _ProgressLine(value: 0.72, label: 'API'),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 7),
                     const _ProgressLine(value: 0.64, label: 'STORE'),
                     const Spacer(),
                     const Row(

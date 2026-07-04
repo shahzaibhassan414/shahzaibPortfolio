@@ -5,15 +5,26 @@ import 'package:portfolio/resource/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../projectWeb.dart';
 
-class ProjectDetailDialog extends StatelessWidget {
+class ProjectDetailDialog extends StatefulWidget {
   final ProjectModel project;
 
   const ProjectDetailDialog({super.key, required this.project});
 
   @override
+  State<ProjectDetailDialog> createState() => _ProjectDetailDialogState();
+}
+
+class _ProjectDetailDialogState extends State<ProjectDetailDialog> {
+  int _selectedScreenshot = 0;
+
+  @override
   Widget build(BuildContext context) {
-    bool isWeb = AppClass().getScreenType(context) == ScreenType.web;
-    double width = MediaQuery.of(context).size.width;
+    final project = widget.project;
+    final galleryImages = project.galleryImages;
+    final hasGallery = galleryImages.length > 1;
+    final selectedImage = galleryImages[_selectedScreenshot];
+    final isWeb = AppClass().getScreenType(context) == ScreenType.web;
+    final width = MediaQuery.of(context).size.width;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -43,12 +54,42 @@ class ProjectDetailDialog extends StatelessWidget {
                 // Header Image
                 Stack(
                   children: [
-                    Image.asset(
-                      project.image,
-                      width: double.infinity,
-                      height: 250,
-                      fit: BoxFit.cover,
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 220),
+                      child: Image.asset(
+                        selectedImage,
+                        key: ValueKey(selectedImage),
+                        width: double.infinity,
+                        height: 250,
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.medium,
+                      ),
                     ),
+                    if (hasGallery) ...[
+                      Positioned(
+                        left: 15,
+                        top: 0,
+                        bottom: 0,
+                        child: _buildImageNavButton(
+                          Icons.chevron_left_rounded,
+                          () => _selectScreenshot(
+                            (_selectedScreenshot - 1 + galleryImages.length) %
+                                galleryImages.length,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 15,
+                        top: 0,
+                        bottom: 0,
+                        child: _buildImageNavButton(
+                          Icons.chevron_right_rounded,
+                          () => _selectScreenshot(
+                            (_selectedScreenshot + 1) % galleryImages.length,
+                          ),
+                        ),
+                      ),
+                    ],
                     Positioned(
                       top: 15,
                       right: 15,
@@ -83,6 +124,34 @@ class ProjectDetailDialog extends StatelessWidget {
                         ),
                       ),
                     ),
+                    if (hasGallery)
+                      Positioned(
+                        left: 18,
+                        bottom: 18,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 11,
+                            vertical: 7,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.55),
+                            borderRadius: BorderRadius.circular(999),
+                            border: Border.all(
+                              color: AppColors()
+                                  .primaryRedColor
+                                  .withValues(alpha: 0.35),
+                            ),
+                          ),
+                          child: Text(
+                            '${_selectedScreenshot + 1}/${galleryImages.length}',
+                            style: GoogleFonts.robotoMono(
+                              color: AppColors().textColor,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
 
@@ -100,6 +169,10 @@ class ProjectDetailDialog extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
+                      if (hasGallery) ...[
+                        _buildScreenshotStrip(galleryImages),
+                        const SizedBox(height: 22),
+                      ],
                       Wrap(
                         spacing: 12,
                         runSpacing: 12,
@@ -191,21 +264,26 @@ class ProjectDetailDialog extends StatelessWidget {
                         const SizedBox(height: 12),
                         ...project.highlights!.map(_buildHighlightRow),
                       ],
-                      if (project.androidLink != null ||
-                          project.iosLink != null) ...[
+                      if (_hasValidStoreLinks(project)) ...[
                         const SizedBox(height: 30),
                         Wrap(
                           spacing: 15,
                           runSpacing: 12,
                           children: [
-                            if (project.androidLink != null)
+                            if (_isValidStoreLink(
+                              project.androidLink,
+                              StoreType.playStore,
+                            ))
                               _buildLinkButton(
                                 context,
                                 'Play Store',
                                 Icons.play_arrow_rounded,
                                 project.androidLink!,
                               ),
-                            if (project.iosLink != null)
+                            if (_isValidStoreLink(
+                              project.iosLink,
+                              StoreType.appStore,
+                            ))
                               _buildLinkButton(
                                 context,
                                 'App Store',
@@ -222,6 +300,78 @@ class ProjectDetailDialog extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _selectScreenshot(int index) {
+    setState(() => _selectedScreenshot = index);
+  }
+
+  Widget _buildImageNavButton(IconData icon, VoidCallback onTap) {
+    return Center(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(999),
+        child: Container(
+          width: 38,
+          height: 38,
+          decoration: BoxDecoration(
+            color: Colors.black.withValues(alpha: 0.48),
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: AppColors().textColor.withValues(alpha: 0.16),
+            ),
+          ),
+          child: Icon(icon, color: AppColors().textColor, size: 24),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildScreenshotStrip(List<String> galleryImages) {
+    return SizedBox(
+      height: 76,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: galleryImages.length,
+        separatorBuilder: (_, __) => const SizedBox(width: 10),
+        itemBuilder: (context, index) {
+          final selected = index == _selectedScreenshot;
+
+          return InkWell(
+            onTap: () => _selectScreenshot(index),
+            borderRadius: BorderRadius.circular(8),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              width: 106,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  width: selected ? 2 : 1,
+                  color: selected
+                      ? AppColors().primaryRedColor
+                      : AppColors().dividerColor,
+                ),
+              ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(
+                    galleryImages[index],
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.medium,
+                  ),
+                  if (!selected)
+                    ColoredBox(
+                      color: Colors.black.withValues(alpha: 0.28),
+                    ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -323,4 +473,26 @@ class ProjectDetailDialog extends StatelessWidget {
       ),
     );
   }
+
+  bool _hasValidStoreLinks(ProjectModel project) {
+    return _isValidStoreLink(project.androidLink, StoreType.playStore) ||
+        _isValidStoreLink(project.iosLink, StoreType.appStore);
+  }
+
+  bool _isValidStoreLink(String? link, StoreType storeType) {
+    if (link == null || link.trim().isEmpty) return false;
+
+    final uri = Uri.tryParse(link.trim());
+    if (uri == null || !uri.hasScheme || !uri.hasAuthority) return false;
+
+    final host = uri.host.toLowerCase();
+    return switch (storeType) {
+      StoreType.playStore =>
+        host == 'play.google.com' && uri.path.contains('/store/apps/details'),
+      StoreType.appStore =>
+        host == 'apps.apple.com' && uri.pathSegments.contains('app'),
+    };
+  }
 }
+
+enum StoreType { playStore, appStore }

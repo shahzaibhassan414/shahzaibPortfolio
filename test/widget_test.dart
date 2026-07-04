@@ -4,12 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:portfolio/main.dart';
 import 'package:portfolio/resource/strings.dart';
 import 'package:portfolio/view/root.dart';
-import 'package:portfolio/view/splash/splash.dart';
 import 'package:portfolio/view/widget/footer.dart';
 
 void main() {
   testWidgets('portfolio renders its primary content', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(1440, 1000));
+    await tester.binding.setSurfaceSize(const Size(1440, 1400));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     await tester.pumpWidget(
@@ -18,12 +17,6 @@ void main() {
       ),
     );
     await tester.pump();
-
-    expect(find.byType(SplashContent), findsOneWidget);
-    expect(find.text('CRAFTING DIGITAL EXPERIENCES'), findsOneWidget);
-
-    await tester.pump(const Duration(seconds: 5));
-    await tester.pumpAndSettle();
 
     expect(find.byType(RootScreen), findsOneWidget);
     expect(find.text(Strings.introHeadline), findsOneWidget);

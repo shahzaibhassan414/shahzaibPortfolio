@@ -108,6 +108,48 @@ class _WorkCardState extends State<WorkCard> {
                         ),
                       ),
                     ),
+                    if (widget.project.galleryImages.length > 1)
+                      Positioned(
+                        left: 14,
+                        bottom: 14,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 7,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors()
+                                .backgroundColor
+                                .withValues(alpha: 0.84),
+                            borderRadius: BorderRadius.circular(999),
+                            border: Border.all(
+                              color: AppColors()
+                                  .primaryColor
+                                  .withValues(alpha: 0.35),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.photo_library_rounded,
+                                color: AppColors().primaryColor,
+                                size: 13,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                '${widget.project.galleryImages.length} screens',
+                                style: TextStyle(
+                                  color: AppColors().textColor,
+                                  fontFamily: 'sfmono',
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),

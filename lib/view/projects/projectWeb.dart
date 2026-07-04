@@ -114,6 +114,7 @@ class ProjectModel {
   String? impact;
   String? iosLink;
   String? androidLink;
+  List<String>? screenshots;
   List<String>? techs;
   List<String>? highlights;
   bool isFeatured;
@@ -127,10 +128,21 @@ class ProjectModel {
     this.impact,
     this.iosLink,
     this.androidLink,
+    this.screenshots,
     this.techs,
     this.highlights,
     this.isFeatured = false,
   });
+
+  List<String> get galleryImages {
+    final screenshotImages =
+        screenshots?.where((path) => path.trim().isNotEmpty).toList() ??
+            const [];
+
+    if (screenshotImages.isNotEmpty) return screenshotImages;
+
+    return image.trim().isEmpty ? const [] : [image];
+  }
 
   factory ProjectModel.fromJson(
     Map<String, dynamic> json, {
@@ -147,6 +159,7 @@ class ProjectModel {
       impact: json['impact']?.toString(),
       iosLink: json['iosLink']?.toString(),
       androidLink: json['androidLink']?.toString(),
+      screenshots: _stringList(json['screenshots']),
       techs: _stringList(json['techs']),
       highlights: _stringList(json['highlights']),
       isFeatured: json['isFeatured'] == true,

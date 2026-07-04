@@ -122,25 +122,70 @@ class _CompactSkillChips extends StatelessWidget {
       runSpacing: 8,
       children: visibleItems
           .map(
-            (skill) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
-              decoration: BoxDecoration(
-                color: AppColors().cardColor.withValues(alpha: 0.82),
-                borderRadius: BorderRadius.circular(9),
-                border: Border.all(color: AppColors().dividerColor),
-              ),
-              child: Text(
-                skill['name'],
-                style: TextStyle(
-                  color: AppColors().textColor,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  height: 1,
-                ),
-              ),
-            ),
+            (skill) => _CompactSkillChip(label: skill['name']),
           )
           .toList(),
+    );
+  }
+}
+
+class _CompactSkillChip extends StatefulWidget {
+  final String label;
+
+  const _CompactSkillChip({required this.label});
+
+  @override
+  State<_CompactSkillChip> createState() => _CompactSkillChipState();
+}
+
+class _CompactSkillChipState extends State<_CompactSkillChip> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 160),
+        curve: Curves.easeOutCubic,
+        scale: _hovered ? 1.03 : 1,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 160),
+          curve: Curves.easeOutCubic,
+          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
+          decoration: BoxDecoration(
+            color: _hovered
+                ? AppColors().elevatedColor
+                : AppColors().cardColor.withValues(alpha: 0.82),
+            borderRadius: BorderRadius.circular(9),
+            border: Border.all(
+              color: _hovered
+                  ? AppColors().primaryColor.withValues(alpha: 0.5)
+                  : AppColors().dividerColor,
+            ),
+            boxShadow: [
+              if (_hovered)
+                BoxShadow(
+                  color: AppColors().primaryColor.withValues(alpha: 0.1),
+                  blurRadius: 14,
+                  offset: const Offset(0, 7),
+                ),
+            ],
+          ),
+          child: Text(
+            widget.label,
+            style: TextStyle(
+              color:
+                  _hovered ? AppColors().primaryColor : AppColors().textColor,
+              fontSize: 12,
+              fontWeight: _hovered ? FontWeight.w700 : FontWeight.w600,
+              height: 1,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
