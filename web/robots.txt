@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.shahzaib-dev.site/sitemap.xml
+LLMS: https://www.shahzaib-dev.site/llms.txt
+LLMS-Full: https://www.shahzaib-dev.site/llms-full.txt
