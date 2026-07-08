@@ -251,10 +251,25 @@ class _ProjectDetailDialogState extends State<ProjectDetailDialog> {
                           height: 1.6,
                         ),
                       ),
+
+                      if (project.technicalDecisions?.isNotEmpty ?? false) ...[
+                        const SizedBox(height: 28),
+                        Text(
+                          'Technical Decisions',
+                          style: GoogleFonts.roboto(
+                            color: AppColors().textColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        ...project.technicalDecisions!.map(_buildDecisionRow),
+                      ],
+
                       if (project.highlights?.isNotEmpty ?? false) ...[
                         const SizedBox(height: 24),
                         Text(
-                          'What I handled',
+                          'Key Highlights',
                           style: GoogleFonts.roboto(
                             color: AppColors().textColor,
                             fontSize: 18,
@@ -414,6 +429,42 @@ class _ProjectDetailDialogState extends State<ProjectDetailDialog> {
     );
   }
 
+  Widget _buildDecisionRow(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 4),
+            padding: const EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              color: AppColors().primaryRedColor.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Icon(
+              Icons.architecture_rounded,
+              color: AppColors().primaryRedColor,
+              size: 14,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              text,
+              style: GoogleFonts.roboto(
+                color: AppColors().textColor,
+                fontSize: 15,
+                height: 1.5,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildHighlightRow(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
@@ -422,7 +473,7 @@ class _ProjectDetailDialogState extends State<ProjectDetailDialog> {
         children: [
           Icon(
             Icons.check_circle_rounded,
-            color: AppColors().primaryRedColor,
+            color: AppColors().primaryRedColor.withValues(alpha: 0.7),
             size: 18,
           ),
           const SizedBox(width: 10),

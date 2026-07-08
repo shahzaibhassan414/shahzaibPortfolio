@@ -125,6 +125,11 @@ class AppClass {
         'Integrated RevenueCat for in-app purchases and subscriptions.',
         'Implemented Firebase auth, notifications, and cached media flows.',
       ],
+      technicalDecisions: [
+        'Used Provider for state management to ensure low memory footprint while maintaining reactive UI.',
+        'Implemented Socket.io for real-time chat and notifications to minimize server polling and battery drain.',
+        'Adopted RevenueCat to abstract store-side complexity and handle subscription state across iOS and Android.',
+      ],
     ),
     ProjectModel(
       name: 'Simman',
@@ -139,6 +144,11 @@ class AppClass {
         'Built responsive audio-streaming screens with live state updates.',
         'Used Firebase Realtime Database for fast synchronization.',
         'Structured GetX state flows around heavy realtime data.',
+      ],
+      technicalDecisions: [
+        'Selected GetX for its high-performance dependency injection and efficient reactive state management.',
+        'Utilized Firebase Realtime Database over Firestore for sub-second latency in audio control syncing.',
+        'Implemented custom audio buffering logic to handle variable network conditions without playback interruption.',
       ],
     ),
     ProjectModel(
@@ -155,6 +165,11 @@ class AppClass {
         'Connected traditional REST flows with blockchain-backed commerce.',
         'Supported identity checks through KYC-oriented screens.',
       ],
+      technicalDecisions: [
+        'Integrated Web3Auth to allow users to create wallets via social logins, significantly reducing Web3 entry barriers.',
+        'Implemented a repository pattern to abstract the complexity of interacting with both Web2 REST APIs and Web3 blockchains.',
+        'Used secure storage for sensitive wallet metadata to ensure enterprise-grade security on-device.',
+      ],
     ),
     ProjectModel(
       name: 'BePay Business',
@@ -169,6 +184,10 @@ class AppClass {
         'Created merchant-facing product, listing, and order tools.',
         'Implemented KYB verification flows for business onboarding.',
         'Used Provider to manage operational state across complex screens.',
+      ],
+      technicalDecisions: [
+        'Architected a multi-step dynamic form system for KYB to handle complex merchant verification requirements.',
+        'Optimized order management views with pagination and caching to handle large inventories efficiently.',
       ],
     ),
     ProjectModel(
@@ -186,6 +205,11 @@ class AppClass {
         'Connected Google Maps, sockets, and Firebase into one discovery path.',
         'Supported paid experiences with RevenueCat subscriptions.',
       ],
+      technicalDecisions: [
+        'Implemented custom map clustering to maintain performance while displaying hundreds of user "check-ins" simultaneously.',
+        'Used background location services with geofencing to trigger check-ins automatically with minimal battery impact.',
+        'Fused socket events with Google Maps markers for real-time "live presence" visualization.',
+      ],
     ),
     ProjectModel(
       name: 'LawnOlu',
@@ -201,6 +225,11 @@ class AppClass {
         'Created multi-role service flows for customers and providers.',
         'Added Google Maps tracking for active lawn-care jobs.',
         'Integrated Stripe and Firebase analytics/notifications.',
+      ],
+      technicalDecisions: [
+        'Built a role-based navigation system allowing a single codebase to serve both service providers and customers.',
+        'Integrated Stripe Connect to handle split payments between the platform and service providers securely.',
+        'Used Polyline algorithms to calculate and display the most efficient routes for service providers in real-time.',
       ],
     ),
     ProjectModel(
@@ -224,6 +253,11 @@ class AppClass {
         'Used TanStack Query patterns for caching and predictable API state.',
         'Added QR scanning and in-app web views for fast task completion.',
       ],
+      technicalDecisions: [
+        'Adopted TanStack Query (flutter_query) to handle complex server-state, including auto-refetching and background caching.',
+        'Developed a custom heatmap overlay for Google Maps using tile providers to ensure smooth scrolling with high data density.',
+        'Implemented a modular QR scanning engine that supports deep-linking and dynamic action triggers.',
+      ],
     ),
     ProjectModel(
       name: 'Jatt App',
@@ -238,6 +272,10 @@ class AppClass {
         'Built social login and authenticated REST API flows.',
         'Connected Firebase services for app engagement features.',
         'Focused on a clean mobile UI foundation for future expansion.',
+      ],
+      technicalDecisions: [
+        'Implemented a Clean Architecture approach to separate business logic from UI, facilitating easier testing and scalability.',
+        'Used Interceptors in Dio to handle JWT token refresh cycles automatically without user interruption.',
       ],
     ),
   ];

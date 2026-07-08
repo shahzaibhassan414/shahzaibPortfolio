@@ -117,6 +117,7 @@ class ProjectModel {
   List<String>? screenshots;
   List<String>? techs;
   List<String>? highlights;
+  List<String>? technicalDecisions;
   bool isFeatured;
 
   ProjectModel({
@@ -131,6 +132,7 @@ class ProjectModel {
     this.screenshots,
     this.techs,
     this.highlights,
+    this.technicalDecisions,
     this.isFeatured = false,
   });
 
@@ -162,6 +164,7 @@ class ProjectModel {
       screenshots: _stringList(json['screenshots']),
       techs: _stringList(json['techs']),
       highlights: _stringList(json['highlights']),
+      technicalDecisions: _stringList(json['technicalDecisions']),
       isFeatured: json['isFeatured'] == true,
     );
   }
