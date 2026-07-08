@@ -11,4 +11,5 @@ flutter doctor
 flutter pub get                                                        
 
 # BUILD WEB
-flutter build web --release --pwa-strategy=none
+# Adding --no-tree-shake-icons to prevent Material Icons from being stripped in release mode
+flutter build web --release --pwa-strategy=none --no-tree-shake-icons
