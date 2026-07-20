@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../Widgets/main_title_widget.dart';
 import '../../resource/appClass.dart';
 import '../../resource/colors.dart';
-import 'Widgets/project_detail_dialog.dart';
 import 'Widgets/work_card.dart';
 import 'projectWeb.dart';
+import 'project_detail_view.dart';
 
 class Projects extends StatefulWidget {
   const Projects({super.key});
@@ -258,10 +258,11 @@ class _FeaturedProjectsCarousel extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        showDialog(
-          context: context,
-          barrierColor: Colors.black.withValues(alpha: 0.78),
-          builder: (context) => ProjectDetailDialog(project: project),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProjectDetailView(project: project),
+          ),
         );
       },
       borderRadius: BorderRadius.circular(8),

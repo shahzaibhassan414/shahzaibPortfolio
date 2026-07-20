@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../resource/colors.dart';
 import '../projectWeb.dart';
-import 'project_detail_dialog.dart';
+import '../project_detail_view.dart';
 
 class WorkCard extends StatefulWidget {
   final ProjectModel project;
@@ -42,10 +42,11 @@ class _WorkCardState extends State<WorkCard> {
       },
       child: InkWell(
         onTap: () {
-          showDialog(
-            context: context,
-            barrierColor: Colors.black.withValues(alpha: 0.78),
-            builder: (context) => ProjectDetailDialog(project: widget.project),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProjectDetailView(project: widget.project),
+            ),
           );
         },
         borderRadius: BorderRadius.circular(8),

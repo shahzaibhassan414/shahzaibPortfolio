@@ -121,14 +121,14 @@ class AppClass {
       iosLink: 'https://apps.apple.com/id/app/paw-play-love/id6648773545',
       techs: ['Flutter', 'Firebase', 'Socket.io', 'RevenueCat', 'Provider'],
       highlights: [
-        'Built live social interactions with socket-driven updates.',
-        'Integrated RevenueCat for in-app purchases and subscriptions.',
-        'Implemented Firebase auth, notifications, and cached media flows.',
+        'Built a swipe-based social discovery experience for pet owners to find matches, playdates, and nearby pet lovers.',
+        'Implemented real-time chat, match updates, and social interactions using socket-driven communication.',
+        'Integrated RevenueCat subscriptions, Boosts, Super Likes, Rewinds, and premium access across iOS and Android.',
       ],
       technicalDecisions: [
-        'Used Provider for state management to ensure low memory footprint while maintaining reactive UI.',
-        'Implemented Socket.io for real-time chat and notifications to minimize server polling and battery drain.',
-        'Adopted RevenueCat to abstract store-side complexity and handle subscription state across iOS and Android.',
+        'Used Provider for lightweight state management to keep the UI reactive without adding unnecessary architectural complexity.',
+        'Implemented Socket.io for real-time chat and match-related updates, reducing the need for frequent API polling.',
+        'Adopted RevenueCat to manage cross-platform subscription logic, entitlement checks, and store-side purchase handling.',
       ],
     ),
     ProjectModel(
@@ -137,109 +137,170 @@ class AppClass {
           'With Simman, I tackled the complexities of Real-time Audio Streaming by building a robust architecture that balances speed with security. By integrating Firebase Realtime Database for live updates and implementing advanced State Management, I ensured the app remains responsive under heavy data loads.',
       image: CustomImages.projectSimman,
       role: 'Realtime systems developer',
-      timeline: 'Audio platform',
-      impact: 'Low-latency streaming UX',
+      timeline: 'Medical simulation platform',
+      impact: 'Low-latency realtime simulation UX',
       techs: ['Flutter', 'Firebase Realtime DB', 'Audio Streaming', 'GetX'],
       highlights: [
-        'Built responsive audio-streaming screens with live state updates.',
-        'Used Firebase Realtime Database for fast synchronization.',
-        'Structured GetX state flows around heavy realtime data.',
+        'Built real-time audio streaming flows for live medical simulation sessions.',
+        'Implemented Firebase Realtime Database syncing for instant instructor-to-student updates.',
+        'Created responsive simulation screens that remained stable during continuous realtime data changes.',
       ],
       technicalDecisions: [
-        'Selected GetX for its high-performance dependency injection and efficient reactive state management.',
-        'Utilized Firebase Realtime Database over Firestore for sub-second latency in audio control syncing.',
-        'Implemented custom audio buffering logic to handle variable network conditions without playback interruption.',
+        'Used GetX for lightweight dependency injection and reactive state handling across realtime simulation screens.',
+        'Selected Firebase Realtime Database over Firestore to support faster synchronization for live control and audio state updates.',
+        'Structured audio and realtime listeners carefully to reduce UI lag during active simulation sessions.',
       ],
     ),
     ProjectModel(
       name: 'BePay Client',
       description:
-          'Web3-Integrated Consumer Platform: I developed a high-end Flutter application for the end-user, focusing on a seamless transition between traditional and decentralized commerce. The app features a secure Web3 wallet creation and OAuth-based login to ensure a smooth onboarding experience.',
+          'BePay Client is a Web3-enabled consumer commerce app built in Flutter, designed to make blockchain-based payments and wallet onboarding simple for everyday users. I implemented social login-based wallet creation, REST API integrations, KYC flows, and secure handling of wallet-related data to create a smooth bridge between traditional commerce and decentralized finance.',
       image: CustomImages.projectBePayClient,
-      role: 'Consumer app developer',
-      timeline: 'Web3 commerce',
-      impact: 'Wallet onboarding + KYC',
+      role: 'Web3 consumer app developer',
+      timeline: 'Web3 commerce platform',
+      impact: 'Simplified wallet onboarding + KYC',
       techs: ['Flutter', 'Web3Auth', 'Blockchain', 'REST API', 'KYC'],
       highlights: [
-        'Built wallet creation and OAuth onboarding with Web3Auth.',
-        'Connected traditional REST flows with blockchain-backed commerce.',
-        'Supported identity checks through KYC-oriented screens.',
+        'Built social login-based wallet creation using Web3Auth to simplify Web3 onboarding.',
+        'Integrated REST API flows with blockchain-backed commerce features for a hybrid Web2/Web3 experience.',
+        'Developed KYC-oriented screens to support user verification and secure platform access.',
       ],
       technicalDecisions: [
-        'Integrated Web3Auth to allow users to create wallets via social logins, significantly reducing Web3 entry barriers.',
-        'Implemented a repository pattern to abstract the complexity of interacting with both Web2 REST APIs and Web3 blockchains.',
-        'Used secure storage for sensitive wallet metadata to ensure enterprise-grade security on-device.',
+        'Used Web3Auth to reduce Web3 onboarding friction by allowing users to create wallets through familiar OAuth login flows.',
+        'Applied a repository-based structure to separate Web2 REST API logic from Web3 wallet and blockchain-related operations.',
+        'Stored sensitive wallet-related metadata securely on-device to protect user session and authentication data.',
       ],
     ),
     ProjectModel(
       name: 'BePay Business',
       description:
-          'I engineered a dedicated Flutter application for business owners and service providers within the Web3 ecosystem. This app manages complex KYB (Know Your Business) verification flows and provides tools for managing product listings and orders.',
+          'BePay Business is a merchant-facing Flutter application built for business owners and service providers operating inside a Web3 commerce ecosystem. I developed KYB onboarding flows, product and listing management, and order operation tools to help merchants verify their businesses and manage commerce activity from a dedicated mobile platform.',
       image: CustomImages.projectBePayBusiness,
-      role: 'Business app developer',
-      timeline: 'Merchant platform',
-      impact: 'KYB + order operations',
+      role: 'Merchant app developer',
+      timeline: 'Web3 merchant platform',
+      impact: 'KYB onboarding + order operations',
       techs: ['Flutter', 'Blockchain', 'KYB', 'REST API', 'Provider'],
       highlights: [
-        'Created merchant-facing product, listing, and order tools.',
-        'Implemented KYB verification flows for business onboarding.',
-        'Used Provider to manage operational state across complex screens.',
+        'Built merchant-facing search/filter tools for managing products, listings, and customer orders.',
+        'Implemented multi-step KYB verification flows for business onboarding and compliance.',
+        'Created operational screens that helped merchants manage Web3 commerce activity from mobile.',
       ],
       technicalDecisions: [
-        'Architected a multi-step dynamic form system for KYB to handle complex merchant verification requirements.',
-        'Optimized order management views with pagination and caching to handle large inventories efficiently.',
+        'Used Provider to manage complex merchant state across KYB, product, listing, and order management flows.',
+        'Designed a multi-step dynamic KYB form structure to support flexible business verification requirements.',
+        'Optimized listing and order screens with pagination-ready data handling for scalable merchant operations.',
       ],
     ),
     ProjectModel(
       name: 'On Scene',
       description:
-          'On Scene is a cutting-edge, location-aware social platform designed to bridge the gap between digital discovery and real-world connections. I engineered a seamless Check-in mechanism using Google Maps API, allowing users to discover and interact with others at nearby venues in real-time.',
+          'On Scene is a location-aware dating and social discovery app built to help users connect with people around real-world venues, events, and nearby places. I worked on the check-in experience, Google Maps integration, live presence updates, and premium subscription flows to bridge digital discovery with real-life connections.',
       image: CustomImages.projectOnScene,
       role: 'Location feature lead',
-      timeline: 'Venue social app',
-      impact: 'Maps + live discovery',
+      timeline: 'Venue-based dating app',
+      impact: 'Live discovery + real-world connections',
       isFeatured: true,
       techs: ['Flutter', 'Google Maps', 'Socket.io', 'RevenueCat', 'Firebase'],
       highlights: [
-        'Designed check-in flows around nearby venues and user presence.',
-        'Connected Google Maps, sockets, and Firebase into one discovery path.',
-        'Supported paid experiences with RevenueCat subscriptions.',
+        'Built venue-based check-in flows that allowed users to discover and interact with nearby people.',
+        'Integrated Google Maps, Socket.io, and Firebase to power live location-aware discovery.',
+        'Implemented RevenueCat subscriptions to support premium dating and discovery experiences.',
       ],
       technicalDecisions: [
-        'Implemented custom map clustering to maintain performance while displaying hundreds of user "check-ins" simultaneously.',
-        'Used background location services with geofencing to trigger check-ins automatically with minimal battery impact.',
-        'Fused socket events with Google Maps markers for real-time "live presence" visualization.',
+        'Used Google Maps to create a venue-first discovery experience instead of relying only on traditional swipe-based matching.',
+        'Connected socket events with map-based user presence to keep nearby activity updated in real time.',
+        'Adopted RevenueCat to manage subscription access and premium feature availability across iOS and Android.',
+      ],
+      caseStudy: [
+        CaseStudyStep(
+          title: 'Overview',
+          description: 'On Scene is a location-aware dating and social discovery app designed to help users connect with people around real-world venues, events, and nearby places. Instead of relying only on traditional swipe-based discovery, the app focuses on live presence, check-ins, and real-world social interactions.',
+        ),
+        CaseStudyStep(
+          title: 'My Role',
+          description: 'I worked as the Main Flutter Developer, responsible for building the core mobile app experience across Android and iOS. My work included location-based discovery, Google Maps integration, check-in flows, real-time presence updates, Firebase services, Socket.io integration, RevenueCat subscriptions, and production-ready mobile implementation.',
+        ),
+        CaseStudyStep(
+          title: 'Problem',
+          description: 'The app needed to connect digital dating with real-world discovery. Users needed to see nearby activity, check in to venues, discover people around them, and interact through a location-aware experience. The challenge was combining maps, location data, real-time updates, and premium features into one smooth mobile experience.',
+        ),
+        CaseStudyStep(
+          title: 'What I Built',
+          description: 'I built venue-based check-in flows that allowed users to discover and interact with nearby people. I integrated Google Maps for location-aware discovery, Socket.io for real-time presence updates, Firebase for notifications and engagement features, and RevenueCat for premium subscription access across iOS and Android.',
+        ),
+        CaseStudyStep(
+          title: 'Technical Decisions',
+          description: 'I used Google Maps to create a venue-first discovery experience, making the app feel connected to real-world places instead of only profile browsing. Socket.io was used to keep nearby activity and user presence updated in real time. RevenueCat was integrated to simplify subscription handling, entitlement checks, and premium feature access across both app stores.',
+        ),
+        CaseStudyStep(
+          title: 'Challenges',
+          description: 'One of the key challenges was keeping map-based discovery responsive while handling user presence, venue check-ins, and live updates. Map-heavy screens can become slow if markers, location updates, and socket events are not managed carefully. I structured the location and real-time update logic to keep the discovery experience smooth and reliable.',
+        ),
+        CaseStudyStep(
+          title: 'Outcome',
+          description: 'On Scene became a real-world social discovery platform that combines location, live presence, check-ins, and premium dating features. The app helped users move beyond traditional matching by connecting around real venues and nearby activity.',
+        ),
       ],
     ),
     ProjectModel(
       name: 'LawnOlu',
       description:
-          'Developed Lawnolu, a high-performance service provider application leveraging REST APIs and Firebase (Notifications & Analytics). The app’s architecture supports multi-tenant logic, allowing users to switch between business roles seamlessly. Key technical achievements include implementing a real-time tracking system using Google Maps, managing state for complex service requests, and ensuring financial security through Stripe integration.',
+          'LawnOlu is an on-demand lawn-care service marketplace that connects customers with trusted service providers. The app allows customers to book lawn-care services, track active jobs, manage payments, receive updates, and communicate with service providers through a structured mobile experience.',
       image: CustomImages.projectLawnolu,
       role: 'Mobile app engineer',
-      timeline: 'Service marketplace',
-      impact: 'Live tracking + payments',
+      timeline: 'On-demand service marketplace',
+      impact: 'Bookings + live tracking + payments',
       isFeatured: true,
       techs: ['Flutter', 'REST API', 'Google Maps', 'Stripe', 'Socket.io'],
       highlights: [
-        'Created multi-role service flows for customers and providers.',
-        'Added Google Maps tracking for active lawn-care jobs.',
-        'Integrated Stripe and Firebase analytics/notifications.',
+        'Built customer and provider flows for booking, managing, and completing lawn-care service requests.',
+        'Implemented Google Maps-based live tracking for active jobs and provider movement.',
+        'Integrated Stripe, Firebase notifications, and analytics to support payments, updates, and usage tracking.',
       ],
       technicalDecisions: [
-        'Built a role-based navigation system allowing a single codebase to serve both service providers and customers.',
-        'Integrated Stripe Connect to handle split payments between the platform and service providers securely.',
-        'Used Polyline algorithms to calculate and display the most efficient routes for service providers in real-time.',
+        'Designed a role-based navigation and state structure so one Flutter codebase could support both customers and service providers.',
+        'Used Google Maps polylines and location updates to visualize provider routes and active job progress in real time.',
+        'Integrated Stripe to handle secure in-app payments while keeping payment logic separated from service booking flows.',
+      ],
+      caseStudy: [
+        CaseStudyStep(
+          title: 'Overview',
+          description: 'LawnOlu is an on-demand lawn-care service marketplace that connects customers with trusted service providers. The app allows customers to book lawn-care services, track active jobs, manage payments, receive updates, and communicate with service providers through a structured mobile experience.',
+        ),
+        CaseStudyStep(
+          title: 'My Role',
+          description: 'I worked as the Main Flutter Developer, responsible for building the core mobile application experience for both customers and service providers. My work included multi-role app flows, service request handling, REST API integration, Google Maps tracking, Stripe payment flows, Firebase notifications, analytics support, and job lifecycle screens.',
+        ),
+        CaseStudyStep(
+          title: 'Problem',
+          description: 'The app needed to support two different user types within one codebase: customers and service providers. Customers needed a simple way to book and track services, while providers needed tools to manage requests, view job details, update availability, and complete service operations. The challenge was keeping these flows separate where needed while still maintaining one scalable Flutter project.',
+        ),
+        CaseStudyStep(
+          title: 'What I Built',
+          description: 'I built customer and provider flows for booking, managing, and completing lawn-care jobs. I implemented Google Maps-based live tracking for active service requests, integrated Stripe for secure payment handling, connected Firebase notifications for job updates, and worked with REST APIs to manage bookings, profiles, services, and operational data.',
+        ),
+        CaseStudyStep(
+          title: 'Technical Decisions',
+          description: 'I designed a role-based navigation and state structure so the same Flutter codebase could support both customer and provider experiences. For live tracking, I used Google Maps, location updates, markers, and polylines to visualize provider movement and job progress. I also kept payment-related logic separate from booking logic to make the Stripe integration easier to maintain and extend.',
+        ),
+        CaseStudyStep(
+          title: 'Challenges',
+          description: 'A major challenge was managing the complete job lifecycle across different roles. Customers and providers needed different screens, actions, and status updates for the same service request. Real-time map updates, payment handling, job details, and notifications also had to work together without making the app feel heavy or confusing.',
+        ),
+        CaseStudyStep(
+          title: 'Outcome',
+          description: 'LawnOlu delivered a complete on-demand service marketplace experience with booking, tracking, payments, notifications, and provider operations. The role-based structure made the app scalable while allowing both customers and service providers to use the platform from one Flutter application.',
+        ),
       ],
     ),
     ProjectModel(
       name: 'Zera',
       description:
-          'Zera represents a masterclass in cross-functional app development, utilizing REST APIs and TanStack Query for robust state management and caching. I implemented specialized features including Custom Heat Maps for data visualization, QR Scanning for seamless interactions, and In-app Web Views for extended functionality.',
+          'Zera is a multi-vertical marketplace app built in Flutter that brings jobs, goods, services, events, and community features into one unified platform. I worked on data-heavy marketplace flows including demand heat maps, QR ticket workflows, in-app web views, server-state caching with TanStack Query, and location-based experiences to support a smooth buy, sell, work, and connect experience.',
       image: CustomImages.projectZera,
-      role: 'Feature developer',
-      timeline: 'Data-heavy app',
-      impact: 'Heatmaps + QR workflows',
+      role: 'Marketplace feature developer',
+      timeline: 'Multi-vertical marketplace',
+      impact: 'Heatmaps + QR workflows + server-state caching',
       isFeatured: true,
       techs: [
         'Flutter',
@@ -249,33 +310,64 @@ class AppClass {
         'QR Scanner'
       ],
       highlights: [
-        'Implemented custom heatmap views for location-based insights.',
-        'Used TanStack Query patterns for caching and predictable API state.',
-        'Added QR scanning and in-app web views for fast task completion.',
+        'Built marketplace features across jobs, goods, services, events, and community modules.',
+        'Implemented demand heat map views to help users discover location-based activity and opportunities.',
+        'Added QR ticket scanning, in-app web views, and cached API flows for faster user actions.',
       ],
       technicalDecisions: [
-        'Adopted TanStack Query (flutter_query) to handle complex server-state, including auto-refetching and background caching.',
-        'Developed a custom heatmap overlay for Google Maps using tile providers to ensure smooth scrolling with high data density.',
-        'Implemented a modular QR scanning engine that supports deep-linking and dynamic action triggers.',
+        'Used TanStack Query for server-state management, caching, refetching, and predictable API-driven UI updates.',
+        'Designed Google Maps-based heat map flows to visualize high-density marketplace activity without overloading the UI.',
+        'Implemented modular QR scanning and in-app web view handling to support event tickets, external flows, and dynamic actions.',
+      ],
+      caseStudy: [
+        CaseStudyStep(
+          title: 'Overview',
+          description: 'Zera is a multi-vertical marketplace application that brings jobs, goods, services, events, and community features into one mobile platform. The app is designed to help users buy and sell goods, discover job opportunities, offer or book services, explore events, purchase tickets, and connect through community posts.',
+        ),
+        CaseStudyStep(
+          title: 'My Role',
+          description: 'I worked as the Main Flutter Developer, responsible for building and maintaining the core mobile app experience across multiple modules. My responsibilities included feature development, API integration, state management, QR workflows, map-based features, server-state caching, UI implementation, and production-ready mobile delivery.',
+        ),
+        CaseStudyStep(
+          title: 'Problem',
+          description: 'The main challenge was building a single app that could support several different marketplace experiences without making the app feel complex or slow. Each module had its own data structure, user flow, and backend behavior, so the mobile architecture needed to stay scalable and easy to maintain.',
+        ),
+        CaseStudyStep(
+          title: 'What I Built',
+          description: 'I worked on core marketplace flows across jobs, goods, services, events, and community modules. I also implemented demand heat map views for location-based insights, QR ticket scanning for event workflows, in-app web views for extended functionality, and cached API flows to make the app feel faster and more reliable.',
+        ),
+        CaseStudyStep(
+          title: 'Technical Decisions',
+          description: 'I used TanStack Query to manage server-state, API caching, refetching, and predictable UI updates. This helped reduce unnecessary API calls and kept data-heavy screens more stable. For location-based experiences, I integrated Google Maps and implemented heat map-style views to visualize high-density marketplace activity. I also kept QR scanning and in-app web view handling modular so they could support multiple workflows across the app.',
+        ),
+        CaseStudyStep(
+          title: 'Challenges',
+          description: 'One of the biggest challenges was managing different modules inside one consistent user experience. Jobs, goods, services, events, and community posts all required different API responses, forms, filters, and UI states. I handled this by keeping API logic, reusable components, and feature-specific flows organized so the app could scale without becoming difficult to maintain.',
+        ),
+        CaseStudyStep(
+          title: 'Outcome',
+          description: 'Zera became a feature-rich marketplace platform with multiple user journeys inside one Flutter app. The final implementation supported smooth API-driven interactions, location-based discovery, QR workflows, and a scalable structure for future marketplace expansion.',
+        ),
       ],
     ),
     ProjectModel(
       name: 'Jatt App',
       image: CustomImages.projectJatt,
       description:
-          'A Flutter social app focused on polished onboarding, authenticated API flows, and Firebase-backed user engagement.',
-      role: 'Flutter developer',
-      timeline: 'Social app',
-      impact: 'Auth + engagement foundation',
+          'Jatt App is a Flutter-based social application focused on smooth onboarding, secure authentication, social login, and Firebase-backed engagement flows. I worked on authenticated REST API integration, clean mobile UI screens, and the foundation needed to support future social features as the product scales.',
+      role: 'Flutter app developer',
+      timeline: 'Social networking app',
+      impact: 'Auth + social engagement foundation',
       techs: ['Flutter', 'REST API', 'Firebase', 'Social Login'],
       highlights: [
-        'Built social login and authenticated REST API flows.',
-        'Connected Firebase services for app engagement features.',
-        'Focused on a clean mobile UI foundation for future expansion.',
+        'Built social login and authenticated REST API flows for user onboarding.',
+        'Integrated Firebase-backed services to support user engagement and app communication flows.',
+        'Created a clean, scalable mobile UI foundation for future social networking features.',
       ],
       technicalDecisions: [
-        'Implemented a Clean Architecture approach to separate business logic from UI, facilitating easier testing and scalability.',
-        'Used Interceptors in Dio to handle JWT token refresh cycles automatically without user interruption.',
+        'Structured authentication and API layers separately from UI to keep the codebase easier to maintain and extend.',
+        'Used Dio interceptors to manage authenticated requests and handle token-based API communication smoothly.',
+        'Kept Firebase integration modular so engagement features could be expanded without tightly coupling them to screens.',
       ],
     ),
   ];
@@ -300,12 +392,12 @@ class AppClass {
       type: ToastificationType.success,
       style: ToastificationStyle.minimal,
       autoCloseDuration: const Duration(seconds: 4),
-      title: Text(
+      title: const Text(
         'SYSTEM STATUS: SUCCESS',
         style: TextStyle(
             fontFamily: 'sfmono',
             fontWeight: FontWeight.bold,
-            color: AppColors().primaryColor,
+            color: Color(0xFF64FFDA),
             fontSize: 12,
             letterSpacing: 1.5),
       ),
@@ -316,7 +408,7 @@ class AppClass {
       ),
       alignment: Alignment.topRight,
       backgroundColor: AppColors().cardColor,
-      primaryColor: AppColors().primaryColor,
+      primaryColor: const Color(0xFF64FFDA),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       borderRadius: BorderRadius.circular(8),
@@ -331,7 +423,7 @@ class AppClass {
       type: ToastificationType.error,
       style: ToastificationStyle.minimal,
       autoCloseDuration: const Duration(seconds: 4),
-      title: Text(
+      title: const Text(
         'SYSTEM ERROR',
         style: TextStyle(
             fontFamily: 'sfmono',
@@ -381,7 +473,7 @@ class AppClass {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green),
                       onPressed: () => Navigator.pop(context),
-                      child: Text('Okay'))
+                      child: const Text('Okay'))
                 ]));
   }
 

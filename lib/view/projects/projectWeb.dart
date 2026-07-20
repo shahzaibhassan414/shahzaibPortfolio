@@ -105,6 +105,13 @@ class _WorkWebState extends ConsumerState<ProjectWeb>
   }
 }
 
+class CaseStudyStep {
+  final String title;
+  final String description;
+
+  CaseStudyStep({required this.title, required this.description});
+}
+
 class ProjectModel {
   String name;
   String image;
@@ -118,6 +125,7 @@ class ProjectModel {
   List<String>? techs;
   List<String>? highlights;
   List<String>? technicalDecisions;
+  List<CaseStudyStep>? caseStudy;
   bool isFeatured;
 
   ProjectModel({
@@ -133,6 +141,7 @@ class ProjectModel {
     this.techs,
     this.highlights,
     this.technicalDecisions,
+    this.caseStudy,
     this.isFeatured = false,
   });
 
@@ -165,6 +174,12 @@ class ProjectModel {
       techs: _stringList(json['techs']),
       highlights: _stringList(json['highlights']),
       technicalDecisions: _stringList(json['technicalDecisions']),
+      caseStudy: (json['caseStudy'] as List?)
+          ?.map((item) => CaseStudyStep(
+                title: item['title']?.toString() ?? '',
+                description: item['description']?.toString() ?? '',
+              ))
+          .toList(),
       isFeatured: json['isFeatured'] == true,
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/resource/appClass.dart';
 import 'package:portfolio/resource/colors.dart';
+import 'package:portfolio/view/projects/project_detail_view.dart';
 import 'package:portfolio/view/root.dart';
 
 void main() {
@@ -30,7 +32,32 @@ class AppTheme extends StatelessWidget {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
-      home: const RootScreen(),
+      // Set initial route
+      initialRoute: '/',
+      onGenerateRoute: (settings) {
+        // Handle Home
+        if (settings.name == '/') {
+          return MaterialPageRoute(builder: (context) => const RootScreen());
+        }
+
+        // Handle Project Details: /project/project-name
+        if (settings.name!.startsWith('/project/')) {
+          final projectName = settings.name!.replaceFirst('/project/', '').replaceAll('-', ' ');
+          
+          // Find the project by name (case-insensitive)
+          final project = AppClass().projects.firstWhere(
+            (p) => p.name.toLowerCase() == projectName.toLowerCase(),
+            orElse: () => AppClass().projects.first,
+          );
+
+          return MaterialPageRoute(
+            settings: settings, // This ensures the URL updates in the browser
+            builder: (context) => ProjectDetailView(project: project),
+          );
+        }
+
+        return null;
+      },
     );
   }
 }

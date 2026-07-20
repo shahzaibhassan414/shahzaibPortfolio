@@ -252,6 +252,24 @@ class _ProjectDetailDialogState extends State<ProjectDetailDialog> {
                         ),
                       ),
 
+                      if (project.caseStudy != null &&
+                          project.caseStudy!.isNotEmpty) ...[
+                        const SizedBox(height: 32),
+                        Text(
+                          'Case Study',
+                          style: GoogleFonts.roboto(
+                            color: AppColors().textColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        ...project.caseStudy!.asMap().entries.map((entry) {
+                          return _buildCaseStudyStep(
+                              entry.key + 1, entry.value);
+                        }),
+                      ],
+
                       if (project.technicalDecisions?.isNotEmpty ?? false) ...[
                         const SizedBox(height: 28),
                         Text(
@@ -485,6 +503,62 @@ class _ProjectDetailDialogState extends State<ProjectDetailDialog> {
                 fontSize: 15,
                 height: 1.5,
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCaseStudyStep(int stepNumber, CaseStudyStep step) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: AppColors().primaryRedColor.withValues(alpha: 0.1),
+              shape: BoxShape.circle,
+              border: Border.all(
+                  color: AppColors().primaryRedColor.withValues(alpha: 0.3)),
+            ),
+            child: Center(
+              child: Text(
+                stepNumber.toString(),
+                style: GoogleFonts.robotoMono(
+                  color: AppColors().primaryRedColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  step.title,
+                  style: GoogleFonts.roboto(
+                    color: AppColors().textColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  step.description,
+                  style: GoogleFonts.roboto(
+                    color: AppColors().textLight,
+                    fontSize: 14,
+                    height: 1.5,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
