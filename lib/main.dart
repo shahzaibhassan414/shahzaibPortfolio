@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/resource/appClass.dart';
@@ -9,6 +10,31 @@ void main() {
   runApp(const ProviderScope(child: AppTheme()));
 }
 
+class SmoothScrollBehavior extends MaterialScrollBehavior {
+  const SmoothScrollBehavior();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+        PointerDeviceKind.stylus,
+      };
+
+  @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
+  }
+
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    return const BouncingScrollPhysics(
+      parent: AlwaysScrollableScrollPhysics(),
+    );
+  }
+}
+
 class AppTheme extends StatelessWidget {
   const AppTheme({super.key});
 
@@ -17,6 +43,7 @@ class AppTheme extends StatelessWidget {
     return MaterialApp(
       title: 'Shahzaib Portfolio',
       debugShowCheckedModeBanner: false,
+      scrollBehavior: const SmoothScrollBehavior(),
       theme: ThemeData(
         brightness: Brightness.dark,
         useMaterial3: true,
@@ -61,3 +88,4 @@ class AppTheme extends StatelessWidget {
     );
   }
 }
+

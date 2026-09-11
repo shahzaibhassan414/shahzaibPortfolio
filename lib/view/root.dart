@@ -166,11 +166,13 @@ class _RootScreenState extends State<RootScreen> {
       endDrawer: isCompact ? _buildMobileDrawer(context) : null,
       body: Stack(
         children: [
-          const Positioned.fill(child: _PageBackground()),
+          const Positioned.fill(child: RepaintBoundary(child: _PageBackground())),
           Positioned.fill(
             child: SingleChildScrollView(
               controller: mScrollController,
-              physics: const ClampingScrollPhysics(),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(
                   horizontalPadding,

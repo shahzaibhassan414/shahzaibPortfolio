@@ -395,12 +395,13 @@ class _HeroDeviceSceneState extends State<_HeroDeviceScene>
     final width = widget.compact ? 300.0 : 360.0;
     final height = widget.compact ? 310.0 : 410.0;
 
-    return Semantics(
-      label: 'Animated 3D mobile app preview',
-      child: SizedBox(
-        width: width,
-        height: height,
-        child: AnimatedBuilder(
+    return RepaintBoundary(
+      child: Semantics(
+        label: 'Animated 3D mobile app preview',
+        child: SizedBox(
+          width: width,
+          height: height,
+          child: AnimatedBuilder(
           animation: _controller,
           builder: (context, child) {
             final t = disableMotion ? 0.42 : _controller.value;
@@ -474,8 +475,9 @@ class _HeroDeviceSceneState extends State<_HeroDeviceScene>
           },
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }
 
 class _DeviceBody extends StatelessWidget {
