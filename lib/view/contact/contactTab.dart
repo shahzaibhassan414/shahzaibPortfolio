@@ -11,7 +11,7 @@ import '../../resource/colors.dart';
 import '../../resource/strings.dart';
 
 class ContactTab extends ConsumerStatefulWidget {
-  const ContactTab({Key? key}) : super(key: key);
+  const ContactTab({super.key});
 
   @override
   ConsumerState<ContactTab> createState() => _ContactTabState();
@@ -28,34 +28,34 @@ class _ContactTabState extends ConsumerState<ContactTab> {
   Widget build(BuildContext context) {
     final mqWidth = AppClass().getMqWidth(context);
     return Container(
-      padding: EdgeInsets.only(top: 50),
+      padding: const EdgeInsets.only(top: 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          MainTitleWidget(title: "What's Next?",isWeb: false,),
+          const MainTitleWidget(title: "What's Next?",isWeb: false,),
           Text(
-            "Get In Touch",
+            'Get In Touch',
             style: GoogleFonts.robotoSlab(
               color: AppColors().textColor,
               fontWeight: FontWeight.bold,
               fontSize: 30,
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               spacing: 10,
               children: [
                 CustomContactCard(
                   icon: Icons.call,
-                  title: "Phone Number",
+                  title: 'Phone Number',
                   value: AppClass.phoneNumber,
                 ),
                 CustomContactCard(
                   icon: Icons.mail,
-                  title: "Email Address",
+                  title: 'Email Address',
                   value: AppClass.email,
                 ),
               ],
@@ -63,12 +63,12 @@ class _ContactTabState extends ConsumerState<ContactTab> {
           ),
 
 
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
 
           Text(
-            "Feel Free To Contact Me",
+            'Feel Free To Contact Me',
             style: GoogleFonts.robotoSlab(
               color: AppColors().textColor,
               fontWeight: FontWeight.bold,
@@ -76,9 +76,9 @@ class _ContactTabState extends ConsumerState<ContactTab> {
             ),
           ),
 
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
 
-          Container(
+          SizedBox(
             width: mqWidth * 0.7,
             child: Text(
               Strings.endTxt,
@@ -91,12 +91,12 @@ class _ContactTabState extends ConsumerState<ContactTab> {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           Center(
             child: Container(
               width: mqWidth * 1,
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -112,7 +112,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
                       },
                       decoration: _inputDecoration('Name*'),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
                     // Contact Info Field
                     TextFormField(
@@ -125,7 +125,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
                     // Message Field
                     TextFormField(
@@ -140,14 +140,14 @@ class _ContactTabState extends ConsumerState<ContactTab> {
                       decoration: _inputDecoration('Message*'),
                     ),
 
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
 
                     Padding(
-                        padding: EdgeInsets.only(top: 50, bottom: 70),
+                        padding: const EdgeInsets.only(top: 50, bottom: 70),
                         child: CustomHoverButton(
                           height: 55,
                           width: 150,
-                          text: "Send Message",
+                          text: 'Send Message',
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               ref.read(progressProvider.notifier).state = true;
@@ -182,13 +182,13 @@ class _ContactTabState extends ConsumerState<ContactTab> {
             ),
           ),
 
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
 
           // Footer
           Column(
             children: [
               Text(
-                "Designed & Built with ❤️ by",
+                'Designed & Built with ❤️ by',
                 style: GoogleFonts.inter(
                   color: AppColors().textLight.withValues(alpha: 0.7),
                   fontSize: 12,
@@ -197,7 +197,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
               ),
               const SizedBox(height: 5),
               Text(
-                "Shahzaib Hassan",
+                'Shahzaib Hassan',
                 style: GoogleFonts.poppins(
                   color: AppColors().primaryRedColor,
                   fontSize: 14,
@@ -217,7 +217,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      "© 2026 • All Rights Reserved",
+                      '© 2026 • All Rights Reserved',
                       style: GoogleFonts.inter(
                         color: AppColors().textLight.withValues(alpha: 0.5),
                         fontSize: 10,
@@ -234,7 +234,7 @@ class _ContactTabState extends ConsumerState<ContactTab> {
             ],
           ),
 
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
 
         ],
       ),
@@ -247,14 +247,14 @@ class _ContactTabState extends ConsumerState<ContactTab> {
       errorStyle: const TextStyle(color: Colors.red),
       filled: true,
       fillColor: AppColors().cardColor.withValues(alpha: 0.09),
-      contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+      contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.white24),
+        borderSide: const BorderSide(color: Colors.white24),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.white24),
+        borderSide: const BorderSide(color: Colors.white24),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),

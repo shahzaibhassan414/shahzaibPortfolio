@@ -51,7 +51,9 @@ class _WorkCardState extends State<WorkCard> {
         },
         borderRadius: BorderRadius.circular(8),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
+          duration: const Duration(milliseconds: 220),
+          curve: Curves.easeOutCubic,
+          transform: Matrix4.translationValues(0, _hovered ? -6 : 0, 0),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: _hovered ? AppColors().elevatedColor : AppColors().cardColor,
@@ -61,6 +63,14 @@ class _WorkCardState extends State<WorkCard> {
                   ? AppColors().primaryColor.withValues(alpha: 0.4)
                   : AppColors().dividerColor,
             ),
+            boxShadow: [
+              if (_hovered)
+                BoxShadow(
+                  color: AppColors().primaryColor.withValues(alpha: 0.14),
+                  blurRadius: 24,
+                  offset: const Offset(0, 10),
+                ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

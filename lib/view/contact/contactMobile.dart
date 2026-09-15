@@ -11,7 +11,7 @@ import '../../resource/colors.dart';
 import '../../resource/strings.dart';
 
 class ContactMobile extends ConsumerStatefulWidget {
-  const ContactMobile({Key? key}) : super(key: key);
+  const ContactMobile({super.key});
 
   @override
   ConsumerState<ContactMobile> createState() => _ContactMobileState();
@@ -34,7 +34,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
         children: [
           const MainTitleWidget(title: "What's Next?",isWeb: false,),
           Text(
-            "Get In Touch",
+            'Get In Touch',
             style: GoogleFonts.robotoSlab(
               color: AppColors().textColor,
               fontWeight: FontWeight.bold,
@@ -50,12 +50,12 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
               children: [
                 CustomContactCard(
                   icon: Icons.call,
-                  title: "Phone Number",
+                  title: 'Phone Number',
                   value: AppClass.phoneNumber,
                 ),
                 CustomContactCard(
                   icon: Icons.mail,
-                  title: "Email Address",
+                  title: 'Email Address',
                   value: AppClass.email,
                 ),
               ],
@@ -68,7 +68,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
           ),
 
           Text(
-            "Feel Free To Contact Me",
+            'Feel Free To Contact Me',
             style: GoogleFonts.robotoSlab(
               color: AppColors().textColor,
               fontWeight: FontWeight.bold,
@@ -78,7 +78,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
 
           const SizedBox(height: 10,),
 
-          Container(
+          SizedBox(
             width: mqWidth * 0.9,
             child: Text(
               Strings.endTxt,
@@ -147,7 +147,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                         child: CustomHoverButton(
                           height: 55,
                           width: 150,
-                          text: "Send Message",
+                          text: 'Send Message',
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               ref.read(progressProvider.notifier).state = true;
@@ -188,7 +188,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
           Column(
             children: [
               Text(
-                "Designed & Built with ❤️ by",
+                'Designed & Built with ❤️ by',
                 style: GoogleFonts.inter(
                   color: AppColors().textLight.withValues(alpha: 0.7),
                   fontSize: 12,
@@ -197,7 +197,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
               ),
               const SizedBox(height: 5),
               Text(
-                "Shahzaib Hassan",
+                'Shahzaib Hassan',
                 style: GoogleFonts.poppins(
                   color: AppColors().primaryRedColor,
                   fontSize: 14,
@@ -217,7 +217,7 @@ class _ContactMobileState extends ConsumerState<ContactMobile> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      "© 2026 • All Rights Reserved",
+                      '© 2026 • All Rights Reserved',
                       style: GoogleFonts.inter(
                         color: AppColors().textLight.withValues(alpha: 0.5),
                         fontSize: 10,

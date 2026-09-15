@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:portfolio/resource/colors.dart';
@@ -13,6 +14,38 @@ import '../model/blogModel.dart';
 import '../view/projects/projectWeb.dart';
 
 enum ScreenType { mobile, tab, web }
+
+class ServiceOffering {
+  final String title;
+  final String description;
+  final IconData icon;
+  final List<String> tags;
+  final String outcome;
+
+  const ServiceOffering({
+    required this.title,
+    required this.description,
+    required this.icon,
+    required this.tags,
+    required this.outcome,
+  });
+}
+
+class TestimonialModel {
+  final String quote;
+  final String author;
+  final String role;
+  final String project;
+  final double rating;
+
+  const TestimonialModel({
+    required this.quote,
+    required this.author,
+    required this.role,
+    required this.project,
+    this.rating = 5.0,
+  });
+}
 
 class AppClass {
   static final AppClass _mAppClass = AppClass._internal();
@@ -378,6 +411,65 @@ class AppClass {
 
   AppClass._internal();
 
+  final List<ServiceOffering> services = const [
+    ServiceOffering(
+      title: 'Mobile App Development',
+      description:
+          'Build and launch cross-platform mobile apps for iOS and Android with clean architecture, responsive UI, and robust state management.',
+      icon: Icons.phone_iphone_rounded,
+      tags: ['Flutter', 'Clean Architecture', 'iOS & Android', 'State Management'],
+      outcome: 'High performance and scalable codebase',
+    ),
+    ServiceOffering(
+      title: 'Subscriptions & Payments',
+      description:
+          'Implement recurring subscriptions, custom paywalls, and payment flows with RevenueCat, Stripe, and native store billing.',
+      icon: Icons.credit_card_rounded,
+      tags: ['RevenueCat', 'Stripe', 'In-App Purchases', 'Store Compliance'],
+      outcome: 'Reliable payment processing and entitlements',
+    ),
+    ServiceOffering(
+      title: 'Maps & Real-Time Features',
+      description:
+          'Integrate location services, interactive Google Maps, live tracking, and real-time data sync using WebSockets.',
+      icon: Icons.map_rounded,
+      tags: ['Google Maps API', 'GPS Tracking', 'Socket.io', 'Firebase'],
+      outcome: 'Low-latency updates and smooth map rendering',
+    ),
+    ServiceOffering(
+      title: 'Performance & App Store Release',
+      description:
+          'Optimize frame rendering, resolve crash issues, and handle the end-to-end publishing process for App Store and Google Play.',
+      icon: Icons.speed_rounded,
+      tags: ['Performance Profiling', 'Bug Resolution', 'App Store', 'Google Play'],
+      outcome: 'Smooth user experience and seamless store approval',
+    ),
+  ];
+
+  final List<TestimonialModel> testimonials = const [
+    TestimonialModel(
+      quote:
+          'Shahzaib turned our Figma concept for Paw Play Love into a live iOS and Android app ahead of schedule. The RevenueCat subscriptions and socket chats work flawlessly.',
+      author: 'Product Lead',
+      role: 'Founder, Social Discovery Platform',
+      project: 'Paw Play Love (iOS & Android)',
+    ),
+    TestimonialModel(
+      quote:
+          'Working with Shahzaib on LawnOlu was effortless. He handled both customer and provider flows, integrated Google Maps live tracking and Stripe seamlessly.',
+      author: 'Operations Director',
+      role: 'On-Demand Service Marketplace',
+      project: 'LawnOlu Marketplace',
+    ),
+    TestimonialModel(
+      quote:
+          'Shahzaib has deep technical knowledge in Flutter and Web3 integrations. His KYC workflows and wallet onboarding screens made our onboarding exceptionally smooth.',
+      author: 'Engineering Manager',
+      role: 'Web3 Commerce Ecosystem',
+      project: 'BePay Client & Business',
+    ),
+  ];
+
   getMqWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
   }
@@ -393,7 +485,7 @@ class AppClass {
       style: ToastificationStyle.minimal,
       autoCloseDuration: const Duration(seconds: 4),
       title: const Text(
-        'SYSTEM STATUS: SUCCESS',
+        'SUCCESS',
         style: TextStyle(
             fontFamily: 'sfmono',
             fontWeight: FontWeight.bold,
@@ -413,7 +505,6 @@ class AppClass {
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       borderRadius: BorderRadius.circular(8),
       showProgressBar: true,
-      closeButtonShowType: CloseButtonShowType.onHover,
     );
   }
 
@@ -424,7 +515,7 @@ class AppClass {
       style: ToastificationStyle.minimal,
       autoCloseDuration: const Duration(seconds: 4),
       title: const Text(
-        'SYSTEM ERROR',
+        'NOTICE',
         style: TextStyle(
             fontFamily: 'sfmono',
             fontWeight: FontWeight.bold,
@@ -444,7 +535,6 @@ class AppClass {
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       borderRadius: BorderRadius.circular(8),
       showProgressBar: true,
-      closeButtonShowType: CloseButtonShowType.onHover,
     );
   }
 
@@ -459,7 +549,12 @@ class AppClass {
   }
 
   downloadResume(context) async {
-    await launchUrl(Uri.parse(AppClass.resumeDownloadURL));
+    try {
+      await launchUrl(Uri.parse(AppClass.resumeDownloadURL));
+    } catch (_) {
+      Clipboard.setData(const ClipboardData(text: AppClass.resumeDownloadURL));
+      successSnackBar('Resume link copied to clipboard!', context: context);
+    }
   }
 
   alertDialog(context, title, msg) {
@@ -502,37 +597,70 @@ class AppClass {
           )
           .timeout(const Duration(seconds: 10));
 
-      log('response.body');
-      log(response.body);
+      log('response.body: ${response.body}');
       return response.statusCode == 200;
     } catch (e) {
-      print('Error sending email: $e');
+      log('Error sending email: $e');
       return false;
     }
   }
 
   Future<void> openEmail(
-    String email,
-  ) async {
+    String email, {
+    BuildContext? context,
+  }) async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: email,
     );
 
-    if (await canLaunchUrl(emailUri)) {
-      await launchUrl(emailUri);
-    } else {
-      throw 'Could not open email client';
+    try {
+      final launched = await launchUrl(emailUri);
+      if (!launched) {
+        await Clipboard.setData(ClipboardData(text: email));
+        if (context != null) {
+          successSnackBar('Email address copied to clipboard: $email', context: context);
+        }
+      }
+    } catch (_) {
+      await Clipboard.setData(ClipboardData(text: email));
+      if (context != null) {
+        successSnackBar('Email address copied to clipboard: $email', context: context);
+      }
     }
   }
 
-  Future<void> openPhoneNumber(String phoneNumber) async {
-    final Uri whatsappUri = Uri.parse('https://wa.me/$phoneNumber');
+  Future<void> openPhoneNumber(
+    String phoneNumber, {
+    String? prefilledMessage,
+    BuildContext? context,
+  }) async {
+    final textParam = prefilledMessage != null ? '?text=${Uri.encodeComponent(prefilledMessage)}' : '';
+    final Uri whatsappUri = Uri.parse('https://wa.me/$phoneNumber$textParam');
 
-    if (await canLaunchUrl(whatsappUri)) {
-      await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
-    } else {
-      throw 'Could not open WhatsApp for $phoneNumber';
+    try {
+      final launched = await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
+      if (!launched) {
+        await Clipboard.setData(const ClipboardData(text: '+92 316 0984600'));
+        if (context != null) {
+          successSnackBar('WhatsApp number copied to clipboard', context: context);
+        }
+      }
+    } catch (_) {
+      await Clipboard.setData(const ClipboardData(text: '+92 316 0984600'));
+      if (context != null) {
+        successSnackBar('WhatsApp number copied to clipboard', context: context);
+      }
     }
+  }
+
+  Future<void> copyToClipboard(
+    String text,
+    BuildContext context, {
+    String message = 'Copied to clipboard!',
+  }) async {
+    await Clipboard.setData(ClipboardData(text: text));
+    successSnackBar(message, context: context);
   }
 }
+

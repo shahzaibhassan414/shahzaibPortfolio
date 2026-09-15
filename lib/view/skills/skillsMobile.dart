@@ -7,7 +7,7 @@ import '../../Widgets/stacks_text_auto_slider.dart';
 import '../../resource/appClass.dart';
 
 class SkillsMobile extends ConsumerStatefulWidget {
-  const SkillsMobile({Key? key}) : super(key: key);
+  const SkillsMobile({super.key});
 
   @override
   ConsumerState<SkillsMobile> createState() => _ExperienceWebState();
@@ -29,13 +29,13 @@ class _ExperienceWebState extends ConsumerState<SkillsMobile> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MainTitleWidget(
-            title: "Skills",
+          const MainTitleWidget(
+            title: 'Skills',
             isWeb: false,
           ),
           const SizedBox(height: 30),
           Text(
-            "Stacks",
+            'Stacks',
             style: GoogleFonts.robotoSlab(
                 color: Colors.white,
                 letterSpacing: 1,

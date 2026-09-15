@@ -16,8 +16,6 @@ class SmoothScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad,
         PointerDeviceKind.stylus,
       };
 
@@ -29,9 +27,7 @@ class SmoothScrollBehavior extends MaterialScrollBehavior {
 
   @override
   ScrollPhysics getScrollPhysics(BuildContext context) {
-    return const BouncingScrollPhysics(
-      parent: AlwaysScrollableScrollPhysics(),
-    );
+    return const ClampingScrollPhysics();
   }
 }
 

@@ -106,7 +106,7 @@ class _SplashTabState extends State<SplashTab> with SingleTickerProviderStateMix
                           )
                         ],
                       ),
-                      child: Center(
+                      child: const Center(
                         child: CustomAppLogo(),
                       ),
                     ),
@@ -145,7 +145,7 @@ class _SplashTabState extends State<SplashTab> with SingleTickerProviderStateMix
             ),
             const SizedBox(height: 20),
             Text(
-              "INITIALIZING EXPERIENCE...",
+              'INITIALIZING EXPERIENCE...',
               style: TextStyle(
                 color: AppColors().textColor.withValues(alpha:0.4),
                 fontFamily: 'sfmono',

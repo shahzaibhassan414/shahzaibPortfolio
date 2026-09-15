@@ -7,7 +7,7 @@ import '../../resource/appClass.dart';
 import '../../resource/colors.dart';
 
 class LeftPane extends ConsumerStatefulWidget {
-  const LeftPane({Key? key}) : super(key: key);
+  const LeftPane({super.key});
 
   @override
   ConsumerState<LeftPane> createState() => _LeftPaneState();
@@ -31,63 +31,63 @@ class _LeftPaneState extends ConsumerState<LeftPane> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Container(
+                          SizedBox(
                             height: AppClass().getMqHeight(context) * 0.07,
                             child: InkWell(
                               onTap: () async {
-                                await launchUrl(Uri.parse("https://github.com/shahzaibhassan414"));
+                                await launchUrl(Uri.parse('https://github.com/shahzaibhassan414'));
                               },
                               onHover: (bol) {
                                 if (bol) {
-                                  ref.read(hoverProvider.notifier).state = "git";
+                                  ref.read(hoverProvider.notifier).state = 'git';
                                 } else {
-                                  ref.read(hoverProvider.notifier).state = "";
+                                  ref.read(hoverProvider.notifier).state = '';
                                 }
                               },
                               child: Container(
-                                margin: EdgeInsets.only(bottom: val == "git" ? 5.0 : 0),
+                                margin: EdgeInsets.only(bottom: val == 'git' ? 5.0 : 0),
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: SvgPicture.asset('assets/svg/github.svg', color: val == "git" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
+                                child: SvgPicture.asset('assets/svg/github.svg', color: val == 'git' ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: AppClass().getMqHeight(context) * 0.07,
                             child: InkWell(
                               onTap: () async {
-                                await launchUrl(Uri.parse("https://www.instagram.com/yaar_shiekh/?hl=en"));
+                                await launchUrl(Uri.parse('https://www.instagram.com/yaar_shiekh/?hl=en'));
                               },
                               onHover: (bol) {
                                 if (bol) {
-                                  ref.read(hoverProvider.notifier).state = "insta";
+                                  ref.read(hoverProvider.notifier).state = 'insta';
                                 } else {
-                                  ref.read(hoverProvider.notifier).state = "";
+                                  ref.read(hoverProvider.notifier).state = '';
                                 }
                               },
                               child: Container(
-                                margin: EdgeInsets.only(bottom: val == "insta" ? 5.0 : 0),
+                                margin: EdgeInsets.only(bottom: val == 'insta' ? 5.0 : 0),
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: SvgPicture.asset('assets/svg/instagram.svg', color: val == "insta" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
+                                child: SvgPicture.asset('assets/svg/instagram.svg', color: val == 'insta' ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: AppClass().getMqHeight(context) * 0.07,
                             child: InkWell(
                               onTap: () async {
-                                await launchUrl(Uri.parse("https://www.linkedin.com/in/shahzaibhassan414/"));
+                                await launchUrl(Uri.parse('https://www.linkedin.com/in/shahzaibhassan414/'));
                               },
                               onHover: (bol) {
                                 if (bol) {
-                                  ref.read(hoverProvider.notifier).state = "linkedIn";
+                                  ref.read(hoverProvider.notifier).state = 'linkedIn';
                                 } else {
-                                  ref.read(hoverProvider.notifier).state = "";
+                                  ref.read(hoverProvider.notifier).state = '';
                                 }
                               },
                               child: Container(
-                                margin: EdgeInsets.only(bottom: val == "linkedIn" ? 5.0 : 0),
+                                margin: EdgeInsets.only(bottom: val == 'linkedIn' ? 5.0 : 0),
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: SvgPicture.asset('assets/svg/linkedIn.svg', color: val == "linkedIn" ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
+                                child: SvgPicture.asset('assets/svg/linkedIn.svg', color: val == 'linkedIn' ? AppColors().primaryRedColor : AppColors().textColor, width: 22),
                               ),
                             ),
                           ),

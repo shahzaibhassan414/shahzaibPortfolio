@@ -23,19 +23,19 @@ class CustomSkillImageCard extends StatelessWidget {
       padding: EdgeInsets.all(isWeb ? 15 : 10),
       decoration: BoxDecoration(
         color: isHovered
-            ? AppColors().primaryRedColor.withOpacity(0.12)
-            : Colors.white.withOpacity(0.02),
+            ? AppColors().primaryRedColor.withValues(alpha: 0.12)
+            : Colors.white.withValues(alpha: 0.02),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: isHovered
-              ? AppColors().primaryRedColor.withOpacity(0.4)
-              : Colors.white.withOpacity(0.05),
+              ? AppColors().primaryRedColor.withValues(alpha: 0.4)
+              : Colors.white.withValues(alpha: 0.05),
           width: 1.5,
         ),
         boxShadow: [
           if (isHovered)
             BoxShadow(
-              color: AppColors().primaryRedColor.withOpacity(0.15),
+              color: AppColors().primaryRedColor.withValues(alpha: 0.15),
               blurRadius: 25,
               spreadRadius: 5,
             )
@@ -49,7 +49,7 @@ class CustomSkillImageCard extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: isHovered
-                  ? Colors.white.withOpacity(0.08)
+                  ? Colors.white.withValues(alpha: 0.08)
                   : Colors.transparent,
               shape: BoxShape.circle,
             ),

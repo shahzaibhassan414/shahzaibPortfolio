@@ -46,7 +46,7 @@ class _CustomHoverButtonState extends State<CustomHoverButton> {
           child: Stack(
             children: [
               AnimatedPositioned(
-                duration: Duration(milliseconds: 450),
+                duration: const Duration(milliseconds: 450),
                 curve: Curves.easeInOut,
                 left: isHovered ? 0 : -btnWidth,
                 top: 0,
@@ -61,7 +61,7 @@ class _CustomHoverButtonState extends State<CustomHoverButton> {
               ),
               Center(
                 child: AnimatedDefaultTextStyle(
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                   style: TextStyle(
                     color: isHovered

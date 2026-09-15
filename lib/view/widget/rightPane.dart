@@ -6,7 +6,7 @@ import '../../controller/generalController.dart';
 import '../../resource/colors.dart';
 
 class RightPane extends ConsumerStatefulWidget {
-  const RightPane({Key? key}) : super(key: key);
+  const RightPane({super.key});
 
   @override
   ConsumerState<RightPane> createState() => _RightPaneState();
@@ -27,7 +27,7 @@ class _RightPaneState extends ConsumerState<RightPane> {
                   children: [
                     Consumer(builder: (context, ref, child) {
                       String val = ref.watch(hoverProvider);
-                      bool isHovered = val == "email";
+                      bool isHovered = val == 'email';
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 25),
                         child: RotatedBox(
@@ -37,7 +37,7 @@ class _RightPaneState extends ConsumerState<RightPane> {
                               AppClass().openEmail(AppClass.email);
                             },
                             onHover: (bol) {
-                              ref.read(hoverProvider.notifier).state = bol ? "email" : "";
+                              ref.read(hoverProvider.notifier).state = bol ? 'email' : '';
                             },
                             child: AnimatedContainer(
                               duration: const Duration(milliseconds: 300),

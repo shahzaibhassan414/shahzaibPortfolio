@@ -7,7 +7,7 @@ import '../../model/experienceModel.dart';
 import '../../resource/strings.dart';
 
 class ExperienceWeb extends ConsumerStatefulWidget {
-  const ExperienceWeb({Key? key}) : super(key: key);
+  const ExperienceWeb({super.key});
 
   @override
   ConsumerState<ExperienceWeb> createState() => _ExperienceWebState();

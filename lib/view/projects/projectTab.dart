@@ -6,7 +6,7 @@ import '../../resource/colors.dart';
 import 'Widgets/work_card.dart';
 
 class ProjectTab extends ConsumerStatefulWidget {
-  const ProjectTab({Key? key}) : super(key: key);
+  const ProjectTab({super.key});
 
   @override
   ConsumerState<ProjectTab> createState() => _WorkWebState();
@@ -25,8 +25,8 @@ class _WorkWebState extends ConsumerState<ProjectTab> {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         children: [
-          MainTitleWidget(
-            title: "My Projects",
+          const MainTitleWidget(
+            title: 'My Projects',
             isWeb: false,
           ),
           const SizedBox(height: 25),
@@ -71,7 +71,7 @@ class _WorkWebState extends ConsumerState<ProjectTab> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          "SHOW MORE",
+                          'SHOW MORE',
                           style: TextStyle(
                             color: AppColors().primaryRedColor,
                             fontFamily: 'sfmono',

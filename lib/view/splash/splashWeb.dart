@@ -111,7 +111,7 @@ class _SplashWebState extends State<SplashWeb>
                           )
                         ],
                       ),
-                      child: Center(
+                      child: const Center(
                         child: CustomAppLogo(),
                         // Image.asset(
                         //   'assets/svg/appLogo.png',
@@ -157,7 +157,7 @@ class _SplashWebState extends State<SplashWeb>
             ),
             const SizedBox(height: 20),
             Text(
-              "INITIALIZING EXPERIENCE...",
+              'INITIALIZING EXPERIENCE...',
               style: TextStyle(
                 color: AppColors().textColor.withValues(alpha: 0.4),
                 fontFamily: 'sfmono',

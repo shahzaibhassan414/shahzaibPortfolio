@@ -19,7 +19,7 @@ class PackagesMobile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const MainTitleWidget(
-            title: "Open Source",
+            title: 'Open Source',
             isWeb: false,
           ),
           const SizedBox(height: 30),
@@ -27,10 +27,10 @@ class PackagesMobile extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 20),
             child: SizedBox(
               width: double.infinity,
-              height: 240,
+              height: 250,
               child: PackageCard(package: pkg),
             ),
-          )).toList(),
+          )),
         ],
       ),
     );

@@ -1,64 +1,66 @@
 class Strings {
   /* Intro screen contents */
-  static const introEyebrow = '''SENIOR FLUTTER DEVELOPER''';
+  static const introEyebrow = '''Flutter Developer''';
   static const name = '''Shahzaib Hassan''';
   static const introHeadline =
-      '''I build mobile products that feel polished and ship reliably.''';
+      '''I build mobile applications with Flutter for iOS & Android.''';
   static const introSummary =
-      '''From pixel-perfect Flutter interfaces to payments, maps, authentication, KYC, and store releases, I help teams turn product ideas into dependable iOS and Android apps.''';
-  static const introAvailability = '''Building production Flutter products''';
+      '''Senior Flutter Developer with 4+ years of experience building and shipping high-performance mobile apps. Specializing in clean architecture, subscriptions & payments, live maps, and production store releases.''';
+  static const introAvailability = '''Available for new projects''';
 
   /* About screen contents */
-  static const aboutEyebrow = '''MOBILE PRODUCT ENGINEER''';
   static const aboutHeadline =
-      '''Senior Flutter developer building apps that are ready for real users.''';
+      '''Senior Flutter developer focused on crafting clean, production-ready mobile apps.''';
   static const aboutSummary =
-      '''I’m Shahzaib, a Senior Flutter Developer with 4 years of experience shipping production apps for iOS and Android. I turn Figma designs into responsive, maintainable products and handle the integrations that make them real—from payments and maps to authentication, KYC, and store releases.''';
+      '''I'm Shahzaib, a mobile engineer with 4+ years of experience building cross-platform applications with Flutter. I help startups and businesses turn designs into reliable, high-performance apps on iOS and Android—handling everything from core architecture and state management to in-app purchases, live tracking, and App Store publishing.''';
   static const aboutExploring =
-      '''Currently exploring full-stack product development''';
+      '''Focused on clean architecture, smooth 60fps UI, and scalable codebase structure.''';
   static const aboutCapabilities = <String>[
     'Flutter & Dart',
-    'Payments',
-    'Maps',
-    'Authentication',
-    'KYC',
-    'App Store releases',
+    'iOS & Android',
+    'In-App Subscriptions (RevenueCat)',
+    'Stripe & Payments',
+    'Google Maps & GPS',
+    'WebSockets & Real-Time',
+    'Firebase & Supabase',
+    'App Store & Play Store Publishing',
   ];
 
   /* Exp screen contents */
-  static final expCompName1 = '''Rex Technologies''';
-  static final expDesig1 = '''Flutter Developer''';
-  static final expDur1 = '''Feb 2022 - Jan 2024''';
-  static final expAbout1 =
-      '''To kick start my carrier in IT, joined as an Intern to gain knowledge and experience in software industry, Mobile Application Development.''';
-  static final expAbout1_2 =
-      '''Successful App Launch: I developed a Flutter app with 10k+ downloads and positive user ratings''';
-  static final expAbout1_3 =
-      '''Enhanced App Stability: Resolved critical bugs for a smoother user experience''';
-  static final expAbout1_4 =
-      '''Effective Collaboration: Worked closely with designers to create appealing interfaces''';
+  static const expCompName1 = '''Rex Technologies''';
+  static const expDesig1 = '''Flutter Developer''';
+  static const expDur1 = '''Feb 2022 - Jan 2024''';
+  static const expAbout1 =
+      '''Developed production Flutter applications, collaborated with designers, and built scalable feature foundations.''';
+  static const expAbout1_2 =
+      '''App Launch: Delivered mobile applications with thousands of active users and consistent 5-star store ratings.''';
+  static const expAbout1_3 =
+      '''Stability & Performance: Resolved crash bottlenecks and rendering issues for a smooth 60fps experience.''';
+  static const expAbout1_4 =
+      '''Design Implementation: Built responsive, pixel-perfect UI components across iOS and Android.''';
 
-  static final expCompName2 = '''Code Encoders''';
-  static final expDesig2 = '''Senior Flutter Developer''';
-  static final expDur2 = '''Jan 2024 - Present''';
-  static final expAbout2 =
-      '''Designed multiple mobile apps with pixel-perfect accuracy from Figma designs, ensuring seamless UI implementation.''';
-  static final expAbout2_2 =
-      '''Integrated RevenueCat to handle in-app purchases and meet all App Store compliance requirements.''';
-  static final expAbout2_3 =
-      '''Successfully delivered projects within defined timelines while maintaining high quality standards.''';
-  static final expAbout2_4 =
-      '''Implemented map integrations using Google Places API for location-based features and enhanced user experience. ''';
-  static final expAbout2_5 =
-      '''Integrated social logins including Apple, Google, and Facebook for seamless user authentication. ''';
-  static final expAbout2_6 =
-      '''Implemented Web3 login functionality using Web3Auth for decentralized and secure user authentication. ''';
-  static final expAbout2_7 =
-      '''Integrated KYC verification using DIDIT to ensure secure and compliant user onboarding. ''';
-  static final expAbout2_8 =
-      '''Redesigned two complete mobile apps within a week, enhancing UI/UX and overall performance. ''';
+  static const expCompName2 = '''Code Encoders''';
+  static const expDesig2 = '''Senior Flutter Developer''';
+  static const expDur2 = '''Jan 2024 - Present''';
+  static const expAbout2 =
+      '''Lead Flutter development across multi-platform consumer and business products from initial design to store release.''';
+  static const expAbout2_2 =
+      '''Implemented in-app subscriptions and paywalls using RevenueCat and native store billing APIs.''';
+  static const expAbout2_3 =
+      '''Delivered mission-critical mobile features on schedule with modular, maintainable architecture.''';
+  static const expAbout2_4 =
+      '''Built live tracking, venue discovery, and location features using Google Places and Maps APIs.''';
+  static const expAbout2_5 =
+      '''Integrated secure authentication flows including Apple Sign-In, Google Sign-In, and Web3Auth.''';
+  static const expAbout2_6 =
+      '''Built identity verification and compliance workflows with DIDIT KYC/KYB SDKs.''';
+  static const expAbout2_7 =
+      '''Optimized app performance, reducing startup times and ensuring seamless App Store review approvals.''';
+  static const expAbout2_8 =
+      '''Collaborated closely with cross-functional teams to deliver polished, production-ready releases.''';
 
   /* Contact screen content */
-  static final endTxt =
-      '''If you have something in mind or just want to say hi, don’t hesitate to drop a message. I’m always open to new conversations.''';
+  static const endTxt =
+      '''Have a project idea or need a senior Flutter developer on your team? Let's connect and discuss how I can help.''';
 }
+

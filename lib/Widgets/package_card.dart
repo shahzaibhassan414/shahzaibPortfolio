@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../model/packageModel.dart';
+import '../resource/appClass.dart';
 import '../resource/colors.dart';
 
 class PackageCard extends StatefulWidget {
@@ -18,6 +19,8 @@ class _PackageCardState extends State<PackageCard> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = AppClass().getScreenType(context) == ScreenType.mobile;
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),
@@ -26,8 +29,10 @@ class _PackageCardState extends State<PackageCard> {
         onTap: () => launchUrl(Uri.parse(widget.package.pubLink)),
         borderRadius: BorderRadius.circular(18),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.all(24),
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOutCubic,
+          transform: Matrix4.translationValues(0, _hovered ? -5 : 0, 0),
+          padding: EdgeInsets.all(isMobile ? 18 : 24),
           decoration: BoxDecoration(
             color: _hovered ? AppColors().elevatedColor : AppColors().cardColor,
             borderRadius: BorderRadius.circular(18),
@@ -36,6 +41,14 @@ class _PackageCardState extends State<PackageCard> {
                   ? AppColors().primaryColor.withValues(alpha: 0.4)
                   : AppColors().dividerColor,
             ),
+            boxShadow: [
+              if (_hovered)
+                BoxShadow(
+                  color: AppColors().primaryColor.withValues(alpha: 0.12),
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
+                ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,8 +56,8 @@ class _PackageCardState extends State<PackageCard> {
               Row(
                 children: [
                   Container(
-                    width: 42,
-                    height: 42,
+                    width: isMobile ? 38 : 42,
+                    height: isMobile ? 38 : 42,
                     decoration: BoxDecoration(
                       color: AppColors().primaryColor.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(11),
@@ -52,7 +65,7 @@ class _PackageCardState extends State<PackageCard> {
                     child: Icon(
                       Icons.data_object_rounded,
                       color: AppColors().primaryColor,
-                      size: 21,
+                      size: isMobile ? 19 : 21,
                     ),
                   ),
                   const Spacer(),
@@ -64,38 +77,40 @@ class _PackageCardState extends State<PackageCard> {
                       fontSize: 10,
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 8),
                   Icon(
                     Icons.arrow_outward_rounded,
                     color: AppColors().mutedTextColor,
-                    size: 18,
+                    size: 16,
                   ),
                 ],
               ),
-              const SizedBox(height: 22),
+              SizedBox(height: isMobile ? 14 : 18),
               Text(
                 widget.package.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: AppColors().textColor,
-                  fontSize: 20,
+                  fontSize: isMobile ? 17 : 20,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: isMobile ? 6 : 8),
               Text(
                 widget.package.description,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: AppColors().mutedTextColor,
-                  fontSize: 14,
-                  height: 1.5,
+                  fontSize: isMobile ? 12.5 : 14,
+                  height: 1.45,
                 ),
               ),
               const Spacer(),
               Wrap(
-                spacing: 12,
-                runSpacing: 8,
+                spacing: 10,
+                runSpacing: 6,
                 children: widget.package.techs
                     .map(
                       (tech) => Text(

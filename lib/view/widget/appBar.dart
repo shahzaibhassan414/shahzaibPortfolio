@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
@@ -11,12 +12,12 @@ class ActionBar extends StatelessWidget implements PreferredSizeWidget {
 
   static const _items = <({String label, int index})>[
     (label: 'About', index: 1),
-    (label: 'Experience', index: 2),
-    (label: 'Skills', index: 3),
-    (label: 'OSC', index: 4),
-    (label: 'Projects', index: 5),
-    (label: 'Writing', index: 6),
-    (label: 'Contact', index: 7),
+    (label: 'Services', index: 2),
+    (label: 'Projects', index: 3),
+    (label: 'Experience', index: 4),
+    (label: 'Skills', index: 5),
+    (label: 'Reviews', index: 6),
+    (label: 'Contact', index: 9),
   ];
 
   @override
@@ -34,15 +35,20 @@ class ActionBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final compact = AppClass().getScreenType(context) != ScreenType.web;
 
-    return Material(
-      color: AppColors().backgroundColor.withValues(alpha: 0.96),
-      child: Container(
-        height: 76,
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(color: AppColors().dividerColor),
-          ),
-        ),
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+        child: Material(
+          color: compact
+              ? AppColors().backgroundColor
+              : AppColors().backgroundColor.withValues(alpha: 0.92),
+          child: Container(
+            height: 76,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: AppColors().dividerColor),
+              ),
+            ),
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Center(
           child: ConstrainedBox(
@@ -97,10 +103,10 @@ class ActionBar extends StatelessWidget implements PreferredSizeWidget {
                         fontFamily: 'sfmono',
                         fontSize: 10,
                         fontWeight: FontWeight.w700,
-                        letterSpacing: 1,
+                        letterSpacing: 0.5,
                       ),
                     ),
-                    child: const Text('RESUME'),
+                    child: const Text('Resume'),
                   ),
                 ],
               ],
@@ -108,7 +114,9 @@ class ActionBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-    );
+    ),
+  ),
+);
   }
 }
 

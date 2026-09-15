@@ -9,7 +9,7 @@ class CustomAppLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: "SH",
+        text: 'SH',
         style: GoogleFonts.poppins(
           color: AppColors().textColor,
           letterSpacing: 2,
@@ -20,7 +20,7 @@ class CustomAppLogo extends StatelessWidget {
         ),
         children: [
           TextSpan(
-            text: ".",
+            text: '.',
             style: GoogleFonts.poppins(
               color: AppColors().primaryRedColor,
               fontWeight: FontWeight.w900,

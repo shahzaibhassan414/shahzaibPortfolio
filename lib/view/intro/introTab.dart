@@ -20,7 +20,7 @@ class IntroTab extends StatelessWidget {
       child: RecruiterIntroHero(
         compact: true,
         onViewWork: () => _scrollTo(5),
-        onContact: () => _scrollTo(7),
+        onContact: () => _scrollTo(9),
       ),
     );
   }

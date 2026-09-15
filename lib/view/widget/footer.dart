@@ -165,17 +165,6 @@ class _SignOffCopy extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'END OF PAGE  /  START OF SOMETHING GOOD',
-          style: TextStyle(
-            color: AppColors().primaryColor,
-            fontFamily: 'sfmono',
-            fontSize: 9,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 1.1,
-          ),
-        ),
-        const SizedBox(height: 11),
         Semantics(
           header: true,
           child: Text(
@@ -239,17 +228,15 @@ class _EmailButton extends StatelessWidget {
     return FilledButton.icon(
       onPressed: () => AppClass().openEmail(AppClass.email),
       icon: const Icon(Icons.north_east_rounded, size: 17),
-      label: const Text('SAY HELLO'),
+      label: const Text('Say Hello'),
       style: FilledButton.styleFrom(
         minimumSize: expanded ? const Size.fromHeight(50) : null,
         backgroundColor: AppColors().primaryColor,
         foregroundColor: AppColors().backgroundColor,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         textStyle: const TextStyle(
-          fontFamily: 'sfmono',
-          fontSize: 10,
-          fontWeight: FontWeight.w800,
-          letterSpacing: 1,
+          fontSize: 13,
+          fontWeight: FontWeight.w700,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(11),
@@ -292,23 +279,19 @@ class _FooterMeta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final copyright = Text(
-      '© 2026 SHAHZAIB HASSAN',
+      '© 2026 Shahzaib Hassan',
       style: TextStyle(
         color: AppColors().mutedTextColor,
-        fontFamily: 'sfmono',
-        fontSize: 9,
-        fontWeight: FontWeight.w600,
-        letterSpacing: 0.9,
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
       ),
     );
     final signature = Text(
-      'DESIGNED & BUILT IN FLUTTER',
+      'Built with Flutter',
       style: TextStyle(
         color: AppColors().mutedTextColor,
-        fontFamily: 'sfmono',
-        fontSize: 9,
-        fontWeight: FontWeight.w600,
-        letterSpacing: 0.9,
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
       ),
     );
 

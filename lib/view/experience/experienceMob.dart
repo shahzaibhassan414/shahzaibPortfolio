@@ -6,7 +6,7 @@ import '../../resource/appClass.dart';
 import '../../resource/strings.dart';
 
 class ExperienceMob extends StatefulWidget {
-  const ExperienceMob({Key? key}) : super(key: key);
+  const ExperienceMob({super.key});
 
   @override
   State<ExperienceMob> createState() => _ExperienceMobState();
@@ -52,8 +52,8 @@ class _ExperienceMobState extends State<ExperienceMob> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MainTitleWidget(
-            title: "Experiences",
+          const MainTitleWidget(
+            title: 'Experiences',
             isWeb: false,
           ),
           const SizedBox(height: 50),

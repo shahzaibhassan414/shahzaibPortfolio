@@ -111,7 +111,7 @@ class _SplashMobileState extends State<SplashMobile>
                           )
                         ],
                       ),
-                      child: Center(
+                      child: const Center(
                         child: CustomAppLogo(),
                       ),
                     ),
@@ -152,7 +152,7 @@ class _SplashMobileState extends State<SplashMobile>
             ),
             const SizedBox(height: 20),
             Text(
-              "INITIALIZING EXPERIENCE...",
+              'INITIALIZING EXPERIENCE...',
               style: TextStyle(
                 color: AppColors().textColor.withValues(alpha: 0.4),
                 fontFamily: 'sfmono',

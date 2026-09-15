@@ -24,27 +24,6 @@ class RecruiterAboutCopy extends StatelessWidget {
     return Column(
       crossAxisAlignment: alignment,
       children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-          decoration: BoxDecoration(
-            color: AppColors().primaryColor.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(100),
-            border: Border.all(
-              color: AppColors().primaryColor.withValues(alpha: 0.25),
-            ),
-          ),
-          child: Text(
-            Strings.aboutEyebrow,
-            style: TextStyle(
-              color: AppColors().primaryColor,
-              fontFamily: 'sfmono',
-              fontSize: 11,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1.5,
-            ),
-          ),
-        ),
-        SizedBox(height: compact ? 14 : 20),
         Semantics(
           header: true,
           child: Text(
@@ -124,7 +103,7 @@ class AboutActionButtons extends StatelessWidget {
       runSpacing: 12,
       children: [
         _AboutButton(
-          label: 'VIEW PROJECTS',
+          label: 'View Projects',
           icon: Icons.arrow_downward_rounded,
           filled: true,
           onPressed: onViewProjects,
@@ -171,8 +150,8 @@ class _RecruiterProfileCardState extends State<RecruiterProfileCard> {
           boxShadow: [
             BoxShadow(
               color: AppColors()
-                  .primaryColor
-                  .withValues(alpha: _isHovered ? 0.16 : 0.08),
+                .primaryColor
+                .withValues(alpha: _isHovered ? 0.16 : 0.08),
               blurRadius: _isHovered ? 36 : 24,
               offset: const Offset(0, 16),
             ),
@@ -199,51 +178,6 @@ class _RecruiterProfileCardState extends State<RecruiterProfileCard> {
                       end: Alignment.bottomCenter,
                       stops: [0.45, 1],
                       colors: [Colors.transparent, Color(0xF2020617)],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 18,
-                  left: 18,
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
-                    decoration: BoxDecoration(
-                      color: const Color(0xD9020617),
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(color: Colors.white24),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: AppColors().primaryColor,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors()
-                                    .primaryColor
-                                    .withValues(alpha: 0.7),
-                                blurRadius: 8,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'OPEN TO GREAT PRODUCTS',
-                          style: TextStyle(
-                            color: AppColors().textColor,
-                            fontFamily: 'sfmono',
-                            fontSize: 10,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.7,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ),

@@ -311,8 +311,9 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
 
       // 2. Interspersed Visuals (at specific logical breaks)
       int visualIndex = -1;
-      if (i == 0) visualIndex = 0; // After Overview
-      else if (i == 2) visualIndex = 1; // After Problem
+      if (i == 0) {
+        visualIndex = 0; // After Overview
+      } else if (i == 2) visualIndex = 1; // After Problem
       else if (i == 3) visualIndex = 2; // After What I Built
       else if (i == 6) visualIndex = 3; // After Outcome
 

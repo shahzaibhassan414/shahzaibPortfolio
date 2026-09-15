@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../resource/colors.dart';
-import '../resource/strings.dart';
 
 class TypeWriterText extends StatefulWidget {
   final String text;
@@ -19,7 +18,7 @@ class _TypeWriterTextState extends State<TypeWriterText>
   late AnimationController _controller;
   late Animation<int> _charCount;
 
-   String _text = "";
+   String _text = '';
 
   @override
   void initState() {

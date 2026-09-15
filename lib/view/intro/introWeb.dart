@@ -22,7 +22,7 @@ class IntroWeb extends StatelessWidget {
       alignment: Alignment.center,
       child: RecruiterIntroHero(
         onViewWork: () => _scrollTo(5),
-        onContact: () => _scrollTo(7),
+        onContact: () => _scrollTo(9),
       ),
     );
   }

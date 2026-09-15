@@ -54,7 +54,7 @@ class Packages extends StatelessWidget {
                     .map(
                       (package) => SizedBox(
                         width: width,
-                        height: isMobile ? 214 : 250,
+                        height: 250,
                         child: PackageCard(package: package),
                       ),
                     )

@@ -23,7 +23,7 @@ class PackagesWeb extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const MainTitleWidget(title: "Open Source Contributions"),
+          const MainTitleWidget(title: 'Open Source Contributions'),
           const SizedBox(height: 40),
           Center(
             child: Wrap(

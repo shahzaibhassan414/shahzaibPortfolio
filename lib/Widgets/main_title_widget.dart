@@ -15,15 +15,18 @@ class MainTitleWidget extends StatelessWidget {
   String get _index {
     const order = {
       'About Me': '01',
-      'Experiences': '02',
-      'Skills': '03',
-      'Open Source Contributions': '04',
-      'Open Source': '04',
+      'Services': '02',
+      'Experiences': '03',
+      'Skills': '04',
       'My Projects': '05',
-      'Latest Blogs': '06',
-      "What's Next?": '07',
+      'Open Source': '06',
+      'Open Source Contributions': '06',
+      'Testimonials': '07',
+      'Latest Blogs': '08',
+      'Get in Touch': '09',
+      "What's Next?": '09',
     };
-    return order[title] ?? '•';
+    return order[title] ?? '';
   }
 
   @override

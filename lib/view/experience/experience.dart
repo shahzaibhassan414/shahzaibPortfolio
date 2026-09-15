@@ -23,7 +23,6 @@ class Experience extends StatelessWidget {
         Strings.expAbout2_5,
         Strings.expAbout2_6,
         Strings.expAbout2_7,
-        Strings.expAbout2_8,
       ],
     ),
     ExperienceWebModel(
